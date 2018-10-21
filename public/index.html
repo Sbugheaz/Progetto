@@ -3,27 +3,25 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/Progetto/public/stylesheets/style.css">
     <meta charset="UTF-8">
-    <title>SoundWave</title>
+    <title>SoundWave - Streaming audio</title>
 </head>
-<body>
-<h1>Sound Wave</h1>
+<body background="/Progetto/public/images/Sfondo.jpg">>
+<h1>SoundWave <br>
+    Ascolta tutta la tua musica in straming, gratuitamente.</h1>
 <div>
     <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <label for="username">Nome utente: </label>
+        <input type="text" id="username" name="username" placeholder="Nome utente...">
+        <br>
+        <label for="psw">Password: </label>
+        <input type="password" id="psw" name="password" placeholder="Password di minimo 8 caratteri..." minlength="6" required placeholder="6 characters minimum">
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-        <label for="country">Country</label>
-        <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-        </select>
-
-        <input type="submit" value="Submit">
+        <input type="submit" value="Accedi">
     </form>
+    <p>
+        Non hai ancora un account?
+    </p>
+    <button type="button">Registrati</button>
 </div>
 </body>
 </html>
