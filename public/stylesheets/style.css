@@ -4,17 +4,22 @@ body {
   background-repeat: no-repeat;
 }
 
-a {
-  color: #00B7FF;
+a:link {
+  color: rgba(255,148,24,0.9);
+}
+
+a:visited {
+  color: rgba(255,148,24,0.9);;
+}
+
+a:hover {
+  color: rgba(255,97,0,0.9);
 }
 
 h1.home {
   float:left;
   text-align: center;
   color: cornsilk;
-  text-align: justify;
-  text-justify: inter-word;
-
 }
 
 div.empty{
@@ -103,6 +108,7 @@ button:hover {
 div.home {
   border-radius: 5px;
   background-color: #f2f2f2;
+  opacity: 0.87;
   padding: 20px;
   font-size: 16px;
   width: auto;
