@@ -12,15 +12,10 @@ h1 {
   float:left;
   text-align: center;
   color: cornsilk;
-  margin-left:auto;
+
 }
 
-div {
 
-  font-size: 16px;
-  width: auto;
-  float: right;
-}
  input[type=text], select {
    width: 100%;
    padding: 12px 20px;
@@ -71,8 +66,12 @@ button:hover {
   background-color: rgba(255,138,0,0.9);
 }
 
-div {
+div.home {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+
+  font-size: 16px;
+  width: auto;
+  float: right;
 }
