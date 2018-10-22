@@ -8,9 +8,16 @@ a {
   color: #00B7FF;
 }
 
-h1 {
+h1.home {
   float:left;
   text-align: center;
+  color: cornsilk;
+
+}
+h1.register {
+
+  text-align: center;
+  width: border-box;
   color: cornsilk;
 
 }
@@ -70,8 +77,19 @@ div.home {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-
   font-size: 16px;
   width: auto;
   float: right;
+}
+
+div.register{
+  width: auto;
+  margin-top: 50px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-size: 16px;
+
+
+
 }
