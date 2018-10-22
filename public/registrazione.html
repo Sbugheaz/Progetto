@@ -3,12 +3,12 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/Progetto/public/stylesheets/style.css">
     <meta charset="UTF-8">
-    <title>Registrazione</title>
+    <title>SoundWave - Registrati</title>
 </head>
 
 <body background="/Progetto/public/images/Sfondo.jpg">
 
-<h1 class="register">SoundWave - Registrazione</h1>
+<h1 class="register">Registrati</h1>
 <br>
 
 
@@ -20,11 +20,17 @@
         <label for="cognome">Cognome: </label>
         <input type="text" id="cognome" name="cognome" placeholder="Inserisci il tuo cognome">
 
-        <label >Sesso: </label>
-        <select>
-            <option value="uomo"> Uomo</option>
+
+
+
+        <label for="sesso">Sesso: </label>
+        <select class="registrazione" id="sesso" name="sesso">
+            <option value="uomo">Uomo</option>
+            <option value="donna">Donna</option>
+            <option value="altro">Altro</option>
         </select>
-        </label>
+
+
 
         <br>
         <label for="nome_utente">Nome Utente </label>
