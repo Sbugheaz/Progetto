@@ -21,26 +21,26 @@
         <input type="text" id="cognome" name="cognome" placeholder="inserisci il tuo cognome">
 
         <label >Sesso: </label>
-        <input type="radio" name="genere" value="uomo"> Uomo
-        <input type="radio" name="genere" value="donna"> Donna
-        <input type="radio" name="genere" value="altro"> Altro
+        <select>
+            <option value="uomo"> Uomo</option>
+        </select>
         </label>
 
         <br>
         <label for="nome_utente">Nome Utente </label>
-        <input type="text" id="nome_utente" name="nome_utente" placeholder="inserisci un nome utente">
+        <input type="text" id="nome_utente" name="nome_utente" placeholder="Inserisci il tuo nome utente visibile a tutti">
 
         <label for="email">Email: </label>
-        <input type="text" id="email" name="email" placeholder="inserisci un indirizzo email valido">
+        <input type="text" id="email" name="email" placeholder="Inserisci un indirizzo email valido">
 
         <label for="email">Conferma la tua email: </label>
         <input type="text" id="email1" name="email" placeholder="inserisci un indirizzo email valido">
 
         <label for="psw">Password: </label>
-        <input type="password" id="psw" name="password" placeholder="Password di minimo 8 caratteri..." minlength="6" required placeholder="6 characters minimum">
+        <input type="password" id="psw" name="password" placeholder="Password di minimo 6 caratteri..." minlength="6" required placeholder="6 characters minimum">
 
         <label for="psw2">Conferma la tua password: </label>
-        <input type="password" id="psw2" name="password2" placeholder="Ripeti password" minlength="6" required placeholder="6 characters minimum">
+        <input type="password" id="psw2" name="password2" placeholder="Conferma password" minlength="6" required placeholder="6 characters minimum">
 
         <input type="submit" value="Registrati">
     </form>
