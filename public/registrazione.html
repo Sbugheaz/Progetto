@@ -14,13 +14,34 @@
 
 <div class="register">
     <form action="/action_page.php">
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome" placeholder="inserisci il tuo nome">
+
+        <label for="cognome">Cognome: </label>
+        <input type="text" id="cognome" name="cognome" placeholder="inserisci il tuo cognome">
+
+        <label >Sesso: </label>
+        <input type="radio" name="genere" value="uomo"> Uomo
+        <input type="radio" name="genere" value="donna"> Donna
+        <input type="radio" name="genere" value="altro"> Altro
+        </label>
+
+        <br>
+        <label for="nome_utente">Nome Utente </label>
+        <input type="text" id="nome_utente" name="nome_utente" placeholder="inserisci un nome utente">
+
         <label for="email">Email: </label>
         <input type="text" id="email" name="email" placeholder="inserisci un indirizzo email valido">
-        <br>
+
+        <label for="email">Conferma la tua email: </label>
+        <input type="text" id="email1" name="email" placeholder="inserisci un indirizzo email valido">
+
         <label for="psw">Password: </label>
         <input type="password" id="psw" name="password" placeholder="Password di minimo 8 caratteri..." minlength="6" required placeholder="6 characters minimum">
-        <label for="psw2">Password: </label>
+
+        <label for="psw2">Conferma la tua password: </label>
         <input type="password" id="psw2" name="password2" placeholder="Ripeti password" minlength="6" required placeholder="6 characters minimum">
+
         <input type="submit" value="Registrati">
     </form>
 
