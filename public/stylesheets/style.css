@@ -15,12 +15,6 @@ h1 {
   margin-left:auto;
 }
 
-div {
-
-  font-size: 16px;
-  width: auto;
-  float: right;
-}
  input[type=text], select {
    width: 100%;
    padding: 12px 20px;
@@ -75,4 +69,7 @@ div {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  font-size: 16px;
+  width: auto;
+  float: right;
 }
