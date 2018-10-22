@@ -12,6 +12,8 @@ h1.home {
   float:left;
   text-align: center;
   color: cornsilk;
+  text-align: justify;
+  text-justify: inter-word;
 
 }
 
