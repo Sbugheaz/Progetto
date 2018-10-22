@@ -14,8 +14,29 @@ h1.home {
   color: cornsilk;
 
 }
-h1.register {
 
+div.empty{
+  line-height: 200px;
+  height: 200px;
+  width: 100%;
+
+}
+
+div.description{
+  max-width: 60%;
+  float: left;
+  padding:70px 0;
+
+}
+
+p.title {
+  text-align: center;
+  width: border-box;
+  color: cornsilk;
+
+}
+
+h1.register {
   text-align: center;
   width: border-box;
   color: cornsilk;
@@ -56,6 +77,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: rgba(255,138,0,0.9);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button {
@@ -71,6 +93,7 @@ button {
 
 button:hover {
   background-color: rgba(255,138,0,0.9);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 div.home {
