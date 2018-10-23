@@ -2,6 +2,8 @@ body {
   padding: 50px;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-repeat: no-repeat;
+    background-size: 100%;
+
 }
 
 a {
@@ -29,7 +31,7 @@ div.empty{
 div.description{
   max-width: 60%;
   float: left;
-  padding:70px 0;
+  padding:40px 0;
 
 }
 
