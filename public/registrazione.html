@@ -26,6 +26,31 @@
             <option value="donna">Donna</option>
             <option value="altro">Altro</option>
         </select>
+        <label for="sesso">Data di nascita: </label>
+        <select name="day" id="day">
+            <option value="na">Giorno</option>
+        </select>
+
+        <select name="month" onChange="changeDate(this.options[selectedIndex].value);">
+            <option value="na">Mese</option>
+            <option value="1">Gennaio</option>
+            <option value="2">Febbraio</option>
+            <option value="3">Marzo</option>
+            <option value="4">Aprile</option>
+            <option value="5">Maggio</option>
+            <option value="6">Giugno</option>
+            <option value="7">Luglio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+        </select>
+
+
+        <select name="year" id="year">
+            <option value="na">Anno</option>
+        </select>
 
         <br>
         <label for="nome_utente">Nome utente </label>
@@ -45,6 +70,51 @@
 
         <input type="submit" value="Registrati">
     </form>
+
+
+    <script language="JavaScript" type="text/javascript">
+        function changeDate(i){
+            var e = document.getElementById('day');
+            while(e.length>0)
+                e.remove(e.length-1);
+            var j=-1;
+            if(i=="na")
+                k=0;
+            else if(i==2)
+                k=28;
+            else if(i==4||i==6||i==9||i==11)
+                k=30;
+            else
+                k=31;
+            while(j++<k){
+                var s=document.createElement('option');
+                var e=document.getElementById('day');
+                if(j==0){
+                    s.text="Giorno";
+                    s.value="na";
+                    try{
+                        e.add(s,null);}
+                    catch(ex){
+                        e.add(s);}}
+                else{
+                    s.text=j;
+                    s.value=j;
+                    try{
+                        e.add(s,null);}
+                    catch(ex){
+                        e.add(s);}}}}
+        var anno=new Date();
+        y = anno.getFullYear();
+        while (y-->1940){
+            var s = document.createElement('option');
+            var e = document.getElementById('year');
+            s.text=y;
+            s.value=y;
+            try{
+                e.add(s,null);}
+            catch(ex){
+                e.add(s);}}
+    </script>
 
 </div>
 
