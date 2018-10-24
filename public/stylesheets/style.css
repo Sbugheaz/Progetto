@@ -1,7 +1,8 @@
 body {
   padding: 50px;
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1vw "Lucida Grande", Helvetica, Arial, sans-serif;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 a:link {
@@ -86,23 +87,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: rgba(255,138,0,0.9);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-button {
-  width: 30%;
-  background-color: rgba(255,148,24,0.9);
-  color: cornsilk;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: rgba(255,138,0,0.9);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 div.home {
