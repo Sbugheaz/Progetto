@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoundWave - Streaming audio</title>
 </head>
@@ -19,19 +20,19 @@
 
 <div class="home">
     <form action="/action_page.php">
-
         <label for="username">Nome utente: </label>
         <input type="text" id="username" name="username" placeholder="Nome utente">
         <br>
         <label for="psw">Password: </label>
         <input type="password" id="psw" name="password" placeholder="Password" minlength="6" required placeholder="6 characters minimum">
-
+        <label class="container"> Ricordami
+            <input type="checkbox" name="remember">
+            <span class="checkmark"></span>
+        </label>
         <input type="submit" value="Accedi">
     </form>
-    <p>
-        Non hai ancora un account? <a href="registrazione.html">Registrati subito!</a>
-    </p>
-    <!--<button type="button">Registrati</button>-->
+        <p>Password dimenticata? <a href="http://www.google.it"> Clicca qui</a> per recuperarla!</p>
+    <p>Non hai ancora un account? <a href="registrazione.html">Registrati subito!</a></p>
 </div>
 </body>
 </html>
