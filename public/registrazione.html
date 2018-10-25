@@ -104,8 +104,8 @@
                     catch(ex){
                         e.add(s);}}}}
         var anno=new Date();
-        y = anno.getFullYear();
-        while (y-->1940){
+        y = anno.getFullYear() + 1;
+        while (y-->(anno.getFullYear()-80)){
             var s = document.createElement('option');
             var e = document.getElementById('year');
             s.text=y;
