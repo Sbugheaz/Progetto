@@ -73,7 +73,7 @@
         x[n].className += " active";
     }
 
-    /*function changeDate(i){
+    function changeDate(i){
             var e = document.getElementById('day');
             while(e.length>0)
                 e.remove(e.length-1);
@@ -114,4 +114,3 @@
             e.add(s,null);}
         catch(ex){
             e.add(s);}}
-            */
