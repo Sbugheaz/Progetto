@@ -1,8 +1,12 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 1vw "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-repeat: no-repeat;
+  background-repeat:repeat-x;
   background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a:link {
@@ -33,7 +37,7 @@ h1.home {
 }
 
 div.description {
-  max-width: 60%;
+  width: 60%;
   float: left;
   padding:30px 0;
 
@@ -107,4 +111,21 @@ div.register{
   padding: 20px;
   font-size: 16px;
   align-items: center;
+}
+
+@media only screen and (max-width: 1200px) {
+
+  div.description {
+    width: 100%;
+  }
+
+  div.home{
+
+  /*float:none;*/
+    width: auto;
+    /*position: absolute;*/
+    margin: auto;
+
+  }
+
 }
