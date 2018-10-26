@@ -6,13 +6,36 @@ body {
     background-color: #f1f1f1;
 }
 
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px;
+    margin: 12px auto;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+
+
+
+}
+
+
+
+select select {
+    display: none; /*hide original SELECT element:*/
+
+}
+
 #regForm {
     background-color: #ffffff;
     margin: 100px auto;
-    font-family: Raleway;
+    font-family: Raleway, serif;
     padding: 40px;
-    width: 70%;
-    min-width: 300px;
+    width: 75%;
+    min-width: 400px;
 }
 
 h1 {
@@ -23,7 +46,7 @@ input {
     padding: 10px;
     width: 100%;
     font-size: 17px;
-    font-family: Raleway;
+    font-family: Raleway, serif;
     border: 1px solid #aaaaaa;
 }
 
@@ -38,17 +61,18 @@ input.invalid {
 }
 
 button {
-    background-color: rgba(255,148,24,0.9);
+    background-color: rgba(255,148,24,1);
     color: #fef9ff;
     border: none;
     padding: 10px 20px;
     font-size: 17px;
-    font-family: Raleway;
+    font-family: Raleway, serif;
     cursor: pointer;
 }
 
 button:hover {
-    opacity: 0.8;
+    background-color: rgba(255,138,0,1);
+    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 button:focus {outline:0;}
 
