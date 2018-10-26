@@ -16,6 +16,21 @@
     <div class="tab">Inserisci il tuo nome e cognome:
         <p><input placeholder="Nome" oninput="this.className = ''" name="fname"></p>
         <p><input placeholder="Cognome" oninput="this.className = ''" name="lname"></p>
+        <p>Sesso: </p>
+
+        <label class="container">Uomo
+            <input type="radio" checked="checked" name="sesso">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">Donna
+            <input type="radio" name="sesso">
+            <span class="checkmark"></span>
+        </label>
+
+
+
+
+
     </div>
     <div class="tab">Inserisci la tua e-mail:
         <p><input placeholder="E-mail" oninput="this.className = ''" name="email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"></p>
