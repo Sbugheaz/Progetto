@@ -14,7 +14,7 @@
             document.getElementById("prevBtn").style.display = "inline";
         }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Invio";
+            document.getElementById("nextBtn").innerHTML = "Registrati";
         } else {
             document.getElementById("nextBtn").innerHTML = "Successivo";
         }
@@ -34,6 +34,7 @@
         // if you have reached the end of the form...
         if (currentTab >= x.length) {
             // ... the form gets submitted:
+            document.getElementById("error").style.display = "none";
             document.getElementById("regForm").submit();
             return false;
         }
@@ -46,14 +47,37 @@
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
         y = x[currentTab].getElementsByTagName("input");
-        // A loop that checks every input field in the current tab:
-        for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-                // add an "invalid" class to the field:
-                y[i].className += " invalid";
-                // and set the current valid status to false
-                valid = false;
+        if(currentTab == 0) {
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (!validateName(y[i].value)) {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false
+                    valid = false;
+                }
+            }
+        }
+        else if(currentTab == 1) {
+            for(i = 0; i < y.length; i++) {
+                if(!validateEmail(y[i].value)) {
+                    y[i].className += " invalid";
+                    // and set the current valid status to false
+                    valid = false;
+                }
+            }
+        }
+        else {
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (!validateName(y[i].value)) {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false
+                    valid = false;
+                }
             }
         }
         // If the valid status is true, mark the step as finished and valid:
@@ -114,3 +138,29 @@
             e.add(s,null);}
         catch(ex){
             e.add(s);}}
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+function validateName(campo) {
+    var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+    return testo.test(String(campo));
+}
+
+function validateUsername(campo) {
+    var testo = /^[^\s][A-Za-z0-9\s]*[^\s]$/;
+    return testo.test(String(campo));
+}
+//Questa funzione mette la maiuscola all'inizio di ogni parola
+function formattaTesto(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        if (splitStr.length[i] < splitStr.length) {
+            splitStr[i].charAt(0).toUpperCase();
+        }
+        str = splitStr.join(' ');
+    }
+    return str;
+}
