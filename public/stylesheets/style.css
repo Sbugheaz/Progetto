@@ -54,9 +54,13 @@ h1.register {
 
 }
 
+p.pd{
+  font-size:1.1vw;
+}
+
 input[type=text], input[type=password], select {
   width: 100%;
-  font-size: 1.1vw;
+  font-size: 1.3vw;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -159,8 +163,9 @@ div.home {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  font-size: 1.1vw;
+  font-size: 1.3vw;
   width: 75%;
+  min-width: 250px;
   margin:auto;
 
 }
@@ -175,10 +180,14 @@ div.register{
   align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
   body{
     font: 1.3vw "Raleway", Helvetica, Arial, sans-serif;
+  }
+
+  p.pd{
+    font-size:1.6vw;
   }
 
   div.enter{
@@ -192,8 +201,9 @@ div.register{
   }
 
   div.home {
+    min-width: 150px;
     width: 65%;
-    font-size: 1.3vw;
+    font-size: 2vw;
     float: none;
     margin:0 auto;
   }
@@ -212,6 +222,23 @@ div.register{
     padding-left: 20px;
     padding-top: 0.6vw;
 
+  }
+
+  .container .checkmark:after {
+    left: 4px;
+    top: 2.5px;
+    width: 2px;
+    height: 5px;
+  }
+
+  input[type=submit] {
+    width: 30%;
+    font-size: 2vw;
+  }
+
+  input[type=text], input[type=password], select {
+    font-size: 2vw;
+    padding: 12px 8px;
   }
 
 
