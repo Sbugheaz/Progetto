@@ -22,9 +22,29 @@
         <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"></p>
     </div>
     <div class="tab">Inserisci la tua data di nascita:
-        <p><input placeholder="Giorno" oninput="this.className = ''" name="dd"></p>
-        <p><input placeholder="Mese" oninput="this.className = ''" name="nn"></p>
-        <p><input placeholder="Anno" oninput="this.className = ''" name="yyyy"></p>
+        <select  name="day" id="day">
+            <option value="na">Giorno</option>
+        </select>
+
+        <select name="month" onChange="changeDate(this.options[selectedIndex].value);">
+            <option value="na">Mese</option>
+            <option value="1">Gennaio</option>
+            <option value="2">Febbraio</option>
+            <option value="3">Marzo</option>
+            <option value="4">Aprile</option>
+            <option value="5">Maggio</option>
+            <option value="6">Giugno</option>
+            <option value="7">Luglio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+        </select>
+
+        <select  name="year" id="year">
+            <option value="na">Anno</option>
+        </select>
     </div>
     <div class="tab">Inserisci il nome utente e password:
         <p><input placeholder="Nome utente" oninput="this.className = ''" name="uname"></p>
@@ -46,5 +66,5 @@
     </div>
 </form>
 </body>
-<script src="/javascripts/registrazione.js"></script>
+<script src="javascripts/registrazione.js"></script>
 </html>
