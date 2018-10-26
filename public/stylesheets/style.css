@@ -1,4 +1,7 @@
 body {
+  padding: 50px;
+  font: 1vw "Raleway", Helvetica, Arial, sans-serif;
+  background-repeat: no-repeat;
   padding: 0px;
   font: 1vw "Lucida Grande", Helvetica, Arial, sans-serif;
   background-repeat:repeat-x;
