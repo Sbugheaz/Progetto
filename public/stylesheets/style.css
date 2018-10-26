@@ -40,7 +40,7 @@ h1.home {
 }
 
 div.description {
-  max-width: 60%;
+  width: 60%;
   float: left;
   padding:30px 0;
 
