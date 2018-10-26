@@ -67,17 +67,30 @@
                     valid = false;
                 }
             }
+            if(y[0].value != y[1].value) {
+                y[0].className += " invalid";
+                y[1].className += " invalid";
+                valid = false;
+            }
         }
-        else {
+        else if(currentTab == 3){
             // A loop that checks every input field in the current tab:
-            for (i = 0; i < y.length; i++) {
-                // If a field is empty...
-                if (!validateName(y[i].value)) {
-                    // add an "invalid" class to the field:
-                    y[i].className += " invalid";
-                    // and set the current valid status to false
-                    valid = false;
-                }
+            if(!validateUsername(y[0].value)) {
+                y[0].className += " invalid";
+                valid = false;
+            }
+            else if(!validatePassword(y[1].value)) {
+                y[1].className += " invalid";
+                valid = false;
+            }
+            else if(!validatePassword(y[2].value)) {
+                y[2].className += " invalid";
+                valid = false;
+            }
+            else if(y[1].value != y[2].value) {
+                y[1].className += " invalid";
+                y[2].className += " invalid";
+                valid = false;
             }
         }
         // If the valid status is true, mark the step as finished and valid:
@@ -151,17 +164,11 @@ function validateName(campo) {
 }
 
 function validateUsername(campo) {
-    var testo = /^[^\s][A-Za-z0-9\s]*[^\s]$/;
+    var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
     return testo.test(String(campo));
 }
-//Questa funzione mette la maiuscola all'inizio di ogni parola
-function formattaTesto(str) {
-    var splitStr = str.toLowerCase().split(' ');
-    for (var i = 0; i < splitStr.length; i++) {
-        if (splitStr.length[i] < splitStr.length) {
-            splitStr[i].charAt(0).toUpperCase();
-        }
-        str = splitStr.join(' ');
-    }
-    return str;
+
+function validatePassword(campo) {
+    var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return testo.test(String(campo));
 }
