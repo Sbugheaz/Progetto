@@ -49,7 +49,7 @@
         y = x[currentTab].getElementsByTagName("input");
         if(currentTab == 0) {
             // A loop that checks every input field in the current tab:
-            for (i = 0; i < y.length; i++) {
+            for (i = 0; i < 2; i++) {
                 // If a field is empty...
                 if (!validateName(y[i].value)) {
                     // add an "invalid" class to the field:
@@ -158,8 +158,9 @@ function validateEmail(email) {
 }
 
 function validateName(campo) {
-    var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
-    return testo.test(String(campo));
+            var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+            return testo.test(String(campo));
+
 }
 
 function validateUsername(campo) {
