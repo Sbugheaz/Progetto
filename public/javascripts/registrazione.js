@@ -49,7 +49,7 @@
         y = x[currentTab].getElementsByTagName("input");
         if(currentTab == 0) {
             // A loop that checks every input field in the current tab:
-            for (i = 0; i < y.length; i++) {
+            for (i = 0; i < y.length -1; i++) {
                 // If a field is empty...
                 if (!validateName(y[i].value)) {
                     // add an "invalid" class to the field:
