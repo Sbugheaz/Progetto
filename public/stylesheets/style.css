@@ -31,16 +31,14 @@ div.intestazione {
 }
 
 .logo img{
+  margin-top: 5vw;
+  margin-bottom: 5vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%
 }
 
-div.logo{
-
-
-}
 
 div.description {
   width: 60%;
@@ -209,6 +207,7 @@ div.register{
   }
 
   div.description {
+    margin-top: 10vh;
     width: 100%;
     float: none;
   }
@@ -218,7 +217,7 @@ div.register{
     width: 65%;
     font-size: 2vw;
     float: none;
-    margin:0 auto;
+    margin:10vh auto;
   }
 
   .checkmark {
@@ -254,5 +253,8 @@ div.register{
     padding: 12px 8px;
   }
 
+  .logo img{
+    margin-bottom:0;
+  }
 
 }
