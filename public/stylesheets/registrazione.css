@@ -16,6 +16,7 @@ select{
     font-size: 17px;
     font-family: Raleway, serif;
     border: 1px solid #aaaaaa;
+    border-width: 0 0 2px;
     background-color: #ffffff;
 }
 
@@ -50,7 +51,7 @@ input {
     border-width: 0 0 2px;
 }
 
-input:focus {
+input:focus, select:focus {
     outline-width: 0;
     border-color: rgba(255,148,24,1);
 }
