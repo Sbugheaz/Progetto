@@ -37,6 +37,10 @@ h1 {
     text-align: center;
 }
 
+p.invalid {
+    color: red;
+}
+
 input {
     padding: 10px;
     width: 100%;
