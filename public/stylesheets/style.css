@@ -155,6 +155,9 @@ input[type=submit]:hover {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+
+
 div.enter{
   width:40%;
   float:right;
