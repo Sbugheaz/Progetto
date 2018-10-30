@@ -9,7 +9,13 @@
 </head>
 
 <body background="images/Sfondo2.0.jpg">
-
+<div class="intestazione">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/Logo2.png">
+        </a>
+    </div>
+</div>
 <form id="regForm" action="/action_page.php">
     <h1>Registrazione</h1>
     <!-- Una "tab" per ogni step della registrazione: -->
@@ -28,8 +34,8 @@
         <p id="err_name" class=""></p>
     </div>
     <div class="tab">Inserisci un e-mail valida:
-        <p><input placeholder="E-mail" oninput="this.className = ''" name="email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"></p>
-        <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}"></p>
+        <p><input placeholder="E-mail" oninput="this.className = ''" name="email"></p>
+        <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
         <p id="err_email" class=""></p>
     </div>
     <div class="tab">Inserisci la tua data di nascita:

@@ -6,6 +6,19 @@ body {
     background-color: #f1f1f1;
 }
 
+div.intestazione {
+    width: 100%;
+}
+
+.logo img{
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+    display: block;
+    margin-left: 1vw;
+    margin-right: auto;
+    width: 20%
+}
+
 select{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -27,7 +40,7 @@ select select {
 
 #regForm {
     background-color: #ffffff;
-    margin: 100px auto;
+    margin: 30px auto;
     font-family: Raleway, serif;
     padding: 40px;
     width: 75%;
