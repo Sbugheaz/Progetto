@@ -51,13 +51,13 @@
                     y[0].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
                     document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola e " +
-                        "non può contenere cifre!";
+                        "non può contenere cifre.";
                     valid = false;
                 }
                 else if(!validateName(y[1].value)) {
                     y[1].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola e non può contenere cifre!";
+                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola e non può contenere cifre.";
                     valid = false;
                 }
                 else {
@@ -68,14 +68,14 @@
                 if(!validateEmail(y[0].value)) {
                     y[0].className += " invalid";
                     document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "L'e-mail deve rispettare il formato corretto!<br> " +
+                    document.getElementById("err_email").innerHTML = "L'e-mail deve rispettare il formato corretto.<br> " +
                         "Es. prova@esempio.it";
                     valid = false;
                 }
                 else if(y[0].value!=y[1].value) {
                     y[1].className += " invalid";
                     document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "Le e-mail non corrispondono!";
+                    document.getElementById("err_email").innerHTML = "Le e-mail non corrispondono.";
                     valid = false;
                 }
                 else {
@@ -85,6 +85,8 @@
         else if(currentTab == 3){
             if(!validateUsername(y[0].value)) {
                 y[0].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = "Il nome utente deve iniziare con una lettera e non può contenere spazi.";
                 valid = false;
             }
             else if(!validatePassword(y[1].value)) {
