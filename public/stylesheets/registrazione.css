@@ -51,6 +51,7 @@ input.invalid {
 }
 
 .container {
+    width: 8vw;
     display: block;
     position: relative;
     padding-left: 35px;
@@ -150,6 +151,7 @@ button:focus {outline:0;}
 .step.finish {
     background-color: rgba(255,148,24,0.9);
 }
+
 
 @media only screen and (max-width: 700px) {
     h1{
