@@ -47,11 +47,23 @@
         x = document.getElementsByClassName("tab");
         y = x[currentTab].getElementsByTagName("input");
         if(currentTab == 0) {
-                if (!validateName(y[0].value)) {
+                if(y[0].value == "") {
+                    y[0].className += " invalid";
+                    document.getElementById("err_name").className += " invalid";
+                    document.getElementById("err_name").innerHTML = "Inserisci il nome";
+                    valid = false;
+                }
+                else if (!validateName(y[0].value)) {
                     y[0].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
                     document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola e " +
                         "non può contenere cifre.";
+                    valid = false;
+                }
+                else if(y[1].value == "") {
+                    y[1].className += " invalid";
+                    document.getElementById("err_name").className += " invalid";
+                    document.getElementById("err_name").innerHTML = "Inserisci il cognome.";
                     valid = false;
                 }
                 else if(!validateName(y[1].value)) {
@@ -65,11 +77,23 @@
                 }
         }
         else if(currentTab == 1) {
-                if(!validateEmail(y[0].value)) {
+                if(y[0].value == "") {
+                    y[0].className += " invalid";
+                    document.getElementById("err_email").className += " invalid";
+                    document.getElementById("err_email").innerHTML = "Inserisci un'e-mail.";
+                    valid = false;
+                }
+                else if(!validateEmail(y[0].value)) {
                     y[0].className += " invalid";
                     document.getElementById("err_email").className += " invalid";
                     document.getElementById("err_email").innerHTML = "L'e-mail deve rispettare il formato corretto.<br> " +
-                        "Es. prova@esempio.it";
+                        "Es: prova@esempio.it";
+                    valid = false;
+                }
+                else if(y[1].value == "") {
+                    y[1].className += " invalid";
+                    document.getElementById("err_email").className += " invalid";
+                    document.getElementById("err_email").innerHTML = "Conferma la tua e-mail.";
                     valid = false;
                 }
                 else if(y[0].value!=y[1].value) {
@@ -83,24 +107,44 @@
                 }
         }
         else if(currentTab == 3){
-            if(!validateUsername(y[0].value)) {
+            if(y[0].value = "") {
+                y[0].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = "Inserisci un nome utente.";
+                valid = false;
+            }
+            else if(!validateUsername(y[0].value)) {
                 y[0].className += " invalid";
                 document.getElementById("err_account").className += " invalid";
                 document.getElementById("err_account").innerHTML = "Il nome utente deve iniziare con una lettera e non può contenere spazi.";
                 valid = false;
             }
-            else if(!validatePassword(y[1].value)) {
+            else if(y[1].value == "") {
                 y[1].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = "Inserisci una password.";
                 valid = false;
             }
-            else if(!validatePassword(y[2].value)) {
+            else if(!validatePassword(y[1].value)) {
+                y[1].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = "La password deve rispettare il formato richiesto.";
+                valid = false;
+            }
+            else if(y[2].value == "") {
                 y[2].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = "Conferma la tua password.";
                 valid = false;
             }
             else if(y[1].value != y[2].value) {
-                y[1].className += " invalid";
                 y[2].className += " invalid";
+                document.getElementById("err_account").className += " invalid";
+                document.getElementById("err_account").innerHTML = " Le password non coincidono.";
                 valid = false;
+            }
+            else {
+                document.getElementById("err_account").innerHTML = "";
             }
         }
         if (valid) {
