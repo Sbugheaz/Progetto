@@ -54,8 +54,11 @@ input:focus {
     outline-width: 0;
     border-color: rgba(255,148,24,1);
 }
+
 input.invalid {
-    background-color: #ffdddd;
+    border-color: red;
+    color:red;
+
 }
 
 .container {
