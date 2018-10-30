@@ -26,10 +26,19 @@ h1.home {
   color: cornsilk;
 }
 
-  div.empty {
-  text-align: center;
-  padding: 80px;
-  max-width: 100%;
+div.intestazione {
+  width: 100%;
+}
+
+.logo img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+}
+
+div.logo{
+
 
 }
 
@@ -170,6 +179,7 @@ div.home {
   width: 75%;
   min-width: 250px;
   margin:auto;
+  margin-bottom: 10%;
 
 }
 
