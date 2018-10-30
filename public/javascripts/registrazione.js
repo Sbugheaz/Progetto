@@ -50,7 +50,7 @@
                 if(y[0].value == "") {
                     y[0].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Inserisci il nome";
+                    document.getElementById("err_name").innerHTML = "Inserisci il tuo nome.";
                     valid = false;
                 }
                 else if (!validateName(y[0].value)) {
@@ -63,7 +63,7 @@
                 else if(y[1].value == "") {
                     y[1].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Inserisci il cognome.";
+                    document.getElementById("err_name").innerHTML = "Inserisci il tuo cognome.";
                     valid = false;
                 }
                 else if(!validateName(y[1].value)) {
@@ -107,7 +107,7 @@
                 }
         }
         else if(currentTab == 3){
-            if(y[0].value = "") {
+            if(y[0].value == "") {
                 y[0].className += " invalid";
                 document.getElementById("err_account").className += " invalid";
                 document.getElementById("err_account").innerHTML = "Inserisci un nome utente.";
