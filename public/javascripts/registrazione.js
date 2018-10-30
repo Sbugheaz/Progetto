@@ -43,29 +43,44 @@
 
     //Questa funzione verifica se i campi del form sono validi
     function validateForm() {
-        var x, y, i, valid = true;
+        var x, y, valid = true;
         x = document.getElementsByClassName("tab");
         y = x[currentTab].getElementsByTagName("input");
         if(currentTab == 0) {
-            for (i = 0; i < 2; i++) {
-                if (!validateName(y[i].value)) {
-                    y[i].className += " invalid";
+                if (!validateName(y[0].value)) {
+                    y[0].className += " invalid";
+                    document.getElementById("err_name").className += " invalid";
+                    document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola e " +
+                        "non può contenere cifre!";
                     valid = false;
                 }
-            }
+                else if(!validateName(y[1].value)) {
+                    y[1].className += " invalid";
+                    document.getElementById("err_name").className += " invalid";
+                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola e non può contenere cifre!";
+                    valid = false;
+                }
+                else {
+                    document.getElementById("err_name").innerHTML = "";
+                }
         }
         else if(currentTab == 1) {
-            for(i = 0; i < y.length; i++) {
-                if(!validateEmail(y[i].value)) {
-                    y[i].className += " invalid";
+                if(!validateEmail(y[0].value)) {
+                    y[0].className += " invalid";
+                    document.getElementById("err_email").className += " invalid";
+                    document.getElementById("err_email").innerHTML = "L'e-mail deve rispettare il formato corretto!<br> " +
+                        "Es. prova@esempio.it";
                     valid = false;
                 }
-            }
-            if(y[0].value != y[1].value) {
-                y[0].className += " invalid";
-                y[1].className += " invalid";
-                valid = false;
-            }
+                else if(y[0].value!=y[1].value) {
+                    y[1].className += " invalid";
+                    document.getElementById("err_email").className += " invalid";
+                    document.getElementById("err_email").innerHTML = "Le e-mail non corrispondono!";
+                    valid = false;
+                }
+                else {
+                    document.getElementById("err_email").innerHTML = "";
+                }
         }
         else if(currentTab == 3){
             if(!validateUsername(y[0].value)) {
