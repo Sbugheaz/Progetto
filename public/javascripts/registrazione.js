@@ -109,7 +109,7 @@
             if(i=="na")
                 k=0;
             else if(i==2)
-                k=28;
+                k=29;
             else if(i==4||i==6||i==9||i==11)
                 k=30;
             else
@@ -175,23 +175,4 @@
     function validatePassword(campo) {
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         return testo.test(String(campo));
-    }
-
-    //Verifica se l'anno passato è bisestile
-    function leapYear(year){
-        var result;
-        year = parseInt(document.getElementById("isYear").value);
-        if (years/400){
-            result = true
-        }
-        else if(years/100){
-            result = false
-        }
-        else if(years/4){
-            result= true
-        }
-        else{
-            result= false
-        }
-        return result
     }
