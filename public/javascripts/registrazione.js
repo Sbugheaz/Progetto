@@ -56,8 +56,8 @@
                 else if (!validateName(y[0].value)) {
                     y[0].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola e " +
-                        "non può contenere cifre.";
+                    document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola ed " +
+                        "essere seguito da lettere minuscole. Non può contenere cifre.";
                     valid = false;
                 }
                 else if(y[1].value == "") {
@@ -69,7 +69,8 @@
                 else if(!validateName(y[1].value)) {
                     y[1].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola e non può contenere cifre.";
+                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola ed " +
+                        "essere seguito da lettere minuscole. Non può contenere cifre.";
                     valid = false;
                 }
                 else {
