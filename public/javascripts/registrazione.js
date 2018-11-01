@@ -107,6 +107,13 @@
                     document.getElementById("err_email").innerHTML = "";
                 }
         }
+        else if(currentTab == 2) {
+            if(y[0].value == "na" || y[1].value == "na" || y[2].value == "na") {
+
+                document.getElementById("err_date").innerHTML = "Inserisci la tua data di nascita.";
+                valid = false;
+            }
+        }
         else if(currentTab == 3){
             if(y[0].value == "") {
                 y[0].className += " invalid";
