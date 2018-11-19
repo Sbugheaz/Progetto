@@ -9,21 +9,30 @@ body {
   box-sizing: border-box;
 }
 
-a:link {
-  color: rgba(255,148,24,1);
+.lk{
+  color: rgba(255,148,24,1) !important;
+  cursor: pointer !important;
+}
+.lk:link {
+  color: rgba(255,148,24,1) !important;
 }
 
-a:visited {
-  color: rgba(255,148,24,1);;
+.lk:visited {
+  color: rgba(255,148,24,1) !important;
 }
 
-a:hover {
-  color: rgba(255,110,0,1);
+.lk:hover {
+  color: rgba(255,110,0,1) !important;
+  text-decoration: underline !important;
 }
 
-h1.home {
+
+#testo-home {
+  margin:auto;
+  font-size: 1.8vw;
   text-align: center;
   color: cornsilk;
+  font-weight: bold;
 }
 
 div.intestazione {
@@ -61,6 +70,11 @@ h1.register {
 
 }
 
+label {
+  margin-top: 5px;
+  margin-bottom:0;
+}
+
 p.pd{
   font-size:1.1vw;
 }
@@ -88,7 +102,7 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   font-family: "Raleway";
-  border-radius: 4px;
+  height: 35px;
 }
 
 input[type=submit]:hover {
@@ -192,14 +206,58 @@ div.register{
   align-items: center;
 }
 
-@media only screen and (max-width: 700px) {
+#regForm {
+  background-color: #ffffff;
+  margin: 20px auto;
+  font-family: Raleway, serif;
+  padding: 20px;
+  width: 75%;
+  min-width: 200px;
+}
+
+#nextBtn {
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 45%;
+  font-size: 1.2vw;
+  background-color: rgba(255,148,24,0.9);
+  color: cornsilk;
+  padding: 1.1vh 1vw;
+  /*margin:10px 33%;*/
+  font-family: "Raleway";
+}
+
+#nextBtn:hover {
+  background-color: rgba(255,138,0,0.9);
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway, serif;
+  border: 1px solid #aaaaaa;
+  border-width: 0 0 2px;
+}
+
+div.tab{
+  font-size:1.2vw;
+}
+
+.rc {
+  font-size:1.2vw;
+}
+
+@media only screen and (max-width: 770px) {
 
   body{
     font: 1.3vw "Raleway", Helvetica, Arial, sans-serif;
   }
 
   p.pd{
-    font-size:1.6vw;
+    font-size:2.4vw;
   }
 
   div.enter{
@@ -208,6 +266,7 @@ div.register{
   }
 
   div.description {
+    padding: 0 5vw;
     margin-top: 10vh;
     width: 100%;
     float: none;
@@ -216,7 +275,7 @@ div.register{
   div.home {
     min-width: 150px;
     width: 65%;
-    font-size: 1.6vw;
+    font-size: 2.4vw;
     float: none;
     margin:10vh auto;
   }
@@ -246,7 +305,8 @@ div.register{
 
   input[type=submit] {
     width: 30%;
-    font-size: 2vw;
+    font-size: 2.5vw;
+    height: unset;
   }
 
   input[type=text], input[type=password], select {
@@ -258,4 +318,22 @@ div.register{
     margin-bottom:0;
   }
 
+
+  #testo-home{
+    font-size:2.5vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  div.tab{
+    font-size:16px;
+  }
+  .rc {
+    font-size:15px;
+  }
+
+  #nextBtn {
+    width: 45%;
+    font-size: 14px;
+  }
 }
