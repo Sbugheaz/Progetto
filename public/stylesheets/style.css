@@ -88,6 +88,7 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   font-family: "Raleway";
+  border-radius: 4px;
 }
 
 input[type=submit]:hover {
@@ -215,7 +216,7 @@ div.register{
   div.home {
     min-width: 150px;
     width: 65%;
-    font-size: 2vw;
+    font-size: 1.6vw;
     float: none;
     margin:10vh auto;
   }
