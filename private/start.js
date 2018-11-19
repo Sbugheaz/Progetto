@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+const nodemailer = require('nodemailer');
 
 app.get('/', function(req, res, next) {
     console.log("Pagina ricevuta!");
