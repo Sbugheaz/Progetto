@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
+
+    <title>SoundWave - Streaming audio</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!-- Script contenente i model-->
+    <script src="script/model.js"></script>
+
+
+
+    <link rel="stylesheet" href="stylesheets/webPlayer.css">
+
+    <!-- Slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+
+
+    <script src="script/lib/css-element-queries-1.0.0/src/ResizeSensor.js"></script>
+
+    <script src="script/lib/css-element-queries-1.0.0/src/ElementQueries.js"></script>
+
+
+
+    <title>SoundWave</title>
+</head>
+<body background="images/Sfondo2.0.jpg">
+
+<div class="container-fluid">
+ <nav class="navbar navbar-expand-sm  navbar-fixed-top  bg-dark navbar-dark ">
+    <div class="container-fluid">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" id="logo" href="#">
+        <img src="images/Logo2.png" alt="logo" style="width:70px;">
+    </a>
+        <!-- Barra di ricerca -->
+        <div class="row" id="riga-principale">
+
+            <div class="input-group col-md-12">
+                <input id="barra-ricerca" type="text" class="form-control input-lg" placeholder="Cerca" />
+                <span class="input-group-btn">
+                <button id="pulsante-cerca" class="btn btn-info btn-lg" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+                        </span>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">Profilo</button>
+        </div>
+
+    </div>
+ </nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Colonna di sinistra-->
+        <div id="colonna-sinistra" >
+            <div class="btn-group-vertical-justified" >
+                <button type="button" class="btn btn-default pulsanteA">Playlist</button>
+                <button type="button" class="btn btn-default pulsanteA">La tua musica</button>
+                <button type="button" class="btn btn-default pulsanteA">Brani recenti</button>
+                <button type="button" class="btn btn-default pulsanteA" data-toggle="dropdown">
+                    Generi
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Pop</a>
+                    <a class="dropdown-item" href="#">Rock</a>
+                    <a class="dropdown-item" href="#">Classico</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Colonna centrale -->
+        <div id="colonna-centrale" class="">
+            <div class="container-fluid">
+
+                <div id="sezione-centrale">
+
+                </div>
+            </div>
+            <div class="row">
+                <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
+                    <div id="sezione-controlli-riproduzione"style="height: 15.5vh;">
+                        <div class="row">
+                            <div id="titolo-brano-in-riproduzione" class="col-md-12">
+                                <p></p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row audio-controls">
+                                    <div class="col-md-2">
+                                        <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fa fa-random icona-hover testo-controlli-riproduzione" id="random"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fa fa-repeat icona-hover testo-controlli-riproduzione" id="repeat">
+                                            <span class="badge" id="repeat-one">1</span>
+                                            <span class="badge" id="repeat-all">ALL</span>
+                                        </i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="dropup">
+                                            <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
+                                            <div class="dropdown-menu">
+                                                <input style="width: 100%" class="dropdown-item" type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row" id="riga-slider">
+                                    <div class="col-md-2">
+                                        <span id="labelSecondoAttuale" class="testo-controlli-riproduzione"></span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 80%"/>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Colonna di sinistra-->
+        <div id="colonna-destra" class="shadow">
+            <div class="btn-group-vertical-justified" >
+                <p style="text-align: center">Social</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

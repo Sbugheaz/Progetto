@@ -139,7 +139,7 @@ input.invalid {
 }
 
 button {
-    background-color: rgba(255,148,24,1);
+    background-color: rgb(191, 193, 192);
     color: #fef9ff;
     border: none;
     padding: 10px 20px;
