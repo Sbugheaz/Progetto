@@ -1,0 +1,202 @@
+body {
+
+    color: darkorange;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+button{
+    background-color: rgb(191, 193, 192);
+    color: #fef9ff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    cursor: pointer;
+}
+
+.input-group {
+    padding-top: 1%;
+}
+
+button:hover{
+    background-color: rgba(255,138,0,1);
+    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button:focus {outline:0;}
+
+
+.pulsanteA{
+    background-color: rgb(191, 193, 192);;
+    width: 100%;
+}
+#colonna-sinistra, #colonna-destra {
+    padding-left: 0;
+    padding-right: 0;
+    width: 16.6667%;
+}
+
+
+#colonna-sinistra{
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 75.5vh;
+    background-color: rgb(191, 193, 192);
+}
+
+#colonna-destra {
+    position: sticky;
+    top: 0;
+    right: 0;
+    height: 75.5vh;
+    background-color: rgb(191, 193, 192);
+}
+
+#colonna-centrale {
+    margin: auto;
+    background-color: transparent;
+    width: 66.6667%;
+}
+
+#logo{
+    margin-left: 0%;
+}
+
+#sezione-controlli-riproduzione {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left:0%;
+    z-index: 1000;
+}
+
+
+#sezione-controlli-riproduzione > .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#sezione-controlli-riproduzione > .row {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 120%;
+}
+#sezione-controlli-riproduzione {
+    background-color:  rgba(255,138,0,1);
+    color: white;
+    text-align: center;
+
+}
+
+
+#titolo-brano-in-riproduzione {
+    display: none;
+}
+
+#titolo-brano-in-riproduzione > p:first-child {
+    margin: 0;
+}
+
+#riga-brano-in-riproduzione .card {
+    box-shadow: unset;
+}
+
+.audio-controls {
+    text-align: center;
+}
+
+#volume-range {
+}
+
+
+#riga-slider .col-md-8, #riga-slider .col-md-2 {
+    padding: 0;
+}
+#badge-icona-notifica {
+    color: white;
+    background-color: darkorange;
+}
+
+.testo-controlli-riproduzione {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+/*Controlli riproduzione*/
+.badge {
+    display: none;
+    font-size: 0.6em;
+}
+#barra-ricerca {
+    border-radius: 0;
+    border-color: transparent;
+}
+
+#barra-ricerca:focus {
+    box-shadow: 0 0;
+    border-color: #eaece5;
+}
+
+#barra-ricerca:focus {
+    border: 0;
+    border-bottom: 1px solid  rgba(255,138,0,1);
+    outline:none;
+
+
+}
+
+
+input, #barra-ricerca {
+    border: 0;
+    border-bottom: 1px solid  rgba(255,138,0,1);
+    line-height: 2em;
+    background: transparent;
+    color: cornsilk;
+
+}
+
+
+
+
+#pulsante-cerca {
+    background-color: darkorange;
+    border-radius: 0;
+    border-color: transparent;
+}
+
+#pulsante-cerca:focus {
+    box-shadow: 0 0;
+    border-color: orangered;
+}
+
+
+.dropdown-item , #pulsante-cerca{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+#pulsante-cerca {
+    background: transparent;
+    color: #fef9ff;
+}
+
+#pulsante-cerca:focus, #pulsante-cerca:hover {
+    border: 0;
+    color:rgba(255,138,0,1);;
+}
+
+
+#pulsante-cerca:not(:focus) {
+    border: 0;
+}
+
