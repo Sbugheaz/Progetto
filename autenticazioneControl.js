@@ -3,7 +3,7 @@
  * degli utenti.
  */
 const connessionedb = require('../connessionedb'); // Modulo per accedere al database.
-const mailer = require('../mailer'); // Modulo per inviare le email di attivazione e ripristino.
+const mailer = require('./mailer'); // Modulo per inviare le email di attivazione e ripristino.
 const crypto = require('crypto'); // Modulo per cifrare le password prima di memorizzarle sul database.
 const timerDisconnessioneUtenti = {}; // Oggetto contenente i timer che regolano lo stato online degli utenti
 const path = require('path');
