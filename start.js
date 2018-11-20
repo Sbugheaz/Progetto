@@ -5,7 +5,8 @@ var app = express();
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-    res.sendFile("public/login.html");
+    res.sendFile(__dirname + "/public/" + "login.html");
+    console.log("Pagina ricevuta!");
 });
 
 app.listen(8080, function () {
