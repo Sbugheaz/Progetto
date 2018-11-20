@@ -26,10 +26,14 @@ body {
   text-decoration: underline !important;
 }
 
+div.testo{
+  margin-left: 1vw;
+  margin-top:9vh;
+}
 
 #testo-home {
   margin:auto;
-  font-size: 1.8vw;
+  font-size: 2.2vw;
   text-align: center;
   color: cornsilk;
   font-weight: bold;
@@ -39,13 +43,22 @@ div.intestazione {
   width: 100%;
 }
 
-.logo img{
+.immagine img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   margin-top: 5vw;
   margin-bottom: 5vw;
+  width: 50%
+}
+
+.logo img{
+  margin-top: 2.5vw;
+  margin-bottom: 1.5vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%
+  width: 45%
 }
 
 
@@ -181,7 +194,7 @@ input[type=submit]:hover {
 
 
 div.enter{
-  width:40%;
+  width:39%;
   float:right;
 }
 div.home {
@@ -249,6 +262,84 @@ div.tab{
 .rc {
   font-size:1.2vw;
 }
+
+
+/* Regole di stile per la sezione "footer" della pagina*/
+footer{
+  width: 100%;
+  position: static;
+  padding-top: 20px;
+  background-color: #4d484859;
+  font-weight: bold;
+  color: white;
+  clear: right;
+}
+
+#nome{
+  color:#ff7300;
+}
+
+#footer-container {
+  margin: 0 2%;
+  padding: 0 15px;
+}
+
+footer ul{
+  padding: 0;
+  font-size: 0.9em;
+}
+
+footer .extra{
+  padding-top: 22px;
+}
+
+#social{
+  color: white;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.fa-facebook-square,
+.fa-twitter-square,
+.fa-google-plus-square{
+  font-size: 2.2em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.fa-facebook-square:hover,
+.fa-twitter-square:hover,
+.fa-google-plus-square:hover{
+  transform: scale(1.2);
+  color: orange;
+}
+
+#copyright{
+  margin-top: 15px;
+  margin-right: 20px;
+  font-size: 0.7em;
+  color: darkgrey;
+  word-spacing: 2px;
+}
+
+#logo_footer{
+  text-align: right;
+}
+
+#copyright{
+  font-size: 11px;
+}
+
+.riferimento{
+  font-size: 10px;
+  cursor: pointer ;
+}
+
+.riferimento:hover {
+  color: rgba(255,110,0,1) ;
+  text-decoration: underline ;
+}
+
 
 @media only screen and (max-width: 770px) {
 
@@ -322,6 +413,29 @@ div.tab{
   #testo-home{
     font-size:2.5vw;
   }
+
+  .col-sm-3, .col-md-3 {
+    width: 100%;
+  }
+  .extra, .col-md-7 {
+    width: auto;
+  }
+  .col-md-5 {
+    right: 0;
+  }
+
+  #copyright{
+    font-size: 11px;
+  }
+
+  footer .extra {
+    padding-top: 2px;
+  }
+
+  .riferimento {
+    font-size: 9px;
+  }
+
 }
 
 @media only screen and (max-width: 1000px) {

@@ -24,8 +24,7 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-    <!-- Script contenente i model-->
-    <script src="script/model.js"></script>
+
 
 
 
@@ -33,12 +32,11 @@
 
     <!-- Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
 
 
-    <script src="script/lib/css-element-queries-1.0.0/src/ResizeSensor.js"></script>
 
-    <script src="script/lib/css-element-queries-1.0.0/src/ElementQueries.js"></script>
 
 
 
@@ -47,12 +45,15 @@
 <body background="images/Sfondo2.0.jpg">
 
 <div class="container-fluid">
+
  <nav class="navbar navbar-expand-sm  navbar-fixed-top  bg-dark navbar-dark ">
     <div class="container-fluid">
     <!-- Brand/logo -->
+        <div class="col-md-2">
     <a class="navbar-brand" id="logo" href="#">
         <img src="images/Logo.png" alt="logo" style="width:70px;">
     </a>
+        </div>
         <!-- Barra di ricerca -->
         <div class="row" id="riga-principale">
 
@@ -68,9 +69,9 @@
 
             </div>
         </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default">Profilo</button>
-        </div>
+
+        <div class="col-md-2" ></div>
+
 
     </div>
  </nav>
@@ -105,7 +106,7 @@
             </div>
             <div class="row">
                 <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
-                    <div id="sezione-controlli-riproduzione"style="height: 15.5vh;">
+                    <div id="sezione-controlli-riproduzione"style="height: 10.5vh;">
                         <div class="row">
                             <div id="titolo-brano-in-riproduzione" class="col-md-12">
                                 <p></p>
@@ -162,9 +163,11 @@
 
         <!-- Colonna di sinistra-->
         <div id="colonna-destra" class="shadow">
+
             <div class="btn-group-vertical-justified" >
-                <p style="text-align: center">Social</p>
+                <button type="button" class="btn btn-default pulsanteA"><i class='fa fa-user-circle'></i>   Visualizza profilo</button>
             </div>
+            <p style="text-align: center ;margin-top: 5vh;margin-bottom: 1rem;border-bottom: 2px solid rgba(255,138,0,1);"><i class='fa fa-users'></i>   Lista amici online</p>
         </div>
     </div>
 </div>
