@@ -373,10 +373,10 @@ footer .extra{
 
   .checkmark {
     position: absolute;
-    top: 0.6vw;
+    top: 0.8vw;
     left: 0;
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
     background-color: #c3c3c3;
   }
 
@@ -388,10 +388,10 @@ footer .extra{
   }
 
   .container .checkmark:after {
-    left: 4px;
-    top: 2.5px;
-    width: 2px;
-    height: 5px;
+    left: 5px;
+    top: 4px;
+    width: 3.2px;
+    height: 6px;
   }
 
   input[type=submit] {
