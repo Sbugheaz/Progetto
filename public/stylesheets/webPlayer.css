@@ -38,6 +38,11 @@ button:focus {outline:0;}
     width: 100%;
     color: cornsilk;
 }
+.pulsanteA:focus{
+
+    box-shadow: 0 0;
+
+}
 #colonna-sinistra, #colonna-destra {
     padding-left: 0;
     padding-right: 0;
@@ -110,9 +115,7 @@ button:focus {outline:0;}
     margin: 0;
 }
 
-#riga-brano-in-riproduzione .card {
-    box-shadow: unset;
-}
+
 
 .audio-controls {
     text-align: center;
@@ -225,3 +228,32 @@ div.slider-handle.min-slider-handle.round{
 .navbar-expand-sm{
     height: 9.2vh;
 }
+
+
+
+div.slider-selection{
+    background-image: linear-gradient(to bottom,#f3ad62 0,#f3b275 100%);
+}
+
+
+
+#step-backward:hover,#play:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
+   color: #5CA5FF;
+}
+#contenitore-volume{
+    background-color: rgba(0,0,0,0);
+    border: 0px
+}
+#prova{
+    display: none;
+    background-color: #aaaaaa;
+    height: 80.3vh;
+
+}
+#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Classico:focus{
+    background-color: rgba(255,138,0,1);
+}
+
+
+
+

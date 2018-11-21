@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
 
     <title>SoundWave - Streaming audio</title>
 
@@ -89,9 +89,9 @@
                     Generi
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Pop</a>
-                    <a class="dropdown-item" href="#">Rock</a>
-                    <a class="dropdown-item" href="#">Classico</a>
+                    <a class="dropdown-item" id="tasto-Pop" href="#">Pop</a>
+                    <a class="dropdown-item" id="tasto-Rock"href="#">Rock</a>
+                    <a class="dropdown-item" id="tasto-Classico"href="#">Classico</a>
                 </div>
             </div>
 
@@ -99,9 +99,12 @@
         <!-- Colonna centrale -->
         <div id="colonna-centrale" class="">
             <div class="container-fluid">
-
                 <div id="sezione-centrale">
+                    <div class="row">
+                        <div id="prova" class="col-md-12">
 
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -134,7 +137,7 @@
                                     <div class="col-md-2">
                                         <div class="dropup">
                                             <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
-                                            <div class="dropdown-menu">
+                                            <div class="dropdown-menu" id="contenitore-volume">
                                                 <input style="width: 100%" class="dropdown-item" type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
                                             </div>
                                         </div>
