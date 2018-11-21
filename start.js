@@ -98,6 +98,10 @@ process.on('SIGINT', function () {
  */
 app.use(express.static("public"));
 
+app.use('*.html', function (req, res) {
+    res.status('403').end('Error 403: Forbidden');
+});
+
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/" + "login.html");
     console.log("GET pagina di login");
@@ -123,3 +127,8 @@ app.get("/webplayer", function(req, res) {
     res.sendFile(__dirname + "/public/" + "webPlayer.html");
     console.log("GET pagina del web player");
 });
+
+/**
+ * L'accesso diretto ai file html viene impedito, per evitare che un utente possa accedere direttamente alla pagina del
+ * webplayer senza essere autenticato.
+ */
