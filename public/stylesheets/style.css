@@ -180,10 +180,10 @@ input[type=submit]:hover {
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  left: 6px;
-  top: 3.5px;
-  width: 4px;
-  height: 8px;
+  left: 7px;
+  top: 4.5px;
+  width: 5px;
+  height: 9px;
   border: solid white;
   border-width: 0 1.5px 1.5px 0;
   -webkit-transform: rotate(45deg);
@@ -373,10 +373,10 @@ footer .extra{
 
   .checkmark {
     position: absolute;
-    top: 0.6vw;
+    top: 0.8vw;
     left: 0;
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
     background-color: #c3c3c3;
   }
 
@@ -388,10 +388,10 @@ footer .extra{
   }
 
   .container .checkmark:after {
-    left: 4px;
-    top: 2.5px;
-    width: 2px;
-    height: 5px;
+    left: 5px;
+    top: 4px;
+    width: 3.2px;
+    height: 6px;
   }
 
   input[type=submit] {
