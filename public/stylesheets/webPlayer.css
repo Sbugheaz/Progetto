@@ -255,7 +255,7 @@ div.slider-selection{
 }
 /*contenitore canzoni*/
 #PannelloCanzoni{
-
+    display: none;
     height: 80.3vh;
 }
 /*propietà immagine album*/
