@@ -101,8 +101,51 @@
             <div class="container-fluid">
                 <div id="sezione-centrale">
                     <div class="row">
-                        <div id="prova" class="col-md-12">
+                        <div id="prova" class="col-md-12"></div>
+                        <!--contiene la lista delle canzoni con nome dell'autore e nome canzone-->
+                        <div id="PannelloCanzoni" class="container-fluid">
+                            <img src="images/MUSICA.jpg" id="album">
+                            <p class="paragrafo">Autore - nome canzone</p>
+                        </div>
+                        <!--contiene la lista degli amici -->
+                        <div id="PannelloAmicizie" class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-default pulsanteA" id="pulsante-aggiungiAmici"><i class="fa fa-plus icona-hover " id="cercaAmici"></i>  Aggiungi amici </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                <p class="paragrafo">Lista amici:</p>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Cognome</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Andrea</td>
+                                            <td>Vara</td>
+                                            <td>john@example.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giuseppe</td>
+                                            <td>Moscarelli</td>
+                                            <td>mary@example.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gianmarco</td>
+                                            <td>Coppola</td>
+                                            <td>july@example.com</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,8 +212,10 @@
 
             <div class="btn-group-vertical-justified" >
                 <button type="button" class="btn btn-default pulsanteA"><i class='fa fa-user-circle'></i>   Visualizza profilo</button>
+                <button type="button" class="btn btn-default pulsanteA"><i class='fa fa-handshake-o'></i>   Gestione amicizie</button>
             </div>
-            <p style="text-align: center ;margin-top: 5vh;margin-bottom: 1rem;border-bottom: 2px solid rgba(255,138,0,1);"><i class='fa fa-users'></i>   Lista amici online</p>
+
+            <p class="paragrafo"><i class='fa fa-users'></i>   Lista amici online</p>
         </div>
     </div>
 </div>
