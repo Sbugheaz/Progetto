@@ -240,7 +240,7 @@ div.slider-selection{
     border: 0px
 }
 #prova{
-    display: none;
+    /*display: none;*/
     background-color: #aaaaaa;
     height: 80.3vh;
 
@@ -278,6 +278,86 @@ p.paragrafo{
     color: cornsilk;
 }
 
+.modal-content{
+    width: 110%;
+}
+
+/*intestazione del Modal Profilo*/
+#intestazione{
+    text-align:center;
+    padding: 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43)
+}
+#titolo-modal{
+    color:black;
+
+}
+button.close {
+    background-color: #ffffff00;
+    box-shadow: 0 0;
+}
+
+.contenitore-icona-profilo{
+    width: min-content;
+    display:block ;
+    margin:auto ;
+}
+
+#icona-profilo{
+    font-size: 10vw;
+}
+
+.nomeUtente{
+    text-align: center;
+}
 
 
+/*form*/
+input[type=text], select, textarea {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,114,255,0.43);
+    resize: vertical;
+    outline-width: 0;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.container {
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.campi{
+    color:black;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
 

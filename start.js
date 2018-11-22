@@ -84,10 +84,51 @@ function onListening() {
     debug('Listening on ' + bind);
 }
 
+/**
+ * Intercetta il segnale SIGINT (CTRL + C da tastiera) e avverte tramite log che il server è stato terminato
+ * manualmente.
+ */
+process.on('SIGINT', function () {
+    console.log("Server terminato a causa di un'interruzione manuale.");
+    process.exit();
+});
 
+/**
+ * Manda la pagina di login in seguito ad una richiesta di pagina principale.
+ */
 app.use(express.static("public"));
+
+app.use('*.html', function (req, res) {
+    res.status('403').end('Error 403: Forbidden');
+});
 
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/" + "login.html");
-    console.log("GET OK");
+    console.log("GET pagina di login");
 });
+
+app.get("/login", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "login.html");
+    console.log("GET pagina di login");
+});
+
+/**
+ * Manda la pagina di registrazione in seguito ad una richiesta di /registrazione.
+ */
+app.get("/registrazione", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "registrazione.html");
+    console.log("GET pagina di registrazione");
+});
+
+/**
+ * Manda la pagina relativa al web player in seguito ad una richiesta di /webplayer.
+ */
+app.get("/webplayer", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "webPlayer.html");
+    console.log("GET pagina del web player");
+});
+
+/**
+ * L'accesso diretto ai file html viene impedito, per evitare che un utente possa accedere direttamente alla pagina del
+ * webplayer senza essere autenticato.
+ */
