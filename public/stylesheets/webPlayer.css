@@ -240,7 +240,7 @@ div.slider-selection{
     border: 0px
 }
 #prova{
-    /*display: none;*/
+    display: none;
     background-color: #aaaaaa;
     height: 80.3vh;
 
@@ -279,13 +279,16 @@ p.paragrafo{
 }
 
 .modal-content{
-    width: 110%;
+    font-size: 15px;
+}
+.modal{
+    padding-left: 0px;
 }
 
 /*intestazione del Modal Profilo*/
 #intestazione{
     text-align:center;
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     border-top-left-radius: .3rem;
     border-top-right-radius: .3rem;
     border-bottom: 2px solid rgba(0,114,255,0.43)
@@ -314,9 +317,15 @@ button.close {
 }
 
 
-/*form*/
-input[type=text], select, textarea {
-    width: 60%;
+/* Proprietà form Profilo*/
+input[type=text], select {
+    width: 90%;
+    border-bottom: 1px solid rgba(0,114,255,0.43);
+    resize: vertical;
+    outline-width: 0;
+}
+input[type=password], select {
+    width: 90%;
     border-bottom: 1px solid rgba(0,114,255,0.43);
     resize: vertical;
     outline-width: 0;
@@ -331,15 +340,15 @@ label {
     padding: 20px;
 }
 
-.col-25 {
+.col-25sx {
     float: left;
     width: 25%;
     margin-top: 6px;
 }
 
-.col-75 {
+.col-50 {
     float: left;
-    width: 75%;
+    width: 50%;
     margin-top: 6px;
 }
 
@@ -350,7 +359,17 @@ label {
     clear: both;
 }
 .campi{
+    text-align: center;
     color:black;
+}
+.campoMail{
+    font-size: 13px;
+}
+.pulsanteModifica{
+    margin-top: 5px;
+    height: 35px;
+    width: 90px;
+    line-height: 15px;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
@@ -360,4 +379,79 @@ label {
         margin-top: 0;
     }
 }
+
+/*Proprietà modal modifica password*/
+.modal-body{
+    padding: 1rem 1rem 0 1rem;
+}
+.contenitore-icona-password{
+    width: min-content;
+    display:block ;
+    margin:auto ;
+}
+#icona-lucchetto{
+    font-size: 10vw;
+}
+#intestazionePass{
+    text-align:center;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43)
+}
+.contenitore-nota{
+    width: 100%;
+}
+
+
+/*Proprietà form modifica Password*/
+.testo{
+    width: 100%;
+}
+.col-90{
+    float: left;
+    width: 90%;
+}
+.col-10{
+    float: left;
+    width: 10%;
+    padding:0px;
+}
+.password{
+    display: block;
+}
+.campiPass{
+    color:black;
+}
+.fa-eye{
+    margin-top: 5px;
+    width: 10px;
+    font-size: 20px;
+}
+.fa-eye:hover{
+    cursor: pointer;
+}
+.labelPass{
+    margin-bottom: 0px;
+    margin-top: 20px;
+    padding: 10px 0 0;
+}
+
+/*proprietà footer modal modifica password*/
+.salvaModifiche{
+    border-radius: 4px;
+    margin: auto;
+}
+/*
+.modal-dialog {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+}
+*/
 
