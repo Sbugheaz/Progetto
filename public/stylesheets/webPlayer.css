@@ -59,7 +59,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     left: 0;
-    height: 80.3vh;
+    height: 78.8vh;
     background-color: #464B51;
     opacity: 0.70;
 }
@@ -68,7 +68,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     right: 0;
-    height: 80.3vh;
+    height: 78.8vh;
     background-color: #464B51;
 }
 
@@ -242,7 +242,7 @@ div.slider-selection{
 #prova{
     display: none;
     background-color: #aaaaaa;
-    height: 80.3vh;
+    height: 78.8vh;
 
 }
 /*propietà tasti webplayer*/
@@ -256,7 +256,7 @@ div.slider-selection{
 /*contenitore canzoni*/
 #PannelloCanzoni{
     display: none;
-    height: 80.3vh;
+    height: 78.8vh;
 }
 /*propietà immagine album*/
 #album{
@@ -264,15 +264,21 @@ div.slider-selection{
     margin: 4vh;
 
 }
+#album2{
+    width: 6.5vw;
+    height: 6vh;
+
+
+}
 #PannelloAmicizie{
-    display: none;
-    background-color: #d1d1d173;
-    height: 80.3vh;
+
+    background-color: transparent;
+    height: 78.8vh;
 }
 
 p.paragrafo{
     text-align: center ;
-    margin-top: 5vh;
+    margin-top: 3vh;
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
@@ -371,6 +377,36 @@ label {
     width: 90px;
     line-height: 15px;
 }
+.campoMail{
+    font-size: 13px;
+}
+.pulsanteModifica{
+    margin-top: 5px;
+    height: 35px;
+    width: 90px;
+    line-height: 15px;
+}
+
+
+.table thead th {
+    border-top:0px;
+    border-bottom-color: #5CA5FF;
+}
+
+.table thead td, .table th, .table td{
+    border-bottom-color: #5CA5FF;
+    border-top-color: #5CA5FF;
+}
+
+table .th{
+    color: cornsilk;
+}
+table{
+    color: cornsilk;
+}
+
+
+
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
