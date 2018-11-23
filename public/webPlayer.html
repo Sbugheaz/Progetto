@@ -103,92 +103,6 @@
                     <div class="row">
                         <div id="prova" class="col-md-12">
 
-                            <!-- Modal Profilo -->
-                            <div class="modal" id="myModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-
-                                        <!-- Intestazione del Modal Profilo -->
-                                        <div class="header" id="intestazione">
-                                            <h4 class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal">&times;</button></h4>
-
-                                        </div>
-
-                                        <!-- Body del Modal Profilo -->
-                                        <div class="modal-body">
-                                            <div class="contenitore-icona-profilo">
-                                            <i class="fa fa-user-circle" id= "icona-profilo"></i>
-                                            </div>
-                                            <div class="nomeUtente"><p><br>ElMosca96</p></div>
-
-                                            <div class="container">
-                                                <form action="/action_page.php">
-
-                                                    <!-- Riga nome -->
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <label for="nome">Nome</label>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input class="campi" value="moscarelli" type="text" id="nome" name="nome">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Riga cognome -->
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <label for="cognome">Cognome</label>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input class="campi" type="text" id="cognome" name="cognome">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Riga data di nascita -->
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <label for="dataNascita">Data di nascita</label>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input class="campi" type="text" id="dataNascita" name="dataNascita">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Riga email -->
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <label for="email">Email</label>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input class="campi"  type="text" id="email" name="password">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Riga password -->
-                                                    <div class="row">
-                                                        <div class="col-25">
-                                                            <label for="password">Password</label>
-                                                        </div>
-                                                        <div class="col-75">
-                                                            <input class="campi" type="text" id="password" name="password">
-                                                        </div>
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
                         <!--contiene la lista delle canzoni con nome dell'autore e nome canzone-->
                         <div id="PannelloCanzoni" class="container-fluid">
                             <img src="images/MUSICA.jpg" id="album">
@@ -210,7 +124,7 @@
                                         <tr>
                                             <th>Nome</th>
                                             <th>Cognome</th>
-                                            <th>Email</th>
+                                            <th>Nome utente</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -313,6 +227,90 @@
         </div>
     </div>
 </div>
+
+    <!-- Modal Profilo -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Intestazione del Modal Profilo -->
+                <div class="header" id="intestazione">
+                    <h4 class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+
+                </div>
+
+                <!-- Body del Modal Profilo -->
+                <div class="modal-body">
+                    <div class="contenitore-icona-profilo">
+                        <i class="fa fa-user-circle" id= "icona-profilo"></i>
+                    </div>
+                    <div class="nomeUtente"><p><br>ElMosca96</p></div>
+
+                    <div class="container">
+                        <form action="/action_page.php">
+
+                            <!-- Riga nome -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="nome">Nome</label>
+                                </div>
+                                <div class="col-75">
+                                    <input class="campi" value="moscarelli" type="text" id="nome" name="nome">
+                                </div>
+                            </div>
+
+                            <!-- Riga cognome -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="cognome">Cognome</label>
+                                </div>
+                                <div class="col-75">
+                                    <input class="campi" type="text" id="cognome" name="cognome">
+                                </div>
+                            </div>
+
+                            <!-- Riga data di nascita -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="dataNascita">Data di nascita</label>
+                                </div>
+                                <div class="col-75">
+                                    <input class="campi" type="text" id="dataNascita" name="dataNascita">
+                                </div>
+                            </div>
+
+                            <!-- Riga email -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="col-75">
+                                    <input class="campi"  type="text" id="email" name="password">
+                                </div>
+                            </div>
+
+                            <!-- Riga password -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="password">Password</label>
+                                </div>
+                                <div class="col-75">
+                                    <input class="campi" type="text" id="password" name="password">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
