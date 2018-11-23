@@ -59,7 +59,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     left: 0;
-    height: 80.3vh;
+    height: 78.8vh;
     background-color: #464B51;
     opacity: 0.70;
 }
@@ -68,7 +68,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     right: 0;
-    height: 80.3vh;
+    height: 78.8vh;
     background-color: #464B51;
 }
 
@@ -112,7 +112,7 @@ button:focus {outline:0;}
 
 
 #titolo-brano-in-riproduzione {
-    display: none;
+
 }
 
 #titolo-brano-in-riproduzione > p:first-child {
@@ -242,7 +242,7 @@ div.slider-selection{
 #prova{
     display: none;
     background-color: #aaaaaa;
-    height: 80.3vh;
+    height: 78.8vh;
 
 }
 /*propietà tasti webplayer*/
@@ -256,7 +256,7 @@ div.slider-selection{
 /*contenitore canzoni*/
 #PannelloCanzoni{
     display: none;
-    height: 80.3vh;
+    height: 78.8vh;
 }
 /*propietà immagine album*/
 #album{
@@ -264,10 +264,16 @@ div.slider-selection{
     margin: 4vh;
 
 }
+#album2{
+    width: 6.5vw;
+    height: 6vh;
+
+
+}
 #PannelloAmicizie{
     display: none;
     background-color: #d1d1d173;
-    height: 80.3vh;
+    height: 78.8vh;
 }
 
 p.paragrafo{
