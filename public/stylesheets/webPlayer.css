@@ -1,5 +1,5 @@
 body {
-    font-family: Raleway;
+    font-family: Raleway, serif;
     overflow-x: hidden;
     width: 100%;
 }
@@ -86,7 +86,7 @@ button:focus {outline:0;}
     width: 100vw;
     position: fixed;
     bottom: 0;
-    left:0%;
+    left:0;
     z-index: 1000;
 
 }
@@ -236,9 +236,15 @@ div.slider-selection{
 #step-backward:hover,#play:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
    color: #5CA5FF;
 }
+
 #contenitore-volume{
     background-color: rgba(0,0,0,0);
-    border: 0px
+    border: 0;
+
+}
+
+div#contenitore-volume.dropdown-menu.show{
+    transform: translateX(9vw);
 }
 #prova{
     display: none;
@@ -360,9 +366,9 @@ label {
     color:black;
 }
 
-
+/*propietà tabella */
 .table thead th {
-    border-top:0px;
+    border-top:0;
     border-bottom-color: #5CA5FF;
 }
 
