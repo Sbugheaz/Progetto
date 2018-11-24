@@ -103,6 +103,9 @@
                     <div class="row">
                         <div id="prova" class="col-md-12">
 
+
+
+
                         <!--contiene la lista delle canzoni con nome dell'autore e nome canzone-->
                         <div id="PannelloCanzoni" class="container-fluid">
                             <img src="images/MUSICA.jpg" id="album">
@@ -187,7 +190,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                         <div class="col-md-12">
                                             <div class="row" id="riga-slider">
                                                 <div class="col-md-2">
@@ -227,95 +230,177 @@
         </div>
     </div>
 </div>
+</div>
 
-    <!-- Modal Profilo -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<!-- Modal Profilo -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-                <!-- Intestazione del Modal Profilo -->
-                <div class="header" id="intestazione">
-                    <h4 class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+            <!-- Intestazione del Modal Profilo -->
+            <div class="header" id="intestazione">
+                <h4 class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal">&times;</button></h4>
 
+            </div>
+
+            <!-- Body del Modal Profilo -->
+            <div class="modal-body">
+                <div class="contenitore-icona-profilo">
+                    <i class="fa fa-user-circle" id= "icona-profilo"></i>
                 </div>
+                <div class="nomeUtente"><p><br>ElMosca96</p></div>
 
-                <!-- Body del Modal Profilo -->
-                <div class="modal-body">
-                    <div class="contenitore-icona-profilo">
-                        <i class="fa fa-user-circle" id= "icona-profilo"></i>
-                    </div>
-                    <div class="nomeUtente"><p><br>ElMosca96</p></div>
+                <div class="container">
+                    <form action="/action_page.php">
 
-                    <div class="container">
-                        <form action="/action_page.php">
-
-                            <!-- Riga nome -->
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="nome">Nome</label>
-                                </div>
-                                <div class="col-75">
-                                    <input class="campi" value="moscarelli" type="text" id="nome" name="nome">
-                                </div>
+                        <!-- Riga nome -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="nome">Nome</label>
                             </div>
-
-                            <!-- Riga cognome -->
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="cognome">Cognome</label>
-                                </div>
-                                <div class="col-75">
-                                    <input class="campi" type="text" id="cognome" name="cognome">
-                                </div>
+                            <div class="col-50">
+                                <input class="campi" value="Giuseppe" type="text" readonly id="nome" name="nome">
                             </div>
-
-                            <!-- Riga data di nascita -->
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="dataNascita">Data di nascita</label>
-                                </div>
-                                <div class="col-75">
-                                    <input class="campi" type="text" id="dataNascita" name="dataNascita">
-                                </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
                             </div>
+                        </div>
 
-                            <!-- Riga email -->
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="email">Email</label>
-                                </div>
-                                <div class="col-75">
-                                    <input class="campi"  type="text" id="email" name="password">
-                                </div>
+                        <!-- Riga cognome -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="cognome">Cognome</label>
                             </div>
-
-                            <!-- Riga password -->
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="password">Password</label>
-                                </div>
-                                <div class="col-75">
-                                    <input class="campi" type="text" id="password" name="password">
-                                </div>
+                            <div class="col-50">
+                                <input class="campi" value="Moscarelli" type="text" readonly id="cognome" name="cognome">
                             </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                            </div>
+                        </div>
 
-                        </form>
-                    </div>
+                        <!-- Riga data di nascita -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="dataNascita">Data di nascita</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi" value="05/06/96" type="text" readonly id="dataNascita" name="dataNascita">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                            </div>
+                        </div>
+
+                        <!-- Riga email -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi campoMail"  value="peppe.moscarelli96@gmail.com" type="text" readonly id="email" name="password">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                            </div>
+                        </div>
+
+                        <!-- Riga password -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi" value="AAAAAAAAA" type="password" readonly id="password" name="password">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica" data-toggle="modal" data-target="#myModalPass">Modifica</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Modal form modifica Password -->
+<div class="modal" id="myModalPass">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal modifica Password -->
+            <div class="header" id="intestazionePass">
+                <h4 class="title" id="titolo-modalPass">Modifica password<button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+            </div>
+
+            <!-- Body del Modal modifica Password -->
+            <div class="modal-body">
+                <div class="contenitore-icona-password">
+                    <i class="fa fa-unlock-alt" id= "icona-lucchetto"></i>
+                </div>
 
 
+                <div class="container">
+                    <form action="/action_page.php">
+
+                        <!-- Riga vecchia password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="vecciaPass">Inserire vecchia password:</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="vecciaPass" name="pass">
+
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye"></i>
+                            </div>
+                        </div>
+
+                        <!-- Riga nuova password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="nuovaPass">Inserire nuova password</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="nuovaPass" name="pass">
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye"></i>
+                            </div>
+                        </div>
+
+                        <!-- Riga conferma nuova password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="confNuovaPass">Confermare nuova password</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="confNuovaPass" name="pass">
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye"></i>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="contenitore-nota">
+                    <p></br>* N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero</p>
+                </div>
+            </div>
+
+            <!-- Footer del Modal modifica password -->
+            <div class="modal-footer">
+                <button class="salvaModifiche" type="button">Conferma modifiche</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
