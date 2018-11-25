@@ -29,6 +29,7 @@
 
 
     <link rel="stylesheet" href="stylesheets/webPlayer.css">
+    <script src="javascripts/webPlayer.js"></script>
 
     <!-- Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
@@ -262,7 +263,7 @@
                                 <input class="campi" value="Giuseppe" type="text" readonly id="nome" name="nome">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('nome')">Modifica</button>
                             </div>
                         </div>
 
@@ -275,7 +276,7 @@
                                 <input class="campi" value="Moscarelli" type="text" readonly id="cognome" name="cognome">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('cognome')">Modifica</button>
                             </div>
                         </div>
 
@@ -288,7 +289,7 @@
                                 <input class="campi" value="05/06/96" type="text" readonly id="dataNascita" name="dataNascita">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('dataNascita')">Modifica</button>
                             </div>
                         </div>
 
@@ -301,7 +302,7 @@
                                 <input class="campi campoMail"  value="peppe.moscarelli96@gmail.com" type="text" readonly id="email" name="password">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica">Modifica</button>
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('email')">Modifica</button>
                             </div>
                         </div>
 
@@ -349,14 +350,14 @@
                         <!-- Riga vecchia password -->
                         <div class="row password">
                             <div class="testo">
-                                <label class="labelPass" for="vecciaPass">Inserire vecchia password:</label>
+                                <label class="labelPass" for="vecchiaPass">Inserire vecchia password:</label>
                             </div>
                             <div class="col-90">
-                                <input class="campiPass"  type="password" id="vecciaPass" name="pass">
+                                <input class="campiPass"  type="password" id="vecchiaPass" name="pass">
 
                             </div>
                             <div class="col-10">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye" onclick="mostraPass('vecchiaPass')"></i>
                             </div>
                         </div>
 
@@ -369,7 +370,7 @@
                                 <input class="campiPass"  type="password" id="nuovaPass" name="pass">
                             </div>
                             <div class="col-10">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye" onclick="mostraPass('nuovaPass')"></i>
                             </div>
                         </div>
 
@@ -382,14 +383,14 @@
                                 <input class="campiPass"  type="password" id="confNuovaPass" name="pass">
                             </div>
                             <div class="col-10">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye" onclick="mostraPass('confNuovaPass')"></i>
                             </div>
                         </div>
 
                     </form>
                 </div>
                 <div class="contenitore-nota">
-                    <p></br>* N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero</p>
+                    <p style="text-align: center;"></br>* N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero</p>
                 </div>
             </div>
 

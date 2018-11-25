@@ -371,11 +371,9 @@ label {
 .campoMail{
     font-size: 13px;
 }
+
 .pulsanteModifica{
-    margin-top: 5px;
-    height: 35px;
-    width: 90px;
-    line-height: 15px;
+    box-shadow: 0 0;
 }
 .campoMail{
     font-size: 13px;
@@ -436,6 +434,7 @@ table{
     border-bottom: 2px solid rgba(0,114,255,0.43)
 }
 .contenitore-nota{
+    text-align: center;
     width: 100%;
 }
 
