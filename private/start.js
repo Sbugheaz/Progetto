@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var debug = require('debug')('progetto:server');
 var http = require('http');
+var path = require('path');
 
 /**
  * Get port from environment and store in Express.
@@ -103,12 +104,12 @@ app.use('*.html', function (req, res) {
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/" + "login.html");
+    res.sendFile('login.html', { root: path.join(__dirname, '../public') });
     console.log("GET pagina di login");
 });
 
 app.get("/login", function(req, res) {
-    res.sendFile(__dirname + "/public/" + "login.html");
+    res.sendFile('login.html', { root: path.join(__dirname, '../public') });
     console.log("GET pagina di login");
 });
 
@@ -116,7 +117,7 @@ app.get("/login", function(req, res) {
  * Manda la pagina di registrazione in seguito ad una richiesta di /registrazione.
  */
 app.get("/registrazione", function(req, res) {
-    res.sendFile(__dirname + "/public/" + "registrazione.html");
+    res.sendFile('registrazione.html', { root: path.join(__dirname, '../public') });
     console.log("GET pagina di registrazione");
 });
 
@@ -124,7 +125,7 @@ app.get("/registrazione", function(req, res) {
  * Manda la pagina relativa al web player in seguito ad una richiesta di /webplayer.
  */
 app.get("/webplayer", function(req, res) {
-    res.sendFile(__dirname + "/public/" + "webPlayer.html");
+    res.sendFile('webPlayer.html', { root: path.join(__dirname, '../public') });
     console.log("GET pagina del web player");
 });
 
