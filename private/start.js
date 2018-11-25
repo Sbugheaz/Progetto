@@ -94,23 +94,39 @@ process.on('SIGINT', function () {
     process.exit();
 });
 
+
 /**
- * Manda la pagina di login in seguito ad una richiesta di pagina principale.
+ * Semplice funzione di logging che wrappa console.log, in modo che ogni messaggio stmapato sulla console
+ * venga preceduto dall'orario del server.
+ * @param args - Gli argomenti da passare alla console.log.
+ */
+app.log = function (...args) {
+    var arguments = Array.prototype.slice.call(args);
+    arguments.unshift('[' + (new Date()).toLocaleTimeString() + ']');
+    console.log.apply(console, arguments);
+};
+
+/**
+ * Di ogni richiesta in arrivo, logga l'IP richiedente, il metodo richiesto e il path richiesto.
+ */
+app.use(function timeLog(req, res, next) {
+    app.log('IP richiedente: ' + req.ip);
+    app.log('Metodo: ' + req.method);
+    app.log('PATH richiesto: ' + req.url + '\n');
+    next();
+});
+
+/**
+ * Manda la pagina di login in seguito ad una richiesta di pagina principale o di /login
  */
 app.use(express.static("public"));
 
-app.use('*.html', function (req, res) {
-    res.status('403').end('Error 403: Forbidden');
-});
-
 app.get("/", function(req, res) {
     res.sendFile('login.html', { root: path.join(__dirname, '../public') });
-    console.log("GET pagina di login");
 });
 
 app.get("/login", function(req, res) {
     res.sendFile('login.html', { root: path.join(__dirname, '../public') });
-    console.log("GET pagina di login");
 });
 
 /**
@@ -118,7 +134,6 @@ app.get("/login", function(req, res) {
  */
 app.get("/registrazione", function(req, res) {
     res.sendFile('registrazione.html', { root: path.join(__dirname, '../public') });
-    console.log("GET pagina di registrazione");
 });
 
 /**
@@ -126,10 +141,13 @@ app.get("/registrazione", function(req, res) {
  */
 app.get("/webplayer", function(req, res) {
     res.sendFile('webPlayer.html', { root: path.join(__dirname, '../public') });
-    console.log("GET pagina del web player");
 });
 
 /**
- * L'accesso diretto ai file html viene impedito, per evitare che un utente possa accedere direttamente alla pagina del
- * webplayer senza essere autenticato.
- */
+ * Gestisce gli errori 404 di pagina non trovata. Deve essere messa piu' in basso rispetto a tutte le altre funzioni, di modo che intercetti
+ * solamente le richieste non intercettate da nessun altro route. Manda la pagina error.html.
+ * */
+app.use(function (req, res) {
+    res.sendFile('error.html', { root: path.join(__dirname, '../public') });
+    app.log('404 NOT FOUND - ' + req.url + '\n');
+});
