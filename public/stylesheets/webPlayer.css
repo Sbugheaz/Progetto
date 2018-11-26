@@ -377,11 +377,9 @@ label {
 .campoMail{
     font-size: 13px;
 }
+
 .pulsanteModifica{
-    margin-top: 5px;
-    height: 35px;
-    width: 90px;
-    line-height: 15px;
+    box-shadow: 0 0;
 }
 .campoMail{
     font-size: 13px;
@@ -409,6 +407,12 @@ table .th{
 }
 table{
     color: cornsilk;
+}
+
+/*Proprietà footer del Modal Profilo*/
+.modal-footer{
+    display:none;
+    margin:auto;
 }
 
 
@@ -442,6 +446,7 @@ table{
     border-bottom: 2px solid rgba(0,114,255,0.43)
 }
 .contenitore-nota{
+    text-align: center;
     width: 100%;
 }
 
@@ -465,12 +470,12 @@ table{
 .campiPass{
     color:black;
 }
-.fa-eye{
+.iconaPassword{
     margin-top: 5px;
     width: 10px;
     font-size: 20px;
 }
-.fa-eye:hover{
+.iconaPassword:hover{
     cursor: pointer;
 }
 .labelPass{
