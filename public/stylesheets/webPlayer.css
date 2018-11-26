@@ -403,6 +403,12 @@ table{
     color: cornsilk;
 }
 
+/*Proprietà footer del Modal Profilo*/
+.modal-footer{
+    display:none;
+    margin:auto;
+}
+
 
 
 

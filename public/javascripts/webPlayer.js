@@ -13,3 +13,9 @@ function mostraPass(id){
 function abilitaScrittura(id){
     document.getElementById(id).readOnly = false;
 }
+
+$(document).ready(function(){
+$(".pulsanteModifica").click(function(){
+    $(".modal-footer").show();
+});
+});
