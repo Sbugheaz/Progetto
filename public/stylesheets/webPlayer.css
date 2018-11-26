@@ -464,12 +464,12 @@ table{
 .campiPass{
     color:black;
 }
-.fa-eye{
+.iconaPassword{
     margin-top: 5px;
     width: 10px;
     font-size: 20px;
 }
-.fa-eye:hover{
+.iconaPassword:hover{
     cursor: pointer;
 }
 .labelPass{
