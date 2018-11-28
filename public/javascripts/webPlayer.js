@@ -1,4 +1,7 @@
 
+var pannelloAttivo=null;
+
+
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
     var x = document.getElementById(id);
@@ -22,3 +25,27 @@ $(".pulsanteModifica").click(function(){
     $(".modal-footer").show();
 });
 });
+
+
+$(document).ready(function(){
+    $(".PulsanteGestioneAmicizie").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Amicizie").show();
+        pannelloAttivo= $("#pannello-Amicizie");
+
+    });
+});
+
+$(document).ready(function(){
+    $(".pulsanteA-playlist").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Playlist").show();
+        pannelloAttivo=$("#pannello-Playlist");
+
+    });
+});
+

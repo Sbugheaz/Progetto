@@ -259,9 +259,28 @@ div#contenitore-volume.dropdown-menu.show{
 #tasto-Rock:hover, #tasto-Pop:hover, #tasto-Classico:hover{
     background-color: #5CA5FF;
 }
-/*contenitore canzoni*/
-#PannelloCanzoni{
+
+
+
+/*contenitore Playlist*/
+#pannello-Playlist{
     display: none;
+    height: 78.8vh;
+}
+/*contenitore Brani recenti*/
+#pannello-BraniRecenti{
+    display: none;
+    height: 78.8vh;
+}
+/*contenitore Generi*/
+#pannello-Generi{
+    display: none;
+    height: 78.8vh;
+}
+/*contenitore Amicizie*/
+#pannello-Amicizie{
+    display: none;
+    background-color: transparent;
     height: 78.8vh;
 }
 /*propietà immagine album*/
@@ -276,11 +295,7 @@ div#contenitore-volume.dropdown-menu.show{
 
 
 }
-#PannelloAmicizie{
 
-    background-color: transparent;
-    height: 78.8vh;
-}
 
 p.paragrafo{
     text-align: center ;
