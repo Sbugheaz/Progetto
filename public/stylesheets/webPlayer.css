@@ -372,9 +372,6 @@ label {
     font-size: 13px;
 }
 
-.pulsanteModifica{
-    box-shadow: 0 0;
-}
 .campoMail{
     font-size: 13px;
 }
@@ -383,6 +380,13 @@ label {
     height: 35px;
     width: 90px;
     line-height: 15px;
+}
+
+#dataNascita{
+    border-bottom: 1px solid rgba(0, 114, 255, 0.43);
+    color: black;
+    width: 90%;
+    text-align: center;
 }
 
 
@@ -408,6 +412,7 @@ table{
     display:none;
     margin:auto;
 }
+
 
 
 

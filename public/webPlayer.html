@@ -286,12 +286,16 @@
                                 <label for="dataNascita">Data di nascita</label>
                             </div>
                             <div class="col-50">
-                                <input class="campi" value="05/06/96" type="text" readonly id="dataNascita" name="dataNascita">
+                                <form action="/action_page.php">
+                                <input class="campi" value="1996-06-05" type="date" readonly id="dataNascita" name="dataNascita"
+                                min="1940-01-01" max="2001-01-01">
+                                </form>
                             </div>
                             <div class="col-25dx">
                                 <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('dataNascita')">Modifica</button>
                             </div>
                         </div>
+
 
                         <!-- Riga email -->
                         <div class="row">
@@ -302,7 +306,6 @@
                                 <input class="campi campoMail"  value="peppe.moscarelli96@gmail.com" type="text" readonly id="email" name="password">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('email')">Modifica</button>
                             </div>
                         </div>
 
