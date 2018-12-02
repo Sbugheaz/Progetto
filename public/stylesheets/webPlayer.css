@@ -1,5 +1,5 @@
 body {
-    font-family: Raleway;
+    font-family: Raleway, serif;
     overflow-x: hidden;
     width: 100%;
 }
@@ -86,7 +86,7 @@ button:focus {outline:0;}
     width: 100vw;
     position: fixed;
     bottom: 0;
-    left:0%;
+    left:0;
     z-index: 1000;
 
 }
@@ -235,9 +235,15 @@ div.slider-selection{
 #step-backward:hover,#play:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
    color: #5CA5FF;
 }
+
 #contenitore-volume{
     background-color: rgba(0,0,0,0);
-    border: 0px
+    border: 0;
+
+}
+
+div#contenitore-volume.dropdown-menu.show{
+    transform: translateX(9vw);
 }
 #prova{
     display: none;
@@ -253,9 +259,28 @@ div.slider-selection{
 #tasto-Rock:hover, #tasto-Pop:hover, #tasto-Classico:hover{
     background-color: #5CA5FF;
 }
-/*contenitore canzoni*/
-#PannelloCanzoni{
+
+
+
+/*contenitore Playlist*/
+#pannello-Playlist{
     display: none;
+    height: 78.8vh;
+}
+/*contenitore Brani recenti*/
+#pannello-BraniRecenti{
+    display: none;
+    height: 78.8vh;
+}
+/*contenitore Generi*/
+#pannello-Generi{
+    display: none;
+    height: 78.8vh;
+}
+/*contenitore Amicizie*/
+#pannello-Amicizie{
+    display: none;
+    background-color: transparent;
     height: 78.8vh;
 }
 /*propietà immagine album*/
@@ -270,11 +295,7 @@ div.slider-selection{
 
 
 }
-#PannelloAmicizie{
 
-    background-color: transparent;
-    height: 78.8vh;
-}
 
 p.paragrafo{
     text-align: center ;
@@ -372,9 +393,6 @@ label {
     font-size: 13px;
 }
 
-.pulsanteModifica{
-    box-shadow: 0 0;
-}
 .campoMail{
     font-size: 13px;
 }
@@ -385,9 +403,17 @@ label {
     line-height: 15px;
 }
 
+#dataNascita{
+    border-bottom: 1px solid rgba(0, 114, 255, 0.43);
+    color: black;
+    width: 90%;
+    text-align: center;
+}
 
+
+/*propietà tabella */
 .table thead th {
-    border-top:0px;
+    border-top:0;
     border-bottom-color: #5CA5FF;
 }
 

@@ -25,11 +25,10 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 
-
-
-
     <link rel="stylesheet" href="stylesheets/webPlayer.css">
     <script src="javascripts/webPlayer.js"></script>
+
+    <script src="javascripts/provaWebPlayer.js"></script>
 
     <!-- Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
@@ -71,7 +70,9 @@
             </div>
         </div>
 
-        <div class="col-md-2" ></div>
+        <div class="col-md-2" >
+            <button type="button" class="btn btn-default pulsanteA"><i class="fa fa-sign-out"></i>Logout</button>
+        </div>
 
 
     </div>
@@ -83,7 +84,7 @@
         <!-- Colonna di sinistra-->
         <div id="colonna-sinistra" >
             <div class="btn-group-vertical-justified" >
-                <button type="button" class="btn btn-default pulsanteA">Playlist</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Playlist</button>
                 <button type="button" class="btn btn-default pulsanteA">La tua musica</button>
                 <button type="button" class="btn btn-default pulsanteA">Brani recenti</button>
                 <button type="button" class="btn btn-default pulsanteA" data-toggle="dropdown">
@@ -102,19 +103,17 @@
             <div class="container-fluid">
                 <div id="sezione-centrale">
                     <div class="row">
-                        <div id="prova" class="col-md-12">
-
-
-
+                        <div id="pannello-BraniRecenti" class="container-fluid"></div>
+                        <div id="pannello-Generi" class="container-fluid"></div>
 
                         <!--contiene la lista delle canzoni con nome dell'autore e nome canzone-->
-                        <div id="PannelloCanzoni" class="container-fluid">
+                        <div id="pannello-Playlist" class="container-fluid">
                             <img src="images/MUSICA.jpg" id="album">
-                            <p class="paragrafo">Autore - nome canzone</p>
+
                         </div>
-                        </div>
+
                         <!--contiene la lista degli amici -->
-                        <div id="PannelloAmicizie" class="container-fluid">
+                        <div id="pannello-Amicizie" class="container-fluid">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="row">
@@ -122,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                <p class="paragrafo">Lista amici:</p>
+                                <p class="paragrafo" style="font-size: x-large">Lista amici:</p>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
@@ -186,8 +185,8 @@
                                     <div class="col-md-2">
                                         <div class="dropup">
                                             <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
-                                            <div class="dropdown-menu" id="contenitore-volume">
-                                                <input style="width: 100%" class="dropdown-item" type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
+                                            <div class="dropdown-menu " id="contenitore-volume" >
+                                                <input style="width: 100%" class="dropdown-item " type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
                                             </div>
                                         </div>
                                     </div>
@@ -224,10 +223,29 @@
                 <!-- Bottone che apre il Modal del profilo -->
                 <button type="button" class="btn btn-default pulsanteA" data-toggle="modal" data-target="#myModal"><i class='fa fa-user-circle'></i>
                     Visualizza profilo </button>
-                <button type="button" class="btn btn-default pulsanteA"><i class='fa fa-handshake-o'></i>   Gestione amicizie</button>
+                <button type="button" class="btn btn-default pulsanteA PulsanteGestioneAmicizie"><i class='fa fa-handshake-o'></i>   Gestione amicizie</button>
             </div>
 
-            <p class="paragrafo"><i class='fa fa-users'></i>   Lista amici online</p>
+            <div class="container-fluid">
+                <p class="paragrafo"><i class='fa fa-users'></i>   Lista amici online</p>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <p>gsgadsag</p>
+                        <p>gsgadsag</p>
+                        <p>gsgadsag</p>
+                        <p>gsgadsag</p>
+                        <p>gsgadsag</p>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
         </div>
     </div>
 </div>
@@ -286,12 +304,16 @@
                                 <label for="dataNascita">Data di nascita</label>
                             </div>
                             <div class="col-50">
-                                <input class="campi" value="05/06/96" type="text" readonly id="dataNascita" name="dataNascita">
+                                <form action="/action_page.php">
+                                <input class="campi" value="1996-06-05" type="date" readonly id="dataNascita" name="dataNascita"
+                                min="1940-01-01" max="2001-01-01">
+                                </form>
                             </div>
                             <div class="col-25dx">
                                 <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('dataNascita')">Modifica</button>
                             </div>
                         </div>
+
 
                         <!-- Riga email -->
                         <div class="row">
@@ -302,7 +324,6 @@
                                 <input class="campi campoMail"  value="peppe.moscarelli96@gmail.com" type="text" readonly id="email" name="password">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('email')">Modifica</button>
                             </div>
                         </div>
 
