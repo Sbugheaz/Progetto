@@ -3,9 +3,15 @@ var app = express();
 var debug = require('debug')('progetto:server');
 var http = require('http');
 var path = require('path');
+const bodyParser = require('body-parser'); // Legge i parametri della post.
+const cookieParser = require('cookie-parser'); // Gestisce i cookie.
+const session = require('express-session'); // Gestisce le sessioni degli utenti che accedono al sito web.
+global.serverAddress = "https://localhost"; // Indirizzo IP del server.
+global.app = app;
+global.appRoot = appRoot;
 
 /**
- * Get port from environment and store in Express.
+ * Imposta la porta e la memorizza in express
  */
 
 var port = normalizePort(process.env.PORT || '8080');
@@ -120,6 +126,20 @@ app.use(function timeLog(req, res, next) {
  * Manda la pagina di login in seguito ad una richiesta di pagina principale o di /login
  */
 app.use(express.static("public"));
+
+/**
+ * Inizializzazione del bodyParser (body delle post), del cookieParse e della session. I cookie vengono fatti scadere
+ * dopo un giorno.
+ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {maxAge: 8.64e7} //la valenza dei cookie è impostata ad un giorno
+}));
 
 app.get("/", function(req, res) {
     res.sendFile('login.html', { root: path.join(__dirname, '../public') });

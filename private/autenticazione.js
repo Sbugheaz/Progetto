@@ -2,33 +2,13 @@
  * Questo modulo si occupa di tutto ciò che concerne l'autenticazione, la registrazione e la gestione dei dati
  * degli utenti.
  */
-const connessionedb = require('../connessionedb'); // Modulo per accedere al database.
-const mailer = require('./mailer'); // Modulo per inviare le email di attivazione e ripristino.
+const connessionedb = require('../connessioneDB'); // Modulo per accedere al database.
+const mailer = require('../mailer'); // Modulo per inviare le email di attivazione e ripristino.
 const crypto = require('crypto'); // Modulo per cifrare le password prima di memorizzarle sul database.
 const timerDisconnessioneUtenti = {}; // Oggetto contenente i timer che regolano lo stato online degli utenti
 const path = require('path');
-const multer = require('multer'); // Modulo per gestire l'upload delle immagini da parte degli utenti
-const upload = multer({
-    /**
-     * Vengono accettati file di massimo 4MB.
-     */
-    limits: {fileSize: 4 * 1024 * 1024},
-    fileFilter: function (req, file, callback) {
-        /**
-         * Vengono accettati esclusivamente i file jpg, jpeg e png.
-         */
-        var filetypes = /jpeg|jpg|png/;
-        var mimetype = filetypes.test(file.mimetype);
-        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-        if (mimetype && extname) {
-            return callback(null, true);
-        }
-        callback("Sono supportati solamente i seguenti tipi di file: " + filetypes);
-    }
-});
 const mkdirp = require('mkdirp'); // Modulo per la creazione condizionale delle directory
 const router = require('express').Router();
-const publicMediaRoot = '/media/immagini_profilo/'; // Directory pubblica a partire dalla quale memorizzare sul db le immagini del profilo.
 const app = global.app;
 const appRoot = global.appRoot;
 /**
@@ -62,7 +42,7 @@ exports.inizializza = function (scadenzaDati, timeout) {
     // Aggiunge le route gestite da questo modulo a quelle gestite dal main e dagli altri moduli.
     app.use(router);
     // Inizializza il mailer con i dati dell'account gmail di Music Stream
-    mailer.inizializza('webplayerpalermo@gmail.com', 'Webplayer', 'gmail');
+    mailer.inizializza('s.wave2019@gmail.com', 'soundwave15', 'gmail');
 };
 
 // COSTRUZIONE DEI ROUTE
