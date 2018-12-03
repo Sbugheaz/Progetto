@@ -107,7 +107,7 @@
                     document.getElementById("err_email").innerHTML = "";
                 }
         }
-        else if(currentTab == 3){
+        else if(currentTab == 2){
             if(y[0].value == "") {
                 y[0].className += " invalid";
                 document.getElementById("err_account").className += " invalid";

@@ -22,7 +22,9 @@
     <div class="tab">Inserisci il tuo nome e cognome:
         <p><input placeholder="Nome" oninput="this.className = ''" name="fname"></p>
         <p><input placeholder="Cognome" oninput="this.className = ''" name="lname"></p>
-        <p>Sesso: </p>
+        <p><br>Inserisci la tua data di nascita: </p>
+        <input type="date">
+        <p><br></br>Sesso: </p>
         <label class="container">Uomo
             <input type="radio" checked="checked" name="sesso">
             <span class="checkmark"></span>
@@ -38,7 +40,7 @@
         <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
         <p id="err_email" class=""></p>
     </div>
-    <div class="tab">Inserisci la tua data di nascita:
+    <!--<div class="tab">Inserisci la tua data di nascita:
         <select  name="day" id="day">
             <option value="na">Giorno</option>
         </select>
@@ -62,8 +64,9 @@
         <select  name="year" id="year">
             <option value="na">Anno</option>
         </select>
+        <input type="date">
         <p id="err_date" class=""></p>
-    </div>
+    </div>-->
     <div class="tab">Inserisci nome utente e password.<br>
         (N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):
         <p><input placeholder="Nome utente" oninput="this.className = ''" name="uname"></p>
@@ -82,7 +85,7 @@
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
-        <span class="step"></span>
+
     </div>
 </form>
 </body>
