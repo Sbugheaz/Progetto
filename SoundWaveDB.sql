@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
   `Nome` VARCHAR(45) NOT NULL,
   `Cognome` VARCHAR(45) NOT NULL,
   `DataDiNascita` DATE NOT NULL,
-  `Attivazione` BIT(1) NOT NULL DEFAULT '0',
+  `Attivazione` BIT(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`NomeUtente`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   UNIQUE INDEX `NumeroDiTelefono_UNIQUE` (`Cognome` ASC))
@@ -41,9 +41,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Account
 VALUES 
-('Sbugheaz', 'Giacop96', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', '1996-10-19', '1'),
-('ElMosca96', 'Giumos96', 'giuseppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', '1996-06-05', '1'),
-('Aries96', 'Andvar96', 'andryplus96@gmail.com', 'Andrea', 'Vara', '1996-06-10', '0');
+('Sbugheaz', 'Giacop96', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', '1996-10-19', 1),
+('ElMosca96', 'Giumos96', 'giuseppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', '1996-06-05', 1),
+('Aries96', 'Andvar96', 'andryplus96@gmail.com', 'Andrea', 'Vara', '1996-06-10', 0);
 
 
 -- -----------------------------------------------------
