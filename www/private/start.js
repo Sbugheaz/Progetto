@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser'); // Gestisce i cookie.
 const session = require('express-session'); // Gestisce le sessioni degli utenti che accedono al sito web.
 global.serverAddress = "https://localhost"; // Indirizzo IP del server.
 global.app = app;
-global.appRoot = appRoot;
 
 /**
  * Imposta la porta e la memorizza in express
@@ -123,8 +122,13 @@ app.use(function timeLog(req, res, next) {
 });
 
 /**
- * Manda la pagina di login in seguito ad una richiesta di pagina principale o di /login
+ * L'accesso diretto ai file html viene impedito, per evitare che un utente possa accedere direttamente alla pagina del
+ * webplayer senza essere autenticato.
  */
+app.use('*.html', function (req, res, next) {
+    res.status('403').end('Errore 403 File nascosto');
+});
+
 app.use(express.static("public"));
 
 /**
@@ -141,32 +145,47 @@ app.use(session({
     cookie: {maxAge: 8.64e7} //la valenza dei cookie è impostata ad un giorno
 }));
 
-app.get("/", function(req, res) {
-    res.sendFile('login.html', { root: path.join(__dirname, '../public') });
+/**
+ * Gestisce l'accesso ai servizi offerti dall'applicazione, quando l'utente invia la richiesta direttamente alla root
+ * del server. Tramite l'oggetto session, il server può determinare se si tratti di un utente autenticato e rendirizzarlo
+ * al webPlayer o meno e mandare la pagina di login.
+ */
+app.route('/').get(function (req, res) {
+    if (req.session && !req.session.dati_utente) {
+        res.redirect('/webPlayer');
+    }
+    else res.redirect('/login');
 });
 
-app.get("/login", function(req, res) {
+/**
+ * Manda la pagina di login in seguito ad una richiesta di /login.
+ */
+app.route("/login").get(function(req, res) {
     res.sendFile('login.html', { root: path.join(__dirname, '../public') });
 });
 
 /**
  * Manda la pagina di registrazione in seguito ad una richiesta di /registrazione.
  */
-app.get("/registrazione", function(req, res) {
+app.route("/registrazione").get(function(req, res) {
     res.sendFile('registrazione.html', { root: path.join(__dirname, '../public') });
 });
 
 /**
- * Manda la pagina relativa al web player in seguito ad una richiesta di /webplayer.
+ * Gestisce l'accesso ai servizi offerti dall'applicazione, quando l'utente invia una richiesta di /webplayer.
+ * Tramite l'oggetto session, il server può determinare se si tratti di un utente autenticato e rendirizzarlo
+ * al webPlayer o meno e mandare la pagina di login.
  */
-app.get("/webplayer", function(req, res) {
-    res.sendFile('webPlayer.html', { root: path.join(__dirname, '../public') });
+app.route('/webplayer').get(function (req, res) {
+    if (!req.session && req.session.dati_utente) {
+        res.redirect('/login');
+    } else res.sendFile('webPlayer.html', { root: path.join(__dirname, '../public') });
 });
 
 /**
- * Gestisce gli errori 404 di pagina non trovata. Deve essere messa piu' in basso rispetto a tutte le altre funzioni, di modo che intercetti
+ * Gestisce gli errori 404 di pagina non trovata. Deve essere messa più in basso rispetto a tutte le altre funzioni, di modo che intercetti
  * solamente le richieste non intercettate da nessun altro route. Manda la pagina error.html.
- * */
+ */
 app.use(function (req, res) {
     res.sendFile('error.html', { root: path.join(__dirname, '../public') });
     app.log('404 NOT FOUND - ' + req.url + '\n');
