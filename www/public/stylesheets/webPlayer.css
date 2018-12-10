@@ -608,6 +608,13 @@ table{
 }
 
 
+
+#lista-colonna-destra{
+    height: 80%;
+}
+
+
+
 @media screen and (max-width: 992px) {
    #colonna-destra,#album2{
        display: none;
