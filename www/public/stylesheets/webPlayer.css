@@ -103,20 +103,20 @@ button:focus {outline:0;}
     color:cornsilk;
     font-size:1.1vw;
     text-align: center;
-    padding-bottom: 1rem;
     border-bottom: 1px solid rgba(0, 114, 255, 0.72);
 }
 .conteiner-listaAmici{
     padding-right: 5px;
     overflow-y: auto;
-    max-height: 59vh;
+    max-height: 53vh;
 }
 ul.demo {
     list-style-type: none;
     margin: 0;
     padding: 0;
-
 }
+
+
 /* Larghezza della scrollbar */
 ::-webkit-scrollbar {
     width: 5px;
@@ -132,29 +132,14 @@ ul.demo {
     background: rgba(255,138,0,1);
 }
 
-/* Cursore in hover della Scrollbar
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}*/
-
-.icona-musica:hover{
-    color: rgba(255,138,0,1);
-}
-.icona-musica span {
-    display: none
-}
-i.icona-musica:hover .sta-ascoltando{
+.sta-ascoltando{
     display: block;
-    z-index: 100;
-    left:23%;
     top:30px;
-    position: absolute;
-    text-decoration: none
+    color: rgba(255,138,0,1);
+    margin-bottom: 0.5rem;
 }
 .icona-musica{
-    transition: all ease-in-out 0.2s;
     padding: 1.5% 2% 0% 0%;
-    float: right;
 }
 
 #colonna-centrale {
@@ -383,6 +368,7 @@ div#contenitore-volume.dropdown-menu.show{
 
 
 p.paragrafo{
+    font-size: 1.4vw;
     text-align: center ;
     margin-top: 3vh;
     margin-bottom: 1rem;
