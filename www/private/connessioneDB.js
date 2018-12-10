@@ -174,10 +174,10 @@ function multipleQuery(arrayQuery, nomiCampiRisposta, queryFunction, queryData, 
  * @param {function} callback - Funzione da eseguire una volta completate le operazioni.
  */
 exports.verificaDatiAccesso = function (nomeUtente, password, callback) {
-    var query = "SELECT NomeUtente, Email, Nome, Cognome, Sesso, DataDiNascita" +
+    var query = "SELECT NomeUtente, Email, Nome, Cognome, Sesso, DataDiNascita " +
         "FROM Account a " +
         "WHERE a.NomeUtente = ? AND a.Password = ?;";
-    matchQuery(query, [nomeUtente, nomeUtente, password], callback);
+    matchQuery(query, [nomeUtente, password], callback);
 };
 
 
