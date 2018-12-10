@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/bootstrap.sh"
 
   config.vm.network "forwarded_port", guest: 80, host: 80
-  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  config.vm.network "forwarded_port", guest: 3306, host: 1234
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.network "private_network", ip: "192.168.33.10"
 

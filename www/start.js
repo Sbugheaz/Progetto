@@ -1,19 +1,22 @@
 var express = require('express');
 var app = express();
+const appRoot = '/var/www/html/'; // Directory root del server.
 var debug = require('debug')('progetto:server');
 var http = require('http');
 var path = require('path');
 const bodyParser = require('body-parser'); // Legge i parametri della post.
 const cookieParser = require('cookie-parser'); // Gestisce i cookie.
 const session = require('express-session'); // Gestisce le sessioni degli utenti che accedono al sito web.
-global.serverAddress = "https://localhost"; // Indirizzo IP del server.
+global.serverAddress = "http://localhost"; // Indirizzo IP del server.
 global.app = app;
+global.appRoot = appRoot;
+const router = require('express').Router();
 
 /**
  * Imposta la porta e la memorizza in express
  */
 
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -61,16 +64,16 @@ function onError(error) {
 
     var bind = typeof port === 'string'
         ? 'Pipe ' + port
-        : 'Port ' + port;
+        : 'Porta ' + port;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
+            console.error(bind + ' richiede privilegi elevati');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + ' is already in use');
+            console.error(bind + ' già in uso');
             process.exit(1);
             break;
         default:
@@ -101,8 +104,7 @@ process.on('SIGINT', function () {
 
 
 /**
- * Semplice funzione di logging che wrappa console.log, in modo che ogni messaggio stmapato sulla console
- * venga preceduto dall'orario del server.
+ * Funzione di logging che sulla console mostra ogni messaggio preceduto dall'orario del server.
  * @param args - Gli argomenti da passare alla console.log.
  */
 app.log = function (...args) {
@@ -129,7 +131,7 @@ app.use('*.html', function (req, res, next) {
     res.status('403').end('Errore 403 File nascosto');
 });
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 
 /**
  * Inizializzazione del bodyParser (body delle post), del cookieParse e della session. I cookie vengono fatti scadere
@@ -161,14 +163,14 @@ app.route('/').get(function (req, res) {
  * Manda la pagina di login in seguito ad una richiesta di /login.
  */
 app.route("/login").get(function(req, res) {
-    res.sendFile('login.html', { root: path.join(__dirname, '../public') });
+    res.sendFile('login.html', { root: path.join(__dirname, 'public') });
 });
 
 /**
  * Manda la pagina di registrazione in seguito ad una richiesta di /registrazione.
  */
 app.route("/registrazione").get(function(req, res) {
-    res.sendFile('registrazione.html', { root: path.join(__dirname, '../public') });
+    res.sendFile('registrazione.html', { root: path.join(__dirname, 'public') });
 });
 
 /**
@@ -179,7 +181,7 @@ app.route("/registrazione").get(function(req, res) {
 app.route('/webplayer').get(function (req, res) {
     if (!req.session && req.session.dati_utente) {
         res.redirect('/login');
-    } else res.sendFile('webPlayer.html', { root: path.join(__dirname, '../public') });
+    } else res.sendFile('webPlayer.html', { root: path.join(__dirname, 'public') });
 });
 
 /**
@@ -187,6 +189,6 @@ app.route('/webplayer').get(function (req, res) {
  * solamente le richieste non intercettate da nessun altro route. Manda la pagina error.html.
  */
 app.use(function (req, res) {
-    res.sendFile('error.html', { root: path.join(__dirname, '../public') });
+    res.sendFile('error.html', { root: path.join(__dirname, 'public') });
     app.log('404 NOT FOUND - ' + req.url + '\n');
 });
