@@ -1,6 +1,6 @@
 
 var pannelloAttivo=null;
-
+var nome=$("#pulsante-Logout").text();
 
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -67,10 +67,41 @@ $(document).ready(function(){
     });
 });
 
-$(document).ready(function(){
-    $("#pulsante-aggiungiAmici").click(function(){
-        $("#pulsante-aggiungiAmici").css("width", "auto").slideUp(2000).slideDown(2000);
 
+
+$(document).ready(function(){
+
+    $("#pulsante-Logout").mouseenter(function(){
+        var $containerWidth = $(window).width();
+
+        if ($containerWidth >768) {
+            $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
+            $(this).animate({
+
+                width: '100%'
+            });
+        }
 
     });
 });
+
+$(document).ready(function(){
+
+    $("#pulsante-Logout").mouseleave(function(){
+        $(this).html("<i class=\'fa fa-sign-out\'></i>");
+        $(this).animate({
+
+            width: '35%'
+        });
+
+    });
+});
+
+$(window).resize(setDivVisibility);
+function setDivVisibility(){
+    if (($(window).width()) > '768'){
+        $('#menu-orizzontale').css('display','none');
+    } else {
+        $('#menu-orizzontale').css('display','block');
+    }
+}
