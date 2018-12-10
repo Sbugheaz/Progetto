@@ -521,3 +521,16 @@ table{
     margin: auto;
 }
 
+
+@media screen and (max-width: 992px) {
+   #colonna-destra,#album2{
+       display: none;
+
+   }
+    .hidden-md {
+        display: none;
+    }
+
+
+
+}
