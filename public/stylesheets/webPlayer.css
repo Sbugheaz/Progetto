@@ -36,12 +36,23 @@ button:focus {outline:0;}
     background-color: #464B51;
     width: 100%;
     color: cornsilk;
+    font-size: 1.2vw;
 }
 
 .pulsanteA:focus{
     box-shadow: 0 0;
 
 }
+
+#pulsante-Logout{
+    width: 20%;
+    overflow: hidden;
+}
+#pulsante-Logout:hover{
+    width: auto;
+    animation-delay: 1s;
+}
+
 #pulsante-aggiungiAmici{
     width: 70%;
     margin-top: 1vh;
@@ -72,15 +83,73 @@ button:focus {outline:0;}
     background-color: #464B51;
 }
 
+.col-md-12{
+    padding-right:8px;
+}
+
+
+/*proprietà lista Amici*/
 .pallino{
     color: #03d838;
     font-size: 10px;
 }
 .p_listaAmici{
+    margin-bottom: 16px;
     color:cornsilk;
-    font-size:85%;
+    font-size:1.1vw;
+    text-align: center;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(0, 114, 255, 0.72);
+}
+.conteiner-listaAmici{
+    padding-right: 5px;
+    overflow-y: auto;
+    max-height: 59vh;
+}
+ul.demo {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+/* Larghezza della scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Traccia della scrollbar */
+::-webkit-scrollbar-track {
+    background: #888;
+}
+
+/* Cursore della Scrollbar */
+::-webkit-scrollbar-thumb {
+    background: rgba(255,138,0,1);
+}
+
+/* Cursore in hover della Scrollbar
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}*/
+
+.icona-musica:hover{
+    color: rgba(255,138,0,1);
+}
+.icona-musica span {
+    display: none
+}
+i.icona-musica:hover .sta-ascoltando{
+    display: block;
+    z-index: 100;
+    left:23%;
+    top:30px;
+    position: absolute;
+    text-decoration: none
+}
+.icona-musica{
+    transition: all ease-in-out 0.2s;
+    padding: 1.5% 2% 0% 0%;
+    float: right;
 }
 
 #colonna-centrale {
@@ -407,12 +476,19 @@ label {
 .campoMail{
     font-size: 13px;
 }
+
 .pulsanteModifica{
     margin-top: 5px;
     height: 35px;
     width: 90px;
     line-height: 15px;
 }
+
+.pulsanteModifica:focus{
+    box-shadow: 0 0;
+}
+
+
 
 #dataNascita{
     border-bottom: 1px solid rgba(0, 114, 255, 0.43);
@@ -441,7 +517,7 @@ table{
 }
 
 /*Proprietà footer del Modal Profilo*/
-.modal-footer{
+.footerProfilo{
     display:none;
     margin:auto;
 }
@@ -454,6 +530,16 @@ table{
     .col-25, .col-75, input[type=submit] {
         width: 100%;
         margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+
+    .pulsanteA{
+        font-size: 1.5vw;
+    }
+    .p_listaAmici{
+        font-size:1.4vw;
     }
 }
 
