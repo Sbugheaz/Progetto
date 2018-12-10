@@ -1,18 +1,17 @@
 /**
- * Questo modulo gestisce la comunicazione del resto dei moduli del server (fatta eccezione per il gestore, che agisce
- * come un programma a parte) con il database.
+ * Questo modulo gestisce la comunicazione di tutti i moduli del server con il database.
  */
 const mysql = require('mysql');
 
 /**
- * Imposta la connessione al database
+ * Imposta la connessione con il database
  */
 const pool = mysql.createPool({
     connectionlimit: 100,
     host: 'localhost',
-    user: 'gruppo1_admin',
+    user: 'admin',
     password: 'password',
-    database: 'gruppo1',
+    database: 'SoundWaveDB',
     multipleStatements: true,
     waitForConnections: true,
     queueLimit: 1000,
@@ -36,66 +35,7 @@ const pool = mysql.createPool({
     }
 });
 
-/**
- * Questa query viene memorizzata come costante di classe perchè utilizzata da più metodi
- */
-const queryPlaylistUtente = "SELECT p.id_playlist, p.nome_playlist, p.genere_playlist, p.url_cover_playlist " +
-    "FROM playlist p " +
-    "WHERE p.id_playlist IN " +
-    "(SELECT ref_playlist_pp " +
-    "FROM utente_possiede_playlist " +
-    "WHERE ref_utente_pp = ?)";
-
-
-// Funzioni di utilità
-
-/**
- * Serve ad automatizzare l'inserimento dei brani all'interno delle playlist, senza dover di volta in volta specificare
- * il numero del brano. E' servito perchè alcuni album di libreria sono incompleti e quindi hanno delle tracce a saltare,
- * quindi, se si tenta di modificarli, questa funzione restituisce la prima posizione libera all'interno della playlist.
- * @param {number} idPlaylist - L'id della playlist all'interno della quale si vuole trovare la posizione libera.
- * @param {function} callback - La funzione che si vuole eseguire una volta terminate le operazioni.
- */
-function determinaPrimaPosizioneDisponibileInPlaylist(idPlaylist, callback) {
-    var query = "SELECT n_brano FROM playlist_contiene_brano WHERE ref_playlist_cb = ? " +
-        "ORDER BY n_brano;";
-    dataRequestQuery(query, idPlaylist, function (dati, statoOperazione) {
-        if (statoOperazione !== 'OK') {
-            callback(undefined, statoOperazione);
-        } else {
-            var posizione = 0;
-            var valorePrecedente = 0;
-            /**
-             * Per ogni brano all'interno della playlist.
-             */
-            for (i = 0; i < dati.length; i++) {
-                /**
-                 * Se il numero del brano è maggiore del valorePrecedente + 1, vuol dire che è stato trovato un buco,
-                 * corrispondente alla posizione libera cercata. Il ciclo può quindi terminare.
-                 */
-                if (dati[i].n_brano > valorePrecedente + 1) {
-                    posizione = valorePrecedente + 1;
-                    break;
-                } else if (i === dati.length - 1) {
-                    /**
-                     * Se siamo arrivati alla fine dell'array senza ancora trovare un buco (difatti è un else sulla condizione
-                     * precendete che deve essere già fallita), vuol dire che la posizione da asseggnare è quella immediatamente
-                     * successiva al numero dell'ultimo brano nella playlist.
-                     */
-                    posizione = dati[i].n_brano + 1;
-                }
-                valorePrecedente = dati[i].n_brano;
-            }
-            /**
-             * L'or assegna il valore 1 qualora posizione non sia stato inizializzato correttamente. Questo avviene
-             * quando la playlist è stata appena creata o comunque in qualunque cirocostanza in cui non ci sono brani
-             * all'interno della playlist. In questi casi, la funzione non entra mai nel corpo del floor e quindi non
-             * inizializza mai la variabile posizione.
-             */
-            callback(posizione || 1, statoOperazione);
-        }
-    });
-}
+//Funzioni di utilità
 
 /**
  * Funzione utile per eseguire query in cui si deve verificare l'esistenza di specifiche tuple sul database,
@@ -104,7 +44,7 @@ function determinaPrimaPosizioneDisponibileInPlaylist(idPlaylist, callback) {
  * @param {string} query - La query da eseguire.
  * @param {[]} queryData - I parametri da passare alla query.
  * @param {function} callback - La funzione da eseguire una volta terminata la query.
- * @param {Connection || Pool} [connection] - Connessione o pool tramite con cui eseguire la query.
+ * @param {Connection || Pool} [connection] - Connessione o pool tramite cui eseguire la query.
  */
 function matchQuery(query, queryData, callback, connection = pool) {
     connection.query(query, queryData, function (err, result, fields) {
@@ -227,181 +167,16 @@ function multipleQuery(arrayQuery, nomiCampiRisposta, queryFunction, queryData, 
 }
 
 /**
- * Funzione generica per apportare modifiche a una playlist. Per assicurarsi che una playlist venga duplicata solamente
- * quando necessario, e che una playlist condivisa da più utenti venga copiata nel caso in cui uno di questi utenti
- * cerchi di modificarla (evitando quindi di modificarla anche per gli altri utenti), è stata pensata questa funzione.
- * Per assicurare che il database rimanga in uno stato consistente, viene fatto il tutto utilizzando una transazione. In
- * pratica, se qualcosa dovesse andare storto in uno qualunque delle query effettuate durante la transazione, verrebbe
- * effettuato un rollback riportando il database allo stato in cui si trovava in precedenza.
- * @param {number} idUtente - L'id dell'utente che sta cercando di modificare la playlist.
- * @param {number} idPlaylist - L'id della playlist da modificare.
- * @param {string} queryModifica - La query contenente le operazioni di modifica.
- * @param {Object} parametriQuery - I parametri da passare alla query. In questo specifico caso ci si aspetta un oggetto
- *                                  piuttosto che un array, come invece accade nelle altre funzioni di query. Il motivo
- *                                  è che potrebbe essere necessario modificare il campo relativo all'id della playlist,
- *                                  e risulta molto più immediato farlo utilizzando un oggetto come array associativo.
- * @param {function} callback - La funzione da eseguire una volta terminate le operazioni.
- */
-function modificaPlaylist(idUtente, idPlaylist, queryModifica, parametriQuery, callback) {
-    /**
-     * Conto quanti utenti possiedono la playlist che si vuole modificare, escludendo l'utente che sta cercando di
-     * effettuare la modifica, se la playlist non è pubblica. Se la playlist è pubblica, anche nel caso in cui questo
-     * utente è l'unico a possederla in questo momento, altri utenti potrebbero accedervi e non dovrebbero trovare le
-     * modifiche effettuate da utenti terzi.
-     */
-    var queryVerifica = "SELECT COUNT(up.ref_utente_pp) as conteggio " +
-        "FROM utente_possiede_playlist up, playlist p " +
-        "WHERE up.ref_playlist_pp = p.id_playlist AND p.id_playlist = ? " +
-        "AND (up.ref_utente_pp != ? OR p.pubblica = TRUE);";
-    /**
-     * Richiedo al pool una connessione, in modo da poter iniziare una transazione.
-     */
-    pool.getConnection(function (err, connection) {
-        if (err) {
-            app.log(err);
-            callback(undefined, 'CONNERR');
-        }
-        connection.beginTransaction(function (err) {
-            if (err) {
-                app.log(err);
-                callback(undefined, 'CONNERR');
-                connection.release();
-            }
-            else {
-                matchQuery(queryVerifica, [idPlaylist, idUtente], function (dati, esitoVerifica) {
-                    if (esitoVerifica !== 'OK') {
-                        callback(undefined, esitoVerifica);
-                        connection.rollback();
-                        connection.release();
-                    }
-                    else {
-                        /**
-                         * Se il conteggio è risultato maggiore di zero (playlist pubblica o privata condivisa da più
-                         * utenti), è necessario effettuare una copia della playlist, assegnare all'utente richiedente la
-                         * modifica l'id della playlist copiata, e modificare quella.
-                         */
-                        if (dati.conteggio > 0) {
-                            /**
-                             * Viene creata una copia esatta della vecchia playlist, ad eccezione del fatto che la copia
-                             * sarà privata, a prescindere dal fatto che la playlist originaria potesse essere pubblica.
-                             * Questo perchè se un utente modifica una playlist pubblica, la playlist modificata diventa
-                             * a tutti gli effetti una playlist personale dell'utente.
-                             */
-                            var queryCopiaPlaylist = "INSERT INTO playlist (nome_playlist, genere_playlist, pubblica, url_cover_playlist) " +
-                                "(SELECT nome_playlist, genere_playlist, FALSE, url_cover_playlist FROM playlist " +
-                                "WHERE id_playlist = ?); "
-                            insertQuery(queryCopiaPlaylist, idPlaylist, function (nuovoId, esitoInserimento) {
-                                if (esitoInserimento !== 'OK') {
-                                    callback(undefined, esitoInserimento);
-                                    connection.rollback();
-                                    connection.release();
-                                } else {
-                                    /**
-                                     * Vengono copiati anche tutti i riferimenti ai brani che erano presenti nella playlist
-                                     * originaria.
-                                     */
-                                    var queryCopiaRiferimentiBrani = "INSERT INTO playlist_contiene_brano " +
-                                        "(ref_playlist_cb, ref_brano_cb, n_brano) " +
-                                        "(SELECT ?, ref_brano_cb, n_brano FROM playlist_contiene_brano WHERE ref_playlist_cb = ?) ";
-                                    genericQuery(queryCopiaRiferimentiBrani, [nuovoId, idPlaylist], function (esitoCopia) {
-                                        if (esitoCopia !== 'OK') {
-                                            callback(undefined, esitoCopia);
-                                            connection.rollback();
-                                            connection.release();
-                                        } else {
-                                            /**
-                                             * Viene rimossa la playlist originaria dalle playlist dell'utente, e gli
-                                             * viene assegnata la copia.
-                                             */
-                                            var queryCambiamentoIdPlaylistUtente = "UPDATE utente_possiede_playlist " +
-                                                "SET ref_playlist_pp = ? " +
-                                                "WHERE ref_playlist_pp = ? AND ref_utente_pp = ?;";
-                                            updateQuery(queryCambiamentoIdPlaylistUtente, [nuovoId, idPlaylist, idUtente], function (esitoCambiamento) {
-                                                if (esitoCambiamento !== 'OK') {
-                                                    callback(undefined, esitoCambiamento);
-                                                    connection.rollback();
-                                                    connection.release();
-                                                } else {
-                                                    /**
-                                                     * Viene modificato l'id della playlist presente all'interno dei
-                                                     * parametri, in modo da rispecchiare le modifiche effettuate.
-                                                     * Poi viene eseguita la modifica alla playlist.
-                                                     */
-                                                    parametriQuery.idPlaylist = nuovoId;
-                                                    genericQuery(queryModifica, Object.values(parametriQuery), function (esitoFinale) {
-                                                        if (esitoFinale !== 'OK') {
-                                                            connection.rollback();
-                                                        } else {
-                                                            connection.commit();
-                                                        }
-                                                        callback(nuovoId.toString(), esitoFinale);
-                                                        connection.release();
-                                                    }, connection);
-                                                }
-                                            }, connection);
-                                        }
-                                    }, connection);
-                                }
-                            }, connection);
-                        } else {
-                            /**
-                             * La playlist non è condivisa, pertanto può direttamente essere effettuata la modifica.
-                             */
-                            genericQuery(queryModifica, Object.values(parametriQuery), function (esitoFinale) {
-                                if (esitoFinale !== 'OK') {
-                                    connection.rollback();
-                                } else {
-                                    connection.commit();
-                                }
-                                connection.release();
-                                callback(idPlaylist.toString(), esitoFinale);
-                            }, connection);
-                        }
-                    }
-                }, connection);
-            }
-        });
-    });
-}
-
-////
-
-/**
- * Funzione che richiede la modifica di utente per rispecchiare le modifiche che un utente ha effettuato dal suo
- * pannello impostazioni. La modifica fallisce se l'utente fornisce una password sbagliata.
- * @param {number} idUtente - L'id dell'utente da modificare.
- * @param {string} password - La password attuale dell'utente da modificare.
- * @param {Object} impostazioni - Oggetto contenente le impostazioni da modificare.
- * @param {function} callback - Funzione da eseguire una volta terminate le operazioni
- */
-exports.richiestaAggiornamentoImpostazioni = function (idUtente, password, impostazioni, callback) {
-    var queryImpostazioni = '';
-    for (x in impostazioni) {
-        queryImpostazioni += 'u.' + x + ' = ' + mysql.escape(impostazioni[x]) + ', ';
-    }
-    if (!queryImpostazioni) callback('NOOPT');
-    else {
-        // Rimuove l'ultima virgola
-        queryImpostazioni = queryImpostazioni.substr(0, queryImpostazioni.length - 2);
-        var query = "UPDATE utente u " +
-            "SET " + queryImpostazioni +
-            " WHERE u.id_utente = ? AND u.password_utente = ?";
-        updateQuery(query, [idUtente, password], callback);
-    }
-};
-
-/**
- * Funzione che interroga il DBMS sulla validita dei dati di accesso nomeUtente e password.
- * Tramite la funzione matchQuery, se i dati sono validi verrà passato alla calback anche il resto dei dati dell'utente.
- * @param {string} nomeUtente - Il nome utente o l'email dell'utente da controllare.
+ * Funzione che verifica che i dati di accesso nomeUtente e password siano corretti in seguito ad una richiesta al DBMS.
+ * Tramite la funzione matchQuery, se i dati sono validi verrà passato alla callback anche il resto dei dati dell'utente.
+ * @param {string} nomeUtente - Il nome utente dell'utente da controllare.
  * @param {string} password - La password che l'utente ha inserito.
  * @param {function} callback - Funzione da eseguire una volta completate le operazioni.
  */
-exports.convalidaDatiAccesso = function (nomeUtente, password, callback) {
-    var query = "SELECT id_utente, nome_utente, email, sesso, data_di_nascita, ultimo_accesso, ultimo_brano_riprodotto, " +
-        "ultimo_istante_riproduzione, ultima_playlist_riprodotta, verifica_registrazione, url_immagine_profilo" +
-        " FROM utente u " +
-        "WHERE (u.nome_utente = ? OR u.email = ?) AND u.password_utente = ?;";
+exports.verificaDatiAccesso = function (nomeUtente, password, callback) {
+    var query = "SELECT NomeUtente, Email, Nome, Cognome, Sesso, DataDiNascita" +
+        "FROM Account a " +
+        "WHERE a.NomeUtente = ? AND a.Password = ?;";
     matchQuery(query, [nomeUtente, nomeUtente, password], callback);
 };
 
@@ -412,8 +187,9 @@ exports.convalidaDatiAccesso = function (nomeUtente, password, callback) {
  * @param {function callback - La funzione da eseguire una volta completate le operazioni.
  */
 exports.richiestaCorrispondenzaUtente = function (nomeUtente, callback) {
-    var query = "SELECT u.nome_utente, u.email FROM utente u " +
-        "WHERE u.nome_utente = ? OR u.email = ?";
+    var query = "SELECT u.nome_utente, u.email" +
+        "FROM Account a " +
+        "WHERE a.NomeUtente = ? OR a.Email = ?";
     matchQuery(query, [nomeUtente, nomeUtente], callback);
 };
 

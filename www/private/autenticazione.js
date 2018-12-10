@@ -2,15 +2,14 @@
  * Questo modulo si occupa di tutto ciò che concerne l'autenticazione, la registrazione e la gestione dei dati
  * degli utenti.
  */
-const connessionedb = require('../connessioneDB'); // Modulo per accedere al database.
-const mailer = require('../mailer'); // Modulo per inviare le email di attivazione e ripristino.
+const connessionedb = require('connessioneDB'); // Modulo per accedere al database.
+const mailer = require('mailer'); // Modulo per inviare le email di attivazione e ripristino.
 const crypto = require('crypto'); // Modulo per cifrare le password prima di memorizzarle sul database.
 const timerDisconnessioneUtenti = {}; // Oggetto contenente i timer che regolano lo stato online degli utenti
 const path = require('path');
 const mkdirp = require('mkdirp'); // Modulo per la creazione condizionale delle directory
 const router = require('express').Router();
-const app = global.app;
-const appRoot = global.appRoot;
+
 /**
  * Tempo in minuti che deve passare dall'ultima richiesta di un utente perchè questo venga impostato come
  * offline sul database.
@@ -41,7 +40,7 @@ exports.inizializza = function (scadenzaDati, timeout) {
     scadenzaDatiUtente = scadenzaDati;
     // Aggiunge le route gestite da questo modulo a quelle gestite dal main e dagli altri moduli.
     app.use(router);
-    // Inizializza il mailer con i dati dell'account gmail di Music Stream
+    // Inizializza il mailer con i dati dell'account gmail di SoundWave
     mailer.inizializza('s.wave2019@gmail.com', 'soundwave15', 'gmail');
 };
 
@@ -53,8 +52,8 @@ exports.inizializza = function (scadenzaDati, timeout) {
  */
 router.use(function (req, res, next) {
     if (req.session !== undefined && req.session.dati_utente !== undefined) {
-        var idUtente = req.session.dati_utente.id_utente;
-        impostaStatoOnline(idUtente);
+        var nomeUtente = req.session.dati_utente.Nome_utente;
+        impostaStatoOnline(nomeUtente);
     }
     next();
 });
@@ -65,19 +64,6 @@ router.use(function (req, res, next) {
  */
 router.get("/verificaaccesso/?", function (req, res) {
     res.send((req.session && req.session.dati_utente) ? "YES" : "NO");
-});
-
-/**
- * Gestisce il routing della pagina di login. Innanzitutto, se un utente risulta già autenticato, viene rimandato
- * nella pagina del webplayer, altrimenti gli viene spedita la pagina login.html.
- */
-router.get('/login/?', function (req, res) {
-    if (req.session.dati_utente !== undefined) {
-        res.redirect('/webplayer');
-    }
-    else {
-        res.sendFile(appRoot + 'public/login.html');
-    }
 });
 
 /**
@@ -92,14 +78,12 @@ router.post('/login/?', function (req, res) {
 
     //Viene eseguito l'hash della password, per non memorizzarla in chiaro.
     password = hashPassword(password);
-    connessionedb.convalidaDatiAccesso(nomeUtente, password, function (dati, esitoOperazione) {
+    connessionedb.verificaDatiAccesso(nomeUtente, password, function (dati, esitoOperazione) {
         if (esitoOperazione === 'OK') {
             app.log('Utente ' + nomeUtente + ' loggato su un nuovo dispositivo.\n');
             req.session.dati_utente = dati;
             // Viene impostata la scadenza per i dati utente salvati nella sessione.
             req.session.scadenza_dati_utente = Date.now();
-            req.session.dati_utente.url_immagine_profilo = req.session.dati_utente.url_immagine_profilo ||
-                publicMediaRoot + 'default.png';
         }
         else {
             app.log('Autenticazione fallita.');
