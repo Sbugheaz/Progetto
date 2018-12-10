@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-md-2" >
-            <button type="button" class="btn btn-default pulsanteA"><i class="fa fa-sign-out"></i>Logout</button>
+            <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout"><i class="fa fa-sign-out"></i>   Logout</button>
         </div>
 
 
@@ -216,6 +216,8 @@
 
         </div>
         </div>
+
+
         <!-- Colonna destra-->
         <div id="colonna-destra" class="shadow">
 
@@ -232,15 +234,38 @@
 
                     <div class="col-md-12">
                         <br>
-
-                        <p class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli</p>
-                        <p class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli</p>
-                        <p class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli</p>
-                        <p class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli</p>
-                        <p class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli</p>
-
-
-
+                        <div class="conteiner-listaAmici">
+                        <ul class="demo">
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica"> <span class="sta-ascoltando"><br>Sta ascoltando "Tranne Te"</span> </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica"> <span class="sta-ascoltando"><br>Sta ascoltando "Tranne Te"</span> </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                            <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
+                                <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                        </ul>
+                        </div>
 
                     </div>
 
@@ -284,7 +309,7 @@
                                 <input class="campi" value="Giuseppe" type="text" readonly id="nome" name="nome">
                             </div>
                             <div class="col-25dx">
-                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('nome')">Modifica</button>
+                                <button type="button" class="btn btn-default pulsanteModifica " onclick="abilitaScrittura('nome')">Modifica</button>
                             </div>
                         </div>
 
@@ -348,7 +373,7 @@
             </div>
 
             <!-- Footer del Modal Profilo -->
-            <div class="modal-footer">
+            <div class="modal-footer footerProfilo">
                 <button class="salvaModifiche" type="button">Conferma modifiche</button>
             </div>
         </div>
