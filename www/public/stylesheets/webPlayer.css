@@ -580,6 +580,12 @@ table{
         margin-left: 59vw;
     }
 
+    #pannello-Amicizie >.row {
+        height: 70vh !important;
+
+
+    }
+
 
 
 }
@@ -690,4 +696,10 @@ table{
 
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
+}
+
+#pannello-Amicizie >.row {
+    height: 78.8vh;
+    overflow-y: auto;
+
 }
