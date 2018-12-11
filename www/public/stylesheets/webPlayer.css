@@ -246,6 +246,7 @@ ul.demo {
 
 
 input, #barra-ricerca {
+    font-size: 3vh;
     border: 0;
     border-bottom: 2px solid  rgba(0, 114, 255, 0.43);
     line-height: 2em;
@@ -274,8 +275,10 @@ input, #barra-ricerca {
 }
 
 #pulsante-cerca {
+    margin-top: -0.5vh;
     background: transparent;
     color: rgba(0, 114, 255, 0.43);
+    font-size: 3vh;
 }
 
 #pulsante-cerca:focus, #pulsante-cerca:hover {
@@ -702,4 +705,9 @@ table{
     height: 78.8vh;
     overflow-y: auto;
 
+}
+
+#riga-principale > .col-md-12 > .input-group{
+    padding-top: 1vh;
+    height: 7vh;
 }
