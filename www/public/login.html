@@ -40,7 +40,7 @@
 <!-- Contenitore del form di login -->
 <div class="enter">
     <div class="home">
-        <form action="/">
+        <form action="javascript:void(0)">
             <label for="username">Nome utente: </label>
             <input type="text" id="username" name="username" required placeholder="Nome utente">
             <br>
@@ -52,7 +52,6 @@
          </label>
           <input onClick="sendLogin()" type="submit" value="Accedi">
      </form>
-        <br>
         <p class = "pd" style= "color: red; display:none;" id="err_dati_accesso"></p>
       <p class="pd"> <br>Password dimenticata? <a class="lk" data-toggle="modal" data-target="#myModal">
           Clicca qui

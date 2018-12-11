@@ -135,3 +135,14 @@ $(window).on('load', function () {
     }
 });
 
+
+
+
+
+/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
+pagina di login*/
+function logout(){
+    $.get("/Logout", function(){
+        window.location.href = '/';
+    });
+}

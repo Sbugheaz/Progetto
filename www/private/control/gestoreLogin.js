@@ -87,24 +87,44 @@ router.post('/Login', function (req, res) {
         "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        console.log(req.session.idUtente = result[0].idUtente);
         // Controllo se i dati di accesso siano validi
         if(result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "") ){
-            req.session.idUtente = result[0].idUtente; // Inizia la sessione settanto il relativo parametro identificativo
+            req.session.idUtente = result[0].IDUtente; // Inizia la sessione settanto il relativo parametro identificativo
             var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente=" + req.session.idUtente;
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
-                console.log("L'utente " + result.nomeUtente + "ha effettuato l'accesso.");
             });
             res.send('OK');
+            console.log("L'utente " + nomeUtente + " ha effettuato l'accesso.\n");
         }
-        else if(result.length == 0 || (req.body.nomeUtente == "" || req.body.password == "") ){
-            res.send("ERR_1"); // Uno dei campi è vuoto
+        else if(req.body.nomeUtente == ""|| req.body.password == ""){
+            res.send("ERR_1"); //Uno dei due campi è vuoto
         }
-        else if (result[0].Attivazione == 0){
-            res.send("ERR_2"); // L'utente non ha verificato la mail
+        else if(result.length == 0){
+            res.send("ERR_2"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
+        }
+        else {
+            res.send("ERR_3"); // L'utente non ha verificato la mail
         }
     });
+});
+
+/**
+ * Funzione che gestisce il logout di un utente.
+ */
+
+router.get('/Logout', function (req, res) {
+    var query1 = "UPDATE Account SET StatoOnline = 0 " + "WHERE IDUtente=" + req.session.idUtente;
+    var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
+    req.session.idUtente = undefined;
+    con.query(query1, function (err, result, fields) {
+        if (err) throw err;
+    });
+    con.query(query2, function (err, result, fields) {
+        if (err) throw err;
+        console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
+    });
+    res.end('OK');
 });
 
 
