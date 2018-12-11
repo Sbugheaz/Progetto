@@ -44,9 +44,9 @@ $(document).ready(function () {
     });
 });
 
-
+//funzione che permette di aprire il pannello-amicizie
 $(document).ready(function(){
-    $(".PulsanteGestioneAmicizie").click(function(){
+    $(".pulsanteGestioneAmicizie,#gest-amicizie").click(function(){
         if(pannelloAttivo!=null){
             pannelloAttivo.hide();
         }
@@ -55,7 +55,18 @@ $(document).ready(function(){
 
     });
 });
+//funzione che permette di aprire il pannello degli amici online
+$(document).ready(function(){
+    $("#amici-online").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Amicizie-mobile").show();
+        pannelloAttivo= $("#pannello-Amicizie-mobile");
 
+    });
+});
+//funzione che permentte di aprire il pannello-playlist
 $(document).ready(function(){
     $(".pulsanteA-playlist").click(function(){
         if(pannelloAttivo!=null){
@@ -101,14 +112,15 @@ $(document).ready(function(){
 $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
-        $('#menu-orizzontale').css('display','none');
-        $('#colonna-destra').css('display','block');
-        $('#colonna-sinistra').css('display','block');
+
+        $('#menu-orizzontale,#pannello-Amicizie-mobile').css('display','none');
+        $('#colonna-destra,#colonna-sinistra').css('display','block');
+
 
     } else {
         $('#menu-orizzontale').css('display','block');
-        $('#colonna-destra').css('display','none');
-        $('#colonna-sinistra').css('display','none');
+        $('#colonna-destra,#colonna-sinistra').css('display','none');
+
     }
 }
 

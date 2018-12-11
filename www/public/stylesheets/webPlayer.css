@@ -89,8 +89,10 @@ button:focus {outline:0;}
     background-color: #464B51;
 }
 
-.col-md-12{
+.amici-online{
+    height: 58vh;
     padding-right:8px;
+    overflow-y: hidden;
 }
 
 
@@ -573,6 +575,18 @@ table{
         width: 60vw;
     }
 
+    #pulsante-aggiungiAmici {
+        width: 40%;
+        margin-left: 59vw;
+    }
+
+    #pannello-Amicizie >.row {
+        height: 70vh !important;
+
+
+    }
+
+
 
 }
 
@@ -671,4 +685,21 @@ table{
 }
 
 
+#pannello-Amicizie-mobile{
+    display: none;
+    width: 100%;
+}
+.demo-mobile{
+    max-height: 70vh;
+    overflow: auto;
+}
 
+#pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
+    height: 59vh;
+}
+
+#pannello-Amicizie >.row {
+    height: 78.8vh;
+    overflow-y: auto;
+
+}
