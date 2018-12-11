@@ -18,3 +18,30 @@ function sendLogin(){
             }
         });
 }
+
+$(function rememberMe() {
+
+    if (localStorage.chkbox && localStorage.chkbox != '') {
+        $('#rememberChkBox').attr('checked', 'checked');
+        $('#signinId').val(localStorage.username);
+        $('#signinPwd').val(localStorage.password);
+    } else {
+        $('#rememberChkBox').removeAttr('checked');
+        $('#signinId').val('');
+        $('#signinPwd').val('');
+    }
+
+    $('#rememberChkBox').click(function () {
+
+        if ($('#rememberChkBox').is(':checked')) {
+            // save username and password
+            localStorage.username = $('#username').val();
+            localStorage.password = $('#pwd').val();
+            localStorage.chkbox = $('input').attr('remember').val();
+        } else {
+            localStorage.username = '';
+            localStorage.pass = '';
+            localStorage.chkbox = '';
+        }
+    });
+});
