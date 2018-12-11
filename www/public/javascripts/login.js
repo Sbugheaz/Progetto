@@ -8,7 +8,8 @@ function sendLogin(){
         },
         function(result){
             if(result == 'c1')
-                document.getElementById("err_dati_accesso").innerHTML = "Credenziali errate!";
+                $("#err_dati_accesso").text("Credenziali errate!").css("display", "block");
+
             else if(result == 'c2')
                 alert("Verifica email!");
             else if(result == 'Log ok!'){

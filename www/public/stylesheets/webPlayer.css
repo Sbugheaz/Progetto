@@ -89,7 +89,7 @@ button:focus {outline:0;}
     background-color: #464B51;
 }
 
-.col-md-12{
+.amici-online{
     padding-right:8px;
 }
 
@@ -571,6 +571,11 @@ table{
     #riga-principale{
         margin-right: 0px!important;
         width: 60vw;
+    }
+
+    #pulsante-aggiungiAmici {
+        width: 40%;
+        margin-left: 59vw;
     }
 
 
