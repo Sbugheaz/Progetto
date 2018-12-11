@@ -20,7 +20,6 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
     if (err) throw err;
-    console.log("Connessione con il database avvenuta con successo.\n");
 });
 
 /**
@@ -49,55 +48,34 @@ router.get('/', function (req, res) {
     }
 });
 
-router.get('/login', function (req, res) {
-    if(req.session.idUtente == undefined) {
-        res.sendFile('public/login.html', {root: '/var/www/html/'});
-        console.log("Pagina di login inviata a " + req.ip.substr(7) + "\n");
-    }
-    else {
-        res.sendFile('public/webPlayer.html', {root: '/var/www/html/'});
-        console.log("Pagina del web player inviata a " + req.ip.substr(7) + "\n");
-    }
-});
-
-router.post('/login', function (req, res) {
-    var query = "SELECT *" +
-        "FROM Account" +
-        "WHERE " + "nomeUtente=" + "'" + req.body.username + "'" + " AND " + "password=" + "'" + req.body.password + "'";
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        console.log(result.rows);
-    });
-});
-
 /**
  * Verifica se i dati di accesso sono corretti a seguito di una richiesta al DBMS, in caso di risposta positiva
  * restituisce la pagina del web player e inizializza la sessione dell'utente, altrimenti manda diversi avvisi
  * a seconda del problema riscontrato.
  */
 
-/*router.post('/login', function (req, res) {
-    var query = "SELECT *" +
-        "FROM Account" +
-        "WHERE " + "nomeUtente=" + "'" + req.body.username + "'" + " AND " + "password=" + "'" + req.body.password + "'" ;
+router.post('/Login', function (req, res) {
+    var query = "SELECT * " +
+        "FROM Account " +
+        "WHERE " + "nomeUtente = '" + req.body.nomeUtente + "' AND " + "password = '" + req.body.password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        if(result.length != 0 && result[0].verify == 0 && (req.body.email != "" || req.body.pswd != "") ){ // Credenziali corrette
+        if(result.length != 0 && result[0].verify == 0 && (req.body.nomeUtente != "" || req.body.password != "") ){ // Credenziali corrette
             req.session.idUtente = result[0].idUtente; // Inizia la sessione settanto il relativo parametro identificativo
-            var sql = "UPDATE Utente SET online = 1 " + "WHERE idUtente=" + req.session.idUtente;
+            var sql = "UPDATE Utente SET StatoOnline = 1 " + "WHERE idUtente=" + req.session.idUtente;
             con.query(sql, function (err, result, fields) {
                 if (err) throw err;
             });
             res.send('Log ok!');
         }
-        else if(result.length == 0 || (req.body.email == "" || req.body.pswd == "") ){
+        else if(result.length == 0 || (req.body.nomeUtente == "" || req.body.password == "") ){
             res.send("c1"); // Credenziali errate
         }
-        else{
+        else {
             res.send("c2"); // L'utente non ha verificato la mail
         }
     });
 });
-*/
 
-module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
+
+module.exports = router; //esporta il router cosicchè possa rispondere alle route dal file main.js del server

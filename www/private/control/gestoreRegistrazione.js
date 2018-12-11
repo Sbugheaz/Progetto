@@ -17,7 +17,7 @@ router.use(express.static('public'));
  * Gestisce l'accesso alle funzionalità della pagina di registrazione, mandandola in seguito ad una richiesta.ù
  */
 
-router.get('/registrazione', function (req, res) {
+router.get('/', function (req, res) {
         res.sendFile('public/registrazione.html', {root: '/var/www/html/'});
         console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n")
 });

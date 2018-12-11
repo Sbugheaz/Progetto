@@ -101,7 +101,7 @@ function onListening() {
  * manualmente.
  */
 process.on('SIGINT', function () {
-    console.log("Server terminato a causa di un'interruzione manuale.\n");
+    console.log("\nServer terminato a causa di un'interruzione manuale.\n");
     process.exit();
 });
 
@@ -119,12 +119,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// Route per la pagina principale
 
+// Route per la pagina principale
 app.use('/', gestoreLogin);
 
 // Route per la pagina di registrazione
-
 app.use('/Registrazione', gestoreRegistrazione);
 
 // Route per la pagina del web player

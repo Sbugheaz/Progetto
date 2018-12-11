@@ -50,12 +50,15 @@
                 <input type="checkbox" name="remember">
              <span class="checkmark"></span>
          </label>
-          <input type="submit" value="Accedi">
+          <input onClick="sendLogin()" type="submit" value="Accedi">
      </form>
+        <br>
+        <p class = "pd" style= "color: red" id="err_dati_accesso"></p>
       <p class="pd"> <br>Password dimenticata? <a class="lk" data-toggle="modal" data-target="#myModal">
           Clicca qui
       </a> per recuperarla!</p>
-      <p class="pd">Non hai ancora un account? <a class="lk" href="registrazione">Registrati subito!</a></p>
+      <p class="pd">Non hai ancora un account?
+          <a class="lk" onclick="window.location.href='/Registrazione'">Registrati subito!</a></p>
     </div>
 </div>
 
@@ -155,4 +158,5 @@
     </div>
 </footer>
 </body>
+<script src="javascripts/login.js"></script>
 </html>
