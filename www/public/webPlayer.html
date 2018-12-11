@@ -48,35 +48,34 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-sm  navbar-fixed-top  bg-dark navbar-dark ">
         <div class="container-fluid">
-     <!-- Brand/logo -->
-        <div class="col-md-2">
-    <a class="navbar-brand" id="logo" href="webPlayer">
-        <img src="images/Logo.png" alt="logo" style="width:70px;">
-    </a>
-        </div>
-        <!-- Barra di ricerca -->
-        <div class="row" id="riga-principale">
-
-            <div class="input-group col-md-12">
-                <input id="barra-ricerca" type="text" class="form-control input-lg" placeholder="Cerca" />
-                <span class="input-group-btn">
-                <button id="pulsante-cerca" class="btn btn-info btn-lg" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-                        </span>
-            </div>
+            <!-- Brand/logo -->
             <div class="col-md-2">
-
+                <a class="navbar-brand" id="logo" href="webPlayer">
+                    <img src="images/Logo.png" alt="logo" style="width:70px;">
+                </a>
+            </div>
+            <!-- Barra di ricerca -->
+            <div class="row" id="riga-principale">
+                <div class="col-md-12">
+                    <div class="input-group ">
+                        <input id="barra-ricerca" type="text" class="form-control input-lg" placeholder="Cerca" />
+                        <span class="input-group-btn">
+                            <button id="pulsante-cerca" class="btn btn-info btn-lg" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-2" >
-            <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout"><i class="fa fa-sign-out"></i></button>
+            <div class="col-md-2 hidden-md" >
+                <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout"><i class="fa fa-sign-out"></i></button>
+            </div>
+
+
         </div>
-
-
-    </div>
- </nav>
+    </nav>
 
     <nav class="navbar navbar-expand-sm  navbar-fixed-top navbar-dark " style="background-color:rgba(0, 114, 255, 0.43);  " id="menu-orizzontale">
         <div class="col-md-12">
@@ -93,10 +92,6 @@
                 <div class="col-md-3">
                     <button type="button" class="btn btn-default pulsante-menu-orizzontale" ><i class="fa fa-bars"></i> </button>
                 </div>
-
-
-
-
         </div>
     </div>
  </nav>

@@ -64,6 +64,7 @@ button:focus {outline:0;}
     margin-left: 50vw;
 }
 #colonna-sinistra, #colonna-destra {
+    display: none;
     padding-left: 0;
     padding-right: 0;
     width: 16.6667%;
@@ -237,6 +238,7 @@ i.icona-musica:hover .sta-ascoltando{
     font-size: 0.6em;
 }
 #barra-ricerca {
+
     border-radius: 0;
     border-color: transparent;
 
@@ -580,6 +582,10 @@ table{
     #pulsante-Logout{
         display: none;
     }
+    #riga-principale{
+        margin-right: 0px!important;
+        width: 60vw;
+    }
 
 
 }
@@ -653,6 +659,7 @@ table{
 
 
 #menu-orizzontale{
+    display: none;
     padding: 0;
     height: 7.3vh;
 }
@@ -666,4 +673,11 @@ table{
 .pulsante-menu-orizzontale:focus {
     box-shadow: 0 0;
 }
+
+#riga-principale{
+    margin: auto;
+
+}
+
+
 

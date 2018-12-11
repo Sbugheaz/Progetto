@@ -72,15 +72,11 @@ $(document).ready(function(){
 $(document).ready(function(){
 
     $("#pulsante-Logout").mouseenter(function(){
-        var $containerWidth = $(window).width();
-
-        if ($containerWidth >768) {
             $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
             $(this).animate({
-
                 width: '100%'
             });
-        }
+
 
     });
 });
@@ -90,7 +86,6 @@ $(document).ready(function(){
     $("#pulsante-Logout").mouseleave(function(){
         $(this).html("<i class=\'fa fa-sign-out\'></i>");
         $(this).animate({
-
             width: '35%'
         });
 
@@ -101,7 +96,24 @@ $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
         $('#menu-orizzontale').css('display','none');
+        $('#colonna-destra').css('display','block');
+        $('#colonna-sinistra').css('display','block');
+
+    } else {
+        $('#menu-orizzontale').css('display','block');
+        $('#colonna-destra').css('display','none');
+        $('#colonna-sinistra').css('display','none');
+    }
+}
+
+
+$(window).on('load', function () {
+    if (($(window).width()) > '768'){
+        $('#colonna-destra').css('display','block');
+        $('#colonna-sinistra').css('display','block');
+
     } else {
         $('#menu-orizzontale').css('display','block');
     }
-}
+});
+
