@@ -90,7 +90,9 @@ button:focus {outline:0;}
 }
 
 .amici-online{
+    height: 58vh;
     padding-right:8px;
+    overflow-y: hidden;
 }
 
 
@@ -579,6 +581,7 @@ table{
     }
 
 
+
 }
 
 /*Proprietà modal modifica password*/
@@ -679,4 +682,12 @@ table{
 #pannello-Amicizie-mobile{
     display: none;
     width: 100%;
+}
+.demo-mobile{
+    max-height: 70vh;
+    overflow: auto;
+}
+
+#pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
+    height: 59vh;
 }
