@@ -671,4 +671,7 @@ table{
 }
 
 
-
+#pannello-Amicizie-mobile{
+    display: none;
+    width: 100%;
+}
