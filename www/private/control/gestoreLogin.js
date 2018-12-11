@@ -50,7 +50,7 @@ router.get('/', function (req, res) {
 
 /**
  * Verifica se i dati di accesso sono corretti a seguito di una richiesta al DBMS, in caso di risposta positiva
- * restituisce la pagina del web player e inizializza la sessione dell'utente, altrimenti manda diversi avvisi
+ * restituisce la pagina del web player e inizializza la sessione dell'utente, altrimenti manda diversi errori
  * a seconda del problema riscontrato.
  */
 
@@ -60,7 +60,8 @@ router.post('/Login', function (req, res) {
         "WHERE " + "nomeUtente = '" + req.body.nomeUtente + "' AND " + "password = '" + req.body.password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        if(result.length != 0 && result[0].verify == 0 && (req.body.nomeUtente != "" || req.body.password != "") ){ // Credenziali corrette
+        // Controllo se i dati di accesso siano validi
+        if(result.length != 0 && result[0].Attivazione == 0 && (req.body.nomeUtente != "" || req.body.password != "") ){
             req.session.idUtente = result[0].idUtente; // Inizia la sessione settanto il relativo parametro identificativo
             var sql = "UPDATE Utente SET StatoOnline = 1 " + "WHERE idUtente=" + req.session.idUtente;
             con.query(sql, function (err, result, fields) {
