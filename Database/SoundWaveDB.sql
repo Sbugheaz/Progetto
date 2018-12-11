@@ -45,9 +45,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Account
 VALUES 
-(1, 'Sbugheaz', 'Giacop96', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 0, 1),
-(2, 'ElMosca96', 'Giumos96', 'giuseppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 0, 1),
-(3, 'Aries96', 'Andvar96', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 0, 0);
+(1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 0, 1),
+(2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'giuseppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 0, 1),
+(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 0, 0);
 
 
 -- -----------------------------------------------------

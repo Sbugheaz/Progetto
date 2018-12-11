@@ -7,12 +7,12 @@ function sendLogin(){
             password: $('input[name=password]').val(),
         },
         function(result){
-            if(result == 'c1')
+            if(result == 'ERR_1')
                 $("#err_dati_accesso").text("Credenziali errate!").css("display", "block");
 
-            else if(result == 'c2')
-                alert("Verifica email!");
-            else if(result == 'Log ok!'){
+            else if(result == 'ERR_2')
+                alert("Verifica la tua email per poter accedere alle funzionalità del nostro sito!");
+            else if(result == 'OK'){
                 window.location.href = '/WebPlayer';
             }
         });

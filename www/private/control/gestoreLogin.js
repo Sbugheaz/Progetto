@@ -6,6 +6,7 @@
 var express = require('express');
 var router = express.Router(); // gestisce il routing nel server
 var mysql = require('mysql'); // gestisce l'interazione col database MySQL
+var crypto = require('crypto');
 
 /**
  * Inizializzazione della connessione con il database.
@@ -15,12 +16,36 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "admin",
     password: "password",
-    database: "SoundWaveDB"
+    database: "SoundWaveDB",
+
+    typeCast: function castField(field, useDefaultTypeCasting) {
+        /**
+         *  Vogliamo castare solamente i field contenenti un singolo bit. Se il field ha piu di un bit, non possiamo
+         *   assumere che sia un booleano.*/
+        if ((field.type === "BIT") && (field.length === 1)) {
+            var bytes = field.buffer();
+            /**
+             *  Un buffer in node rappresenta un insieme di interi unsigned da 8 bit. Quindi, il nostro singolo
+             *  "bit field" consiste nei bit ad esempio "0000 0001", equivalenti al numero 1.
+             */
+            return (bytes[0] === 1);
+        }
+        return useDefaultTypeCasting();
+    }
 });
 
 con.connect(function(err) {
     if (err) throw err;
 });
+
+/**
+ * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
+ * @param {string} password - La password in chiaro
+ * @returns {string} - La password criptata.
+ */
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('base64');
+}
 
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
@@ -55,25 +80,29 @@ router.get('/', function (req, res) {
  */
 
 router.post('/Login', function (req, res) {
+    var nomeUtente = req.body.nomeUtente;
+    var password = hashPassword(req.body.password);
     var query = "SELECT * " +
         "FROM Account " +
-        "WHERE " + "nomeUtente = '" + req.body.nomeUtente + "' AND " + "password = '" + req.body.password + "'";
+        "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
+        console.log(req.session.idUtente = result[0].idUtente);
         // Controllo se i dati di accesso siano validi
-        if(result.length != 0 && result[0].Attivazione == 0 && (req.body.nomeUtente != "" || req.body.password != "") ){
+        if(result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "") ){
             req.session.idUtente = result[0].idUtente; // Inizia la sessione settanto il relativo parametro identificativo
-            var sql = "UPDATE Utente SET StatoOnline = 1 " + "WHERE idUtente=" + req.session.idUtente;
-            con.query(sql, function (err, result, fields) {
+            var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente=" + req.session.idUtente;
+            con.query(query, function (err, result, fields) {
                 if (err) throw err;
+                console.log("L'utente " + result.nomeUtente + "ha effettuato l'accesso.");
             });
-            res.send('Log ok!');
+            res.send('OK');
         }
         else if(result.length == 0 || (req.body.nomeUtente == "" || req.body.password == "") ){
-            res.send("c1"); // Credenziali errate
+            res.send("ERR_1"); // Uno dei campi è vuoto
         }
-        else {
-            res.send("c2"); // L'utente non ha verificato la mail
+        else if (result[0].Attivazione == 0){
+            res.send("ERR_2"); // L'utente non ha verificato la mail
         }
     });
 });
