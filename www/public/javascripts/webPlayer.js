@@ -70,24 +70,30 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-
+    var block = false;
     $("#pulsante-Logout").mouseenter(function(){
-            $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
-            $(this).animate({
-                width: '100%'
-            });
-
-
+    if(!block) {
+        block = true;
+        $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
+        $(this).stop(true, true).animate({
+            width: '100%'
+        });
+        block=false;
+        }
     });
-});
 
-$(document).ready(function(){
+
 
     $("#pulsante-Logout").mouseleave(function(){
-        $(this).html("<i class=\'fa fa-sign-out\'></i>");
-        $(this).animate({
-            width: '35%'
-        });
+        if(!block) {
+            block = true;
+            $(this).html("<i class=\'fa fa-sign-out\'></i>");
+            $(this).stop(true,true).animate({
+
+                width: '35%'
+            });
+            block = false;
+        }
 
     });
 });
