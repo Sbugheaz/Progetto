@@ -93,7 +93,7 @@ function onListening() {
         ? 'pipe ' + addr
         : 'porta ' + addr.port;
     debug('Server in ascolto sulla ' + bind);
-    console.log("Server SoundWave avviato. In ascolto sulla porta 3000!");
+    console.log("SoundWave\nServer avviato. In ascolto sulla porta 3000!\n");
 }
 
 /**
@@ -101,7 +101,7 @@ function onListening() {
  * manualmente.
  */
 process.on('SIGINT', function () {
-    console.log("Server terminato a causa di un'interruzione manuale.");
+    console.log("Server terminato a causa di un'interruzione manuale.\n");
     process.exit();
 });
 
@@ -119,21 +119,22 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-/**
- * L'accesso diretto ai file html viene impedito, per evitare che un utente possa accedere direttamente alla pagina del
- * webplayer senza essere autenticato.
- */
-app.use('*.html', function (req, res, next) {
-    res.status('403').end('Errore 403 File nascosto');
-});
-
 // Route per la pagina principale
 
 app.use('/', gestoreLogin);
 
 // Route per la pagina di registrazione
 
-//app.use('/Registrazione', gestoreRegistrazione);
+app.use('/Registrazione', gestoreRegistrazione);
 
 // Route per la pagina del web player
-//app.use('/webPlayer', gestoreWebPlayer);
+app.use('/WebPlayer', gestoreWebPlayer);
+
+/**
+ * Gestisce gli errori 404 di pagina non trovata. Deve essere messa più in basso rispetto a tutte le altre funzioni, di modo che intercetti
+ * solamente le richieste non intercettate da nessun altro route. Manda la pagina error.html.
+ */
+app.use(function (req, res) {
+    res.sendFile('public/error.html', { root: '/var/www/html/' });
+    console.log('404 NOT FOUND - ' + req.url + '\n');
+});
