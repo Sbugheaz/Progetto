@@ -540,7 +540,7 @@ table{
     }
 
     #colonna-sinistra, #colonna-destra,#album2 {
-        display: none;
+        display: none!important;
     }
 
     #sezione-controlli-riproduzione {
@@ -653,3 +653,15 @@ table{
     box-shadow: 0 0;
 }
 
+#profilo:hover, #gest-amicizie:hover, #amici-online:hover, #altro:hover {
+    background-color: transparent;
+    box-shadow: 0 0;
+    color: #5CA5FF;
+}
+
+@media screen and (min-width:769px ){
+    #menu-orizzontale{
+        display: none;
+    }
+
+}

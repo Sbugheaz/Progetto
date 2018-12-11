@@ -70,38 +70,33 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-
+    var block = false;
     $("#pulsante-Logout").mouseenter(function(){
-        var $containerWidth = $(window).width();
+    if(!block) {
+        block = true;
+        $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
+        $(this).stop(true, true).animate({
+            width: '100%'
+        });
+        block=false;
+        }
+    });
 
-        if ($containerWidth >768) {
-            $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
-            $(this).animate({
 
-                width: '100%'
+
+    $("#pulsante-Logout").mouseleave(function(){
+        if(!block) {
+            block = true;
+            $(this).html("<i class=\'fa fa-sign-out\'></i>");
+            $(this).stop(true,true).animate({
+
+                width: '35%'
             });
+            block = false;
         }
 
     });
 });
 
-$(document).ready(function(){
 
-    $("#pulsante-Logout").mouseleave(function(){
-        $(this).html("<i class=\'fa fa-sign-out\'></i>");
-        $(this).animate({
 
-            width: '35%'
-        });
-
-    });
-});
-
-$(window).resize(setDivVisibility);
-function setDivVisibility(){
-    if (($(window).width()) > '768'){
-        $('#menu-orizzontale').css('display','none');
-    } else {
-        $('#menu-orizzontale').css('display','block');
-    }
-}
