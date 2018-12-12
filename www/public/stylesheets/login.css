@@ -154,8 +154,9 @@ div.register{
   margin: 20px auto;
   font-family: Raleway, serif;
   padding: 20px;
-  width: 75%;
+  width: 85%;
   min-width: 200px;
+  text-align: center;
 }
 
 #nextBtn {
@@ -191,6 +192,13 @@ div.tab{
 
 .rc {
   font-size:1.2vw;
+  margin: 10% auto 0;
+}
+.rc:focus{
+  box-shadow: 0 0;
+  border:0;
+  box-shadow: 0 0;
+  outline: none;
 }
 
 
