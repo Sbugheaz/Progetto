@@ -7,13 +7,41 @@ function sendLogin(){
             password: $('input[name=password]').val(),
         },
         function(result){
-            if(result == 'c1')
-                $("#err_dati_accesso").text("Credenziali errate!").css("display", "block");
-
-            else if(result == 'c2')
-                alert("Verifica email!");
-            else if(result == 'Log ok!'){
+            if(result == 'ERR_1')
+                $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
+            else if(result == 'ERR_2')
+                $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
+            else if(result == 'ERR_3')
+                alert("Verifica la tua email per poter accedere alle funzionalità del nostro sito!");
+            else if(result == 'OK'){
                 window.location.href = '/WebPlayer';
             }
         });
 }
+
+$(function rememberMe() {
+
+    if (localStorage.chkbox && localStorage.chkbox != '') {
+        $('#rememberChkBox').attr('checked', 'checked');
+        $('#signinId').val(localStorage.username);
+        $('#signinPwd').val(localStorage.password);
+    } else {
+        $('#rememberChkBox').removeAttr('checked');
+        $('#signinId').val('');
+        $('#signinPwd').val('');
+    }
+
+    $('#rememberChkBox').click(function () {
+
+        if ($('#rememberChkBox').is(':checked')) {
+            // save username and password
+            localStorage.username = $('#username').val();
+            localStorage.password = $('#pwd').val();
+            localStorage.chkbox = $('input').attr('remember').val();
+        } else {
+            localStorage.username = '';
+            localStorage.pass = '';
+            localStorage.chkbox = '';
+        }
+    });
+});

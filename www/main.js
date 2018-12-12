@@ -93,7 +93,7 @@ function onListening() {
         ? 'pipe ' + addr
         : 'porta ' + addr.port;
     debug('Server in ascolto sulla ' + bind);
-    console.log("SoundWave\nServer avviato. In ascolto sulla porta 3000!\n");
+    console.log("SoundWave - Server avviato. In ascolto sulla porta 3000!\n");
 }
 
 /**
