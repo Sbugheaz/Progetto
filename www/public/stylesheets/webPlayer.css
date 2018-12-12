@@ -256,6 +256,17 @@ input, #barra-ricerca {
 
 }
 
+/*propietà della riga all'interno della barra di ricerca */
+#riga-principale{
+    margin: auto;
+
+}
+
+#riga-principale > .col-md-12 > .input-group{
+    padding-top: 1vh;
+    height: 7vh;
+}
+
 
 
 .dropdown-item , #pulsante-cerca{
@@ -359,6 +370,11 @@ div#contenitore-volume.dropdown-menu.show{
     display: none;
     background-color: transparent;
     height: 78.8vh;
+}
+#pannello-Amicizie >.row {
+    height: 78.8vh;
+    overflow-y: auto;
+
 }
 /*propietà immagine album*/
 #album{
@@ -656,10 +672,7 @@ table{
     border-radius: 4px;
     margin: auto;
 }
-
-
-
-
+/*Propità menù orizzontale */
 
 #menu-orizzontale{
     display: none;
@@ -682,12 +695,9 @@ table{
     box-shadow: 0 0;
     color: #5CA5FF;
 }
-#riga-principale{
-    margin: auto;
-
-}
 
 
+/*Propietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
     display: none;
     width: 100%;
@@ -699,15 +709,4 @@ table{
 
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
-}
-
-#pannello-Amicizie >.row {
-    height: 78.8vh;
-    overflow-y: auto;
-
-}
-
-#riga-principale > .col-md-12 > .input-group{
-    padding-top: 1vh;
-    height: 7vh;
 }
