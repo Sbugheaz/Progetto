@@ -585,8 +585,6 @@ table{
 
     #pannello-Amicizie >.row {
         height: 70vh !important;
-
-
     }
 
 
@@ -694,7 +692,6 @@ table{
 }
 .demo-mobile{
     max-height: 70vh;
-    overflow: auto;
 }
 
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
@@ -710,4 +707,9 @@ table{
 #riga-principale > .col-md-12 > .input-group{
     padding-top: 1vh;
     height: 7vh;
+}
+
+#pannello-Amicizie-mobile >.row >.col-md-12{
+    overflow: auto;
+    height: 70vh;
 }
