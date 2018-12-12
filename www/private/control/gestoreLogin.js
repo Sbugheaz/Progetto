@@ -1,12 +1,12 @@
 /**
  * Modulo per la gestione della pagina di login.
  */
-
 // Moduli utilizzati
 var express = require('express');
 var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
+var generator = require('generate-password'); //modulo che permette di generare una password casuale
 
 /**
  * Inizializzazione della connessione con il database.
@@ -47,6 +47,17 @@ function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('base64');
 }
 
+
+function randomString() {
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghijklmnopqrstuvwxyz";
+    var string_length = 10;
+    var randomstring = '';
+    for (var i=0; i<string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum,rnum+1);
+    }
+}
+
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
@@ -59,7 +70,6 @@ router.use(express.static('public'));
  * del server o alla pagina di login. Tramite l'oggetto session, il server può determinare se si tratti di un utente
  * autenticato e rendirizzarlo al webPlayer o meno e mandare la pagina di login.
 */
-
 router.get('/', function (req, res) {
     if(req.session.idUtente == undefined) { /* verifica che il parametro idUtente, dal quale si determina se la sessione,
                                                sia consistente, sia undefined o meno e restituisce le pagine in base a
@@ -78,7 +88,6 @@ router.get('/', function (req, res) {
  * restituisce la pagina del web player e inizializza la sessione dell'utente, altrimenti manda diversi errori
  * a seconda del problema riscontrato.
  */
-
 router.post('/Login', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
     var password = hashPassword(req.body.password);
@@ -90,7 +99,7 @@ router.post('/Login', function (req, res) {
         // Controllo se i dati di accesso siano validi
         if(result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "") ){
             req.session.idUtente = result[0].IDUtente; // Inizia la sessione settanto il relativo parametro identificativo
-            var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente=" + req.session.idUtente;
+            var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
             });
@@ -112,7 +121,6 @@ router.post('/Login', function (req, res) {
 /**
  * Funzione che gestisce il logout di un utente.
  */
-
 router.get('/Logout', function (req, res) {
     var query1 = "UPDATE Account SET StatoOnline = 0 " + "WHERE IDUtente=" + req.session.idUtente;
     var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
@@ -125,6 +133,47 @@ router.get('/Logout', function (req, res) {
         console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
     });
     res.end('OK');
+});
+
+/**
+ * Gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
+ * al DBMS, in caso di risposta positiva invia una e-mail all'utente per il recupero.
+ */
+
+router.post('/RecuperoPassword', function (req, res) {
+    var email = req.body.email;
+    var query = "SELECT * " +
+        "FROM Account " +
+        "WHERE " + "Email = '" + email + "'";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        // Controllo se l'email inserita esiste
+        if(result.length != 0 && result[0].Attivazione == 1 && req.body.email != "" ){;
+            var nuovaPassword = generator.generate({
+                length: 14,
+                numbers: true,
+                uppercase: true,
+                strict: true
+            });
+            console.log(password);
+            nuovaPassword = hashPassword(nuovaPassword);
+            var query = "UPDATE Account SET Password = '" + nuovaPassword +"' + WHERE IDUtente= " + result[0].IDUtente;
+            con.query(query, function (err, result, fields) {
+                if (err) throw err;
+            });
+            res.send('OK');
+            console.log("E-mail di recupero password inviata a " + result[0].Email + ".\n");
+        }
+        else if(req.body.email == ""){
+            res.send("ERR_1"); //Il campo email è vuoto
+        }
+        else if(result.length == 0){
+            res.send("ERR_2"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
+        }
+        else {
+            res.send("ERR_3"); // L'utente non ha verificato la mail
+        }
+    });
 });
 
 

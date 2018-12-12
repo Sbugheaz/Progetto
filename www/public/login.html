@@ -77,6 +77,7 @@
                         <div class="tab">Inserisci correttamente il tuo indirizzo e-mail per ricevere una password
                             provvisoria con cui effettuare il prossimo accesso:
                             <p><input class="rc" placeholder="Indirizzo e-mail" oninput="this.className = ''" name="email"></p>
+                            <p class = "pd" style= "color: red; display:none;" id="err_recuperoPass"></p>
                         </div>
                         <!-- <div style="overflow:auto;">
                         </div> -->
@@ -85,7 +86,7 @@
 
                 <!-- Footer del Modal -->
                 <div class="modal-footer">
-                    <button type="button" id="nextBtn">Recupera password</button>
+                    <button type="button" id="nextBtn" onclick="recuperoPassword()">Recupera password</button>
                 </div>
             </div>
         </div>
