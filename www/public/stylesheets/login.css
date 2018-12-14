@@ -151,10 +151,10 @@ div.register{
 
 #regForm {
   background-color: #ffffff;
-  margin: 20px auto;
+  margin: 20px 0 0;
   font-family: Raleway, serif;
-  padding: 20px;
-  width: 85%;
+  padding: 20px 0;
+  width: 100%;
   min-width: 200px;
   text-align: center;
 }
@@ -168,7 +168,7 @@ div.register{
   background-color: rgba(255,148,24,0.9);
   color: cornsilk;
   padding: 1.1vh 1vw;
-  /*margin:10px 33%;*/
+    margin: auto;
   font-family: "Raleway";
 }
 
@@ -178,12 +178,13 @@ div.register{
 }
 
 input {
+  outline: none;
   padding: 10px;
-  width: 100%;
+  width: 80%;
   font-size: 17px;
   font-family: Raleway, serif;
   border: 1px solid #aaaaaa;
-  border-width: 0 0 2px;
+
 }
 
 div.tab{
@@ -191,15 +192,18 @@ div.tab{
 }
 
 .rc {
+  width: 80%;
   font-size:1.2vw;
-  margin: 10% auto 0;
+  margin: 5% auto 0;
+  border-width: 0 0 2px;
 }
 .rc:focus{
   box-shadow: 0 0;
-  border:0;
-  box-shadow: 0 0;
-  outline: none;
+  background-color: white;
+  outline-width: 0;
+  border-color: rgba(255,148,24,1);
 }
+
 
 
 /* Regole di stile per la sezione "footer" della pagina*/
@@ -364,7 +368,7 @@ footer .extra{
   }
 
   #nextBtn {
-    width: 45%;
-    font-size: 14px;
+      width: 45%;
+      font-size: 14px;
   }
 }
