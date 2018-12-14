@@ -214,7 +214,7 @@ ul.demo {
 .testo-controlli-riproduzione {
     display: inline-block;
     vertical-align: middle;
-    line-height: normal;
+    line-height: 1.8;
     font-size: 3vh;
 }
 #badge-icona-notifica {
