@@ -48,7 +48,7 @@
          <input type="password" id="psw" name="password" placeholder="Password" minlength="6" required>
           <input onClick="sendLogin()" type="submit" value="Accedi">
      </form>
-        <p class = "pd" style= "color: red; display:none;" id="err_dati_accesso"></p>
+        <p class = "pd" style= "color: red; display:none; margin: 15px 0 0;" id="err_dati_accesso"></p>
       <p class="pd"> <br>Password dimenticata? <a class="lk" data-toggle="modal" data-target="#myModal">
           Clicca qui
       </a> per recuperarla!</p>
@@ -76,7 +76,9 @@
                     <form id="regForm" action="/action_page.php">
                         <div class="tab">Inserisci correttamente il tuo indirizzo e-mail per ricevere una password
                             provvisoria con cui effettuare il prossimo accesso:
-                            <p><input class="rc" placeholder="Indirizzo e-mail" oninput="this.className = ''" name="email"></p>
+                            <br>
+                            <input class="rc" placeholder="Indirizzo e-mail" name="email">
+                            <p class="pd" style="color: red; display:none;" id="err_recuperoPass"> dfjkbc</p>
                         </div>
                         <!-- <div style="overflow:auto;">
                         </div> -->

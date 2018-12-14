@@ -68,7 +68,8 @@
         </div>
 
             <div class="col-md-2 hidden-md" >
-                <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout" onclick="logout()"><i class="fa fa-sign-out"></i></button>
+                <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout" data-toggle="modal" data-target="#modal-conferma-logout" onclick="logout()">
+                    <i class="fa fa-sign-out"></i></button>
             </div>
     </nav>
 
@@ -121,34 +122,125 @@
                                 <div class="col-md-12 ">
                                     <p class="paragrafo" style="font-size: x-large">Lista amici online:</p>
                                     <ul class="demo demo-mobile">
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli <br>
-                                            <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te"</p> </li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli <br>
-                                            <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te"</p> </li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
-                                        <li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli
-                                            <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
 
@@ -587,6 +679,43 @@
             <!-- Footer del Modal modifica password -->
             <div class="modal-footer">
                 <button class="salvaModifiche" type="button">Conferma modifiche</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Conferma Logout -->
+<div class="modal" id="modal-conferma-logout">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Conferma Logout -->
+            <div class="header" id="intestazione-logout">
+                <h4 class="title" id="titolo-logout">Conferma Logout
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none;">&times;</button></h4>
+            </div>
+
+            <!-- Body del Modal Conferma Logout -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-logout">
+                    <i class="fa fa-question-circle" id= "icona-logout"></i>
+                </div>
+
+
+                <div class="container-question">
+                    <div class="question">
+                        <p style="margin-top: 15px;">Sei sicuro di voler uscire da SoundWave?</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer del Modal modifica password -->
+            <div class="modal-footer footerLogout">
+                <button class="bottone-conferma-uscita" type="button">Esci</button>
+                <button class="bottone-conferma-uscita" type="button">Annulla</button>
             </div>
 
         </div>
