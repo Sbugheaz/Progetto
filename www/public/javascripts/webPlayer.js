@@ -100,7 +100,6 @@ $(document).ready(function(){
             block = true;
             $(this).html("<i class=\'fa fa-sign-out\'></i>");
             $(this).stop(true,true).animate({
-
                 width: '35%'
             });
             block = false;

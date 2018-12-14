@@ -670,14 +670,62 @@ table{
     border-radius: 4px;
     margin: auto;
 }
-/*Propità menù orizzontale */
 
+/*Proprietà Modal Conferma Logout*/
+#intestazione-logout{
+    background-color: #898989;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43);
+}
+#titolo-logout{
+    margin: 0;
+}
+.contenitore-icona-logout {
+    width: 20%;
+    float: left;
+    font-size: 8vh;
+    box-sizing: border-box;
+}
+.container-question{
+    text-align: center;
+    width: 80%;
+    float: left;
+}
+.question{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.footerLogout {
+    border-top:0px;
+    padding-top: 0px;
+}
+.bottone-conferma-uscita{
+    border-radius: 4px;
+    padding: 3px 5px;
+    font-size: 14px;
+    width: 20%;
+    color: black;
+}
+.bottone-conferma-uscita:hover{
+    font-size: 15px;
+    color: white;
+    background-color: rgba(0,114,255,0.43);
+    font-weight: bold;
+}
+
+
+/*Propità menù orizzontale */
 #menu-orizzontale{
     display: none;
     padding: 0;
     height: 7.3vh;
 }
-
 .pulsante-menu-orizzontale{
     background-color: transparent;
     width: auto;
@@ -703,6 +751,23 @@ table{
 .demo-mobile{
     max-height: 70vh;
 }
+.demo-mobile>.p_listaAmici{
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear:left;
+}
+.demo-mobile>.p_listaAmici>.nomeUtente_online{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.demo-mobile>.p_listaAmici>.branoAscoltato{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+
 
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
