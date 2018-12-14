@@ -73,12 +73,12 @@
 
                 <!-- Corpo del Modal -->
                 <div class="modal-body">
-                    <form id="regForm" action="/action_page.php">
+                    <form id="regForm" action="/">
                         <div class="tab">Inserisci correttamente il tuo indirizzo e-mail per ricevere una password
                             provvisoria con cui effettuare il prossimo accesso:
                             <br>
                             <input class="rc" placeholder="Indirizzo e-mail" name="email">
-                            <p class="pd" style="color: red; display:none;" id="err_recuperoPass"> dfjkbc</p>
+                            <p class="pd" style=" font-size:14px;text-align:left; color: red; display:none; margin: 15px 0 0;" id="err_recuperoPass"></p>
                         </div>
                         <!-- <div style="overflow:auto;">
                         </div> -->
@@ -87,7 +87,7 @@
 
                 <!-- Footer del Modal -->
                 <div class="modal-footer">
-                    <button type="button" id="nextBtn">Recupera password</button>
+                    <button type="button" id="nextBtn" onclick="recuperoPassword()">Recupera password</button>
                 </div>
             </div>
         </div>
