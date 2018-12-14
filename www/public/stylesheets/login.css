@@ -160,6 +160,7 @@ div.register{
 }
 
 #nextBtn {
+  outline: none;
   border: none;
   cursor: pointer;
   border-radius: 4px;
