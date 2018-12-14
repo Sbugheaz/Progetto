@@ -7,6 +7,7 @@ var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
 var generator = require('generate-password'); //modulo che permette di generare una password casuale
+var mailer = require('../mailer');
 
 /**
  * Inizializzazione della connessione con il database.
@@ -37,6 +38,9 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
 });
+
+
+mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
 
 /**
  * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
@@ -102,7 +106,7 @@ router.post('/Login', function (req, res) {
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         // Controllo se i dati di accesso siano validi
-        if (result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "")) {
+        if (result.length != 0 && result[0].Attivazione == 1) {
             req.session.idUtente = result[0].IDUtente; // Inizia la sessione settanto il relativo parametro identificativo
             var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
@@ -155,22 +159,21 @@ router.post('/RecuperoPassword', function (req, res) {
             "WHERE " + "Email = '" + email + "'";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
-            // Controllo se l'email inserita esiste
-            if (result.length != 0 && result[0].Attivazione == 1 && req.body.email != "") {
-                ;
+            // Controllo se l'email inserita esiste e l'account ad essa associato è attivato
+            if (result.length != 0 && result[0].Attivazione == 1) {
                 var nuovaPassword = generator.generate({
                     length: 14,
                     numbers: true,
                     uppercase: true,
                     strict: true
                 });
+                mailer.inviaMailRipristinoPassword(result[0].NomeUtente, result[0].Email, nuovaPassword);
                 nuovaPassword = hashPassword(nuovaPassword);
-                var query = "UPDATE Account SET Password = '" + nuovaPassword + "' + WHERE IDUtente= " + result[0].IDUtente;
+                var query = "UPDATE Account SET Password = '" + nuovaPassword + "' WHERE IDUtente= '" + result[0].IDUtente +" '";
                 con.query(query, function (err, result, fields) {
                     if (err) throw err;
                 });
                 res.send('OK');
-                console.log("E-mail di recupero password inviata a " + result[0].Email + ".\n");
             }
             else if (result.length == 0) {
                 res.send("ERR_3"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
