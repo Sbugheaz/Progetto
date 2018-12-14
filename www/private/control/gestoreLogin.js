@@ -48,15 +48,16 @@ function hashPassword(password) {
 }
 
 
-function randomString() {
-    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghijklmnopqrstuvwxyz";
-    var string_length = 10;
-    var randomstring = '';
-    for (var i=0; i<string_length; i++) {
-        var rnum = Math.floor(Math.random() * chars.length);
-        randomstring += chars.substring(rnum,rnum+1);
-    }
+/**
+ * Funzione che controlla che l'e-mai rispetti la formattazione richiesta.
+ * @param email da controllare
+ * @returns {boolean} ritorna vero o falso a seconda che la verifica sia soddisfatta
+ */
+function verificaEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
+
 
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
@@ -91,13 +92,17 @@ router.get('/', function (req, res) {
 router.post('/Login', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
     var password = hashPassword(req.body.password);
-    var query = "SELECT * " +
-        "FROM Account " +
-        "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
+    if(nomeUtente == ""|| password == "") {
+        res.send("ERR_1"); //Uno dei due campi è vuoto
+    }
+    else {
+        var query = "SELECT * " +
+            "FROM Account " +
+            "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         // Controllo se i dati di accesso siano validi
-        if(result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "") ){
+        if (result.length != 0 && result[0].Attivazione == 1 && (req.body.nomeUtente != "" || req.body.password != "")) {
             req.session.idUtente = result[0].IDUtente; // Inizia la sessione settanto il relativo parametro identificativo
             var query = "UPDATE Account SET StatoOnline = 1 WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
@@ -105,17 +110,13 @@ router.post('/Login', function (req, res) {
             });
             res.send('OK');
             console.log("L'utente " + nomeUtente + " ha effettuato l'accesso.\n");
-        }
-        else if(req.body.nomeUtente == ""|| req.body.password == ""){
-            res.send("ERR_1"); //Uno dei due campi è vuoto
-        }
-        else if(result.length == 0){
+        } else if (result.length == 0) {
             res.send("ERR_2"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
-        }
-        else {
+        } else {
             res.send("ERR_3"); // L'utente non ha verificato la mail
         }
     });
+    }
 });
 
 /**
@@ -142,38 +143,43 @@ router.get('/Logout', function (req, res) {
 
 router.post('/RecuperoPassword', function (req, res) {
     var email = req.body.email;
-    var query = "SELECT * " +
-        "FROM Account " +
-        "WHERE " + "Email = '" + email + "'";
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        // Controllo se l'email inserita esiste
-        if(result.length != 0 && result[0].Attivazione == 1 && req.body.email != "" ){;
-            var nuovaPassword = generator.generate({
-                length: 14,
-                numbers: true,
-                uppercase: true,
-                strict: true
-            });
-            console.log(password);
-            nuovaPassword = hashPassword(nuovaPassword);
-            var query = "UPDATE Account SET Password = '" + nuovaPassword +"' + WHERE IDUtente= " + result[0].IDUtente;
-            con.query(query, function (err, result, fields) {
-                if (err) throw err;
-            });
-            res.send('OK');
-            console.log("E-mail di recupero password inviata a " + result[0].Email + ".\n");
-        }
-        else if(req.body.email == ""){
-            res.send("ERR_1"); //Il campo email è vuoto
-        }
-        else if(result.length == 0){
-            res.send("ERR_2"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
-        }
-        else {
-            res.send("ERR_3"); // L'utente non ha verificato la mail
-        }
-    });
+    if (email == "") {
+        res.send("ERR_1"); //Il campo email è vuoto
+    }
+    else if(!verificaEmail(email)) {
+        res.send("ERR_2")
+    }
+    else {
+        var query = "SELECT * " +
+            "FROM Account " +
+            "WHERE " + "Email = '" + email + "'";
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            // Controllo se l'email inserita esiste
+            if (result.length != 0 && result[0].Attivazione == 1 && req.body.email != "") {
+                ;
+                var nuovaPassword = generator.generate({
+                    length: 14,
+                    numbers: true,
+                    uppercase: true,
+                    strict: true
+                });
+                nuovaPassword = hashPassword(nuovaPassword);
+                var query = "UPDATE Account SET Password = '" + nuovaPassword + "' + WHERE IDUtente= " + result[0].IDUtente;
+                con.query(query, function (err, result, fields) {
+                    if (err) throw err;
+                });
+                res.send('OK');
+                console.log("E-mail di recupero password inviata a " + result[0].Email + ".\n");
+            }
+            else if (result.length == 0) {
+                res.send("ERR_3"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
+            }
+            else {
+                res.send("ERR_4"); // L'utente non ha verificato la mail
+            }
+        });
+    }
 });
 
 
