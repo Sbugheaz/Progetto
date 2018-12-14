@@ -2,6 +2,7 @@ body {
     font-family: Raleway, serif;
     overflow-x: hidden;
     width: 100%;
+    line-height: 1.2;
 }
 
 body > .container-fluid {
@@ -76,7 +77,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     left: 0;
-    height: 78.8vh;
+    height: 75.8vh;
     background-color: #464B51;
     opacity: 0.70;
 }
@@ -85,7 +86,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     right: 0;
-    height: 78.8vh;
+    height: 75.8vh;
     background-color: #464B51;
 }
 
@@ -161,6 +162,7 @@ ul.demo {
     bottom: 0;
     left:0;
     z-index: 1000;
+    height: 15vh;
 
 }
 
@@ -172,9 +174,8 @@ ul.demo {
 
 #sezione-controlli-riproduzione > .row {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 120%;
+    font-size: 100%;
+    height: 100%;
 }
 #sezione-controlli-riproduzione {
     background-color:  rgba(0, 114, 255, 0.43);
@@ -185,17 +186,19 @@ ul.demo {
 
 
 #titolo-brano-in-riproduzione {
-    display: none;
+
 }
 
 #titolo-brano-in-riproduzione > p:first-child {
     margin: 0;
+    font-size: 2vh;
 }
 
 
 
 .audio-controls {
     text-align: center;
+    height: 4vh;
 }
 
 #volume-range {
@@ -212,6 +215,7 @@ ul.demo {
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    font-size: 3vh;
 }
 #badge-icona-notifica {
     color: white;
@@ -587,6 +591,41 @@ table{
         width: 25%;
         text-align: center;
     }
+    .col-md-4 {
+        width: 33.3333%;
+    }
+
+    .col-md-5 {
+        width: 41.6667%;
+    }
+
+    .col-md-6 {
+        width: 50%;
+    }
+
+    .col-md-7 {
+        width: 58.3333%;
+    }
+
+    .col-md-8 {
+        width: 66.6667%;
+    }
+
+    .col-md-9 {
+        width: 75%;
+    }
+
+    .col-md-10 {
+        width: 83.3333%;
+    }
+
+    .col-md-11 {
+        width: 91.6667%;
+    }
+
+    .col-md-12 {
+        width: 100%;
+    }
 
     #pulsante-Logout{
         display: none;
@@ -778,3 +817,12 @@ table{
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
 }
+
+
+.col-sx-sec{
+    text-align: right;
+}
+.col-dx-sec{
+ text-align: left;
+}
+
