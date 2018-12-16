@@ -11,7 +11,7 @@ function sendLogin(){
             else if(result == "ERR_2")
                 $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
             else if(result == "ERR_3")
-                alert("Verifica la tua email per poter accedere alle funzionalità del nostro sito.");
+                $("#modal-verifica-email").modal();
             else if(result == "OK")
                 window.location.href = '/WebPlayer';
 
@@ -34,8 +34,23 @@ function recuperoPassword(){
             else if(result == "ERR_4")
                 $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
             else if(result == "OK"){
-                alert("A breve riceverai una mail contenente una password provvisoria con cui potrai accedere al nostro sito.");
-                window.location.href = '/';
+                     $("#modal-invio-email").modal();
             }
         });
 }
+
+//Funzione che gestisce la sovrapposizione dei modal
+$(document).ready(function () {
+    $('#openBtn').click(function () {
+        $('#myModal').modal({
+            show: true
+        })
+    });
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+});
