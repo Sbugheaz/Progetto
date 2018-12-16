@@ -35,12 +35,11 @@ function recuperoPassword(){
                 $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
             else if(result == "OK"){
                      $("#modal-invio-email").modal();
-                //window.location.href = '/';
             }
         });
 }
 
-//funzione che gestisce la sovrapposizione dei modal
+//Funzione che gestisce la sovrapposizione dei modal
 $(document).ready(function () {
     $('#openBtn').click(function () {
         $('#myModal').modal({
