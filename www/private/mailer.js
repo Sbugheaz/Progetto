@@ -28,7 +28,7 @@ exports.inizializza = function (mail, password, servizio) {
 exports.inviaMailRipristinoPassword = function (nomeUtente, emailDestinatario, passwordTemporanea) {
     var oggettoMail = "SoundWave - Recupero password"
     var contenutoMail = "Ciao " + nomeUtente + "!\nHai recentemente richiesto il recupero della password dal nostro sito. " +
-        "Qui di seguito troverai una password provvisoria con cui poter effettuare il tuo prossimo accesso. Ti" +
+        "Qui di seguito troverai una password provvisoria con cui poter effettuare il tuo prossimo accesso. Ti " +
         "invitiamo ad accedere e aggiornarla.\n\nPassword temporanea: " + passwordTemporanea;
     var opzioni = {
         from: indirizzoMail,
