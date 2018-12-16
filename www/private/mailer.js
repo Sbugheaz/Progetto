@@ -1,15 +1,15 @@
 /**
  * Modulo che si occupa dell'invio delle mail per l'attivazione degli account e il recupero della password.
  */
-var nodemailer = require('nodemailer'); // Modulo di nodejs per l'invio delle email.
+var nodemailer = require('nodemailer'); // Modulo per l'invio delle email.
 var indirizzoMail; // Indirizzo email utilizzato per inviare le email
 var transporter; // Transporter di nodemailer, utilizzato per inviare le email.
 
 /**
  * Inizializza il modulo creando il transporter con i dati passati come argomento.
- * @param {string} mail - Indirizzo dell'account con cui inviare le email.
- * @param {string} password - Password per accedere all'account con cui inviare le email.
- * @param {string} servizio - Servizio email utilizzato. Es.: gmail.
+ * @param {string} mail - Indirizzo dell'account del sito con cui inviare le e-mail.
+ * @param {string} password - Password per accedere all'account del sito con cui inviare le e-mail.
+ * @param {string} servizio - Servizio e-mail utilizzato dal sito. Es.: gmail.
  */
 exports.inizializza = function (mail, password, servizio) {
     indirizzoMail = mail;
@@ -23,13 +23,17 @@ exports.inizializza = function (mail, password, servizio) {
 };
 
 /**
- *
+ * Funzione che manda l'e-mail contenente una password temporanea ad un utente che ha richiesto il recupero della password.
+ * @param nome - Nome dell'utente a cui è destinata la mail.
+ * @param cognome - Cognome dell'utente a cui è destinata la mail.
+ * @param emailDestinatario - Email dell'utente che ha richiesto il recupero della password.
+ * @param passwordTemporanea - Password con cui l'utente potrà effettuare il prossimo accesso che viene inviata via mail.
  */
 exports.inviaMailRipristinoPassword = function (nome, cognome, emailDestinatario, passwordTemporanea) {
     var oggettoMail = "SoundWave - Recupero password";
-    var contenutoMail = "Ciao " + nome + " " + cognome + "!\nHai recentemente richiesto il recupero della password dal nostro sito. " +
+    var contenutoMail = "Ciao " + nome + " " + cognome + "!\n\nHai recentemente richiesto il recupero della password dal nostro sito. " +
         "Qui di seguito troverai una password provvisoria con cui poter effettuare il tuo prossimo accesso. Ti " +
-        "invitiamo ad accedere e aggiornarla.\n\nPassword temporanea: " + passwordTemporanea;
+        "invitiamo ad accedere e ad aggiornarla.\n\nPassword temporanea: " + passwordTemporanea;
     var opzioni = {
         from: indirizzoMail,
         to: emailDestinatario,

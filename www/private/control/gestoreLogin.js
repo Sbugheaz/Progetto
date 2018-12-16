@@ -80,13 +80,14 @@ router.get('/', function (req, res) {
                                                sia consistente, sia undefined o meno e restituisce le pagine in base a
                                                questo */
         res.sendFile('public/login.html', {root: '/var/www/html/'});
-        console.log("Pagina di login inviata a " + req.ip.substr(7) + "\n");
+        console.log("Pagina di login inviata a " + req.ip.substr(7) + ".\n");
     }
     else {
         res.sendFile('public/webPlayer.html', { root: '/var/www/html/' });
-        console.log("Pagina del web player inviata a " + req.ip.substr(7) + "\n");
+        console.log("Pagina del web player inviata a " + req.ip.substr(7) + ".\n");
     }
 });
+
 
 /**
  * Verifica se i dati di accesso sono corretti a seguito di una richiesta al DBMS, in caso di risposta positiva
@@ -95,11 +96,12 @@ router.get('/', function (req, res) {
  */
 router.post('/Login', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
-    var password = hashPassword(req.body.password);
-    if(nomeUtente == ""|| password == "") {
+    var password = req.body.password;
+    if(nomeUtente == "" || password == "") {
         res.send("ERR_1"); //Uno dei due campi è vuoto
     }
     else {
+        password = hashPassword(req.body.password);
         var query = "SELECT * " +
             "FROM Account " +
             "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
@@ -123,6 +125,7 @@ router.post('/Login', function (req, res) {
     }
 });
 
+
 /**
  * Funzione che gestisce il logout di un utente.
  */
@@ -140,11 +143,11 @@ router.get('/Logout', function (req, res) {
     res.end('OK');
 });
 
+
 /**
  * Gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
  * al DBMS, in caso di risposta positiva invia una e-mail all'utente per il recupero.
  */
-
 router.post('/RecuperoPassword', function (req, res) {
     var email = req.body.email;
     if (email == "") {
