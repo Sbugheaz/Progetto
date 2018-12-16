@@ -167,12 +167,12 @@ router.post('/RecuperoPassword', function (req, res) {
                     uppercase: true,
                     strict: true
                 });
-                mailer.inviaMailRipristinoPassword(result[0].NomeUtente, result[0].Email, nuovaPassword);
-                nuovaPassword = hashPassword(nuovaPassword);
-                var query = "UPDATE Account SET Password = '" + nuovaPassword + "' WHERE IDUtente= '" + result[0].IDUtente +" '";
+                var nuovaPasswordCriptata = hashPassword(nuovaPassword);
+                var query = "UPDATE Account SET Password = '" + nuovaPasswordCriptata + "' WHERE IDUtente= '" + result[0].IDUtente +" '";
                 con.query(query, function (err, result, fields) {
                     if (err) throw err;
                 });
+                mailer.inviaMailRipristinoPassword(result[0].Nome, result[0].Cognome, result[0].Email, nuovaPassword);
                 res.send('OK');
             }
             else if (result.length == 0) {
