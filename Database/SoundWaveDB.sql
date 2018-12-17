@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Account` (
   `Attivazione` BIT(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`IDUtente`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
-  UNIQUE INDEX `NumeroDiTelefono_UNIQUE` (`Cognome` ASC),
+  UNIQUE INDEX `Cognome_UNIQUE` (`Cognome` ASC),
   UNIQUE INDEX `NomeUtente_UNIQUE` (`NomeUtente` ASC))
 ENGINE = InnoDB;
 

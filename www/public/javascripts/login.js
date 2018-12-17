@@ -1,5 +1,22 @@
+//Funzione che gestisce la sovrapposizione dei modal
+$(document).ready(function () {
+    $('#openBtn').click(function () {
+        $('#myModal').modal({
+            show: true
+        })
+    });
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+});
+
+//Funzioni che gestiscono la comunicazione con il server
 //Invia i dati inseriti nella pagina di login dall'utente al server e in caso siano corretti carica la pagina webPlayer
-function sendLogin(){
+function login(){
     $.post("/Login",
         {
             nomeUtente: $('input[name=username]').val(),
@@ -25,7 +42,7 @@ function recuperoPassword(){
             email: $('input[name=email]').val(),
         },
         function(result){
-                 if(result == "ERR_1")
+            if(result == "ERR_1")
                 $("#err_recuperoPass").text("Inserisci il tuo indirizzo e-mail.").css("display", "block");
             else if(result == "ERR_2")
                 $("#err_recuperoPass").text("L'e-mail deve rispettare il formato corretto.").css("display", "block");
@@ -34,23 +51,7 @@ function recuperoPassword(){
             else if(result == "ERR_4")
                 $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
             else if(result == "OK"){
-                     $("#modal-invio-email").modal();
+                $("#modal-invio-email").modal();
             }
         });
 }
-
-//Funzione che gestisce la sovrapposizione dei modal
-$(document).ready(function () {
-    $('#openBtn').click(function () {
-        $('#myModal').modal({
-            show: true
-        })
-    });
-    $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-});
