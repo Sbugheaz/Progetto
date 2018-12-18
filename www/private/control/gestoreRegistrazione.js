@@ -66,9 +66,27 @@ function verificaEsistenzaEmail(email) {
         con.query(query, function (err, result, fields) {
                 if (err) throw err;
                 // Controllo se i dati di accesso siano validi
-                if (result.length != 0) return true; //L'e-mail passata è disponibile e non è utilizzata da
+                if (result.length == 0) return true; //L'e-mail passata è disponibile e non è utilizzata da
                 // nessun account all'interno del database
                 else return false; //L'e-mail passata è già associata ad un account all'interno del database
+        });
+}
+
+
+/**
+ * Funzione che verifica se un nome utente inserito per la registrazione di un account è già associato ad un altro account
+ * o è disponibile.
+ * @param nomeUtente - Nome utente che l'utente vuole utilizzare per la registrazione.
+ */
+function verificaEsistenzaNomeUtente(nomeUtente) {
+        var query = "SELECT NomeUtente " +
+            "FROM Account " +
+            "WHERE " + "NomeUtente = '" + nomeUtente + "'";
+        con.query(query, function (err, result, fields) {
+                if (err) throw err;
+                if (result.length == 0) return true; //Il nome utente passato è disponibile e non è utilizzata da
+                // nessun account all'interno del database
+                else return false; //Il nome utente passato è già associato ad un account all'interno del database
         });
 }
 
@@ -88,5 +106,16 @@ router.get('/', function (req, res) {
         console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n")
 });
 
+
+router.post('/Email'), function (req, res) {
+        var email = req.body.email;
+        console.log(email);
+        if(verificaEsistenzaEmail(email)) {
+                console.log("Email disponibile");
+                res.send("OK");
+        }
+        res.send("ERR");
+        console.log("Email già utilizzata");
+}
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
