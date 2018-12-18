@@ -307,7 +307,7 @@ footer .extra{
   float: left;
 }
 .message{
-  font-size: 2vh;
+  font-size: 1rem;
   padding-right: 15px;
   margin: 0;
   position: absolute;
@@ -327,7 +327,7 @@ footer .extra{
   padding: 3px 5px;
   font-size: 14px;
   width: 20%;
-  height: 3.5vh;
+  height: 1.5rem;
   color: black;
 }
 .bottone-ok:hover{

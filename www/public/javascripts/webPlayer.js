@@ -27,6 +27,13 @@ $(".campi").on('input',function(){
 });
 });
 
+//funzione che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
+$(document).ready(function(){
+    $(".campoNomeUtente").on('input',function(){
+        $(".container-listaUtenti").show();
+    });
+});
+
 
 //funzione che gestisce la sovrapposizione dei modal
 $(document).ready(function () {
