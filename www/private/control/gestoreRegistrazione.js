@@ -1,12 +1,12 @@
 /**
  * Modulo per la gestione della pagina di registrazione.
  */
-
 // Moduli utilizzati
 var express = require('express');
 var router = express.Router(); // gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
+var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
 
 /**
  * Inizializzazione della connessione con il database.
@@ -34,9 +34,15 @@ var con = mysql.createConnection({
         }
 });
 
+//Avvia la connessione al database
 con.connect(function(err) {
         if (err) throw err;
 });
+
+
+//Inizializza l'account gmail del server con cui inviare le mail agli utenti
+mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
+
 
 /**
  * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
@@ -47,19 +53,69 @@ function hashPassword(password) {
         return crypto.createHash('sha256').update(password).digest('base64');
 }
 
+
+/**
+ * Funzione che verifica se un'e-mail inserita per la registrazione di un account è già associata ad un altro account
+ * o è disponibile.
+ * @param email - E-mail che l'utente vuole utilizzare per la registrazione.
+ */
+function verificaEsistenzaEmail(email) {
+        var query = "SELECT Email " +
+            "FROM Account " +
+            "WHERE " + "Email = '" + email + "'";
+        con.query(query, function (err, result, fields) {
+                if (err) throw err;
+                // Controllo se i dati di accesso siano validi
+                if (result.length == 0) return true; //L'e-mail passata è disponibile e non è utilizzata da
+                // nessun account all'interno del database
+                else return false; //L'e-mail passata è già associata ad un account all'interno del database
+        });
+}
+
+
+/**
+ * Funzione che verifica se un nome utente inserito per la registrazione di un account è già associato ad un altro account
+ * o è disponibile.
+ * @param nomeUtente - Nome utente che l'utente vuole utilizzare per la registrazione.
+ */
+function verificaEsistenzaNomeUtente(nomeUtente) {
+        var query = "SELECT NomeUtente " +
+            "FROM Account " +
+            "WHERE " + "NomeUtente = '" + nomeUtente + "'";
+        con.query(query, function (err, result, fields) {
+                if (err) throw err;
+                if (result.length == 0) return true; //Il nome utente passato è disponibile e non è utilizzata da
+                // nessun account all'interno del database
+                else return false; //Il nome utente passato è già associato ad un account all'interno del database
+        });
+}
+
+
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
  */
 router.use(express.static('public'));
 
-/**
- * Gestisce l'accesso alle funzionalità della pagina di registrazione, mandandola in seguito ad una richiesta.ù
- */
 
+/**
+ * Gestisce l'accesso alle funzionalità della pagina di registrazione, mandandola in seguito ad una richiesta.
+ */
 router.get('/', function (req, res) {
         res.sendFile('public/registrazione.html', {root: '/var/www/html/'});
         console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n")
 });
+
+
+router.post('/Email'), function (req, res) {
+        var email = req.body.email;
+        console.log(email);
+        if(verificaEsistenzaEmail(email)) {
+                console.log("Email disponibile");
+                res.send("OK");
+        }
+        res.send("ERR");
+        console.log("Email già utilizzata");
+}
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

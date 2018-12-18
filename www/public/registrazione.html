@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/registrazione.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoundWave - Registrati</title>
     <link rel="icon" href="images/Onda.png" type="image/png" />
@@ -11,12 +12,12 @@
 <body background="images/Sfondo2.0.jpg">
 <div class="intestazione">
     <div class="logo">
-        <a href="login">
+        <a href="/">
             <img src="images/Logo.png">
         </a>
     </div>
 </div>
-<form id="regForm" action="/action_page.php">
+<form id="regForm" action="/">
     <h1>Registrazione</h1>
     <!-- Una "tab" per ogni step della registrazione: -->
     <div class="tab">Inserisci il tuo nome e cognome:
@@ -35,7 +36,7 @@
         </label>
         <p id="err_name" class=""></p>
     </div>
-    <div class="tab">Inserisci un e-mail valida:
+    <div class="tab">Inserisci un indirizzo e-mail valido:
         <p><input placeholder="E-mail" oninput="this.className = ''" name="email"></p>
         <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
         <p id="err_email" class=""></p>
