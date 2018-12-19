@@ -161,7 +161,7 @@
         }
         x[n].className += " active";
     }
-
+/*
     //Questa funzione gestisce le tendine per la data di nascita
     function changeDate(i){
             var e = document.getElementById('day');
@@ -214,6 +214,7 @@
             e.add(s);
         }
     }
+    */
 
     //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
     function validateEmail(email) {

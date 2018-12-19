@@ -150,6 +150,7 @@ ul.demo {
     margin: auto;
     background-color: transparent;
     width: 66.6667%;
+    z-index: -1;
 }
 
 #logo{
@@ -566,6 +567,7 @@ table{
     }
     #colonna-centrale {
         width: 100% !important;
+        z-index:0;
     }
 
     #colonna-sinistra, #colonna-destra,#album2 {
@@ -820,7 +822,9 @@ table{
     height: 59vh;
 }
 #pannello-Playlist{
+    display: none;
     height: 59vh;
+
 }
 
 
@@ -966,6 +970,25 @@ table{
 .flex-item-img:hover{
     opacity: 0.3;
 }
+
+.icona-playlist{
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.icona-aggiungi-playlist{
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -45%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
 .icon{
     color: white;
     font-size: 100px;
@@ -975,22 +998,68 @@ table{
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+
 }
 .overly{
     position: absolute;
     height: 150px;
     width: 150px;
     opacity: 0;
-    background-color:transparent;
+    background-color: transparent;
+
     transform: translateY(-100%);
 }
-.flex-item:nth-child(1):hover .overly {
-    opacity: 0.3;
+.flex-item:nth-child(1):not(:hover) .flex-item-conteiner {
+    opacity: 0.7;
 }
 .flex-item:nth-child(2):hover .overly {
     opacity: 0.3;
 }
+.flex-item:nth-child(3):not(:hover) .flex-item-conteiner {
+    opacity: 0.7;
+}
 fa-paly:hover {
-    color: #eeeeee;
+    color: transparent;
+}
+
+.flex-item-conteiner{
+    border-radius: 15%;
+    height: 150px;
+    width: 150px;
+    display: block;
+    background-color: rgba(65, 69, 74, 0.53);
+}
+
+.flex-item-conteiner-icon{
+    font-size: 0px;
+    position: relative;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(255,138,0,1);
+    transform: translate(25%, 25%);
+}
+
+/*propietà pannello-mobile*/
+#pannello-mobile{
+    position: absolute;
+    right: 0;
+    width: 25%;
+    height: 68.5vh;
+    background-color: rgb(11, 55, 116);
+    display: none;
+    z-index:1;
+
+}
+
+/*propietà bottoni pannello-mobile*/
+.btn-mobile{
+    width: 100%;
+    color: cornsilk;
+    font-size: 2vw;
+    background: #0b3774;
+    text-align: center;
+
+
 }
 
