@@ -60,10 +60,14 @@ button:focus {outline:0;}
 }
 
 #pulsante-aggiungiAmici{
-    width: 70%;
+    width: 100%;
+    font-size: 0.8rem;
     margin-top: 1vh;
-    margin-left: 50vw;
 }
+.elenco-amici{
+    font-size:0.8rem;
+}
+
 #colonna-sinistra, #colonna-destra {
     display: none;
     padding-left: 0;
@@ -372,14 +376,10 @@ div.slider-selection{
 }
 /*contenitore Amicizie*/
 #pannello-Amicizie{
+    overflow-y: auto;
     display: none;
     background-color: transparent;
     height: 75.8vh;
-}
-#pannello-Amicizie >.row {
-    height: 75.8vh;
-    overflow-y: auto;
-
 }
 /*propietà immagine album*/
 #album{
@@ -640,12 +640,11 @@ table{
     }
 
     #pulsante-aggiungiAmici {
-        width: 40%;
-        margin-left: 59vw;
+        width: 100%;
+        font-size: 0.5rem;
     }
-
-    #pannello-Amicizie >.row {
-        height: 70vh !important;
+    #pannello-Amicizie{
+        height: 68.5vh;
     }
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
@@ -753,7 +752,7 @@ table{
     float: left;
 }
 .question{
-    font-size: 2vh;
+    font-size: 1rem;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -767,9 +766,9 @@ table{
 .bottone-conferma-uscita{
     border-radius: 4px;
     padding: 3px 5px;
-    font-size: 2vh;
+    font-size: 0.8rem;
     width: 20%;
-    height: 3.5vh;
+    height: 1.5rem;
     color: black;
 }
 .bottone-conferma-uscita:hover{
@@ -805,6 +804,8 @@ table{
 
 /*Propietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
+    overflow: auto;
+    height: 68.5vh;
     display: none;
     width: 100%;
 }
@@ -1007,3 +1008,63 @@ fa-paly:hover {
     color: #eeeeee;
 }
 
+/*Proprietà Modal Aggiungi Amico*/
+#modal-aggiungi-amico>.modal-dialog>.modal-content>.modal-body{
+    padding:1rem;
+}
+#inserisci-nomeUtente{
+    outline: none;
+    font-size: 1.3rem;
+    border: 0;
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
+    line-height: 2em;
+    background: transparent;
+    color: #212529;
+    width: 100%;
+}
+.container-input{
+    float: left;
+    width: 90%;
+}
+.container-icona-ricerca{
+    line-height: 2em;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 10%;
+    float: left;
+}
+.container-listaUtenti{
+    display: none;
+}
+.listaUtenti{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.p_listaUtenti{
+    margin: 1rem 0;
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear: left;
+}
+.nomeUtente_da_aggiugere{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.cont-pulsante-aggiungi-utente{
+    text-align: center;
+    width: 50%;
+    font-size: 1.2rem;
+    float: left;
+    box-sizing: border-box;
+}
+.tab-ricerca-utente{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pulsante-aggiungi-utente:hover{
+    color:rgba(255,138,0,1);
+    cursor: pointer;
+}
