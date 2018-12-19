@@ -3,7 +3,7 @@
  */
 // Moduli utilizzati
 var express = require('express');
-var router = express.Router(); // gestisce il routing nel server
+var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
 var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
@@ -103,11 +103,11 @@ router.use(express.static('public'));
  */
 router.get('/', function (req, res) {
         res.sendFile('public/registrazione.html', {root: '/var/www/html/'});
-        console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n")
+        console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n");
 });
 
 
-router.post('/Email'), function (req, res) {
+router.post('/email'), function (req, res) {
         var email = req.body.email;
         console.log(email);
         if(verificaEsistenzaEmail(email)) {

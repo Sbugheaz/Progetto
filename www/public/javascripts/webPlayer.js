@@ -136,7 +136,7 @@ $(window).on('load', function () {
 
 
 
-
+//Funzioni che gestiscono la comunicazione con il server
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/
@@ -145,3 +145,12 @@ function logout(){
         window.location.href = '/';
     });
 }
+
+//Funzione che riceve i dati utente dal server
+/*function richiediDatiUtente() {
+    $.get("/WebPlayer", function(){
+        $('input[name=username]').val(),
+            $('input[name=password]').val()
+    });
+}
+*/

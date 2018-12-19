@@ -142,7 +142,7 @@ router.get('/Logout', function (req, res) {
         if (err) throw err;
         console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
     });
-    res.end('OK');
+    res.send('OK');
 });
 
 

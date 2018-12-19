@@ -57,7 +57,7 @@
                     y[0].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
                     document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola ed " +
-                        "essere seguito da lettere minuscole. Non può contenere cifre o spazi.";
+                        "essere seguito da lettere minuscole. Non può contenere cifre.";
                     valid = false;
                 }
                 else if(y[1].value == "") {
@@ -70,7 +70,7 @@
                     y[1].className += " invalid";
                     document.getElementById("err_name").className += " invalid";
                     document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola ed " +
-                        "essere seguito da lettere minuscole. Non può contenere cifre o spazi.";
+                        "essere seguito da lettere minuscole. Non può contenere cifre.";
                     valid = false;
                 }
                 else {
@@ -105,6 +105,7 @@
                 }
                 else {
                     document.getElementById("err_email").innerHTML = "";
+                    verificaEmail();
                 }
         }
         else if(currentTab == 2){
@@ -223,10 +224,10 @@ function registrati(){
 
         });
 }
-
+*/
 
 function verificaEmail() {
-    $.post("/Registrazione/Email",
+    $.post("/Registrazione/email",
         {
             email: $('input[name=email]').val(),
         },
@@ -237,6 +238,8 @@ function verificaEmail() {
             else if (result == "OK") document.getElementById("err_email").innerHTML = "";
         });
 }
+
+/*
     function registrati() {
     .post("/Registrazione/registrati",
             {
