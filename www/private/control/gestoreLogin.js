@@ -7,7 +7,7 @@ var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
 var generator = require('generate-password'); //modulo che permette di generare una password casuale
-var mailer = require('../mailer');
+var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
 
 /**
  * Inizializzazione della connessione con il database.
@@ -35,11 +35,13 @@ var con = mysql.createConnection({
     }
 });
 
+//Avvia la connessione al database
 con.connect(function(err) {
     if (err) throw err;
 });
 
 
+//Inizializza l'account gmail del server con cui inviare le mail agli utenti
 mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
 
 /**
@@ -140,7 +142,7 @@ router.get('/Logout', function (req, res) {
         if (err) throw err;
         console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
     });
-    res.end('OK');
+    res.send('OK');
 });
 
 

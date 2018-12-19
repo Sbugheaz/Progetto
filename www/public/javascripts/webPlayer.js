@@ -28,6 +28,13 @@ $(".campi").on('input',function(){
 });
 });
 
+//funzione che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
+$(document).ready(function(){
+    $(".campoNomeUtente").on('input',function(){
+        $(".container-listaUtenti").show();
+    });
+});
+
 
 //funzione che gestisce la sovrapposizione dei modal
 $(document).ready(function () {
@@ -106,7 +113,6 @@ $(document).ready(function(){
 
 
 
-
 $(document).ready(function(){
     var block = false;
     $("#pulsante-Logout").mouseenter(function(){
@@ -165,7 +171,7 @@ $(window).on('load', function () {
 
 
 
-
+//Funzioni che gestiscono la comunicazione con il server
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/
@@ -175,4 +181,11 @@ function logout(){
     });
 }
 
-
+//Funzione che riceve i dati utente dal server
+/*function richiediDatiUtente() {
+    $.get("/WebPlayer", function(){
+        $('input[name=username]').val(),
+            $('input[name=password]').val()
+    });
+}
+*/

@@ -105,6 +105,7 @@
                 }
                 else {
                     document.getElementById("err_email").innerHTML = "";
+                    verificaEmail();
                 }
         }
         else if(currentTab == 2){
@@ -239,3 +240,57 @@
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         return testo.test(String(campo));
     }
+
+//Funzioni che gestiscono la comunicazione con il server
+    /*
+//Invia i dati inseriti nel form di registrazione dall'utente al server
+function registrati(){
+    $.post("/Registrati",
+        {
+            nomeUtente: $('input[name=username]').val(),
+            password: $('input[name=password]').val(),
+        },
+        function(result){
+            if(result == "ERR_1")
+                $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
+            else if(result == "ERR_2")
+                $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
+            else if(result == "ERR_3")
+                $("#modal-verifica-email").modal();
+            else if(result == "OK")
+                window.location.href = '/WebPlayer';
+
+        });
+}
+*/
+
+function verificaEmail() {
+    $.post("/Registrazione/email",
+        {
+            email: $('input[name=email]').val(),
+        },
+        function (result) {
+            if (result == "ERR")
+                $("#err_email").text("Esiste già un account registrato con questa e-mail, prova ad" +
+                    "inserirne un'altra.");
+            else if (result == "OK") document.getElementById("err_email").innerHTML = "";
+        });
+}
+
+/*
+    function registrati() {
+    .post("/Registrazione/registrati",
+            {
+                nome: $('input[name=fname]').val(),
+                cognome: $('input[name=lname]').val(),
+                dataDiNascita: $('input[name=email]').val(), //sistemare
+                sesso: $('input[name=sesso]').val(),
+                email: $('input[name=email]').val(),
+                nomeUtente: $('input[name=uname]').val(),
+                password: $('input[name=pword]').val(),
+            },
+            function (result) {
+        //Registrazione avvenuta con successo oppure errore
+            });
+    }
+    */
