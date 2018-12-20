@@ -154,7 +154,7 @@ ul.demo {
     margin: auto;
     background-color: transparent;
     width: 66.6667%;
-    z-index: -1;
+    z-index: 0;
 }
 
 #logo{
@@ -569,7 +569,7 @@ table{
     }
     #colonna-centrale {
         width: 100% !important;
-        z-index:0;
+
     }
 
     #colonna-sinistra, #colonna-destra,#album2 {
@@ -840,7 +840,10 @@ table{
     height: 59vh;
 
 }
-
+#contenitore-canzoni-playlist{
+    height: 50%;
+    overflow-y: auto;
+}
 
 .col-sx-sec{
     text-align: right;

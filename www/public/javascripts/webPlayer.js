@@ -1,7 +1,7 @@
 
 var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
-var pannelloSecondario=null;
+var pannelloSecondario;
 
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -144,8 +144,12 @@ $(document).ready(function(){
 $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
-        if(pannelloSecondario.is(":visible")){
-            pannelloSecondario.hide();
+        try {
+            if (pannelloSecondario.is(":visible")) {
+                pannelloSecondario.hide();
+            }
+        }catch (e) {
+
         }
         $('#menu-orizzontale,#pannello-Amicizie-mobile').css('display','none');
         $('#colonna-destra,#colonna-sinistra').css('display','block');
