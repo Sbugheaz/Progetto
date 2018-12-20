@@ -116,6 +116,17 @@
             <div class="container-fluid">
                 <div id="sezione-centrale">
                     <div class="row">
+                        <div id="pannello-mobile">
+                            <div class="btn-group-vertical-justified" >
+                                <button type="button" class="btn btn-default btn-mobile" >Playlist</button>
+                                <button type="button" class="btn btn-default btn-mobile">La tua musica</button>
+                                <button type="button" class="btn btn-default btn-mobile">Brani recenti</button>
+                                <button type="button" class="btn btn-default btn-mobile" data-toggle="dropdown">
+                                    Generi
+                                </button>
+                                <button type="button" class="btn btn-default btn-mobile"data-toggle="modal" data-target="#modal-conferma-logout">Logout</button>
+                            </div>
+                        </div>
                         <div id="pannello-Amicizie-mobile">
                                     <p class="paragrafo" style="font-size: x-large">Lista amici online:</p>
                                     <ul class="demo demo-mobile">
@@ -244,12 +255,12 @@
                         <div id="pannello-BraniRecenti" class="container-fluid"></div>
                         <div id="pannello-Generi" class="container-fluid"></div>
 
-                        <!--contiene la lista delle canzoni con nome dell'autore e nome canzone-->
+                        <!--contiene le  playlist con le relative canzoni -->
                         <div id="pannello-Playlist" class="container-fluid">
                             <div class="flex-container">
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="overly"><a class="icon"><i class="fa fa-play"></i> </a> </div> </div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="overly"><a class="icon"><i class="fa fa-play"></i> </a> </div></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
+                                <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-playlist"><i class="fa fa-music"></i> </a> </div></div></div>
+                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="overly"><a class="icon"><i class="fa fa-play"></i> </a> </img></div></div>
+                                <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i> </a> </div></div></div>
                                 <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
                                 <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
                                 <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
@@ -257,8 +268,53 @@
                                 <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
 
                             </div>
+                            <div id="contenitore-canzoni-playlist">
+                                    <p class="paragrafo" style="font-size: x-large">Playlist:</p>
+                                    <ul class="demo demo-mobile">
+                                        <li class="p_listaAmici">
+                                            <div class="canzone">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%">Tranne Te </i>
+                                            </div>
+                                            <div class="autore">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Fabri Fibra"</p>
+                                            </div>
+                                            <div class="btn-group-orizontal-justified" id="btn-playlist">
+                                                <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-ellipsis-v"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                        <li class="p_listaAmici">
+                                            <div class="nomeUtente_online">
+                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                            </div>
+                                            <div class="branoAscoltato">
+                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </div>
 
-                        </div>
+                            </div>
+
+
+
 
                         <!--contiene la lista degli amici -->
                         <div id="pannello-Amicizie" class="container-fluid">
@@ -443,7 +499,8 @@
 
                     </div>
                 </div>
-            </div>
+        </div>
+
 
 
 
@@ -460,9 +517,6 @@
 
             <div class="container-fluid ">
                 <p class="paragrafo"><i class='fa fa-users'></i>   Lista amici online</p>
-                <div class="row">
-
-                    <div class="col-md-12">
 
                         <div class="conteiner-listaAmici">
                         <ul class="demo">
@@ -496,12 +550,6 @@
                                 <i class="fa fa-music icona-musica "title='Sta ascoltando "Tranne Te"' > </i></li>
                         </ul>
                         </div>
-
-                    </div>
-
-
-                </div>
-
 
             </div>
         </div>
