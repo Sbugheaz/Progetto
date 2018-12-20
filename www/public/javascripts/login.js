@@ -15,43 +15,57 @@ $(document).ready(function () {
 });
 
 //Funzioni che gestiscono la comunicazione con il server
+
 //Invia i dati inseriti nella pagina di login dall'utente al server e in caso siano corretti carica la pagina webPlayer
 function login(){
-    $.post("/Login",
-        {
-            nomeUtente: $('input[name=username]').val(),
-            password: $('input[name=password]').val(),
-        },
-        function(result){
-            if(result == "ERR_1")
-                $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
-            else if(result == "ERR_2")
-                $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
-            else if(result == "ERR_3")
-                $("#modal-verifica-email").modal();
-            else if(result == "OK")
-                window.location.href = '/WebPlayer';
+    if($('input[name=username]').val() == "" || $('input[name=username]').val() == "")
+        $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
+    else {
+        $.post("/Login",
+            {
+                nomeUtente: $('input[name=username]').val(),
+                password: $('input[name=password]').val(),
+            },
+            function(result){
+                if(result == "ERR_1")
+                    $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
+                else if(result == "ERR_2")
+                    $("#modal-verifica-email").modal();
+                else if(result == "OK") {
+                    window.location.href = '/WebPlayer';
+                    $("#err_dati_accesso").text("").css("display", "none");
+                }
 
-        });
+            });
+    }
 }
 
 //Gestisce il recupero della password, inviando al server l'email.
 function recuperoPassword(){
-    $.post("/RecuperoPassword",
-        {
-            email: $('input[name=email]').val(),
-        },
-        function(result){
-            if(result == "ERR_1")
-                $("#err_recuperoPass").text("Inserisci il tuo indirizzo e-mail.").css("display", "block");
-            else if(result == "ERR_2")
-                $("#err_recuperoPass").text("L'e-mail deve rispettare il formato corretto.").css("display", "block");
-            else if(result == "ERR_3")
-                $("#err_recuperoPass").text("Non esiste alcun account registrato con questa e-mail al nostro sito.").css("display", "block");
-            else if(result == "ERR_4")
-                $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
-            else if(result == "OK"){
-                $("#modal-invio-email").modal();
-            }
-        });
+    if($('input[name=email]').val() == "")
+        $("#err_recuperoPass").text("Inserisci il tuo indirizzo e-mail.").css("display", "block");
+    else if(!validateEmail($('input[name=email]').val()))
+        $("#err_recuperoPass").text("L'e-mail deve rispettare il formato corretto.").css("display", "block");
+    else {
+        $.post("/RecuperoPassword",
+            {
+                email: $('input[name=email]').val(),
+            },
+            function (result) {
+                if (result == "ERR_1")
+                    $("#err_recuperoPass").text("Non esiste alcun account registrato con questa e-mail al nostro sito.").css("display", "block");
+                else if (result == "ERR_2")
+                    $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
+                else if (result == "OK") {
+                    $("#err_recuperoPass").text("").css("display", "none");
+                    $("#modal-invio-email").modal();
+                }
+            });
+    }
+}
+
+//Verifica la formattazione dell'indirizzo e-mail nel campo per il recupero della password
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
