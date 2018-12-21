@@ -61,4 +61,21 @@ router.get('/', function (req, res) {
 });
 
 
+/**
+ * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ */
+router.post('/utente', function (req, res) {
+        var query = "SELECT NomeUtente, Nome, Cognome, DataDiNascita, Email " +
+            "FROM Account " +
+            "WHERE IDUtente = '" + req.session.idUtente + "'";
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            //Se la query restituisce l'utente lo manda al client
+            if(result.length != 0) res.send(JSON.stringify(result));
+            //Se la query non trova alcun utente il server manda un errore
+            else res.send("ERR");
+        });
+});
+
+
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

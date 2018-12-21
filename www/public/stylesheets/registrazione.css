@@ -73,7 +73,6 @@ input:focus, select:focus {
 
 input.invalid {
     border-color: red;
-    color:red;
 
 }
 

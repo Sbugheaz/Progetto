@@ -97,7 +97,7 @@ router.get('/', function (req, res) {
  */
 router.post('/email', function (req, res) {
         var email = req.body.email;
-        if(!validateEmail(email)) {
+        if(!validateEmail(email) || email == "") {
                 res.send("ERR_1");
         }
         else {
@@ -120,7 +120,7 @@ router.post('/email', function (req, res) {
  */
 router.post('/nomeUtente', function (req, res) {
         var nomeUtente = req.body.nomeUtente;
-        if(!validateUsername(nomeUtente)) {
+        if(!validateUsername(nomeUtente) || nomeUtente == "") {
                 res.send("ERR_1");
         }
         else {
@@ -136,5 +136,6 @@ router.post('/nomeUtente', function (req, res) {
                 });
         }
 });
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
