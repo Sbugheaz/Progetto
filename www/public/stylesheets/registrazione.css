@@ -56,9 +56,6 @@ h1 {
     text-align: center;
 }
 
-p.invalid {
-    color: red;
-}
 
 input {
     padding: 10px;
@@ -76,7 +73,6 @@ input:focus, select:focus {
 
 input.invalid {
     border-color: red;
-    color:red;
 
 }
 

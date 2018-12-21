@@ -3,7 +3,7 @@
  */
 // Moduli utilizzati
 var express = require('express');
-var router = express.Router(); // gestisce il routing nel server
+var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
 var crypto = require('crypto'); //modulo che permette la criptografia delle password
 var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
@@ -55,39 +55,24 @@ function hashPassword(password) {
 
 
 /**
- * Funzione che verifica se un'e-mail inserita per la registrazione di un account è già associata ad un altro account
- * o è disponibile.
- * @param email - E-mail che l'utente vuole utilizzare per la registrazione.
+ * Funzione che controlla che l'e-mail rispetti la formattazione richiesta.
+ * @param email - Email da controllare
+ * @returns {boolean} ritorna vero o falso a seconda che il formato dell'email sia corretto
  */
-function verificaEsistenzaEmail(email) {
-        var query = "SELECT Email " +
-            "FROM Account " +
-            "WHERE " + "Email = '" + email + "'";
-        con.query(query, function (err, result, fields) {
-                if (err) throw err;
-                // Controllo se i dati di accesso siano validi
-                if (result.length == 0) return true; //L'e-mail passata è disponibile e non è utilizzata da
-                // nessun account all'interno del database
-                else return false; //L'e-mail passata è già associata ad un account all'interno del database
-        });
+function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
 }
 
 
 /**
- * Funzione che verifica se un nome utente inserito per la registrazione di un account è già associato ad un altro account
- * o è disponibile.
- * @param nomeUtente - Nome utente che l'utente vuole utilizzare per la registrazione.
+ * Funzione che controlla che il nome utente rispetti la formattazione richiesta.
+ * @param nomeUtente - Nome utente da controllare
+ * @returns {boolean} ritorna vero o falso a seconda che il formato del nome utente sia corretto
  */
-function verificaEsistenzaNomeUtente(nomeUtente) {
-        var query = "SELECT NomeUtente " +
-            "FROM Account " +
-            "WHERE " + "NomeUtente = '" + nomeUtente + "'";
-        con.query(query, function (err, result, fields) {
-                if (err) throw err;
-                if (result.length == 0) return true; //Il nome utente passato è disponibile e non è utilizzata da
-                // nessun account all'interno del database
-                else return false; //Il nome utente passato è già associato ad un account all'interno del database
-        });
+function validateUsername(nomeUtente) {
+        var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
+        return testo.test(String(nomeUtente));
 }
 
 
@@ -103,19 +88,54 @@ router.use(express.static('public'));
  */
 router.get('/', function (req, res) {
         res.sendFile('public/registrazione.html', {root: '/var/www/html/'});
-        console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n")
+        console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n");
 });
 
 
-router.post('/Email'), function (req, res) {
+/**
+ * Controlla la disponibilità dell'e-mail inserita dall'utente al momento della registrazione.
+ */
+router.post('/email', function (req, res) {
         var email = req.body.email;
-        console.log(email);
-        if(verificaEsistenzaEmail(email)) {
-                console.log("Email disponibile");
-                res.send("OK");
+        if(!validateEmail(email) || email == "") {
+                res.send("ERR_1");
         }
-        res.send("ERR");
-        console.log("Email già utilizzata");
-}
+        else {
+                var query = "SELECT Email " +
+                    "FROM Account " +
+                    "WHERE Email = '" + email + "'";
+                con.query(query, function (err, result, fields) {
+                        if (err) throw err;
+                        // Controllo se l'email inserita sia disponibile o meno
+                        if (result.length == 0) res.send("OK"); //L'e-mail passata è disponibile e non è utilizzata da
+                        // nessun account all'interno del database
+                        else res.send("ERR_2"); //L'e-mail passata è già associata ad un account all'interno del database
+                });
+        }
+});
+
+
+/**
+ * Controlla la disponibilità del nome utente inserito dall'utente al momento della registrazione.
+ */
+router.post('/nomeUtente', function (req, res) {
+        var nomeUtente = req.body.nomeUtente;
+        if(!validateUsername(nomeUtente) || nomeUtente == "") {
+                res.send("ERR_1");
+        }
+        else {
+                var query = "SELECT NomeUtente " +
+                    "FROM Account " +
+                    "WHERE NomeUtente = '" + nomeUtente + "'";
+                con.query(query, function (err, result, fields) {
+                        if (err) throw err;
+                        // Controllo se l'email inserita sia disponibile o meno
+                        if (result.length == 0) res.send("OK"); //L'e-mail passata è disponibile e non è utilizzata da
+                        // nessun account all'interno del database
+                        else res.send("ERR_2"); //L'e-mail passata è già associata ad un account all'interno del database
+                });
+        }
+});
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

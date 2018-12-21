@@ -1,6 +1,7 @@
 
 var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
+var pannelloSecondario;
 
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -73,6 +74,31 @@ $(document).ready(function(){
 
     });
 });
+//funzione che permette di aprire il pannello mobile
+$(document).ready(function(){
+    $("#altro").click(function(){
+        $("#pannello-mobile").show(500);
+        pannelloSecondario=$('#pannello-mobile');
+
+    });
+});
+
+
+
+//funzione che chiude il pannello-mobile
+$(document).mouseup(function (e) {
+    try {
+        if (!pannelloSecondario.is(e.target) // if the target of the click isn't the container...
+            && pannelloSecondario.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            pannelloSecondario.hide(500);
+        }
+    }catch(ex){
+           console.log();
+        }
+});
+
+
 //funzione che permentte di aprire il pannello-playlist
 $(document).ready(function(){
     $(".pulsanteA-playlist").click(function(){
@@ -118,7 +144,13 @@ $(document).ready(function(){
 $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
+        try {
+            if (pannelloSecondario.is(":visible")) {
+                pannelloSecondario.hide();
+            }
+        }catch (e) {
 
+        }
         $('#menu-orizzontale,#pannello-Amicizie-mobile').css('display','none');
         $('#colonna-destra,#colonna-sinistra').css('display','block');
 
@@ -143,7 +175,7 @@ $(window).on('load', function () {
 
 
 
-
+//Funzioni che gestiscono la comunicazione con il server
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/

@@ -19,6 +19,8 @@
 </div>
 <form id="regForm" action="/">
     <h1>Registrazione</h1>
+    <p id="registrazione_effettuata" style = "display:none">Manca l'ultimo passaggio! <br>Per completare la tua registrazione
+        clicca sul link di attivazione che riceverai a breve tramite e-mail.</p>
     <!-- Una "tab" per ogni step della registrazione: -->
     <div class="tab">Inserisci il tuo nome e cognome:
         <p><input placeholder="Nome" oninput="this.className = ''" name="fname"></p>
@@ -34,24 +36,24 @@
             <input type="radio" name="sesso">
             <span class="checkmark"></span>
         </label>
-        <p id="err_name" class=""></p>
+        <p id="err_name" style= "color: red; display:none; margin: 15px 0 0;"></p>
     </div>
-    <div class="tab">Inserisci un indirizzo e-mail valido:
+    <div class="tab" id="tab_1">Inserisci un indirizzo e-mail valido:
         <p><input placeholder="E-mail" oninput="this.className = ''" name="email"></p>
         <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
-        <p id="err_email" class=""></p>
+        <p id="err_email" style= "color: red; display:none; margin: 15px 0 0;"></p>
     </div>
-    <div class="tab">Inserisci nome utente e password.<br>
+    <div class="tab" id="tab_2">Inserisci nome utente e password.<br>
         (N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):
         <p><input placeholder="Nome utente" oninput="this.className = ''" name="uname"></p>
         <p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
         <p><input placeholder="Conferma password" oninput="this.className = ''" name="pword2" type="password"></p>
-        <p id="err_account" class=""></p>
+        <p id="err_account" style= "color: red; display:none; margin: 15px 0 0;"></p>
     </div>
     <div style="overflow:auto;">
         <div style="float:right;">
-            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Precedente</button>
-            <button type="button" id="nextBtn" onclick="nextPrev(1)">Successivo</button>
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Indietro</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Avanti</button>
         </div>
     </div>
     <!-- Cerchi che indicano gli step della registrazione -->

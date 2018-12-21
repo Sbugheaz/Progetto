@@ -16,7 +16,7 @@
         if (n == (x.length - 1)) {
             document.getElementById("nextBtn").innerHTML = "Registrati";
         } else {
-            document.getElementById("nextBtn").innerHTML = "Successivo";
+            document.getElementById("nextBtn").innerHTML = "Avanti";
         }
         //... ed esegue una funzione che mostra il corretto cerchio indicatore del pannello:
         fixStepIndicator(n)
@@ -33,8 +33,7 @@
         currentTab = currentTab + n;
         //Se si raggiunge la fine del form:
         if (currentTab >= x.length) {
-            document.getElementById("error").style.display = "none";
-            document.getElementById("regForm").submit();
+            $("#nextBtn").click(registrati());
             return false;
         }
         //Altrimenti mostra la currentTab
@@ -49,104 +48,86 @@
         if(currentTab == 0) {
                 if(y[0].value == "") {
                     y[0].className += " invalid";
-                    document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Inserisci il tuo nome.";
+                    $("#err_name").text("Inserisci il tuo nome.").css("display", "block");
                     valid = false;
                 }
                 else if (!validateName(y[0].value)) {
                     y[0].className += " invalid";
-                    document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Il nome deve iniziare con una lettera maiuscola ed " +
-                        "essere seguito da lettere minuscole. Non può contenere cifre o spazi.";
+                    $("#err_name").text("Il nome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
+                        " ed essere seguito da lettere minuscole. Non può contenere cifre.").css("display", "block");
                     valid = false;
                 }
                 else if(y[1].value == "") {
                     y[1].className += " invalid";
-                    document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Inserisci il tuo cognome.";
+                    $("#err_name").text("Inserisci il tuo cognome.").css("display", "block");
                     valid = false;
                 }
                 else if(!validateName(y[1].value)) {
                     y[1].className += " invalid";
-                    document.getElementById("err_name").className += " invalid";
-                    document.getElementById("err_name").innerHTML = "Il cognome deve iniziare con una lettera maiuscola ed " +
-                        "essere seguito da lettere minuscole. Non può contenere cifre o spazi.";
+                    $("#err_name").text("Il cognome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
+                        " ed essere seguito da lettere minuscole. Non può contenere cifre.").css("display", "block");
                     valid = false;
                 }
                 else {
-                    document.getElementById("err_name").innerHTML = "";
+                    $("#err_name").text("").css("display", "none");
                 }
         }
         else if(currentTab == 1) {
                 if(y[0].value == "") {
                     y[0].className += " invalid";
-                    document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "Inserisci un'e-mail.";
+                    $("#err_email").text("Inserisci un'e-mail.").css("display", "block");
                     valid = false;
                 }
                 else if(!validateEmail(y[0].value)) {
                     y[0].className += " invalid";
-                    document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "L'e-mail deve rispettare il formato corretto.<br> " +
-                        "Es: prova@esempio.it";
+                    $("#err_email").text("L'e-mail deve rispettare il formato corretto, es: prova@esempio.it.").css("display", "block");
                     valid = false;
                 }
                 else if(y[1].value == "") {
                     y[1].className += " invalid";
-                    document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "Conferma la tua e-mail.";
+                    $("#err_email").text("Conferma la tua e-mail.").css("display", "block");
                     valid = false;
                 }
                 else if(y[0].value!=y[1].value) {
                     y[1].className += " invalid";
-                    document.getElementById("err_email").className += " invalid";
-                    document.getElementById("err_email").innerHTML = "Le e-mail non corrispondono.";
+                    $("#err_email").text("Le e-mail non corrispondono.").css("display", "block");
                     valid = false;
                 }
-                else {
-                    document.getElementById("err_email").innerHTML = "";
-                }
+                else verificaUtilizzoEmail(y);
         }
         else if(currentTab == 2){
             if(y[0].value == "") {
                 y[0].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = "Inserisci un nome utente.";
+                $("#err_account").text("Inserisci un nome utente.").css("display", "block");
                 valid = false;
             }
             else if(!validateUsername(y[0].value)) {
                 y[0].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = "Il nome utente deve iniziare con una lettera e non può contenere spazi.";
+                $("#err_account").text("Il nome utente deve contenere almeno due caratteri, iniziare con una lettera " +
+                    "e non può contenere spazi.").css("display", "block");
                 valid = false;
             }
             else if(y[1].value == "") {
                 y[1].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = "Inserisci una password.";
+                $("#err_account").text("Inserisci una password.").css("display", "block");
                 valid = false;
             }
             else if(!validatePassword(y[1].value)) {
                 y[1].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = "La password deve rispettare il formato richiesto.";
+                $("#err_account").text("La password deve rispettare il formato richiesto.").css("display", "block");
                 valid = false;
             }
             else if(y[2].value == "") {
                 y[2].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = "Conferma la tua password.";
+                $("#err_account").text("Conferma la tua password.").css("display", "block");
                 valid = false;
             }
             else if(y[1].value != y[2].value) {
                 y[2].className += " invalid";
-                document.getElementById("err_account").className += " invalid";
-                document.getElementById("err_account").innerHTML = " Le password non coincidono.";
+                $("#err_account").text("Le password non coincidono.").css("display", "block");
                 valid = false;
             }
-            else {
-                document.getElementById("err_account").innerHTML = "";
-            }
+            else verificaUtilizzoNomeUtente(y);
         }
         if (valid) {
             document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -163,93 +144,79 @@
     }
 
 
-    var anno=new Date();
-    y = anno.getFullYear() + 1;
-    while (y-->(anno.getFullYear()-80)){
-        var s = document.createElement('option');
-        var e = document.getElementById('year');
-        s.text=y;
-        s.value=y;
-        try{
-            e.add(s,null);
-        }
-        catch(ex){
-            e.add(s);
-        }
-    }
-
     //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
+//Verifica la validità dei campo "Nome" e "Cognome"
+function validateName(nome) {
+    var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+    return testo.test(String(nome));
+}
 
-    //Verifica la validità dei campo "Nome" e "Cognome"
-    function validateName(campo) {
-        var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
-        return testo.test(String(campo));
-    }
 
     //Verifica la validità del campo "Nome utente"
-    function validateUsername(campo) {
+    function validateUsername(nomeUtente) {
         var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
-        return testo.test(String(campo));
+        return testo.test(String(nomeUtente));
     }
 
     //Verifica la validità dei campi "Password" e "Verifica password"
-    function validatePassword(campo) {
+    function validatePassword(password) {
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        return testo.test(String(campo));
+        return testo.test(String(password));
     }
 
 //Funzioni che gestiscono la comunicazione con il server
-    /*
-//Invia i dati inseriti nel form di registrazione dall'utente al server
-function registrati(){
-    $.post("/Registrati",
-        {
-            nomeUtente: $('input[name=username]').val(),
-            password: $('input[name=password]').val(),
-        },
-        function(result){
-            if(result == "ERR_1")
-                $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
-            else if(result == "ERR_2")
-                $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
-            else if(result == "ERR_3")
-                $("#modal-verifica-email").modal();
-            else if(result == "OK")
-                window.location.href = '/WebPlayer';
 
-        });
-}
-
-
-function verificaEmail() {
-    $.post("/Registrazione/Email",
-        {
-            email: $('input[name=email]').val(),
-        },
-        function (result) {
-            if (result == "ERR")
-                $("#err_email").text("Esiste già un account registrato con questa e-mail, prova ad" +
-                    "inserirne un'altra.");
-            else if (result == "OK") document.getElementById("err_email").innerHTML = "";
-        });
-}
-    function registrati() {
-    .post("/Registrazione/registrati",
+function verificaUtilizzoEmail(y) {
+        $.post("/Registrazione/email",
             {
-                nome: $('input[name=fname]').val(),
-                cognome: $('input[name=lname]').val(),
-                dataDiNascita: $('input[name=email]').val(), //sistemare
-                sesso: $('input[name=sesso]').val(),
-                email: $('input[name=email]').val(),
-                nomeUtente: $('input[name=uname]').val(),
-                password: $('input[name=pword]').val(),
+                email: $("input[name=email]").val(),
             },
             function (result) {
-        //Registrazione avvenuta con successo oppure errore
-            });
+            if(result == "ERR_1") {
+                y[0].className += " invalid";
+                $("#err_email").text("L'e-mail deve rispettare il formato corretto, es: prova@esempio.it.").css("display", "block");
+            }
+            else if (result == "ERR_2") {
+                y[0].className += " invalid";
+                y[1].className += " invalid";
+                $("#err_email").text("Esiste già un account registrato con questa e-mail, prova ad inserirne un'altra.")
+                .css("display", "block");
+            }
+            else if(result == "OK") {
+                $("#err_email").text("").css("display", "none");
+            }
+        });
     }
-    */
+
+
+function verificaUtilizzoNomeUtente(y) {
+        $.post("/Registrazione/nomeUtente",
+            {
+                nomeUtente: $("input[name=uname]").val(),
+            },
+            function (result) {
+            if(result == "ERR_1") {
+                y[0].className += " invalid";
+                $("#err_account").text("Il nome utente deve contenere almeno due caratteri, iniziare con una lettera " +
+                    "e non può contenere spazi.").css("display", "block");
+            }
+            else if (result == "ERR_2") {
+                y[0].className += " invalid";
+                $("#err_account").text("Il nome utente non è disponibile, prova ad inserirne un'altro.").css("display", "block");
+            }
+            else if (result == "OK") {
+                $("#err_account").text("").css("display", "none");
+            }
+        });
+}
+
+function registrati() {
+    $("#nextBtn").text("Ok");
+    $("#prevBtn").css("display", "none");
+    $("#registrazione_effettuata").css("display", "block");
+    $("#nextBtn").click(window.location.href = '/');
+}
