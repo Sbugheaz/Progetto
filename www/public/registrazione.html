@@ -19,15 +19,15 @@
 </div>
 <form id="regForm" action="/">
     <h1>Registrazione</h1>
-    <p id="registrazione_effettuata" style = "display:none">Manca l'ultimo passaggio! <br>Per completare la tua registrazione
-        clicca sul link di attivazione che riceverai a breve tramite e-mail.</p>
-    <!-- Una "tab" per ogni step della registrazione: -->
-    <div class="tab">Inserisci il tuo nome e cognome:
+    <!-- Form registrazione -->
+    <div class="container-fluid">Compila il form per registrarti.
         <p><input placeholder="Nome" oninput="this.className = ''" name="fname"></p>
         <p><input placeholder="Cognome" oninput="this.className = ''" name="lname"></p>
-        <p><br>Inserisci la tua data di nascita: </p>
         <input type="date">
-        <p><br></br>Sesso: </p>
+        <br>
+        <br>
+        <br>
+        <br>
         <label class="container">Uomo
             <input type="radio" checked="checked" name="sesso">
             <span class="checkmark"></span>
@@ -36,33 +36,26 @@
             <input type="radio" name="sesso">
             <span class="checkmark"></span>
         </label>
-        <p id="err_name" style= "color: red; display:none; margin: 15px 0 0;"></p>
-    </div>
-    <div class="tab" id="tab_1">Inserisci un indirizzo e-mail valido:
+        <p id="err_name" class=""></p>
+        <br>
+
         <p><input placeholder="E-mail" oninput="this.className = ''" name="email"></p>
         <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
-        <p id="err_email" style= "color: red; display:none; margin: 15px 0 0;"></p>
-    </div>
-    <div class="tab" id="tab_2">Inserisci nome utente e password.<br>
-        (N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):
+        <p id="err_email" class=""></p>
+
+        <br>
+
         <p><input placeholder="Nome utente" oninput="this.className = ''" name="uname"></p>
         <p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
         <p><input placeholder="Conferma password" oninput="this.className = ''" name="pword2" type="password"></p>
-        <p id="err_account" style= "color: red; display:none; margin: 15px 0 0;"></p>
+        <p id="err_account" class=""></p>
+        <p>(N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):</p>
     </div>
-    <div style="overflow:auto;">
-        <div style="float:right;">
-            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Indietro</button>
-            <button type="button" id="nextBtn" onclick="nextPrev(1)">Avanti</button>
-        </div>
-    </div>
-    <!-- Cerchi che indicano gli step della registrazione -->
-    <div style="text-align:center;margin-top:40px;">
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
+            <div style="text-align: center">
+                <button type="button" id="btnRegistrazione">Registrati</button>
+            </div>
 
-    </div>
+
 </form>
 </body>
 <script src="javascripts/registrazione.js"></script>
