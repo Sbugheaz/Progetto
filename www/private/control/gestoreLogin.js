@@ -55,17 +55,6 @@ function hashPassword(password) {
 
 
 /**
- * Funzione che controlla che l'e-mai rispetti la formattazione richiesta.
- * @param email da controllare
- * @returns {boolean} ritorna vero o falso a seconda che la verifica sia soddisfatta
- */
-function verificaEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-
-/**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
  */
@@ -99,14 +88,10 @@ router.get('/', function (req, res) {
 router.post('/Login', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
     var password = req.body.password;
-    if(nomeUtente == "" || password == "") {
-        res.send("ERR_1"); //Uno dei due campi è vuoto
-    }
-    else {
-        password = hashPassword(req.body.password);
-        var query = "SELECT * " +
-            "FROM Account " +
-            "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
+    password = hashPassword(req.body.password);
+    var query = "SELECT * " +
+                "FROM Account " +
+                "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         // Controllo se i dati di accesso siano validi
@@ -119,12 +104,11 @@ router.post('/Login', function (req, res) {
             res.send('OK');
             console.log("L'utente " + nomeUtente + " ha effettuato l'accesso.\n");
         } else if (result.length == 0) {
-            res.send("ERR_2"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
+            res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
         } else {
-            res.send("ERR_3"); // L'utente non ha verificato la mail
+            res.send("ERR_2"); // L'utente non ha verificato la mail
         }
     });
-    }
 });
 
 
@@ -152,13 +136,6 @@ router.get('/Logout', function (req, res) {
  */
 router.post('/RecuperoPassword', function (req, res) {
     var email = req.body.email;
-    if (email == "") {
-        res.send("ERR_1"); //Il campo email è vuoto
-    }
-    else if(!verificaEmail(email)) {
-        res.send("ERR_2")
-    }
-    else {
         var query = "SELECT * " +
             "FROM Account " +
             "WHERE " + "Email = '" + email + "'";
@@ -181,13 +158,12 @@ router.post('/RecuperoPassword', function (req, res) {
                 res.send('OK');
             }
             else if (result.length == 0) {
-                res.send("ERR_3"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
+                res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
             }
             else {
-                res.send("ERR_4"); // L'utente non ha verificato la mail
+                res.send("ERR_2"); // L'utente non ha verificato la mail
             }
         });
-    }
 });
 
 
