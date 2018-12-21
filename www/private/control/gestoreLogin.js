@@ -102,7 +102,7 @@ router.post('/Login', function (req, res) {
                 if (err) throw err;
             });
             res.send('OK');
-            console.log("L'utente " + nomeUtente + " ha effettuato l'accesso.\n");
+            console.log("L'utente " + result[0].NomeUtente + " ha effettuato l'accesso.\n");
         } else if (result.length == 0) {
             res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
         } else {
