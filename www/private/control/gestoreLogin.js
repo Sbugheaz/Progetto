@@ -102,7 +102,7 @@ router.post('/Login', function (req, res) {
                 if (err) throw err;
             });
             res.send('OK');
-            console.log("L'utente " + nomeUtente + " ha effettuato l'accesso.\n");
+            console.log("L'utente " + result[0].NomeUtente + " ha effettuato l'accesso.\n");
         } else if (result.length == 0) {
             res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
         } else {
@@ -131,7 +131,7 @@ router.get('/Logout', function (req, res) {
 
 
 /**
- * Gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
+ * Funzione che gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
  * al DBMS, in caso di risposta positiva invia una e-mail all'utente per il recupero.
  */
 router.post('/RecuperoPassword', function (req, res) {

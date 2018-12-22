@@ -19,40 +19,34 @@
 </div>
 <form id="regForm" action="/">
     <h1>Registrazione</h1>
+
     <!-- Form registrazione -->
-    <div class="container-fluid">Compila il form per registrarti.
-        <p><input placeholder="Nome" oninput="this.className = ''" name="fname"></p>
-        <p><input placeholder="Cognome" oninput="this.className = ''" name="lname"></p>
-        <input type="date">
+    <div class="container-fluid">Compila tutti i campi per registrarti.
+        <p><input placeholder="Nome" name="nome"></p>
+        <p><input placeholder="Cognome" name="cognome"></p>
+        <input type="date" name="data_nascita"
+               min="1920-01-01" max="2018-12-31">
         <br>
-        <br>
-        <br>
-        <br>
+        <p>Sesso:</p>
         <label class="container">Uomo
-            <input type="radio" checked="checked" name="sesso">
+            <input type="radio" checked="checked" name="sesso" value="M">
             <span class="checkmark"></span>
         </label>
         <label class="container">Donna
-            <input type="radio" name="sesso">
+            <input type="radio" name="sesso" value="F">
             <span class="checkmark"></span>
         </label>
-        <p id="err_name" class=""></p>
-        <br>
 
-        <p><input placeholder="E-mail" oninput="this.className = ''" name="email"></p>
-        <p><input placeholder="Conferma e-mail" oninput="this.className = ''" name="email2"></p>
-        <p id="err_email" class=""></p>
-
-        <br>
-
-        <p><input placeholder="Nome utente" oninput="this.className = ''" name="uname"></p>
-        <p><input placeholder="Password" oninput="this.className = ''" name="pword" type="password"></p>
-        <p><input placeholder="Conferma password" oninput="this.className = ''" name="pword2" type="password"></p>
-        <p id="err_account" class=""></p>
+        <p><input placeholder="E-mail" name="email"></p>
+        <p><input placeholder="Conferma e-mail" name="email2"></p>
+        <p><input placeholder="Nome utente" name="nomeUtente"></p>
+        <p><input placeholder="Password" name="password" type="password"></p>
+        <p><input placeholder="Conferma password" name="password2" type="password"></p>
         <p>(N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):</p>
     </div>
+    <p class = "pd" style= "color: red; display:none; margin: 15px 0 0;" id="err_registrazione"></p>
             <div style="text-align: center">
-                <button type="button" id="btnRegistrazione">Registrati</button>
+                <button type="button" id="btnRegistrazione" onclick="registrati()">Registrati</button>
             </div>
 
 

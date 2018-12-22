@@ -64,7 +64,7 @@ router.get('/', function (req, res) {
 /**
  * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
  */
-router.post('/utente', function (req, res) {
+router.get('/utente', function (req, res) {
         var query = "SELECT NomeUtente, Nome, Cognome, DataDiNascita, Email " +
             "FROM Account " +
             "WHERE IDUtente = '" + req.session.idUtente + "'";
