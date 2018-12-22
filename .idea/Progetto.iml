@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/.vagrant" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
@@ -13,5 +14,6 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="bootstrap-slider" level="application" />
     <orderEntry type="library" name="bootstrap-slider" level="application" />
+    <orderEntry type="library" name="@types/jquery" level="application" />
   </component>
 </module>

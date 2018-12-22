@@ -328,7 +328,7 @@ div.slider-selection{
 
 
 
-#step-backward:hover,#play:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
+#step-backward:hover,#play:hover,#pause:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
    color: #5CA5FF;
 }
 
@@ -1185,4 +1185,14 @@ fa-paly:hover {
 .p_playList{
     color: cornsilk;
     margin-top: 15px;
+}
+#pause{
+    display: none;
+}
+
+#labelDurataTotaleBrano{
+    transform: translateY(-1vh);
+}
+#labelSecondoAttual{
+    transform: translateY(-1vh);
 }

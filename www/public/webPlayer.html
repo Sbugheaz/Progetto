@@ -36,7 +36,6 @@
 
 
 
-
     <link rel="icon" href="images/Onda.png" type="image/png" />
     <title>SoundWave</title>
 </head>
@@ -283,7 +282,6 @@
                                             </div>
                                             <div class="btn-group-orizontal-justified btn-playlist" >
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-ellipsis-v"></i></a></button>
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
@@ -299,7 +297,6 @@
                                             </div>
                                             <div class="btn-group-orizontal-justified btn-playlist" >
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-ellipsis-v"></i></a></button>
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
@@ -316,13 +313,10 @@
                                              </div>
                                                 <div class="col-md-3">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-ellipsis-v"></i></a></button>
-                                                    </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                                     </div>
                                                 </div>
@@ -477,7 +471,8 @@
                                         <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" onclick="playAudio()"></i>
+                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" ></i>
+                                        <i class="fa fa-pause icona-hover testo-controlli-riproduzione" id="pause" ></i>
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
@@ -851,6 +846,7 @@
         </div>
     </div>
 </div>
+<!--dsfhhfjkas
 <audio id="mySong">
     <source src="songs/Luna - Los Angeles.mp3" type="audio/ogg" >
     <source src="songs/Luna - Los Angeles.mp3" type="audio/mpeg">
@@ -861,18 +857,10 @@
     var song = document.getElementById("mySong");
     /*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
 fa partire o ferma la riproduzione stessa.*/
-    function playAudio() {
-            if (song.paused) {
-                song.play();
-                $("i.fa-play").removeClass("fa-play").addClass("fa-pause");
-            } else {
-                song.pause();
-                $("i.fa-pause").removeClass("fa-pause").addClass("fa-play");
-            }
-    }
+
 
 </script>
-
+-->
 <script src="javascripts/start.js"></script>
 <script src="javascripts/model.js"></script>
 </body>
