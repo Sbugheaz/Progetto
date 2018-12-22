@@ -4,6 +4,7 @@ var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
 
 
+
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
     var x = document.getElementById(id);
@@ -172,6 +173,13 @@ $(window).on('load', function () {
     } else {
         $('#menu-orizzontale').css('display','block');
     }
+
+        $("#volume-range").slider({
+            value: 50
+        });
+
+
+
 });
 
 
@@ -201,8 +209,10 @@ function playAudio() {
 */
 
 $(document).ready(function() {
+    $("#volume-range").slider();
+    $("#barraDiAvanzamento").slider();
     var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'songs/Luna - Los Angeles.mp3');
+    audioElement.setAttribute('src', 'songs/AC_DC_Back_In_Black.mp3');
 
     audioElement.addEventListener('ended', function() {
         this.play();
@@ -213,15 +223,21 @@ $(document).ready(function() {
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src);
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(49));
 
     });
 
     audioElement.addEventListener("timeupdate",function(){
+        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
         var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
         var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
         var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelSecondoAttuale").text(dur2);
+
+        $('#barraDiAvanzamento').slider({value: avanzamento})
+        $('#barraDiAvanzamento').slider('refresh');
+
+
     });
 
     $('#play').click(function() {
@@ -240,14 +256,15 @@ $(document).ready(function() {
 
     $('#repeat').click(function() {
         audioElement.currentTime = 0;
-        audioElement.prop("volume",10/100 );
-    });
-    $('#volume-range').slider("on","change",function () {
-        audioElement.prop("volume",10/100 );
+
     });
 
-
+    $("#volume-range").on("slide", function(slideEvt) {
+            audioElement.volume=slideEvt.value/100;
+    });
 
 });
+
+
 
 
