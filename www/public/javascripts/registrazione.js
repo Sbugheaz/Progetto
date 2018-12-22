@@ -19,7 +19,7 @@ var password2 = $("input[name=password2]");
                 else if (!validateName(nome.val())) {
                     nome.addClass("invalid");
                     $("#err_registrazione").text("Il nome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
-                        " ed essere seguito da lettere minuscole. Non può contenere cifre.").css("display", "block");
+                        " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
                 }
                 else if(cognome.val() == "") {
                     cognome.addClass("invalid");
@@ -28,7 +28,7 @@ var password2 = $("input[name=password2]");
                 else if(!validateName(cognome.val())) {
                     cognome.addClass("invalid");
                     $("#err_registrazione").text("Il cognome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
-                        " ed essere seguito da lettere minuscole. Non può contenere cifre.").css("display", "block");
+                        " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
                 }
                 else if(data_nascita.val() == "") {
                     data_nascita.addClass("invalid");
@@ -36,19 +36,19 @@ var password2 = $("input[name=password2]");
                 }
                 else if(email1.val() == "") {
                     email1.addClass("invalid");
-                    $("#err_registrazione").text("Inserisci un'e-mail.").css("display", "block");
+                    $("#err_registrazione").text("Inserisci un indirizzo e-mail.").css("display", "block");
                 }
                 else if(!validateEmail(email1.val())) {
                     email1.addClass("invalid");
-                    $("#err_registrazione").text("L'e-mail deve rispettare il formato corretto, es: prova@esempio.it.").css("display", "block");
+                    $("#err_registrazione").text("L'indirizzo e-mail deve rispettare il formato corretto, es: prova@esempio.it.").css("display", "block");
                 }
                 else if(email2.val() == "") {
                     email2.addClass("invalid");
-                    $("#err_registrazione").text("Conferma la tua e-mail.").css("display", "block");
+                    $("#err_registrazione").text("Conferma il tuo indirizzo e-mail.").css("display", "block");
                 }
                 else if(email1.val() != email2.val()) {
                     email2.addClass("invalid");
-                    $("#err_registrazione").text("Le e-mail non corrispondono.").css("display", "block");
+                    $("#err_registrazione").text("Gli indirizzi e-mail non corrispondono.").css("display", "block");
                 }
                 else if(nomeUtente.val() == "") {
                     nomeUtente.addClass("invalid");
@@ -57,7 +57,7 @@ var password2 = $("input[name=password2]");
                 else if(!validateUsername(nomeUtente.val())) {
                     nomeUtente.addClass("invalid");
                     $("#err_registrazione").text("Il nome utente deve contenere almeno due caratteri, iniziare con una lettera " +
-                    "e non può contenere spazi.").css("display", "block");
+                    "e non può contenere spazi o simboli.").css("display", "block");
                 }
                 else if(password1.val() == "") {
                     password1.addClass("invalid");

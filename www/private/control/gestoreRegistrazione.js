@@ -115,7 +115,9 @@ router.get('/', function (req, res) {
 
 
 /**
- * Controlla la disponibilità dell'e-mail inserita dall'utente al momento della registrazione.
+ * Funzione che gestisce il modulo di registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti
+ * e che nome utente ed e-mail non siano già utilizzati da un altro account. Invia i dati al DBMS e una mail contenente un
+ * link di attivazione all'utente che ha effettuto la registrazione.
  */
 router.post('/registrati', function (req, res) {
         var nome = req.body.nome;
@@ -127,7 +129,7 @@ router.post('/registrati', function (req, res) {
         var password = req.body.password;
         if(!validateName(nome) || !validateName(cognome) || data_nascita == "" || !validateEmail(email) ||
              !validateUsername(nomeUtente) || !validatePassword(password))
-                res.send("ERR_1");
+                res.send("ERR_1"); //i dati inseriti non rispettano il formato corretto
         var query1 = "SELECT Email " +
             "FROM Account " +
             "WHERE Email = '" + email + "'";
@@ -150,14 +152,18 @@ router.post('/registrati', function (req, res) {
                                 "', '" + email + "', '" + nome + "', '" + cognome + "', '" + sesso + "', '" + data_nascita + "', 0)";
                                 con.query(query3, function (err, result, fields) {
                                     if (err) throw err;
-                                    else res.send("OK");//l'e-mail passata è disponibile e non è utilizzata da nessun account all'interno del database
+                                    else {
+                                        var urlAttivazione = "http://192.168.33.10:3000/Registrazione/" +
+                                            Math.floor(Math.random() * (10000000 - 1000000) + 1000000) + 1 + "/" + nomeUtente;
+                                        mailer.inviaMailAttivazioneAccount(nome, cognome, email, urlAttivazione);
+                                        res.send("OK");
+                                    }
                                 });
                             }
                         });
                 }
         });
 });
-
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

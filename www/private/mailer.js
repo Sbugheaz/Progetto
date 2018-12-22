@@ -55,7 +55,7 @@ exports.inviaMailRipristinoPassword = function (nome, cognome, emailDestinatario
  */
 exports.inviaMailAttivazioneAccount = function (nome, cognome, emailDestinatario, urlAttivazione) {
     var oggettoMail = "SoundWave - Benvenuto!";
-    var contenutoMail = "Ciao " + nome + " " + cognome + "e benvenuto in SoundWave!!\n\nSe stai leggendo questo mail hai " +
+    var contenutoMail = "Ciao " + nome + " " + cognome + ", ti diamo il benvenuto in SoundWave!\n\nSe stai leggendo questa mail hai " +
         "compilato correttamente il modulo per la registrazione del tuo account. Per completare la tua registrazione e " +
         "poter accedere al nostro sito ti basta cliccare sl link di attivazione: " + urlAttivazione;
     var opzioni = {

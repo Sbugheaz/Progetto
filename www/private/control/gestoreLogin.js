@@ -131,7 +131,7 @@ router.get('/Logout', function (req, res) {
 
 
 /**
- * Gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
+ * Funzione che gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
  * al DBMS, in caso di risposta positiva invia una e-mail all'utente per il recupero.
  */
 router.post('/RecuperoPassword', function (req, res) {

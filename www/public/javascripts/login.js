@@ -42,10 +42,10 @@ function login(){
 
 //Gestisce il recupero della password, inviando al server l'email.
 function recuperoPassword(){
-    if($('input[name=email]').val() == "")
+    if($("input[name=email]").val() == "")
         $("#err_recuperoPass").text("Inserisci il tuo indirizzo e-mail.").css("display", "block");
     else if(!validateEmail($('input[name=email]').val()))
-        $("#err_recuperoPass").text("L'e-mail deve rispettare il formato corretto.").css("display", "block");
+        $("#err_recuperoPass").text("L'indirizzo e-mail deve rispettare il formato corretto.").css("display", "block");
     else {
         $.post("/RecuperoPassword",
             {
@@ -53,7 +53,7 @@ function recuperoPassword(){
             },
             function (result) {
                 if (result == "ERR_1")
-                    $("#err_recuperoPass").text("Non esiste alcun account registrato con questa e-mail al nostro sito.").css("display", "block");
+                    $("#err_recuperoPass").text("Non esiste alcun account registrato con questo indirizzo e-mail al nostro sito.").css("display", "block");
                 else if (result == "ERR_2")
                     $("#err_recuperoPass").text("Verifica la tua e-mail prima di provare a recuperare la password.").css("display", "block");
                 else if (result == "OK") {
