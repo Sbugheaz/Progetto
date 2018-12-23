@@ -26,7 +26,7 @@ exports.inizializza = function (mail, password, servizio) {
  * Funzione che manda l'e-mail contenente una password temporanea ad un utente che ha richiesto il recupero della password.
  * @param nome - Nome dell'utente a cui è destinata la mail.
  * @param cognome - Cognome dell'utente a cui è destinata la mail.
- * @param emailDestinatario - Email dell'utente che ha richiesto il recupero della password.
+ * @param emailDestinatario - E-mail dell'utente che ha richiesto il recupero della password.
  * @param passwordTemporanea - Password con cui l'utente potrà effettuare il prossimo accesso che viene inviata via mail.
  */
 exports.inviaMailRipristinoPassword = function (nome, cognome, emailDestinatario, passwordTemporanea) {
@@ -41,24 +41,31 @@ exports.inviaMailRipristinoPassword = function (nome, cognome, emailDestinatario
         text: contenutoMail
     };
     transporter.sendMail(opzioni, function (err) {
-        if (err)  console.log("Errore nel tentativo di invio della mail a " + emailDestinatario + ".\n");
+        if (err)  console.log("Errore nel tentativo di invio della mail di recupero password a " + emailDestinatario + ".\n");
         else console.log("Email di recupero password inviata a " + emailDestinatario + ".\n");
     });
 };
 
-
 /**
- *
- * @param {string} utente - Il nome dell'utente che intende attivare il suo account.
- * @param {string} email - L'email dell'utente che intende attivare il suo account.
- * @param {string} urlPaginaConferma - L'URL della pagina alla quale l'utente deve accedere per verificare il suo account.
- * @param {function} callback - La funzione da eseguire una volta completata l'operazione.
+ * Funzione che manda l'e-mail per l'attivazione dell'account ad un utente che ha eseguito la registrazione.
+ * @param nome - Nome dell'utente a cui è destinata la mail.
+ * @param cognome - Cognome dell'utete a cui è destinata la mail.
+ * @param emailDestinatario - E-mail con cui l'utente ha effettuato la registrazione.
+ * @param urlAttivazione - Link che al click dell'utente esegue l'attivazione dell'account.
  */
-/*
-exports.inviaMailDiConferma = function (utente, email, urlPaginaConferma, callback) {
-    var html = '<body><h2>SoundWave</h2><div>Ciao ' + utente + '! Per attivare il tuo account su SoundWave, clicca ' +
-        '<a href="' + indirizzoServer + '/attivazione/' + urlPaginaConferma + '">qui</a>'+ ' .</div>' +
-        '<div>Questo link ha una validità di un giorno.</div></body>';
-    inviaMail(email, 'SoundWave - Benvenuto', html, callback);
+exports.inviaMailAttivazioneAccount = function (nome, cognome, emailDestinatario, urlAttivazione) {
+    var oggettoMail = "SoundWave - Benvenuto!";
+    var contenutoMail = "Ciao " + nome + " " + cognome + ", ti diamo il benvenuto in SoundWave!\n\nSe stai leggendo questa mail hai " +
+        "compilato correttamente il modulo per la registrazione del tuo account. Per completare la tua registrazione e " +
+        "poter accedere al nostro sito ti basta cliccare sl link di attivazione: " + urlAttivazione;
+    var opzioni = {
+        from: indirizzoMail,
+        to: emailDestinatario,
+        subject: oggettoMail,
+        text: contenutoMail
+    };
+    transporter.sendMail(opzioni, function (err) {
+        if (err)  console.log("Errore nel tentativo di invio della mail di attivazione dell'account a " + emailDestinatario + ".\n");
+        else console.log("Email di attivazione dell'account inviata a " + emailDestinatario + ".\n");
+    });
 };
-*/

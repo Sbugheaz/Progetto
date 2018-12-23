@@ -3,6 +3,8 @@ var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
 
+
+
 //funzione che mostra le password nascoste
 function mostraPass(id, id2){
     var x = document.getElementById(id);
@@ -171,6 +173,13 @@ $(window).on('load', function () {
     } else {
         $('#menu-orizzontale').css('display','block');
     }
+
+        $("#volume-range").slider({
+            value: 50
+        });
+
+
+
 });
 
 
@@ -184,10 +193,10 @@ function logout(){
         window.location.href = '/';
     });
 }
-
+/*
 var song = document.getElementById("mySong");
 /*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
-fa partire o ferma la riproduzione stessa.*/
+fa partire o ferma la riproduzione stessa.
 function playAudio() {
     if (song.paused) {
         song.play();
@@ -197,3 +206,65 @@ function playAudio() {
         $("i.fa-pause").removeClass("fa-pause").addClass("fa-play");
     }
 }
+*/
+
+$(document).ready(function() {
+    $("#volume-range").slider();
+    $("#barraDiAvanzamento").slider();
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'songs/AC_DC_Back_In_Black.mp3');
+
+    audioElement.addEventListener('ended', function() {
+        this.play();
+    }, false);
+
+    audioElement.addEventListener("canplay",function(){
+        var minutes = "0" + Math.floor(audioElement.duration / 60);
+        var seconds = "0" + Math.floor(audioElement.duration % 60);
+        var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+        $("#labelDurataTotaleBrano").text(dur);
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(49));
+
+    });
+
+    audioElement.addEventListener("timeupdate",function(){
+        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
+        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
+        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
+        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
+        $("#labelSecondoAttuale").text(dur2);
+
+        $('#barraDiAvanzamento').slider({value: avanzamento})
+        $('#barraDiAvanzamento').slider('refresh');
+
+
+    });
+
+    $('#play').click(function() {
+        audioElement.play();
+        $('#play').hide();
+        $('#pause').show()
+
+    });
+
+    $('#pause').click(function() {
+        audioElement.pause();
+        $('#pause').hide();
+        $('#play').show()
+
+    });
+
+    $('#repeat').click(function() {
+        audioElement.currentTime = 0;
+
+    });
+
+    $("#volume-range").on("slide", function(slideEvt) {
+            audioElement.volume=slideEvt.value/100;
+    });
+
+});
+
+
+
+

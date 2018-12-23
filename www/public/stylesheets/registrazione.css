@@ -73,7 +73,6 @@ input:focus, select:focus {
 
 input.invalid {
     border-color: red;
-
 }
 
 .container {
@@ -135,9 +134,6 @@ input.invalid {
     background: white;
 }
 
-.tab {
-    display: none;
-}
 
 button {
     background-color: rgb(191, 193, 192);
@@ -156,27 +152,11 @@ button:hover {
 }
 button:focus {outline:0;}
 
-#prevBtn {
+#btnRegistrazione {
     background-color: #bbbbbb;
 }
-
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
-
-.step.active {
-    opacity: 1;
-}
-
-.step.finish {
-    background-color: rgba(255,148,24,0.9);
+#btnRegistrazione:hover {
+    background-color: rgba(255,138,0,1);
 }
 
 
@@ -188,9 +168,11 @@ button:focus {outline:0;}
     div.tab{
         font-size: 4vw;
     }
+
     input{
         font-size: 3vw;
     }
+
     button{
         font-size: 3vw;
         width: 20vw;

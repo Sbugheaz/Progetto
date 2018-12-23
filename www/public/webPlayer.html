@@ -27,12 +27,12 @@
 
     <link rel="stylesheet" href="stylesheets/webPlayer.css">
     <script src="javascripts/webPlayer.js"></script>
+    <script src="javascripts/webPlayer.js"></script>
 
     <!-- Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
-
 
 
 
@@ -269,44 +269,60 @@
 
                             </div>
                             <div id="contenitore-canzoni-playlist">
-                                    <p class="paragrafo" style="font-size: x-large">Playlist:</p>
-                                    <ul class="demo demo-mobile">
-                                        <li class="p_listaAmici">
+                                    <p  class="paragrafo" style="font-size: x-large">Playlist:</p>
+                                    <ul  class="demo demo-playlist">
+                                        <li class="li_listaPlaylist">
+                                            <div class="ordine-playlist">
+                                                <p class="p_playList">1</p>
+                                            </div>
                                             <div class="canzone">
-                                                <i class="fa fa-circle pallino" style="padding-right:5%">Tranne Te </i>
+                                                <p class="p_playList" style="color: cornsilk">Tranne Te </p>
                                             </div>
                                             <div class="autore">
-                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Fabri Fibra"</p>
+                                                <p class="p_playList">Fabri Fibra</p>
                                             </div>
-                                            <div class="btn-group-orizontal-justified" id="btn-playlist">
+                                            <div class="btn-group-orizontal-justified btn-playlist" >
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-ellipsis-v"></i></a></button>
                                                 <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
-                                        <li class="p_listaAmici">
-                                            <div class="nomeUtente_online">
-                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
+                                        <li class="li_listaPlaylist">
+                                            <div class="ordine-playlist">
+                                                <p class="p_playList">1</p>
                                             </div>
-                                            <div class="branoAscoltato">
-                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
+                                            <div class="canzone">
+                                                <p class="p_playList" style="color: cornsilk">Tranne Te </p>
+                                            </div>
+                                            <div class="autore">
+                                                <p class="p_playList">Fabri Fibra</p>
+                                            </div>
+                                            <div class="btn-group-orizontal-justified btn-playlist" >
+                                                <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
-                                        <li class="p_listaAmici">
-                                            <div class="nomeUtente_online">
-                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
-                                            </div>
-                                            <div class="branoAscoltato">
-                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
-                                            </div>
-                                        </li>
-                                        <li class="p_listaAmici">
-                                            <div class="nomeUtente_online">
-                                                <i class="fa fa-circle pallino" style="padding-right:5%"> </i>Giuseppe Moscarelli (ElMosca96)
-                                            </div>
-                                            <div class="branoAscoltato">
-                                                <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>
-                                            </div>
+                                        <li class="li_listaPlaylist">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                <p class="p_playList">1</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                <p class="p_playList" style="color: cornsilk">Tranne Te </p>
+                                             </div>
+                                             <div class="col-md-4">
+                                                 <p class="p_playList">Fabri Fibra</p>
+                                             </div>
+                                                <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
                                         </li>
                                     </ul>
                             </div>
@@ -456,7 +472,8 @@
                                         <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
                                     </div>
                                     <div class="col-md-2">
-                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" onclick="playAudio()"></i>
+                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" ></i>
+                                        <i class="fa fa-pause icona-hover testo-controlli-riproduzione" id="pause" ></i>
                                     </div>
                                     <div class="col-md-2">
                                         <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
@@ -830,6 +847,7 @@
         </div>
     </div>
 </div>
+<!--dsfhhfjkas
 <audio id="mySong">
     <source src="songs/Luna - Los Angeles.mp3" type="audio/ogg" >
     <source src="songs/Luna - Los Angeles.mp3" type="audio/mpeg">
@@ -840,18 +858,10 @@
     var song = document.getElementById("mySong");
     /*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
 fa partire o ferma la riproduzione stessa.*/
-    function playAudio() {
-            if (song.paused) {
-                song.play();
-                $("i.fa-play").removeClass("fa-play").addClass("fa-pause");
-            } else {
-                song.pause();
-                $("i.fa-pause").removeClass("fa-pause").addClass("fa-play");
-            }
-    }
+
 
 </script>
-
+-->
 <script src="javascripts/start.js"></script>
 <script src="javascripts/model.js"></script>
 </body>

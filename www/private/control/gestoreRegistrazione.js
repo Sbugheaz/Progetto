@@ -46,7 +46,7 @@ mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
 
 /**
  * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
- * @param {string} password - La password in chiaro
+ * @param {string} password - La password in chiaro.
  * @returns {string} - La password criptata.
  */
 function hashPassword(password) {
@@ -56,8 +56,8 @@ function hashPassword(password) {
 
 /**
  * Funzione che controlla che l'e-mail rispetti la formattazione richiesta.
- * @param email - Email da controllare
- * @returns {boolean} ritorna vero o falso a seconda che il formato dell'email sia corretto
+ * @param email - Email da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che il formato dell'email sia corretto o meno.
  */
 function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -67,12 +67,34 @@ function validateEmail(email) {
 
 /**
  * Funzione che controlla che il nome utente rispetti la formattazione richiesta.
- * @param nomeUtente - Nome utente da controllare
- * @returns {boolean} ritorna vero o falso a seconda che il formato del nome utente sia corretto
+ * @param nomeUtente - Nome utente da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che il formato del nome utente sia corretto  o meno.
  */
 function validateUsername(nomeUtente) {
         var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
         return testo.test(String(nomeUtente));
+}
+
+
+/**
+ * Funzione che controlla che il nome e il cognome rispettino la formattazione richiesta.
+ * @param nome - Stringa da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che la stringa sia formattata correttamente o meno.
+ */
+function validateName(nome) {
+        var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+        return testo.test(String(nome));
+}
+
+
+/**
+ * Funzione che controlla che la password rispetti la formattazione richiesta.
+ * @param password - Password da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che la password sia formattata correttamente o meno.
+ */
+function validatePassword(password) {
+        var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        return testo.test(String(password));
 }
 
 
@@ -93,48 +115,54 @@ router.get('/', function (req, res) {
 
 
 /**
- * Controlla la disponibilità dell'e-mail inserita dall'utente al momento della registrazione.
+ * Funzione che gestisce il modulo di registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti
+ * e che nome utente ed e-mail non siano già utilizzati da un altro account. Invia i dati al DBMS e una mail contenente un
+ * link di attivazione all'utente che ha effettuto la registrazione.
  */
-router.post('/email', function (req, res) {
+router.post('/registrati', function (req, res) {
+        var nome = req.body.nome;
+        var cognome = req.body.cognome;
+        var data_nascita = req.body.data_nascita;
+        var sesso = req.body.sesso;
         var email = req.body.email;
-        if(!validateEmail(email) || email == "") {
-                res.send("ERR_1");
-        }
-        else {
-                var query = "SELECT Email " +
-                    "FROM Account " +
-                    "WHERE Email = '" + email + "'";
-                con.query(query, function (err, result, fields) {
-                        if (err) throw err;
-                        // Controllo se l'email inserita sia disponibile o meno
-                        if (result.length == 0) res.send("OK"); //L'e-mail passata è disponibile e non è utilizzata da
-                        // nessun account all'interno del database
-                        else res.send("ERR_2"); //L'e-mail passata è già associata ad un account all'interno del database
-                });
-        }
-});
-
-
-/**
- * Controlla la disponibilità del nome utente inserito dall'utente al momento della registrazione.
- */
-router.post('/nomeUtente', function (req, res) {
         var nomeUtente = req.body.nomeUtente;
-        if(!validateUsername(nomeUtente) || nomeUtente == "") {
-                res.send("ERR_1");
-        }
-        else {
-                var query = "SELECT NomeUtente " +
-                    "FROM Account " +
-                    "WHERE NomeUtente = '" + nomeUtente + "'";
-                con.query(query, function (err, result, fields) {
-                        if (err) throw err;
-                        // Controllo se l'email inserita sia disponibile o meno
-                        if (result.length == 0) res.send("OK"); //L'e-mail passata è disponibile e non è utilizzata da
-                        // nessun account all'interno del database
-                        else res.send("ERR_2"); //L'e-mail passata è già associata ad un account all'interno del database
-                });
-        }
+        var password = req.body.password;
+        if(!validateName(nome) || !validateName(cognome) || data_nascita == "" || !validateEmail(email) ||
+             !validateUsername(nomeUtente) || !validatePassword(password))
+                res.send("ERR_1"); //i dati inseriti non rispettano il formato corretto
+        var query1 = "SELECT Email " +
+            "FROM Account " +
+            "WHERE Email = '" + email + "'";
+        con.query(query1, function (err, result, fields) {
+                if (err) throw err;
+                //controllo se l'email sia disponibile o meno
+                if (result.length != 0)
+                        res.send("ERR_2"); //l'e-mail è già associata ad un altro account
+                else {
+                   var query2 = "SELECT NomeUtente " +
+                        "FROM Account " +
+                        "WHERE NomeUtente = '" + nomeUtente + "'";
+                   con.query(query2, function (err, result, fields) {
+                         if (err) throw err;
+                            if(result.length !=0)
+                                 res.send("ERR_3"); //il nome utente è già utilizzato da un altro account}
+                            else {
+                                var query3 = "INSERT INTO Account (nomeUtente, password, Email, Nome, Cognome, Sesso," +
+                                " dataDiNascita, Attivazione) VALUES ('" + nomeUtente + "', '" + hashPassword(password) +
+                                "', '" + email + "', '" + nome + "', '" + cognome + "', '" + sesso + "', '" + data_nascita + "', 0)";
+                                con.query(query3, function (err, result, fields) {
+                                    if (err) throw err;
+                                    else {
+                                        var urlAttivazione = "http://192.168.33.10:3000/Registrazione/" +
+                                            Math.floor(Math.random() * (10000000 - 1000000) + 1000000) + 1 + "/" + nomeUtente;
+                                        mailer.inviaMailAttivazioneAccount(nome, cognome, email, urlAttivazione);
+                                        res.send("OK");
+                                    }
+                                });
+                            }
+                        });
+                }
+        });
 });
 
 

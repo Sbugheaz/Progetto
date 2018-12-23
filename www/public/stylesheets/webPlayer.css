@@ -328,7 +328,7 @@ div.slider-selection{
 
 
 
-#step-backward:hover,#play:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
+#step-backward:hover,#play:hover,#pause:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
    color: #5CA5FF;
 }
 
@@ -359,12 +359,7 @@ div.slider-selection{
 
 
 
-/*contenitore Playlist*/
-#pannello-Playlist{
-    display: none;
-    height: 75.8vh;
-    overflow-y: auto;
-}
+
 /*contenitore Brani recenti*/
 #pannello-BraniRecenti{
     display: none;
@@ -649,7 +644,7 @@ table{
         height: 68.5vh;
     }
     #pannello-Playlist{
-        height: 68.5vh;
+        height: 68.5vh!important;
     }
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
@@ -816,7 +811,12 @@ table{
 }
 .demo-mobile{
     max-height: 70vh;
+
 }
+
+
+
+
 .demo-mobile>.p_listaAmici{
     text-align: left;
     padding-left: 5px;
@@ -838,10 +838,6 @@ table{
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
 }
-#contenitore-canzoni-playlist{
-    height: 50%;
-    overflow-y: auto;
-}
 
 .col-sx-sec{
     text-align: right;
@@ -850,6 +846,127 @@ table{
  text-align: left;
 }
 
+
+
+
+/*propietà pannello-mobile*/
+#pannello-mobile{
+    position: absolute;
+    right: 0;
+    width: 25%;
+    height: 68.5vh;
+    background-color: rgb(11, 55, 116);
+    display: none;
+    z-index:1;
+
+}
+
+/*propietà bottoni pannello-mobile*/
+.btn-mobile{
+    width: 100%;
+    color: cornsilk;
+    font-size: 2vw;
+    background: #0b3774;
+    text-align: center;
+
+
+}
+
+/*Proprietà Modal Aggiungi Amico*/
+#modal-aggiungi-amico>.modal-dialog>.modal-content>.modal-body{
+    padding:1rem;
+}
+#inserisci-nomeUtente{
+    outline: none;
+    font-size: 1.3rem;
+    border: 0;
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
+    line-height: 2em;
+    background: transparent;
+    color: #212529;
+    width: 100%;
+}
+.container-input{
+    float: left;
+    width: 90%;
+}
+.container-icona-ricerca{
+    line-height: 2em;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 10%;
+    float: left;
+}
+.container-listaUtenti{
+    display: none;
+}
+.listaUtenti{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.p_listaUtenti{
+    margin: 1rem 0;
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear: left;
+}
+.nomeUtente_da_aggiugere{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.cont-pulsante-aggiungi-utente{
+    text-align: center;
+    width: 50%;
+    font-size: 1.2rem;
+    float: left;
+    box-sizing: border-box;
+}
+.tab-ricerca-utente{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pulsante-aggiungi-utente:hover{
+    color:rgba(255,138,0,1);
+    cursor: pointer;
+}
+
+
+/*propieta pannnelo-playlist*/
+#pannello-Playlist{
+    display: none;
+    height: 75.8vh;
+    overflow-y: auto;
+}
+#contenitore-canzoni-playlist{
+    height: 50%;
+    overflow-y: auto;
+}
+
+.demo-playlist{
+    height: 70vh;
+}
+
+.btn-conzoni-playlist{
+    background: transparent;
+
+
+}
+.btn-playlist{
+    float: right;
+}
+.canzone{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+}
+.autore{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+}
 
 /*propità flex box*/
 .flex-container {
@@ -1054,106 +1171,28 @@ fa-paly:hover {
     background-color: rgba(255,138,0,1);
     transform: translate(25%, 25%);
 }
-
-/*propietà pannello-mobile*/
-#pannello-mobile{
-    position: absolute;
-    right: 0;
-    width: 25%;
-    height: 68.5vh;
-    background-color: rgb(11, 55, 116);
-    display: none;
-    z-index:1;
-
-}
-
-/*propietà bottoni pannello-mobile*/
-.btn-mobile{
-    width: 100%;
-    color: cornsilk;
-    font-size: 2vw;
-    background: #0b3774;
-    text-align: center;
-
-
-}
-
-/*Proprietà Modal Aggiungi Amico*/
-#modal-aggiungi-amico>.modal-dialog>.modal-content>.modal-body{
-    padding:1rem;
-}
-#inserisci-nomeUtente{
-    outline: none;
-    font-size: 1.3rem;
-    border: 0;
-    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
-    line-height: 2em;
-    background: transparent;
-    color: #212529;
-    width: 100%;
-}
-.container-input{
-    float: left;
-    width: 90%;
-}
-.container-icona-ricerca{
-    line-height: 2em;
-    font-size: 1.3rem;
-    text-align: center;
-    width: 10%;
-    float: left;
-}
-.container-listaUtenti{
-    display: none;
-}
-.listaUtenti{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-.p_listaUtenti{
-    margin: 1rem 0;
+.li_listaPlaylist{
     text-align: left;
     padding-left: 5px;
     overflow: hidden;
-    clear: left;
+    clear:left;
 }
-.nomeUtente_da_aggiugere{
-    width: 50%;
+.ordine-playlist{
+    width: 10%;
     float: left;
     box-sizing: border-box;
 }
-.cont-pulsante-aggiungi-utente{
-    text-align: center;
-    width: 50%;
-    font-size: 1.2rem;
-    float: left;
-    box-sizing: border-box;
+.p_playList{
+    color: cornsilk;
+    margin-top: 15px;
 }
-.tab-ricerca-utente{
-    box-sizing: border-box;
-    overflow: hidden;
-}
-.pulsante-aggiungi-utente:hover{
-    color:rgba(255,138,0,1);
-    cursor: pointer;
+#pause{
+    display: none;
 }
 
-.btn-conzoni-playlist{
-    background: transparent;
-    font-size: 20px;
-    top:50%;
+#labelDurataTotaleBrano{
+    transform: translateY(-1vh);
 }
-#btn-playlist{
-    float: right;
-}
-.canzone{
-    width: 40%;
-    float: left;
-    box-sizing: border-box;
-}
-.autore{
-    width: 30%;
-    float: left;
-    box-sizing: border-box;
+#labelSecondoAttual{
+    transform: translateY(-1vh);
 }
