@@ -57,7 +57,7 @@ exports.inviaMailAttivazioneAccount = function (nome, cognome, emailDestinatario
     var oggettoMail = "SoundWave - Benvenuto!";
     var contenutoMail = "Ciao " + nome + " " + cognome + ", ti diamo il benvenuto in SoundWave!\n\nSe stai leggendo questa mail hai " +
         "compilato correttamente il modulo per la registrazione del tuo account. Per completare la tua registrazione e " +
-        "poter accedere al nostro sito ti basta cliccare sl link di attivazione: " + urlAttivazione;
+        "poter accedere al nostro sito basta cliccare sul link di attivazione: " + urlAttivazione;
     var opzioni = {
         from: indirizzoMail,
         to: emailDestinatario,
@@ -65,7 +65,7 @@ exports.inviaMailAttivazioneAccount = function (nome, cognome, emailDestinatario
         text: contenutoMail
     };
     transporter.sendMail(opzioni, function (err) {
-        if (err)  console.log("Errore nel tentativo di invio della mail di attivazione dell'account a " + emailDestinatario + ".\n");
-        else console.log("Email di attivazione dell'account inviata a " + emailDestinatario + ".\n");
+        if (err)  console.log("Errore nel tentativo di invio della mail di attivazione account a " + emailDestinatario + ".\n");
+        else console.log("Email di attivazione account inviata a " + emailDestinatario + ".\n");
     });
 };

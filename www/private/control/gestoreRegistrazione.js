@@ -154,7 +154,7 @@ router.post('/registrati', function (req, res) {
                                     if (err) throw err;
                                     else {
                                         var urlAttivazione = "http://192.168.33.10:3000/Registrazione/" +
-                                            Math.floor(Math.random() * (10000000 - 1000000) + 1000000) + 1 + "/" + nomeUtente;
+                                            Math.floor(Math.random() * (99999999 - 10000000) + 10000000) + 1 + "/" + nomeUtente;
                                         mailer.inviaMailAttivazioneAccount(nome, cognome, email, urlAttivazione);
                                         res.send("OK");
                                     }
@@ -165,5 +165,59 @@ router.post('/registrati', function (req, res) {
         });
 });
 
+
+router.get('/((\\d+){9}' + '/(\\w+))', function (req, res) {
+    var nomeUtente = req.url.split("/")[2];
+    var query1 = "SELECT Attivazione " +
+        "FROM Account " +
+        "WHERE NomeUtente = '" + nomeUtente + "'";
+    con.query(query1, function (err, result, fields) {
+        if (err) throw err;
+        if(result[0].Attivazione == 1)
+            res.send('<!DOCTYPE html>\n' +
+                '<html lang="it">\n' +
+                '<head>\n' +
+                '    <link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
+                '    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
+                '    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+                '    <title>SoundWave - Attivazione Account</title>\n' +
+                '    <link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
+                '</head>\n' +
+                '\n' +
+                '<body background="../images/Sfondo2.0.jpg">\n' +
+                ' <p id="testo-home">Il tuo account è già stato attivato!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
+                '<br> <br> </p>\n' +
+                '    </div>\n' +
+                '</body>\n'+
+                '</html>');
+        else {
+            var query2 = "UPDATE Account SET Attivazione = 1 WHERE NomeUtente = '" + nomeUtente + "'";
+            con.query(query2, function (err, result, fields) {
+                if (err) throw err;
+                else {
+                    console.log("L'utente " + nomeUtente + " ha attivato l'account.\n");
+                    res.send('<!DOCTYPE html>\n' +
+                        '<html lang="it">\n' +
+                        '<head>\n' +
+                        '    <link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
+                        '    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
+                        '    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+                        '    <title>SoundWave - Attivazione Account</title>\n' +
+                        '    <link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
+                        '</head>\n' +
+                        '\n' +
+                        '<body background="../images/Sfondo2.0.jpg">\n' +
+                        ' <p id="testo-home">Il tuo account è adesso attivo!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                        ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
+                        '<br> <br> </p>\n' +
+                        '    </div>\n' +
+                        '</body>\n'+
+                        '</html>');
+                }
+            });
+        }
+    });
+});
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

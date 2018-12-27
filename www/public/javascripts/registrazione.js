@@ -18,7 +18,7 @@ var password2 = $("input[name=password2]");
                 }
                 else if (!validateName(nome.val())) {
                     nome.addClass("invalid");
-                    $("#err_registrazione").text("Il nome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
+                    $("#err_registrazione").text("Il nome deve contenere da due a quindici caratteri, iniziare con una lettera maiuscola" +
                         " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
                 }
                 else if(cognome.val() == "") {
@@ -27,7 +27,7 @@ var password2 = $("input[name=password2]");
                 }
                 else if(!validateName(cognome.val())) {
                     cognome.addClass("invalid");
-                    $("#err_registrazione").text("Il cognome deve contenere almeno due caratteri, iniziare con una lettera maiuscola" +
+                    $("#err_registrazione").text("Il cognome deve contenere da due a quindici caratteri, iniziare con una lettera maiuscola" +
                         " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
                 }
                 else if(data_nascita.val() == "") {
@@ -56,7 +56,7 @@ var password2 = $("input[name=password2]");
                 }
                 else if(!validateUsername(nomeUtente.val())) {
                     nomeUtente.addClass("invalid");
-                    $("#err_registrazione").text("Il nome utente deve contenere almeno due caratteri, iniziare con una lettera " +
+                    $("#err_registrazione").text("Il nome utente può contenere da due a quindici caratteri, iniziare con una lettera " +
                     "e non può contenere spazi o simboli.").css("display", "block");
                 }
                 else if(password1.val() == "") {
