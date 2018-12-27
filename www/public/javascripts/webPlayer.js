@@ -193,20 +193,6 @@ function logout(){
         window.location.href = '/';
     });
 }
-/*
-var song = document.getElementById("mySong");
-/*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
-fa partire o ferma la riproduzione stessa.
-function playAudio() {
-    if (song.paused) {
-        song.play();
-        $("i.fa-play").removeClass("fa-play").addClass("fa-pause");
-    } else {
-        song.pause();
-        $("i.fa-pause").removeClass("fa-pause").addClass("fa-play");
-    }
-}
-*/
 
 $(document).ready(function() {
     $("#volume-range").slider();

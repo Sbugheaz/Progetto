@@ -9,11 +9,11 @@ $(document).ready(function () {
         var temp = JSON.parse(result);
         utente = new Account(temp);
         console.log(temp);
-        $(".nomeUtente").html("<br>" + utente.nomeUtente)
+        $(".nomeUtente").html("<br>" + utente.nomeUtente);
         $('#nome').attr("value",utente.nome);
         $('#cognome').attr("value",utente.cognome);
-        $('#dataNascita').attr("value",utente.dataNascita);
+        $('#dataNascita').attr("value", utente.dataDiNascita.substring(0,10));
         $('#email').attr("value",utente.email);
     });
 });
-new Date(Date.parse(mySQLDate.replace('-','/','g')));
+//
