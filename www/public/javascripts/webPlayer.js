@@ -197,9 +197,8 @@ function logout(){
 $(document).ready(function() {
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'songs/AC_DC_Back_In_Black.mp3');
-
+    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
+    audioElement.src ='songs/AC_DC_Back_In_Black.mp3';
     audioElement.addEventListener('ended', function() {
         this.play();
     }, false);
@@ -242,11 +241,25 @@ $(document).ready(function() {
 
     $('#repeat').click(function() {
         audioElement.currentTime = 0;
-
     });
 
     $("#volume-range").on("slide", function(slideEvt) {
             audioElement.volume=slideEvt.value/100;
+    });
+
+    $("#barraDiAvanzamento").on("slide", function(slideEvt) {
+        var valoreattuale=((slideEvt.value)*(audioElement.duration))/100;
+        audioElement.currentTime =valoreattuale;
+
+
+    });
+
+    $("#barraDiAvanzamento").on("change", function(slideEvt) {
+        var valoreattuale=($("#barraDiAvanzamento").slider().val()*(audioElement.duration))/100;
+
+        audioElement.currentTime =valoreattuale;
+
+
     });
 
 });
