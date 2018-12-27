@@ -80,6 +80,14 @@ var password2 = $("input[name=password2]");
         return flag;
     }
 
+    //funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+    $(document).ready(function(){
+       $(".campi").on('input',function(){
+           $(".campi").removeClass("invalid");
+           $(".pd").css("display", "none");
+       });
+    });
+
     //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -129,13 +137,12 @@ function registrati() {
                         .css("display", "block");
                 }
                 else if(result == "ERR_3") {
-                    $("#err_registrazione").text("Il nome utente non è disponibile, prova ad inserirne un altro.").css("display", "block");
+                    $("#err_registrazione").text("Il nome utente non è disponibile, prova ad inserirne un altro.")
+                        .css("display", "block");
                 }
                 else if(result == "OK") {
                     $("#err_registrazione").text("").css("display", "none");
-                    alert("Hai quasi finito!\nClicca sul link di attivazione che riceverai via e-mail per attivare il tuo " +
-                        "account e iniziare ad accedere ai nostri servizi.");
-                    window.location.href = '/';
+                    $("#modal-linkDiConferma").modal();
                 }
             });
     }
