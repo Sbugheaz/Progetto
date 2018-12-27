@@ -1,3 +1,4 @@
 #file da ignorare
 .vagrant/*
 *.log
+.idea/*
