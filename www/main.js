@@ -71,11 +71,11 @@ function onError(error) {
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-            console.error(bind + ' richiede privilegi elevati');
+            console.error(bind + ' richiede privilegi elevati.\n');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + ' già in uso');
+            console.error(bind + ' già in uso.\n');
             process.exit(1);
             break;
         default:

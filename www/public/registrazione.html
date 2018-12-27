@@ -5,6 +5,14 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
     <title>SoundWave - Registrati</title>
     <link rel="icon" href="images/Onda.png" type="image/png" />
 </head>
@@ -18,16 +26,15 @@
     </div>
 </div>
 <form id="regForm" action="/">
-    <h1>Registrazione</h1>
+    <h1 id="intestazione">Registrazione</h1>
 
     <!-- Form registrazione -->
     <div class="container-fluid">Compila tutti i campi per registrarti.
-        <p><input placeholder="Nome" name="nome"></p>
-        <p><input placeholder="Cognome" name="cognome"></p>
-        <input type="date" name="data_nascita"
-               min="1920-01-01" max="2018-12-31">
-        <br>
-        <p>Sesso:</p>
+        <p id="campo-nome"><input class="campi" placeholder="Nome" name="nome"></p>
+        <p id="campo-cognome"><input class="campi" placeholder="Cognome" name="cognome"></p>
+        <p id="campo-dataDiNascita"> Data di nascita:<input class="campi" type="date" name="data_nascita"
+               min="1920-01-01" max="2018-12-31"></p>
+        <p id="campo-sesso">Sesso:</p>
         <label class="container">Uomo
             <input type="radio" checked="checked" name="sesso" value="M">
             <span class="checkmark"></span>
@@ -37,20 +44,54 @@
             <span class="checkmark"></span>
         </label>
 
-        <p><input placeholder="E-mail" name="email"></p>
-        <p><input placeholder="Conferma e-mail" name="email2"></p>
-        <p><input placeholder="Nome utente" name="nomeUtente"></p>
-        <p><input placeholder="Password" name="password" type="password"></p>
-        <p><input placeholder="Conferma password" name="password2" type="password"></p>
-        <p>(N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero):</p>
+        <p id="campo-email"><input class="campi" placeholder="Indirizzo e-mail" name="email"></p>
+        <p id="campo-confermaEmail"><input class="campi" placeholder="Conferma indirizzo e-mail" name="email2"></p>
+        <p id="campo-nomeUtente"><input class="campi" placeholder="Nome utente" name="nomeUtente"></p>
+        <p id="campo-password"><input class="campi" placeholder="Password" name="password" type="password"></p>
+        <p id="campo-confermaPassword"><input class="campi" placeholder="Conferma password" name="password2" type="password"></p>
+        <p id="campo-nota">(N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero)</p>
     </div>
-    <p class = "pd" style= "color: red; display:none; margin: 15px 0 0;" id="err_registrazione"></p>
+    <p class = "pd" style= "color: red; display:none; margin: 15px 0 15px;" id="err_registrazione"></p>
             <div style="text-align: center">
                 <button type="button" id="btnRegistrazione" onclick="registrati()">Registrati</button>
             </div>
-
-
 </form>
+
+
+<!-- Modal Invio Email -->
+<div class="modal" id="modal-linkDiConferma">
+    <div class="modal-dialog">
+        <div class="modal-content" style=" font-size: 15px; background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Invio Email -->
+            <div class="header" id="intestazione-linkDiConferma">
+                <h4 class="title" id="titolo-linkDiConferma"> Manca l'ultimo passaggio!</h4>
+            </div>
+
+            <!-- Body del Modal Invio Email -->
+            <div class="modal-body" style="padding: 1rem 1rem 0;">
+                <div class="contenitore-icona-linkDiConferma">
+                    <i class="fa fa-send-o" id= "invioEmail"></i>
+                </div>
+
+
+                <div class="container-message">
+                    <div class="message">
+                        <p style="margin-top: 15px; padding-left: 10px;">
+                        Clicca sul link di conferma che riceverai a breve tramite email per poter accedere al nostro sito.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer del Modal Invio Email -->
+            <div class="modal-footer" style="border-top:0; padding-top: 0;">
+                <button class="bottone-ok" type="button" data-dismiss="modal" onclick="window.location.href = '/';">Ok</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 <script src="javascripts/registrazione.js"></script>
 </html>

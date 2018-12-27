@@ -316,8 +316,8 @@ footer .extra{
   transform: translateY(-50%);
 }
 .footerVerEmail, .footerInvioEmail {
-  border-top:0px;
-  padding-top: 0px;
+  border-top:0;
+  padding-top: 0;
 }
 .bottone-ok{
   outline: none;
