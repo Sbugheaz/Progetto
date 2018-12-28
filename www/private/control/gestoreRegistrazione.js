@@ -185,10 +185,13 @@ router.get('/((\\d+){9}' + '/(\\w+))', function (req, res) {
                 '</head>\n' +
                 '\n' +
                 '<body background="../images/Sfondo2.0.jpg">\n' +
-                ' <p id="testo-home">Il tuo account è già stato attivato!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                '<div style=" width: 30%; margin: 1rem;">\n ' +
+                '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
+                '</div>\n' +
+                ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è già stato attivato!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
                 ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
-                '<br> <br> </p>\n' +
-                '    </div>\n' +
+                '</p>\n' +
+
                 '</body>\n'+
                 '</html>');
         else {
@@ -208,10 +211,13 @@ router.get('/((\\d+){9}' + '/(\\w+))', function (req, res) {
                         '</head>\n' +
                         '\n' +
                         '<body background="../images/Sfondo2.0.jpg">\n' +
-                        ' <p id="testo-home">Il tuo account è adesso attivo!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                        '<div style=" width: 30%; margin: 1rem;">\n ' +
+                        '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
+                        '</div>\n' +
+                        ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è adesso attivo!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
                         ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
-                        '<br> <br> </p>\n' +
-                        '    </div>\n' +
+                        '</p>\n' +
+                        '\n' +
                         '</body>\n'+
                         '</html>');
                 }
