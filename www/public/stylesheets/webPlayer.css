@@ -261,7 +261,6 @@ input, #barra-ricerca {
     background: transparent;
     color: cornsilk;
     width: 30vw;
-
 }
 
 /*propietà della riga all'interno della barra di ricerca */
@@ -452,6 +451,10 @@ input[type=password], select {
     border-bottom: 1px solid rgba(0,114,255,0.43);
     resize: vertical;
     outline-width: 0;
+}
+
+input.invalid {
+    border-color: red;
 }
 
 label {
