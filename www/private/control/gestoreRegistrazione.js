@@ -5,10 +5,12 @@
 var express = require('express');
 var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
-var crypto = require('crypto'); //modulo che permette la criptografia delle password
-var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
-var numeriAttivazione = []; //array per la gestione della verifica dell'account
-var numeriAccountAttivati = [];
+var crypto = require('crypto'); // modulo che permette la criptografia delle password
+var mailer = require('../mailer'); // modulo che gestisce le comunicazioni del server via mail
+/* Vettori per la gestione delle attivazioni degli account, in base al numero presente nel link di attivazione, servono a
+discriminare se un link sia valido o meno per attivare un account */
+var numeriAttivazione = []; // array che contiene i codici degli account non attivati
+var numeriAccountAttivati = []; // array che contiene i codici degli account già attivi
 
 /**
  * Inizializzazione della connessione con il database.
@@ -182,28 +184,53 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
         else if (result[0].Attivazione == 1) {
             for(var i = 0; i<numeriAccountAttivati.length; i++) {
                 if (numeriAccountAttivati[i] == req.url.split("/")[1]) {
+                    var tmp = numeriAccountAttivati[i];
+                    numeriAccountAttivati[i] = numeriAccountAttivati[numeriAccountAttivati.length-1];
+                    numeriAccountAttivati[numeriAccountAttivati.length-1] = tmp;
                     flag = true;
                     break;
                     }
                 }
             if(flag == true) {
                 res.send('<!DOCTYPE html>\n' +
-                        '<html lang="it">\n' +
-                        '<head>\n' +
-                        '    <link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
-                        '    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
-                        '    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
-                        '    <title>SoundWave - Attivazione Account</title>\n' +
-                        '    <link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
-                        '</head>\n' +
-                        '\n' +
-                        '<body background="../images/Sfondo2.0.jpg">\n' +
-                        ' <p id="testo-home">Il tuo account è già stato attivato!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                        ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
-                        '<br> <br> </p>\n' +
-                        '    </div>\n' +
-                        '</body>\n' +
-                        '</html>');
+                    '<html lang="it">\n' +
+                    '<head>\n' +
+                    '<link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
+                    '<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
+                    '<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+                    '<title>SoundWave - Attivazione Account</title>\n' +
+                    '<link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
+                    '</head>\n' +
+                    '<body background="../images/Sfondo2.0.jpg">\n' +
+                    ' <p id="testo-home">Il tuo account è già stato attivato!<br> Tra <span id ="countdown">10</span> secondi sarai reindirizzato' +
+                    ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                    ' se non vuoi aspettare.\n' +
+                    '<br> <br> </p>\n' +
+                    '    </div>\n' +
+                    '</body>\n' +
+                    '<script type="text/javascript">\n' +
+                    '    \n' +
+                    '    // Total seconds to wait\n' +
+                    '    var seconds = 11;\n' +
+                    '    \n' +
+                    '    function countdown() {\n' +
+                    '        seconds = seconds - 1;\n' +
+                    '        if (seconds < 0) {\n' +
+                    '            // Chnage your redirection link here\n' +
+                    '            window.location = "/";\n' +
+                    '        } else {\n' +
+                    '            // Update remaining seconds\n' +
+                    '            document.getElementById("countdown").innerHTML = seconds;\n' +
+                    '            // Count down using javascript\n' +
+                    '            window.setTimeout("countdown()", 1000);\n' +
+                    '        }\n' +
+                    '    }\n' +
+                    '    \n' +
+                    '    // Run countdown function\n' +
+                    '    countdown();\n' +
+                    '    \n' +
+                    '</script>' +
+                    '</html>');
                 }
             else
                 res.redirect('/Error');
@@ -230,13 +257,35 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                                 '    <title>SoundWave - Attivazione Account</title>\n' +
                                 '    <link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
                                 '</head>\n' +
-                                '\n' +
                                 '<body background="../images/Sfondo2.0.jpg">\n' +
-                                ' <p id="testo-home">Il tuo account è adesso attivo!<br> <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                                ' per essere reindirizzato alla pagina di login ed effettuare l\'accesso.\n' +
+                                ' <p id="testo-home">Il tuo account è adesso attivo!<br> Tra <span id ="countdown">10</span> secondi sarai reindirizzato' +
+                                ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
+                                ' se non vuoi aspettare.\n' +
                                 '<br> <br> </p>\n' +
                                 '    </div>\n' +
                                 '</body>\n' +
+                                '<script type="text/javascript">\n' +
+                                '    \n' +
+                                '    // Total seconds to wait\n' +
+                                '    var seconds = 11;\n' +
+                                '    \n' +
+                                '    function countdown() {\n' +
+                                '        seconds = seconds - 1;\n' +
+                                '        if (seconds < 0) {\n' +
+                                '            // Chnage your redirection link here\n' +
+                                '            window.location = "/";\n' +
+                                '        } else {\n' +
+                                '            // Update remaining seconds\n' +
+                                '            document.getElementById("countdown").innerHTML = seconds;\n' +
+                                '            // Count down using javascript\n' +
+                                '            window.setTimeout("countdown()", 1000);\n' +
+                                '        }\n' +
+                                '    }\n' +
+                                '    \n' +
+                                '    // Run countdown function\n' +
+                                '    countdown();\n' +
+                                '    \n' +
+                                '</script>' +
                                 '</html>');
                             numeriAccountAttivati.push(numeriAttivazione[numeriAttivazione.length - 1]);
                             numeriAttivazione.pop();

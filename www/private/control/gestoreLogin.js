@@ -5,9 +5,9 @@
 var express = require('express');
 var router = express.Router(); // modulo che gestisce il routing nel server
 var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
-var crypto = require('crypto'); //modulo che permette la criptografia delle password
+var crypto = require('crypto'); // modulo che permette la criptografia delle password
 var generator = require('generate-password'); //modulo che permette di generare una password casuale
-var mailer = require('../mailer'); //modulo che gestisce le comunicazioni del server via mail
+var mailer = require('../mailer'); // modulo che gestisce le comunicazioni del server via mail
 
 /**
  * Inizializzazione della connessione con il database.
@@ -104,7 +104,7 @@ router.post('/Login', function (req, res) {
             res.send('OK');
             console.log("L'utente " + result[0].NomeUtente + " ha effettuato l'accesso.\n");
         } else if (result.length == 0) {
-            res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
+            res.send("ERR_1"); // Non è stata trovata alcuna corrispondenza tra i dati inseriti e un account nel database
         } else {
             res.send("ERR_2"); // L'utente non ha verificato la mail
         }
@@ -158,7 +158,7 @@ router.post('/RecuperoPassword', function (req, res) {
                 res.send('OK');
             }
             else if (result.length == 0) {
-                res.send("ERR_1"); //Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
+                res.send("ERR_1"); // Non è stata trovata alcuna corrispondenza tra l'email inserita e un account nel database
             }
             else {
                 res.send("ERR_2"); // L'utente non ha verificato la mail
@@ -167,4 +167,4 @@ router.post('/RecuperoPassword', function (req, res) {
 });
 
 
-module.exports = router; //esporta il router cosicchè possa rispondere alle route dal file main.js del server
+module.exports = router; // Esporta il router cosicchè possa rispondere alle route dal file main.js del server

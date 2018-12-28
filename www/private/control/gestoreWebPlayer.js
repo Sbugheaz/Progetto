@@ -4,8 +4,8 @@
 
 // Moduli utilizzati
 var express = require('express');
-var router = express.Router(); // modulo che gestisce il routing nel server
-var mysql = require('mysql'); // modulo che gestisce l'interazione col database MySQL
+var router = express.Router(); //modulo che gestisce il routing nel server
+var mysql = require('mysql'); //modulo che gestisce l'interazione col database MySQL
 
 /**
  * Inizializzazione della connessione con il database.

@@ -8,7 +8,7 @@ var parseurl = require('parseurl');
 var session = require('express-session'); // modulo che si occupa della gestione delle sessioni degli utenti che accedono
                                          // al sito web.
 var bodyParser = require('body-parser'); // modulo che permette di interpretare il corpo di una risposta http
-var debug = require('debug')('progetto:server'); //modulo che permette l'inizializzazione della porta di ascolto
+var debug = require('debug')('progetto:server'); // modulo che permette l'inizializzazione della porta di ascolto
 var http = require('http'); //modulo necessario alla creazione del server HTTP
 var gestoreLogin = require('./private/control/gestoreLogin'); // control che gestisce la pagina di login
 var gestoreRegistrazione = require('./private/control/gestoreRegistrazione'); // control che gestisce la pagina di registrazione
