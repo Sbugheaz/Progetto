@@ -193,27 +193,12 @@ function logout(){
         window.location.href = '/';
     });
 }
-/*
-var song = document.getElementById("mySong");
-/*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
-fa partire o ferma la riproduzione stessa.
-function playAudio() {
-    if (song.paused) {
-        song.play();
-        $("i.fa-play").removeClass("fa-play").addClass("fa-pause");
-    } else {
-        song.pause();
-        $("i.fa-pause").removeClass("fa-pause").addClass("fa-play");
-    }
-}
-*/
 
 $(document).ready(function() {
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'songs/AC_DC_Back_In_Black.mp3');
-
+    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
+    audioElement.src ='songs/AC_DC_Back_In_Black.mp3';
     audioElement.addEventListener('ended', function() {
         this.play();
     }, false);
@@ -223,7 +208,7 @@ $(document).ready(function() {
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(49));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
 
     });
 
@@ -256,11 +241,28 @@ $(document).ready(function() {
 
     $('#repeat').click(function() {
         audioElement.currentTime = 0;
-
     });
 
     $("#volume-range").on("slide", function(slideEvt) {
             audioElement.volume=slideEvt.value/100;
+    });
+
+    $("#barraDiAvanzamento").on("slide", function(slideEvt) {
+        var valoreattuale=((slideEvt.value)*(audioElement.duration))/100;
+        audioElement.currentTime =valoreattuale;
+
+
+    });
+
+    $("#barraDiAvanzamento").on("change", function(slideEvt) {
+        var slideVal=$("#barraDiAvanzamento").slider('getValue');
+
+        console.log( (audioElement.duration *slideVal)/100);
+
+        var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
+        audioElement.currentTime=valoreattuale2;
+
+
     });
 
 });
