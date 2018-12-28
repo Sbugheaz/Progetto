@@ -202,34 +202,31 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                     '<link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
                     '</head>\n' +
                     '<body background="../images/Sfondo2.0.jpg">\n' +
-                    ' <p id="testo-home">Il tuo account è già stato attivato!<br> Tra <span id ="countdown">10</span> secondi sarai reindirizzato' +
+                    '<div style=" width: 30%; margin: 1rem;">\n ' +
+                    '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
+                    '</div>\n' +
+                    ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è già stato attivato!<br> Tra ' +
+                    '<span id ="countdown">10</span> secondi sarai reindirizzato' +
                     ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                    ' se non vuoi aspettare.\n' +
-                    '<br> <br> </p>\n' +
-                    '    </div>\n' +
-                    '</body>\n' +
+                    ' se non vuoi attendere oltre.\n' +
+                    '</p>\n' +
+                    '</body>\n'+
                     '<script type="text/javascript">\n' +
                     '    \n' +
-                    '    // Total seconds to wait\n' +
                     '    var seconds = 11;\n' +
                     '    \n' +
                     '    function countdown() {\n' +
                     '        seconds = seconds - 1;\n' +
                     '        if (seconds < 0) {\n' +
-                    '            // Chnage your redirection link here\n' +
                     '            window.location = "/";\n' +
                     '        } else {\n' +
-                    '            // Update remaining seconds\n' +
                     '            document.getElementById("countdown").innerHTML = seconds;\n' +
-                    '            // Count down using javascript\n' +
                     '            window.setTimeout("countdown()", 1000);\n' +
                     '        }\n' +
                     '    }\n' +
-                    '    \n' +
-                    '    // Run countdown function\n' +
                     '    countdown();\n' +
                     '    \n' +
-                    '</script>' +
+                    '</script>\n' +
                     '</html>');
                 }
             else
@@ -251,41 +248,38 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                             res.send('<!DOCTYPE html>\n' +
                                 '<html lang="it">\n' +
                                 '<head>\n' +
-                                '    <link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
-                                '    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
-                                '    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
-                                '    <title>SoundWave - Attivazione Account</title>\n' +
-                                '    <link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
+                                '<link rel="stylesheet" type="text/css" href="../stylesheets/login.css">\n' +
+                                '<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n' +
+                                '<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+                                '<title>SoundWave - Attivazione Account</title>\n' +
+                                '<link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
                                 '</head>\n' +
                                 '<body background="../images/Sfondo2.0.jpg">\n' +
-                                ' <p id="testo-home">Il tuo account è adesso attivo!<br> Tra <span id ="countdown">10</span> secondi sarai reindirizzato' +
+                                '<div style=" width: 30%; margin: 1rem;">\n ' +
+                                '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
+                                '</div>\n' +
+                                ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è adesso attivo!<br> Tra ' +
+                                '<span id ="countdown">10</span> secondi sarai reindirizzato' +
                                 ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                                ' se non vuoi aspettare.\n' +
-                                '<br> <br> </p>\n' +
-                                '    </div>\n' +
-                                '</body>\n' +
+                                ' se non vuoi attendere oltre.\n' +
+                                '</p>\n' +
+                                '</body>\n'+
                                 '<script type="text/javascript">\n' +
                                 '    \n' +
-                                '    // Total seconds to wait\n' +
                                 '    var seconds = 11;\n' +
                                 '    \n' +
                                 '    function countdown() {\n' +
                                 '        seconds = seconds - 1;\n' +
                                 '        if (seconds < 0) {\n' +
-                                '            // Chnage your redirection link here\n' +
                                 '            window.location = "/";\n' +
                                 '        } else {\n' +
-                                '            // Update remaining seconds\n' +
                                 '            document.getElementById("countdown").innerHTML = seconds;\n' +
-                                '            // Count down using javascript\n' +
                                 '            window.setTimeout("countdown()", 1000);\n' +
                                 '        }\n' +
                                 '    }\n' +
-                                '    \n' +
-                                '    // Run countdown function\n' +
                                 '    countdown();\n' +
                                 '    \n' +
-                                '</script>' +
+                                '</script>\n' +
                                 '</html>');
                             numeriAccountAttivati.push(numeriAttivazione[numeriAttivazione.length - 1]);
                             numeriAttivazione.pop();
