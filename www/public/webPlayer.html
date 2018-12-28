@@ -27,7 +27,6 @@
 
     <link rel="stylesheet" href="stylesheets/webPlayer.css">
     <script src="javascripts/webPlayer.js"></script>
-    <script src="javascripts/webPlayer.js"></script>
 
     <!-- Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
@@ -630,7 +629,7 @@
                                 <label for="dataNascita">Data di nascita</label>
                             </div>
                             <div class="col-50">
-                                <form action="/action_page.php">
+                                <form action="/">
                                 <input class="campi" value="" type="date" readonly id="dataNascita" name="dataNascita"
                                 min="1940-01-01" max="2001-01-01">
                                 </form>
@@ -696,15 +695,15 @@
 
 
                 <div class="container">
-                    <form action="/action_page.php">
+                    <form action="/">
 
                         <!-- Riga vecchia password -->
                         <div class="row password">
                             <div class="testo">
-                                <label class="labelPass" for="vecchiaPass">Inserire vecchia password:</label>
+                                <label class="labelPass" for="vecchiaPass">Inserisci password attuale:</label>
                             </div>
                             <div class="col-90">
-                                <input class="campiPass"  type="password" id="vecchiaPass" name="pass">
+                                <input class="campiPass"  type="password" id="vecchiaPass" name="pass1">
 
                             </div>
                             <div class="col-10">
@@ -715,10 +714,10 @@
                         <!-- Riga nuova password -->
                         <div class="row password">
                             <div class="testo">
-                                <label class="labelPass" for="nuovaPass">Inserire nuova password:</label>
+                                <label class="labelPass" for="nuovaPass">Inserisci nuova password:</label>
                             </div>
                             <div class="col-90">
-                                <input class="campiPass"  type="password" id="nuovaPass" name="pass">
+                                <input class="campiPass"  type="password" id="nuovaPass" name="pass2">
                             </div>
                             <div class="col-10">
                                 <i class="fa fa-eye iconaPassword" id="eye2" onclick="mostraPass('nuovaPass', 'eye2')"></i>
@@ -728,10 +727,10 @@
                         <!-- Riga conferma nuova password -->
                         <div class="row password">
                             <div class="testo">
-                                <label class="labelPass" for="confNuovaPass">Confermare nuova password:</label>
+                                <label class="labelPass" for="confNuovaPass">Conferma nuova password:</label>
                             </div>
                             <div class="col-90">
-                                <input class="campiPass"  type="password" id="confNuovaPass" name="pass">
+                                <input class="campiPass"  type="password" id="confNuovaPass" name="pass3">
                             </div>
                             <div class="col-10">
                                 <i class="fa fa-eye iconaPassword" id="eye3" onclick="mostraPass('confNuovaPass', 'eye3')"></i>
@@ -744,12 +743,12 @@
                     <p style="text-align: center;"></br>*N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero.</p>
                 </div>
             </div>
+            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_password"></p>
 
             <!-- Footer del Modal modifica password -->
             <div class="modal-footer">
-                <button class="salvaModifiche" type="button">Conferma modifiche</button>
+                <button class="salvaModifiche" type="button" onclick="modificaPassword()">Conferma modifiche</button>
             </div>
-
         </div>
     </div>
 </div>

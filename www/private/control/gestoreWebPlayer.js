@@ -6,6 +6,8 @@
 var express = require('express');
 var router = express.Router(); //modulo che gestisce il routing nel server
 var mysql = require('mysql'); //modulo che gestisce l'interazione col database MySQL
+var crypto = require('crypto'); // modulo che permette la criptografia delle password
+
 
 /**
  * Inizializzazione della connessione con il database.
@@ -37,6 +39,18 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
 });
+
+
+/**
+ * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
+ * @param {string} password - La password in chiaro
+ * @returns {string} - La password criptata.
+ */
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('base64');
+}
+
+
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
@@ -75,6 +89,44 @@ router.get('/utente', function (req, res) {
             //Se la query non trova alcun utente il server manda un errore
             else res.send("ERR");
         });
+});
+
+function validatePassword(password) {
+    var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return testo.test(String(password));
+}
+/**
+ * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ */
+router.post('/modificaPassword', function (req, res) {
+    var password = req.body.vecchiaPassword;
+    var nuovaPassword = req.body.nuovaPassword;
+    var confermaNuovaPassword = req.body.confermaNuovaPassword;
+    var query1 = "SELECT IDUtente " +
+        "FROM Account " +
+        "WHERE IDUtente = '" + req.session.idUtente + "' AND Password = '" + hashPassword(password) + "'";
+    con.query(query1, function (err, result, fields) {
+        if (err) throw err;
+        if(result == 0) // La vecchia password non coincide con quella utilizzata dall'utente
+            res.send("ERR_1");
+        else {
+            if(password == nuovaPassword)
+                res.send("ERR_2");
+            else if (!validatePassword(nuovaPassword)) { // La password non rispetta il formato richiesto
+                res.send("ERR_3");
+            }
+            else if (nuovaPassword != confermaNuovaPassword) { // Le password non coincidono
+                res.send("ERR_4");
+            }
+            else {
+                var query2 = "UPDATE Account SET Password = '" + hashPassword(nuovaPassword) + "' WHERE IDUtente= '" + result[0].IDUtente +" '";
+                con.query(query2, function (err, result, fields) {
+                    if (err) throw err;
+                });
+                res.send("OK");
+            }
+        }
+    });
 });
 
 

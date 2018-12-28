@@ -80,7 +80,7 @@ var password2 = $("input[name=password2]");
         return flag;
     }
 
-    //funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+    //Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
     $(document).ready(function(){
        $(".campi").on('input',function(){
            $(".campi").removeClass("invalid");
@@ -133,10 +133,12 @@ function registrati() {
                         .css("display", "block");
                 }
                 else if (result == "ERR_2") {
+                    email1.addClass("invalid");
                     $("#err_registrazione").text("Esiste già un account registrato con questa e-mail, prova ad inserirne un'altra.")
                         .css("display", "block");
                 }
                 else if(result == "ERR_3") {
+                    nomeUtente.addClass("invalid");
                     $("#err_registrazione").text("Il nome utente non è disponibile, prova ad inserirne un altro.")
                         .css("display", "block");
                 }

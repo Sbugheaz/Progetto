@@ -119,8 +119,8 @@ router.get('/', function (req, res) {
 
 
 /**
- * Funzione che gestisce il modulo di registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti
- * e che nome utente ed e-mail non siano già utilizzati da un altro account. Invia i dati al DBMS e una mail contenente un
+ * Funzione che gestisce la registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti e che
+ * nome utente ed e-mail non siano già utilizzati da un altro account. Invia i dati al DBMS e una mail contenente un
  * link di attivazione all'utente che ha effettuto la registrazione.
  */
 router.post('/registrati', function (req, res) {

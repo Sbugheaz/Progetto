@@ -170,6 +170,7 @@ button:focus {outline:0;}
 #btnRegistrazione {
     border-radius: 4px;
     background-color: #bbbbbb;
+    outline: none;
 }
 #btnRegistrazione:hover {
     background-color: rgba(255,138,0,1);

@@ -183,17 +183,6 @@ $(window).on('load', function () {
 });
 
 
-
-//Funzioni che gestiscono la comunicazione con il server
-
-/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
-pagina di login*/
-function logout(){
-    $.get("/Logout", function(){
-        window.location.href = '/';
-    });
-}
-
 $(document).ready(function() {
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
@@ -268,5 +257,52 @@ $(document).ready(function() {
 });
 
 
+
+//Funzioni che gestiscono la comunicazione con il server
+
+/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
+pagina di login*/
+function logout(){
+    $.get("/Logout", function(){
+        window.location.href = '/';
+    });
+}
+
+
+// Funzione per la modifica della password
+function modificaPassword() {
+    var password1 = $("input[name=pass1]").val();
+    var password2 = $("input[name=pass2]").val();
+    var password3 = $("input[name=pass3]").val();
+    if(password1 == "")
+        $("#err_password").text("Inserisci la tua password attuale.").css("display", "block");
+    else if(password2 == "")
+        $("#err_password").text("Inserisci la nuova password.").css("display", "block");
+    else if(password3 == "")
+        $("#err_password").text("Conferma la nuova password.").css("display", "block");
+    else {
+        $.post("/WebPlayer/modificaPassword",
+            {
+                vecchiaPassword: password1,
+                nuovaPassword: password2,
+                confermaNuovaPassword: password3,
+            },
+            function (result) {
+                if (result == "ERR_1") {
+                    $("#err_password").text("La password inserita non coincide con quella attualmente utilizzata.")
+                        .css("display", "block");
+                } else if (result == "ERR_2") {
+                    $("#err_password").text("Inserisci una password diversa da quella attuale.").css("display", "block");
+                } else if (result == "ERR_3") {
+                    $("#err_password").text("La password deve rispettare il formato richiesto.").css("display", "block");
+                } else if (result == "ERR_4") {
+                    $("#err_password").text("Le password non coincidono.").css("display", "block");
+                } else if (result == "OK") {
+                    $("#err_password").text("").css("display", "none");
+                    alert("Password modificata con successo!");
+                }
+            });
+    }
+}
 
 
