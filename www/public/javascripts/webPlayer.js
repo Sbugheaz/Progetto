@@ -208,7 +208,7 @@ $(document).ready(function() {
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(49));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
 
     });
 
@@ -255,9 +255,12 @@ $(document).ready(function() {
     });
 
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
-        var valoreattuale=($("#barraDiAvanzamento").slider().val()*(audioElement.duration))/100;
+        var slideVal=$("#barraDiAvanzamento").slider('getValue');
 
-        audioElement.currentTime =valoreattuale;
+        console.log( (audioElement.duration *slideVal)/100);
+
+        var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
+        audioElement.currentTime=valoreattuale2;
 
 
     });
