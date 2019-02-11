@@ -379,7 +379,7 @@ function modificaAccount() {
                     cognome.addClass("invalid");
                 } else if (result == "OK") {
                     $("#err_account").text("").css("display", "none");
-                    $(".modal-footer").css("display", "none");
+                    $("#footerModalAccount").css("display", "none");
                     disabilitaScrittura('nome');
                     disabilitaScrittura('cognome');
                     disabilitaScrittura('dataNascita');

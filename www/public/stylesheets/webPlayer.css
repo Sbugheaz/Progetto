@@ -8,6 +8,7 @@ body {
 body > .container-fluid {
     padding-left: 0;
     padding-right: 0;
+    overflow-y: hidden;
 }
 
 
@@ -998,11 +999,18 @@ table{
 #pannello-Playlist{
     display: none;
     height: 75.8vh;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 #contenitore-canzoni-playlist{
     height: 50%;
+
+}
+#continitore-lista-playlist{
+    height: 80%;
     overflow-y: auto;
+}
+#contenitore-paragrafo{
+    height: 20%;
 }
 
 .demo-playlist{
@@ -1026,6 +1034,20 @@ table{
     width: 30%;
     float: left;
     box-sizing: border-box;
+}
+.nomePlaylist{
+    color: cornsilk;
+    font-size: 13px;
+    transform: translate(0,100%);
+}
+.contenitore-nomePlaylist{
+    position: relative;
+    transform: translate(25%,25%);
+    height: 50px;
+    width: 100px;
+    text-align: center;
+
+
 }
 
 /*propità flex box*/
