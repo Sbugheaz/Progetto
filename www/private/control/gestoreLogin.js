@@ -71,7 +71,7 @@ router.get('/', function (req, res) {
                                                sia consistente, sia undefined o meno e restituisce le pagine in base a
                                                questo */
         res.sendFile('public/login.html', {root: '/var/www/html/'});
-        console.log("Pagina di login inviata a " + req.ip.substr(7) + ".\n");
+        console.log("Pagina di login inviata a " + req.ip.substr(7) + "\n");
     }
     else {
         res.sendFile('public/webPlayer.html', { root: '/var/www/html/' });
