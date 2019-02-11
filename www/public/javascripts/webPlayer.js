@@ -326,7 +326,7 @@ function modificaPassword() {
                     password3.addClass("invalid");
                 } else if (result == "OK") {
                     $("#err_password").text("").css("display", "none");
-                    alert("Password modificata con successo!");
+                    $("#modal-successoModPass").modal();
                 }
             });
     }
