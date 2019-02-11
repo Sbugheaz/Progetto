@@ -383,7 +383,7 @@ function modificaAccount() {
                     disabilitaScrittura('nome');
                     disabilitaScrittura('cognome');
                     disabilitaScrittura('dataNascita');
-                    alert("Dati account modificati con successo!");
+                    $("#modal-successoModDatiAccount").modal();
                 }
             });
     }
