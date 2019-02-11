@@ -732,8 +732,9 @@ table{
     margin: auto;
 }
 
-/*Proprietà Modal Successo Modifica Password*/
-#intestazione-successoModPass{
+/*Proprietà Modal Successo Modifica Password
+ e Modal Successo Modifica Dati Account*/
+#intestazione-successoModPass, #intestazione-successoModDatiAccount{
     background-color: #898989;
     text-align: center;
     padding: 0.5rem 1rem;
@@ -741,10 +742,10 @@ table{
     border-top-right-radius: .3rem;
     border-bottom: 2px solid rgba(0,114,255,0.43);
 }
-#titolo-successoModPass{
+#titolo-successoModPass, #titolo-successoModDatiAccount{
     margin: 0;
 }
-.contenitore-icona-successoModPass {
+.contenitore-icona-successoModPass, .contenitore-icona-successoModDatiAccount {
     width: 20%;
     float: left;
     font-size: 8vh;
@@ -763,7 +764,7 @@ table{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.footerSuccessoModPass {
+.footerSuccessoModPass, .footerSuccessoModDatiAccount {
     border-top:0px;
     padding-top: 0px;
 }
