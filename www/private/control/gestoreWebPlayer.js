@@ -181,5 +181,21 @@ router.post('/modificaAccount', function (req, res) {
 });
 
 
+/**
+ * Restituisce i dati degli amici dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ */
+router.get('/amici', function (req, res) {
+    var query = "SELECT Nome, Cognome, NomeUtente " +
+        "FROM Amicizia, Account " +
+        "WHERE Amicizia.Ref2_IDUtente = Account.IDUtente AND Amicizia.Ref1_IDUtente = " + req.session.idUtente;
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        //Se la query restituisce l'utente lo manda al client
+        if(result.length != 0) res.send(JSON.stringify(result));
+        //Se la query non trova alcun utente il server manda un errore
+        else res.send("ERR");
+    });
+});
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
