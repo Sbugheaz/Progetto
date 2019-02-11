@@ -5,7 +5,7 @@ var pannelloSecondario;
 
 
 
-//funzione che mostra le password nascoste
+//Funzione che mostra le password nascoste
 function mostraPass(id, id2){
     var x = document.getElementById(id);
     var y = document.getElementById(id2);
@@ -18,19 +18,25 @@ function mostraPass(id, id2){
     }
 }
 
-//funzione che rende modificabili i campi dei form
+//Funzione che rende modificabili i campi del form
 function abilitaScrittura(id){
     document.getElementById(id).readOnly = false;
 }
 
-//funzione che mostra il footer del modal profilo quando un campo viene modificato
-$(document).ready(function(){
-$(".campi").on('input',function(){
+//Funzione che disabilita la modifica dei campi del form
+function disabilitaScrittura(id){
+    document.getElementById(id).readOnly = true;
+}
+
+//Funzione che mostra il footer del modal profilo quando un campo viene modificato
+$(document).ready(function() {
+$(".campi").on('input',function() {
     $(".modal-footer").show("display");
-});
+    });
 });
 
-//funzione che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
+
+//Funzione che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
 $(document).ready(function(){
     $(".campoNomeUtente").on('input',function(){
         $(".container-listaUtenti").show();
@@ -38,7 +44,7 @@ $(document).ready(function(){
 });
 
 
-//funzione che gestisce la sovrapposizione dei modal
+//Funzione che gestisce la sovrapposizione dei modal
 $(document).ready(function () {
     $('#openBtn').click(function () {
         $('#myModal').modal({
@@ -54,7 +60,7 @@ $(document).ready(function () {
     });
 });
 
-//funzione che permette di aprire il pannello-amicizie
+//Funzione che permette di aprire il pannello-amicizie
 $(document).ready(function(){
     $(".pulsanteGestioneAmicizie,#gest-amicizie").click(function(){
         if(pannelloAttivo!=null){
@@ -65,7 +71,8 @@ $(document).ready(function(){
 
     });
 });
-//funzione che permette di aprire il pannello degli amici online
+
+//Funzione che permette di aprire il pannello degli amici online
 $(document).ready(function(){
     $("#amici-online").click(function(){
         if(pannelloAttivo!=null){
@@ -76,7 +83,8 @@ $(document).ready(function(){
 
     });
 });
-//funzione che permette di aprire il pannello mobile
+
+//Funzione che permette di aprire il pannello mobile
 $(document).ready(function(){
     $("#altro").click(function(){
         $("#pannello-mobile").show(500);
@@ -87,7 +95,7 @@ $(document).ready(function(){
 
 
 
-//funzione che chiude il pannello-mobile
+//Funzione che chiude il pannello-mobile
 $(document).mouseup(function (e) {
     try {
         if (!pannelloSecondario.is(e.target) // if the target of the click isn't the container...
@@ -100,8 +108,7 @@ $(document).mouseup(function (e) {
         }
 });
 
-
-//funzione che permentte di aprire il pannello-playlist
+//Funzione che permentte di aprire il pannello-playlist
 $(document).ready(function(){
     $(".pulsanteA-playlist").click(function(){
         if(pannelloAttivo!=null){
@@ -112,8 +119,6 @@ $(document).ready(function(){
 
     });
 });
-
-
 
 $(document).ready(function(){
     var block = false;
@@ -127,8 +132,6 @@ $(document).ready(function(){
         block=false;
         }
     });
-
-
 
     $("#pulsante-Logout").mouseleave(function(){
         if(!block) {
@@ -261,10 +264,20 @@ $(document).ready(function() {
 //Funzioni che gestiscono la comunicazione con il server
 
 
-//Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+// modifica della password
 $(document).ready(function(){
     $(".campiPass").on('input',function(){
         $(".campiPass").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+});
+
+//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+// modifica dei dati dell'account
+$(document).ready(function(){
+    $(".campi").on('input',function(){
+        $(".campi").removeClass("invalid");
         $(".pd").css("display", "none");
     });
 });
@@ -327,6 +340,50 @@ function modificaPassword() {
                 } else if (result == "OK") {
                     $("#err_password").text("").css("display", "none");
                     alert("Password modificata con successo!");
+                }
+            });
+    }
+}
+
+// Funzione per la modifica dei dati dell'account
+function modificaAccount() {
+    var nome = $("input[name=nome]");
+    var cognome = $("input[name=cognome]");
+    var dataNascita = $("input[name=dataNascita]");
+    if (nome.val() == "") {
+        $("#err_account").text("Inserisci il tuo nome.").css("display", "block");
+        nome.addClass("invalid");
+    } else if (cognome.val() == "") {
+        $("#err_account").text("Inserisci il tuo cognome.").css("display", "block");
+        cognome.addClass("invalid");
+    } else if (dataNascita.val() == "") {
+        $("#err_account").text("Inserisci la tua data di nascita.").css("display", "block");
+        dataNascita.addClass("invalid");
+    } else {
+        $.post("/WebPlayer/modificaAccount",
+            {
+                nome: nome.val(),
+                cognome: cognome.val(),
+                dataNascita: dataNascita.val(),
+            },
+            function (result) {
+                if (result == "ERR_1") {
+                    $("#err_account").text("Errore nella comunicazione con il database.").css("display", "block");
+                } else if (result == "ERR_2") { // La password non rispetta il formato richiesto
+                    $("#err_account").text("Il nome deve contenere da due a quindici caratteri, iniziare con una lettera maiuscola" +
+                        " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
+                    nome.addClass("invalid");
+                } else if (result == "ERR_3") { // La password non rispetta il formato richiesto
+                    $("#err_account").text("Il cognome deve contenere da due a quindici caratteri, iniziare con una lettera maiuscola" +
+                        " ed essere seguito da lettere minuscole. Non può contenere numeri o simboli.").css("display", "block");
+                    cognome.addClass("invalid");
+                } else if (result == "OK") {
+                    $("#err_account").text("").css("display", "none");
+                    $(".modal-footer").css("display", "none");
+                    disabilitaScrittura('nome');
+                    disabilitaScrittura('cognome');
+                    disabilitaScrittura('dataNascita');
+                    alert("Dati account modificati con successo!");
                 }
             });
     }

@@ -47,7 +47,7 @@
         <div class="container-fluid">
             <!-- Brand/logo -->
             <div class="col-md-2">
-                <a class="navbar-brand" id="logo" href="webPlayer">
+                <a class="navbar-brand" id="logo">
                     <img src="images/Logo.png" alt="logo" style="width:70px;">
                 </a>
             </div>
@@ -630,7 +630,7 @@
                             <div class="col-50">
                                 <form action="/">
                                 <input class="campi" value="" type="date" readonly id="dataNascita" name="dataNascita"
-                                min="1940-01-01" max="2001-01-01">
+                                min="1940-01-01" max="2010-01-01">
                                 </form>
                             </div>
                             <div class="col-25dx">
@@ -666,10 +666,11 @@
                     </form>
                 </div>
             </div>
+            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_account"></p>
 
             <!-- Footer del Modal Profilo -->
             <div class="modal-footer footerProfilo">
-                <button class="salvaModifiche" type="button">Conferma modifiche</button>
+                <button class="salvaModifiche" type="button" onclick="modificaAccount()">Conferma modifiche</button>
             </div>
         </div>
     </div>

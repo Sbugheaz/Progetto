@@ -1,5 +1,4 @@
-
-/*costruttore dell'oggetto canzone*/
+/*Costruttore dell'oggetto canzone*/
 function Brano(brano){
     this.idBrano = brano.IDBrano;
     this.titolo = brano.Titolo;
@@ -11,7 +10,7 @@ function Brano(brano){
     this.url_brano = brano.Url_brano;
 }
 
-/*costruttore dell'oggetto Utente*/
+/*Costruttore dell'oggetto Utente*/
 function Account(account){
     this.idUtente = account[0].IDUtente;
     this.nomeUtente = account[0].NomeUtente;
@@ -25,7 +24,7 @@ function Account(account){
     this.attivazione = account[0].Attivazione;
 }
 
-/*costruttore dell'oggetto Playlist*/
+/*Costruttore dell'oggetto Playlist*/
 function Playlist(playlist){
     this.idPlaylist = playlist.IDPlaylist;
     this.nome = playlist.Nome;

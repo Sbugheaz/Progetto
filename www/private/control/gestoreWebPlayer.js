@@ -52,6 +52,28 @@ function hashPassword(password) {
 
 
 /**
+ * Funzione che controlla che la password rispetti la formattazione richiesta.
+ * @param password - Password da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che la password sia formattata correttamente o meno.
+ */
+function validatePassword(password) {
+    var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return testo.test(String(password));
+}
+
+
+/**
+ * Funzione che controlla che il nome e il cognome rispettino la formattazione richiesta.
+ * @param nome - Stringa da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che la stringa sia formattata correttamente o meno.
+ */
+function validateName(nome) {
+    var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+    return testo.test(String(nome));
+}
+
+
+/**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
  */
@@ -91,12 +113,9 @@ router.get('/utente', function (req, res) {
         });
 });
 
-function validatePassword(password) {
-    var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    return testo.test(String(password));
-}
+
 /**
- * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ * Aggiorna la password dell'utente a seguito di una sua modifica.
  */
 router.post('/modificaPassword', function (req, res) {
     var password = req.body.vecchiaPassword;
@@ -128,6 +147,39 @@ router.post('/modificaPassword', function (req, res) {
         }
     });
 });
+
+
+/**
+ * Aggiorna i dati dell'account a seguito di una modifica dell'utente
+ */
+router.post('/modificaAccount', function (req, res) {
+    var nome = req.body.nome;
+    var cognome = req.body.cognome;
+    var dataNascita = req.body.dataNascita;
+    var query1 = "SELECT IDUtente " +
+        "FROM Account " +
+        "WHERE IDUtente = '" + req.session.idUtente + "'";
+    con.query(query1, function (err, result, fields) {
+        if (err) throw err;
+        if(result == 0)
+            res.send("ERR_1");
+        else if (!validateName(nome)) { // Il nome non rispetta il formato corretto
+            res.send("ERR_2");
+        }
+        else if (!validateName(cognome)) { // Il cognome non rispetta il formato corretto
+            res.send("ERR_3");
+        }
+        else {
+            var query2 = "UPDATE Account SET Nome = '" + nome + "', Cognome = '" + cognome +  "', DataDiNascita = '" +
+                dataNascita + "' WHERE IDUtente= '" + result[0].IDUtente +" '";
+            con.query(query2, function (err, result, fields) {
+                if (err) throw err;
+            });
+            res.send("OK");
+            }
+    });
+});
+
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

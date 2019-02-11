@@ -10,4 +10,3 @@ $(document).ready(function () {
         $('#email').attr("value",utente.email);
     });
 });
-//
