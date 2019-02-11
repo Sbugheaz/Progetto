@@ -183,17 +183,6 @@ $(window).on('load', function () {
 });
 
 
-
-//Funzioni che gestiscono la comunicazione con il server
-
-/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
-pagina di login*/
-function logout(){
-    $.get("/Logout", function(){
-        window.location.href = '/';
-    });
-}
-
 $(document).ready(function() {
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
@@ -208,7 +197,7 @@ $(document).ready(function() {
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(49));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
 
     });
 
@@ -255,9 +244,12 @@ $(document).ready(function() {
     });
 
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
-        var valoreattuale=($("#barraDiAvanzamento").slider().val()*(audioElement.duration))/100;
+        var slideVal=$("#barraDiAvanzamento").slider('getValue');
 
-        audioElement.currentTime =valoreattuale;
+        console.log( (audioElement.duration *slideVal)/100);
+
+        var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
+        audioElement.currentTime=valoreattuale2;
 
 
     });
@@ -266,4 +258,76 @@ $(document).ready(function() {
 
 
 
+//Funzioni che gestiscono la comunicazione con il server
 
+
+//Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+$(document).ready(function(){
+    $(".campiPass").on('input',function(){
+        $(".campiPass").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+});
+
+// Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
+$('#myModalPass').on('hidden.bs.modal', function () {
+    window.alert("Hai chiuso il modal!");
+    $(this).find('form').trigger('reset');
+    $("#err_password").text("").css("display", "none");
+});
+
+
+/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
+pagina di login*/
+function logout(){
+    $.get("/Logout", function(){
+        window.location.href = '/';
+    });
+}
+
+
+// Funzione per la modifica della password
+function modificaPassword() {
+    var password1 = $("input[name=pass1]");
+    var password2 = $("input[name=pass2]");
+    var password3 = $("input[name=pass3]");
+    if(password1.val() == "") {
+        $("#err_password").text("Inserisci la tua password attuale.").css("display", "block");
+        password1.addClass("invalid");
+    }
+    else if(password2.val() == "") {
+        $("#err_password").text("Inserisci la nuova password.").css("display", "block");
+        password2.addClass("invalid");
+    }
+    else if(password3.val() == "") {
+        $("#err_password").text("Conferma la nuova password.").css("display", "block");
+        password3.addClass("invalid");
+    }
+    else {
+        $.post("/WebPlayer/modificaPassword",
+            {
+                vecchiaPassword: password1.val(),
+                nuovaPassword: password2.val(),
+                confermaNuovaPassword: password3.val(),
+            },
+            function (result) {
+                if (result == "ERR_1") {
+                    $("#err_password").text("La password inserita non coincide con quella attualmente utilizzata.")
+                        .css("display", "block");
+                    password1.addClass("invalid");
+                } else if (result == "ERR_2") {
+                    $("#err_password").text("Inserisci una password diversa da quella attuale.").css("display", "block");
+                    password2.addClass("invalid");
+                } else if (result == "ERR_3") {
+                    $("#err_password").text("La password deve rispettare il formato richiesto.").css("display", "block");
+                    password2.addClass("invalid");
+                } else if (result == "ERR_4") {
+                    $("#err_password").text("Le password non coincidono.").css("display", "block");
+                    password3.addClass("invalid");
+                } else if (result == "OK") {
+                    $("#err_password").text("").css("display", "none");
+                    alert("Password modificata con successo!");
+                }
+            });
+    }
+}

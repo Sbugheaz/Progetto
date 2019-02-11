@@ -4,11 +4,10 @@
 * - WebPlayer, pagina che adempie a tutte le funzionalità per cui il sito è stato progettato.
  */
 var express = require('express');
-var parseurl = require('parseurl');
 var session = require('express-session'); // modulo che si occupa della gestione delle sessioni degli utenti che accedono
                                          // al sito web.
 var bodyParser = require('body-parser'); // modulo che permette di interpretare il corpo di una risposta http
-var debug = require('debug')('progetto:server'); //modulo che permette l'inizializzazione della porta di ascolto
+var debug = require('debug')('progetto:server'); // modulo che permette l'inizializzazione della porta di ascolto
 var http = require('http'); //modulo necessario alla creazione del server HTTP
 var gestoreLogin = require('./private/control/gestoreLogin'); // control che gestisce la pagina di login
 var gestoreRegistrazione = require('./private/control/gestoreRegistrazione'); // control che gestisce la pagina di registrazione
@@ -121,13 +120,13 @@ app.use(bodyParser.urlencoded({
 
 
 // Route per la pagina principale
-app.use('/', gestoreLogin);
+app.use('/', gestoreLogin); // Passa tutte le richieste della root principale al gestoreLogin
 
 // Route per la pagina di registrazione
-app.use('/Registrazione', gestoreRegistrazione);
+app.use('/Registrazione', gestoreRegistrazione); // Passa tutte le richieste /Registrazione al gestoreRegistrazione
 
 // Route per la pagina del web player
-app.use('/WebPlayer', gestoreWebPlayer);
+app.use('/WebPlayer', gestoreWebPlayer); // Passa tutte le richieste /WebPlayer al gestoreWebPlayer
 
 /**
  * Gestisce gli errori 404 di pagina non trovata. Deve essere messa più in basso rispetto a tutte le altre funzioni, di modo che intercetti
