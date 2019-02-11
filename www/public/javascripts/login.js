@@ -1,4 +1,4 @@
-//Funzione che gestisce la sovrapposizione dei modal
+// Funzione che gestisce la sovrapposizione dei modal
 $(document).ready(function () {
     $('#openBtn').click(function () {
         $('#myModal').modal({
@@ -14,9 +14,17 @@ $(document).ready(function () {
     });
 });
 
-//Funzioni che gestiscono la comunicazione con il server
 
-//Invia i dati inseriti nella pagina di login dall'utente al server e in caso siano corretti carica la pagina webPlayer
+// Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
+$('#myModal').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+    $("#err_recuperoPass").text("").css("display", "none");
+});
+
+
+// Funzioni che gestiscono la comunicazione con il server
+
+// Invia i dati inseriti nella pagina di login dall'utente al server e in caso siano corretti carica la pagina webPlayer
 function login(){
     if($('input[name=username]').val() == "" || $('input[name=username]').val() == "")
         $("#err_dati_accesso").text("Inserisci nome utente e password per accedere.").css("display", "block");
@@ -40,7 +48,7 @@ function login(){
     }
 }
 
-//Gestisce il recupero della password, inviando al server l'email.
+// Gestisce il recupero della password, inviando al server l'email.
 function recuperoPassword(){
     if($("input[name=email]").val() == "")
         $("#err_recuperoPass").text("Inserisci il tuo indirizzo e-mail.").css("display", "block");

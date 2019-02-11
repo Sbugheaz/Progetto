@@ -205,10 +205,9 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                     '<div style=" width: 30%; margin: 1rem;">\n ' +
                     '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
                     '</div>\n' +
-                    ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è già stato attivato!<br> Tra ' +
-                    '<span id ="countdown">10</span> secondi sarai reindirizzato' +
-                    ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                    ' se non vuoi attendere oltre.\n' +
+                    ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è già stato attivato!<br> Sarai ' +
+                    'reindirizzato alla pagina principale tra <span id ="countdown">10</span> secondi.\n' +
+                    '<a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a> se non vuoi attendere oltre.\n' +
                     '</p>\n' +
                     '</body>\n'+
                     '<script type="text/javascript">\n' +
@@ -258,10 +257,9 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                                 '<div style=" width: 30%; margin: 1rem;">\n ' +
                                 '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
                                 '</div>\n' +
-                                ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è adesso attivo!<br> Tra ' +
-                                '<span id ="countdown">10</span> secondi sarai reindirizzato' +
-                                ' alla pagina principale. <a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a>' +
-                                ' se non vuoi attendere oltre.\n' +
+                                ' <p id="testo-home" style="margin: 3rem auto;">Il tuo account è adesso attivo!<br> Sarai ' +
+                                'reindirizzato alla pagina principale tra <span id ="countdown">10</span> secondi.\n' +
+                                '<a class="lk" onclick="window.location.href=\'/\'">Clicca qui</a> se non vuoi attendere oltre.\n' +
                                 '</p>\n' +
                                 '</body>\n'+
                                 '<script type="text/javascript">\n' +

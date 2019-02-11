@@ -269,6 +269,13 @@ $(document).ready(function(){
     });
 });
 
+// Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
+$('#myModalPass').on('hidden.bs.modal', function () {
+    window.alert("Hai chiuso il modal!");
+    $(this).find('form').trigger('reset');
+    $("#err_password").text("").css("display", "none");
+});
+
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/
@@ -324,5 +331,3 @@ function modificaPassword() {
             });
     }
 }
-
-
