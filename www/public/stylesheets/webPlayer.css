@@ -308,7 +308,7 @@ input, #barra-ricerca {
 }
 /*slider barra player*/
 div.slider-handle.min-slider-handle.round{
-    background-image: linear-gradient(to bottom, #ff9019 0, #ff5c02 100%);
+    background-image: linear-gradient(to bottom, #ff0000 0, #ff8c02 100%);
 }
 
 
@@ -320,7 +320,7 @@ div.slider-handle.min-slider-handle.round{
 
 
 div.slider-selection{
-    background-image: linear-gradient(to bottom,#f3ad62 0,#f3b275 100%);
+    background-image: linear-gradient(to bottom,#f9430c 0,#ff922b 100%);
 }
 
 

@@ -18,6 +18,7 @@ $(document).ready(function () {
         var la = JSON.parse(result);
         for(i=0; i<la.length; i++) {
             listaAmici[i] = new Account(la[i]);
+            console.log(listaAmici[i]);
         }
     });
 
