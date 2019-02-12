@@ -239,7 +239,9 @@ ul.demo {
     border-color: transparent;
 
 }
-
+.demo-ricerca{
+    height:auto;
+}
 #barra-ricerca:focus {
     box-shadow: 0 0;
     border-color: #eaece5;
@@ -360,11 +362,23 @@ div.slider-selection{
 
 
 
-/*contenitore Brani recenti*/
-#pannello-BraniRecenti{
+
+/*Pannello contenente i risultati di ricerca */
+#pannello-Ricerca{
     display: none;
     height: 75.8vh;
 }
+/*Propità pannello di ricerca */
+.elenco-canzone-Autore{
+    font-size:0.8rem;
+}
+.btn-pannelloRicerca{
+    float: right;
+}
+btn-conzoni-ricerca{
+    background: transparent;
+}
+
 /*contenitore Generi*/
 #pannello-Generi{
     display: none;
