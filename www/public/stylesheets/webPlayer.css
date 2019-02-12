@@ -65,9 +65,6 @@ button:focus {outline:0;}
     font-size: 0.8rem;
     margin-top: 1vh;
 }
-.elenco-amici{
-    font-size:0.8rem;
-}
 
 #colonna-sinistra, #colonna-destra {
     display: none;
@@ -746,8 +743,9 @@ table{
     margin: auto;
 }
 
-/*Proprietà Modal Successo Modifica Password*/
-#intestazione-successoModPass{
+/*Proprietà Modal Successo Modifica Password
+ e Modal Successo Modifica Dati Account*/
+#intestazione-successoModPass, #intestazione-successoModDatiAccount{
     background-color: #898989;
     text-align: center;
     padding: 0.5rem 1rem;
@@ -755,10 +753,10 @@ table{
     border-top-right-radius: .3rem;
     border-bottom: 2px solid rgba(0,114,255,0.43);
 }
-#titolo-successoModPass{
+#titolo-successoModPass, #titolo-successoModDatiAccount{
     margin: 0;
 }
-.contenitore-icona-successoModPass {
+.contenitore-icona-successoModPass, .contenitore-icona-successoModDatiAccount {
     width: 20%;
     float: left;
     font-size: 8vh;
@@ -777,7 +775,7 @@ table{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.footerSuccessoModPass {
+.footerSuccessoModPass, .footerSuccessoModDatiAccount {
     border-top:0px;
     padding-top: 0px;
 }
@@ -884,12 +882,7 @@ table{
 }
 .demo-mobile{
     max-height: 70vh;
-
 }
-
-
-
-
 .demo-mobile>.p_listaAmici{
     padding-left: 5px;
     overflow: hidden;
@@ -1290,4 +1283,67 @@ fa-paly:hover {
 }
 #labelSecondoAttual{
     transform: translateY(-1vh);
+}
+
+/*Proprietà lista amici*/
+.intestazione-listaAmici{
+    color:cornsilk;
+    margin: 0;
+}
+.titolo-listaAmici{
+    text-align: center;
+    margin: 3vh 0 1rem 0;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+}
+.nomeAmici{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.cognomeAmici{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeUtenteAmici{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.listaAmici{
+    font-size: 0.8rem;
+    overflow-y: auto;
+}
+.datiAmico{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+    padding: .75rem;
+    border-bottom: 1px solid #5CA5FF;;
+}
+.container-icona-rimuovi-amico{
+     text-align: center;
+     width: 10%;
+     float: left;
+     box-sizing: border-box;
+ }
+.icona-rimuovi-amico:hover{
+    color: rgba(255,138,0,1);
 }
