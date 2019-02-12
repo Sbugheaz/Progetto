@@ -375,8 +375,8 @@
                             </div>
                             <div class="row" id="contenitore-amicizie" >
                                 <div class="col-md-12">
-                                    <div class="row titolo-listaAmici">
-                                        <p>Lista amici:</p>
+                                    <div class="row titolo-listaAmici" >
+                                        <p style="margin-bottom: 0px">Lista amici:</p>
                                     </div>
                                     <div class="row intestazione-listaAmici">
                                         <div class="nomeAmici"> <p style="margin:0">Nome</p> </div>
@@ -856,21 +856,43 @@
         </div>
     </div>
 </div>
-<!--dsfhhfjkas
-<audio id="mySong">
-    <source src="songs/Luna - Los Angeles.mp3" type="audio/ogg" >
-    <source src="songs/Luna - Los Angeles.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-<script>
 
-    var song = document.getElementById("mySong");
-    /*cambia l'icona nel player a seconda che la riproduzione si ferma o no quando l'utente clicca e
-fa partire o ferma la riproduzione stessa.*/
+<!-- Modal Conferma Rimuovi Amico -->
+<div class="modal" id="modal-conferma-rimAmico">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Conferma Rimuovi Amico -->
+            <div class="header" id="intestazione-rimAmico">
+                <h4 class="title" id="titolo-rimAmico">Conferma Rimozione Amico
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></h4>
+            </div>
+
+            <!-- Body del Modal Conferma Rimuovi Amico -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-rimAmico">
+                    <i class="fa fa-question-circle" id= "icona-rimAmico"></i>
+                </div>
 
 
-</script>
--->
+                <div class="container-question">
+                    <div class="question">
+                        <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler rimuovere l'utente selezionato dagli amici?</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer del Modal Conferma Rimuovi Amico -->
+            <div class="modal-footer footer-rimAmico">
+                <button class="bottone-conferma-rimAmico" type="button" onclick="">Conferma</button>
+                <button class="bottone-conferma-rimAmico" type="button" class="close" data-dismiss="modal">Annulla</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="javascripts/start.js"></script>
 <script src="javascripts/model.js"></script>
 </body>
