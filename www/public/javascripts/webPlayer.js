@@ -59,6 +59,17 @@ $(document).ready(function () {
         }, 0);
     });
 });
+//Funzione che permette di aprire il pannello-Ricerca
+$(document).ready(function(){
+    $("#pulsante-cerca").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Ricerca").show();
+        pannelloAttivo= $("#pannello-Ricerca");
+
+    });
+});
 
 //Funzione che permette di aprire il pannello-amicizie
 $(document).ready(function(){
