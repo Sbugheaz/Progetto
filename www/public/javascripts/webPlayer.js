@@ -410,13 +410,11 @@ function modificaAccount() {
 
 
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
-function eliminaAmico() {
+$(document).ready(function(){
+    $("#tastoConfermaRim").click(function(){
         $.post("/WebPlayer/amici/eliminaAmico",
             {
                 idAmico: x
-            },
-            function (result) {
-                if (result == "OK")
-                    alert("Utente eliminato con successo dalla tua lista degli amici.");
             });
-}
+    });
+});
