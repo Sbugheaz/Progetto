@@ -363,6 +363,7 @@ div.slider-selection{
 #pannello-Ricerca{
     display: none;
     height: 75.8vh;
+    overflow: hidden;
 }
 /*Propità pannello di ricerca */
 .elenco-canzone-Autore{
@@ -374,12 +375,88 @@ div.slider-selection{
 btn-conzoni-ricerca{
     background: transparent;
 }
-
+#contenitore-ricerca{
+    height: 75.8vh;
+}
+#contenitore-lista-ricerca{
+    overflow-y: auto;
+    width: 100%;
+    padding: 0 15px;
+    max-height: 55vh;
+}
+.nomeCanzone{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+    height: 35px;
+}
+.nomeArtista{
+    text-align: left;
+    width: 60%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+    height: 35px;
+}
+.p_ricerca{
+    color: cornsilk;
+}
+.datiCanzoni{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+    padding: .75rem;
+    border-bottom: 2px solid #5CA5FF;
+}
+.nomeCanzoneArtista{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.listaRicerca{
+    font-size: 0.8rem;
+    width: 100%;
+}
+.intestazione-listaRicerca{
+    color: cornsilk;
+    margin: 0;
+}
+.titolo-listaRicerca{
+    text-align: center;
+    margin: 3vh 0 1rem 0;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 30px;
+}
+.container-icona-aggiungi-playlist{
+    text-align: center;
+    width: 20%;
+    float: left;
+    box-sizing: border-box;
+}
+.icona-aggiungi-Aplaylist:hover{
+    color: rgba(255,138,0,1);
+}
 /*contenitore Generi*/
 #pannello-Generi{
     display: none;
     height: 75.8vh;
 }
+
 
 
 
@@ -1358,7 +1435,7 @@ height: 70.8vh;
     float: left;
     box-sizing: border-box;
     padding: .75rem;
-    border-bottom: 1px solid #5CA5FF;;
+    border-bottom: 1px solid #5CA5FF;
 }
 .container-icona-rimuovi-amico{
      text-align: center;
