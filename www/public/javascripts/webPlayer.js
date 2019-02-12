@@ -131,12 +131,6 @@ $(document).ready(function(){
     });
 });
 
-//Funzione che cancella la riga contenente l'utente da rimuovere
-$(document).ready(function(){
-    $("#tastoConfermaRim").click(function(){
-        $("#amico2").remove();
-    });
-});
 
 $(document).ready(function(){
     var block = false;
@@ -278,7 +272,6 @@ $(document).ready(function() {
 });
 
 
-
 //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
 // modifica della password
 $(document).ready(function(){
@@ -297,6 +290,20 @@ $(document).ready(function(){
     });
 });
 
+
+var x;
+function recuperaID(evento) {
+    x = evento.target.id.substring(13);
+};
+
+
+//Funzione che cancella la riga contenente l'utente da rimuovere
+$(document).ready(function(){
+    $("#tastoConfermaRim").click(function(){
+        var idListItem = "amico" + x;
+        $("#" + idListItem).remove();
+    });
+});
 
 
 
@@ -400,12 +407,6 @@ function modificaAccount() {
             });
     }
 }
-
-
-var x;
-function recuperaID(evento) {
-        x = evento.target.id.substring(13);
-};
 
 
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
