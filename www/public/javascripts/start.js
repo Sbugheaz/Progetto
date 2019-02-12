@@ -1,5 +1,5 @@
 //dichiarazione degli oggetti
-var utente, listaAmici = [];
+var utente, listaAmici = [], listaUtenti = [];
 
 //funzione eseguita al caricamento della pagina
 $(document).ready(function () {
@@ -38,24 +38,31 @@ $(document).ready(function () {
             }
         );
     });
-
-
-    //funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
-    $.post('/WebPlayer/amici/cercaUtenti', function(result){
-        var lu = JSON.parse(result);
-        var content="";
-        $("#container-lista-utenti").append('<ul class="demo listaUtenti">');
-        for(i=0; i<lu.length; i++) {
-            listaUtenti[i] = new Account(la[i]);
-            content += '<li class="p_listaUtenti">' +
-                '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + '(' + listaUtenti[i].nome + listaUtenti[i].cognome + ') </div>' +
-                '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
-                '</li>' ;
-            $(".listaUtenti").append(content);
-
-            content = "";
-        }
-    });
-
 });
 
+//funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
+function cercaUtenti() {
+    $.post("/WebPlayer/amici/cercaUtenti",
+        {
+            nomeUtente: $('input[name=nome-utente]').val(),
+        },
+        function (result) {
+            if (result == "ERR") {
+                alert("La ricerca non ha prodotto alcun risultato.");
+            } else {
+                var lu = JSON.parse(result);
+                $(".listaUtenti").remove();
+                var content = "";
+                $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
+                for (i = 0; i < lu.length; i++) {
+                    listaUtenti[i] = new Account(lu[i]);
+                    content += '<li class="p_listaUtenti">' +
+                        '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
+                        '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
+                        '</li>';
+                    $(".listaUtenti").append(content);
+                    content = "";
+                }
+            }
+        });
+}
