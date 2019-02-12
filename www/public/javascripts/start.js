@@ -21,7 +21,7 @@ $(document).ready(function () {
         $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
         for(i=0; i<la.length; i++) {
             listaAmici[i] = new Account(la[i]);
-            content += '<li class="amico">' +
+            content += '<li class="amico" id="amico' + listaAmici[i].idUtente + '">' +
                 '<div class="datiAmico nomeAmico">' + listaAmici[i].nome + '</div>' +
                 '<div class="datiAmico cognomeAmico">' + listaAmici[i].cognome + '</div>' +
                 '<div class="datiAmico nomeUtenteAmico">' + listaAmici[i].nomeUtente + '</div>' +
@@ -30,6 +30,7 @@ $(document).ready(function () {
                 'data-toggle="modal" data-target="#modal-conferma-rimAmico"></i> </div>' +
                 '</li>' ;
             $(".listaAmici").append(content);
+
             content = "";
         }
         $(".icona-rimuovi-amico").click(function(evento) {

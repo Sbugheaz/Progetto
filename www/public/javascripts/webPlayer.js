@@ -131,6 +131,13 @@ $(document).ready(function(){
     });
 });
 
+//Funzione che cancella la riga contenente l'utente da rimuovere
+$(document).ready(function(){
+    $("#tastoConfermaRim").click(function(){
+        $("#amico2").remove();
+    });
+});
+
 $(document).ready(function(){
     var block = false;
     $("#pulsante-Logout").mouseenter(function(){
