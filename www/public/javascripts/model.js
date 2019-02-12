@@ -12,16 +12,16 @@ function Brano(brano){
 
 /*Costruttore dell'oggetto Utente*/
 function Account(account){
-    this.idUtente = account[0].IDUtente;
-    this.nomeUtente = account[0].NomeUtente;
-    this.password = account[0].Password;
-    this.email = account[0].Email;
-    this.nome = account[0].Nome;
-    this.cognome = account[0].Cognome;
-    this.sesso = account[0].Sesso;
-    this.dataDiNascita = account[0].DataDiNascita;
-    this.statoOnline = account[0].StatoOnline;
-    this.attivazione = account[0].Attivazione;
+    this.idUtente = account.IDUtente;
+    this.nomeUtente = account.NomeUtente;
+    this.password = account.Password;
+    this.email = account.Email;
+    this.nome = account.Nome;
+    this.cognome = account.Cognome;
+    this.sesso = account.Sesso;
+    this.dataDiNascita = account.DataDiNascita;
+    this.statoOnline = account.StatoOnline;
+    this.attivazione = account.Attivazione;
 }
 
 /*Costruttore dell'oggetto Playlist*/
