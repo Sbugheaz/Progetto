@@ -272,9 +272,6 @@ $(document).ready(function() {
 
 
 
-//Funzioni che gestiscono la comunicazione con il server
-
-
 //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
 // modifica della password
 $(document).ready(function(){
@@ -293,13 +290,10 @@ $(document).ready(function(){
     });
 });
 
-// Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
-$('#myModalPass').on('hidden.bs.modal', function () {
-    window.alert("Hai chiuso il modal!");
-    $(this).find('form').trigger('reset');
-    $("#err_password").text("").css("display", "none");
-});
 
+
+
+//Funzioni che gestiscono la comunicazione con il server
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/
@@ -310,7 +304,7 @@ function logout(){
 }
 
 
-// Funzione per la modifica della password
+// Funzione che gestisce la modifica della password da parte dell'utente
 function modificaPassword() {
     var password1 = $("input[name=pass1]");
     var password2 = $("input[name=pass2]");
@@ -356,7 +350,7 @@ function modificaPassword() {
     }
 }
 
-// Funzione per la modifica dei dati dell'account
+// Funzione che gestisce la modifica dei dati dell'account
 function modificaAccount() {
     var nome = $("input[name=nome]");
     var cognome = $("input[name=cognome]");
@@ -398,4 +392,31 @@ function modificaAccount() {
                 }
             });
     }
+}
+
+
+$(document).ready(function () {
+    $('i').click(function(){
+        alert( $(this).attr('id') );
+    });
+});
+
+
+//Funzione che gestisce l'eliminazione di un amico da parte dell'utente
+function eliminaAmico() {
+        $.post("/WebPlayer/amici/eliminaAmico",
+            {
+                idUtente:
+                    nome.val(),
+                cognome: cognome.val(),
+                data_nascita: data_nascita.val(),
+                sesso: $("input[name=sesso]:checked").val(),
+                email: email1.val(),
+                nomeUtente: nomeUtente.val(),
+                password: password1.val(),
+            },
+            function (result) {
+                if (result == "OK")
+                    alert("Utente eliminato con successo dalla tua lista degli amici.");
+            });
 }

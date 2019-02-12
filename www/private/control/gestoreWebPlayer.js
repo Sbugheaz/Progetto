@@ -201,7 +201,7 @@ router.get('/amici', function (req, res) {
 /**
  * Elimina un amico dalla lista amici dell'utente.
  */
-router.post('/eliminaAmico', function (req, res) {
+router.post('/amici/eliminaAmico', function (req, res) {
     var idAmico = req.body.idAmico; //Da completare
     var query = "DELETE FROM Amicizia WHERE Ref1_IDUtente = " + req.session.idUtente + " AND Ref2_IDUtente = " + idAmico;
     con.query(query, function (err, result, fields) {
@@ -214,7 +214,7 @@ router.post('/eliminaAmico', function (req, res) {
 /**
  * Aggiunge un amico alla lista degli amici.
  */
-router.post('/aggiungiAmico', function (req, res) {
+router.post('/amici/aggiungiAmico', function (req, res) {
     var idAmico = req.body.idAmico; //Da completare
     var query = "INSERT INTO Amicizia VALUES(" + req.session.idUtente + ", " + idAmico + ")";
     con.query(query, function (err, result, fields) {
@@ -227,11 +227,11 @@ router.post('/aggiungiAmico', function (req, res) {
 /**
  * Restituisce gli utenti che possono essere aggiunti come amici a seguito di una ricerca da parte dell'utente.
  */
-router.post('/cercaUtenti', function (req, res) {
+router.post('/amici/cercaUtenti', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
     var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
                 "FROM Account " +
-                "WHERE NomeUtente = '" + nomeUtente + "'";
+                "WHERE NomeUtente LIKE '" + nomeUtente +"%'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         if(result == 0)

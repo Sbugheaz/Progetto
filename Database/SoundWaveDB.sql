@@ -46,7 +46,7 @@ INSERT INTO Account
 VALUES 
 (1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 0, 1),
 (2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 0, 1),
-(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 0, 0),
+(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 0, 1),
 (4, 'vorfreude', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'c.civilleri@yahoo.it', 'Chiara', 'Civilleri', 'F', '1996-07-08', 0, 1);
 
 
@@ -71,6 +71,15 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Amicizia` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Populating table `mydb`.`Account`
+-- -----------------------------------------------------
+INSERT INTO Amicizia
+VALUES 
+(1, 2),
+(1, 3),
+(2, 4);
 
 
 -- -----------------------------------------------------
