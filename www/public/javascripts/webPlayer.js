@@ -395,21 +395,17 @@ function modificaAccount() {
 }
 
 
-/*function recuperaID() {
-    $('i').click(function(){
-        alert($(this).attr('id').substring(13));
-    });
+var x;
+function recuperaID(evento) {
+        x = evento.target.id.substring(13);
 };
-*/
 
 
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 function eliminaAmico() {
         $.post("/WebPlayer/amici/eliminaAmico",
             {
-                idAmico: $('i').click(function() {
-                    $(this).attr('id').substring(13);
-                })
+                idAmico: x
             },
             function (result) {
                 if (result == "OK")

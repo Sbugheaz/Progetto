@@ -31,8 +31,11 @@ $(document).ready(function () {
                 '</li>' ;
             $(".listaAmici").append(content);
             content = "";
-
         }
+        $(".icona-rimuovi-amico").click(function(evento) {
+            recuperaID(evento);
+            }
+        );
     });
 
 });
