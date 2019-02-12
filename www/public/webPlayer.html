@@ -101,7 +101,7 @@
         <div id="colonna-sinistra" >
             <div class="btn-group-vertical-justified" >
                 <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Playlist</button>
-                <button type="button" class="btn btn-default pulsanteA">Album</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-album">Album</button>
                 <button type="button" class="btn btn-default pulsanteA">Brani recenti</button>
                 <button type="button" class="btn btn-default pulsanteA" data-toggle="dropdown">
                     Generi
@@ -120,8 +120,8 @@
                     <div class="row">
                         <div id="pannello-mobile">
                             <div class="btn-group-vertical-justified" >
-                                <button type="button" class="btn btn-default btn-mobile" >Playlist</button>
-                                <button type="button" class="btn btn-default btn-mobile">La tua musica</button>
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-playlist" >Playlist</button>
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-album">Album</button>
                                 <button type="button" class="btn btn-default btn-mobile">Brani recenti</button>
                                 <button type="button" class="btn btn-default btn-mobile" data-toggle="dropdown">
                                     Generi
@@ -272,7 +272,7 @@
                                             <li class="amico">
                                                 <div class="datiCanzoni nomeCanzoneArtista">AAAAAAA</div>
                                                 <div class="datiCanzoni nomeCanzoneArtista">AAAAAAAAAAA</div>
-                                                <div class="datiCanzoni container-icona-aggiungi-playlist"><i class="fa fa-user-times icona-aggiungi-Aplaylist"></i> </div>
+                                                <div class="datiCanzoni container-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>
                                             </li>
 
 
@@ -285,7 +285,43 @@
 
 
                         </div>
-                        <div id="pannello-Generi" class="container-fluid"></div>
+                        <div id="pannello-Album" class="container-fluid">
+                            <div class="flex-container-Album">
+                                <div class="flex-item-Album"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="contenitore-nomeAlbum"><p class="nomeAlbum">Bauso</p></div></div>
+                                <div class="flex-item-Album"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="contenitore-nomeAlbum"><p class="nomeAlbum">Bauso</p></div></div>
+                                <div class="flex-item-Album"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="contenitore-nomeAlbum"><p class="nomeAlbum">Bauso</p></div></div>
+                                <div class="flex-item-Album"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="contenitore-nomeAlbum"><p class="nomeAlbum">Bauso</p></div></div>
+                            </div>
+                            <div id="contenitore-canzoni-album">
+                                <div id="contenitore-paragrafo-Album">
+                                    <p  class="paragrafo-album" style="font-size: x-large">Bausoooo</p>
+                                </div>
+                                <div id="contenitore-lista-Album">
+                                    <ul  class="demo demo-Album">
+                                        <li class="li_listaAlbum">
+                                            <div class="ordine-Album">
+                                                <p class="p_Album">1</p>
+                                            </div>
+                                            <div class="canzone-album">
+                                                <p class="p_Album" style="color: cornsilk">Tranne Te </p>
+                                            </div>
+                                            <div class="autore-album">
+                                                <p class="p_Album">Fabri Fibra</p>
+                                            </div>
+                                            <div class="btn-group-orizontal-justified btn-album">
+                                                <button type="button" class="btn btn-default btn-canzoni-album"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-canzoni-album"><a href="#"><i class="fa fa-plus-circle"></i></a></button>
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                         <!--contiene le  playlist con le relative canzoni -->
                         <div id="pannello-Playlist" class="container-fluid">
@@ -293,18 +329,12 @@
                                 <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-playlist"><i class="fa fa-music"></i> </a> </div><div class="contenitore-nomePlaylist"><p class="nomePlaylist">Bauso</p></div></div></div>
                                 <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"><div class="overly"><a class="icon"><i class="fa fa-play"></i> </a> </img></div></div>
                                 <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i> </a> </div><div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div></div></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
-                                <div class="flex-item"><img src="images/salmo-playlist.jpg" class="flex-item-img"></div>
-
                             </div>
                             <div id="contenitore-canzoni-playlist">
                                 <div id="contenitore-paragrafo">
                                     <p  class="paragrafo" style="font-size: x-large">Playlist:</p>
                                 </div>
-                                <div id="continitore-lista-playlist">
+                                <div id="contenitore-lista-playlist">
                                     <ul  class="demo demo-playlist">
                                         <li class="li_listaPlaylist">
                                             <div class="ordine-playlist">
@@ -317,8 +347,8 @@
                                                 <p class="p_playList">Fabri Fibra</p>
                                             </div>
                                             <div class="btn-group-orizontal-justified btn-playlist" >
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-canzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-canzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
                                         <li class="li_listaPlaylist">
@@ -332,8 +362,8 @@
                                                 <p class="p_playList">Fabri Fibra</p>
                                             </div>
                                             <div class="btn-group-orizontal-justified btn-playlist" >
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
-                                                <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-canzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                <button type="button" class="btn btn-default btn-canzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                             </div>
                                         </li>
                                         <li class="li_listaPlaylist">
@@ -350,10 +380,10 @@
                                                 <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <button type="button" class="btn btn-default btn-conzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
+                                                        <button type="button" class="btn btn-default btn-canzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button type="button" class="btn btn-default btn-conzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
+                                                        <button type="button" class="btn btn-default btn-canzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -381,7 +411,9 @@
                             <div class="row" id="contenitore-amicizie" >
                                 <div class="col-md-12">
                                     <div class="row titolo-listaAmici" >
-                                        <p style="margin-bottom: 0px">Lista amici:</p>
+                                        <div class="col-md-12">
+                                            <p style="margin-bottom: 0px">Lista amici:</p>
+                                        </div>
                                     </div>
                                     <div class="row intestazione-listaAmici">
                                         <div class="nomeAmici"> <p style="margin:0">Nome</p> </div>

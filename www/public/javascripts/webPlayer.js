@@ -82,6 +82,17 @@ $(document).ready(function(){
 
     });
 });
+//Funzione che permette di aprire il pannello-Album
+$(document).ready(function(){
+    $(".pulsanteA-album,.btn-mobile-album").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Album").show();
+        pannelloAttivo= $("#pannello-Album");
+
+    });
+});
 
 //Funzione che permette di aprire il pannello degli amici online
 $(document).ready(function(){
@@ -121,7 +132,7 @@ $(document).mouseup(function (e) {
 
 //Funzione che permentte di aprire il pannello-playlist
 $(document).ready(function(){
-    $(".pulsanteA-playlist").click(function(){
+    $(".pulsanteA-playlist,.btn-mobile-playlist").click(function(){
         if(pannelloAttivo!=null){
             pannelloAttivo.hide();
         }
