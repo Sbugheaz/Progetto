@@ -236,7 +236,9 @@ ul.demo {
     border-color: transparent;
 
 }
-
+.demo-ricerca{
+    height:auto;
+}
 #barra-ricerca:focus {
     box-shadow: 0 0;
     border-color: #eaece5;
@@ -308,7 +310,7 @@ input, #barra-ricerca {
 }
 /*slider barra player*/
 div.slider-handle.min-slider-handle.round{
-    background-image: linear-gradient(to bottom, #ff9019 0, #ff5c02 100%);
+    background-image: linear-gradient(to bottom, #ff0000 0, #ff8c02 100%);
 }
 
 
@@ -320,7 +322,7 @@ div.slider-handle.min-slider-handle.round{
 
 
 div.slider-selection{
-    background-image: linear-gradient(to bottom,#f3ad62 0,#f3b275 100%);
+    background-image: linear-gradient(to bottom,#f9430c 0,#ff922b 100%);
 }
 
 
@@ -357,23 +359,36 @@ div.slider-selection{
 
 
 
-/*contenitore Brani recenti*/
-#pannello-BraniRecenti{
+
+/*Pannello contenente i risultati di ricerca */
+#pannello-Ricerca{
     display: none;
     height: 75.8vh;
 }
+/*Propità pannello di ricerca */
+.elenco-canzone-Autore{
+    font-size:0.8rem;
+}
+.btn-pannelloRicerca{
+    float: right;
+}
+btn-conzoni-ricerca{
+    background: transparent;
+}
+
 /*contenitore Generi*/
 #pannello-Generi{
     display: none;
     height: 75.8vh;
 }
-/*contenitore Amicizie*/
-#pannello-Amicizie{
-    overflow-y: auto;
-    display: none;
-    background-color: transparent;
-    height: 75.8vh;
-}
+
+
+
+
+
+
+
+
 /*propietà immagine album*/
 #album{
     width: 200px;
@@ -642,7 +657,7 @@ table{
         font-size: 0.7rem;
     }
     #pannello-Amicizie{
-        height: 68.5vh;
+        height: 68.5vh!important;
     }
     #pannello-Playlist{
         height: 68.5vh!important;
@@ -651,6 +666,9 @@ table{
        transform:  translate3d(1px, -1px, 0px);
         width: 70%;
 
+    }
+    #contenitore-lista-amici{
+        height: 49vh!important;
     }
 
     /*Proprietà del pulsante modifica del Modal Profilo*/
@@ -1270,11 +1288,29 @@ fa-paly:hover {
 #labelSecondoAttual{
     transform: translateY(-1vh);
 }
+/*contenitore Amicizie*/
+#pannello-Amicizie{
+    overflow-y: hidden;
+    display: none;
+    background-color: transparent;
+    height: 75.8vh;
+}
 
 /*Proprietà lista amici*/
 .intestazione-listaAmici{
     color:cornsilk;
     margin: 0;
+}
+#contenitore-lista-amici{
+height: 56.8vh;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+#contenitore-btnAmici{
+height: 5vh;
+}
+#contenitore-amicizie{
+height: 70.8vh;
 }
 .titolo-listaAmici{
     text-align: center;
@@ -1282,6 +1318,7 @@ fa-paly:hover {
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
+    height: 4vh;
 }
 .nomeAmici{
     text-align: left;
@@ -1315,7 +1352,7 @@ fa-paly:hover {
 }
 .listaAmici{
     font-size: 0.8rem;
-    overflow-y: auto;
+    width: 100%;
 }
 .datiAmico{
     width: 30%;

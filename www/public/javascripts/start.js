@@ -32,14 +32,6 @@ $(document).ready(function () {
             content = "";
 
         }
-
-
-
-        /*
-        $(".nomeAmico").html(listaAmici[0].nome);
-        $(".cognomeAmico").html(listaAmici[0].cognome);
-        $(".nomeUtenteAmico").html(listaAmici[0].nomeUtente);
-        */
     });
 
 });
