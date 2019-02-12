@@ -18,7 +18,7 @@ $(document).ready(function () {
     $.get('/WebPlayer/amici', function(result){
         var la = JSON.parse(result);
         var content="";
-        $(".contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
+        $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
         for(i=0; i<la.length; i++) {
             listaAmici[i] = new Account(la[i]);
             content += '<li class="amico">' +
