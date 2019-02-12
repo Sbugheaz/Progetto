@@ -142,6 +142,7 @@ $(document).ready(function(){
     });
 });
 
+
 $(document).ready(function(){
     var block = false;
     $("#pulsante-Logout").mouseenter(function(){
@@ -282,7 +283,6 @@ $(document).ready(function() {
 });
 
 
-
 //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
 // modifica della password
 $(document).ready(function(){
@@ -301,6 +301,20 @@ $(document).ready(function(){
     });
 });
 
+
+var x;
+function recuperaID(evento) {
+    x = evento.target.id.substring(13);
+};
+
+
+//Funzione che cancella la riga contenente l'utente da rimuovere
+$(document).ready(function(){
+    $("#tastoConfermaRim").click(function(){
+        var idListItem = "amico" + x;
+        $("#" + idListItem).remove();
+    });
+});
 
 
 
@@ -406,24 +420,12 @@ function modificaAccount() {
 }
 
 
-/*function recuperaID() {
-    $('i').click(function(){
-        alert($(this).attr('id').substring(13));
-    });
-};
-*/
-
-
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
-function eliminaAmico() {
+$(document).ready(function(){
+    $("#tastoConfermaRim").click(function(){
         $.post("/WebPlayer/amici/eliminaAmico",
             {
-                idAmico: $('i').click(function() {
-                    $(this).attr('id').substring(13);
-                })
-            },
-            function (result) {
-                if (result == "OK")
-                    alert("Utente eliminato con successo dalla tua lista degli amici.");
+                idAmico: x
             });
-}
+    });
+});

@@ -785,31 +785,13 @@
                                  <input class="campoNomeUtente" placeholder="Nome Utente" type="text" name="nome-utente" id="inserisci-nomeUtente">
                             </div>
                             <div class="container-icona-ricerca">
-                                <i class="fa fa-search" id="icona-ricerca"></i>
+                                <i class="fa fa-search" id="icona-ricerca" onclick="cercaUtenti()"></i>
                             </div>
                         </div>
                     </form>
 
                         <div class="container-listaUtenti">
-                            <ul class="demo listaUtenti">
-                                <li class="p_listaUtenti">
-                                    <div class="nomeUtente_da_aggiugere">
-                                        ElMosca96(Giuseppe Moscarelli)
-                                    </div>
-                                    <div class="cont-pulsante-aggiungi-utente">
-                                        <i class="fa fa-user-plus pulsante-aggiungi-utente"></i>
-                                    </div>
-                                </li>
-                                <li class="p_listaUtenti">
-                                    <div class="nomeUtente_da_aggiugere">
-                                        ElMosca96(Giuseppe Moscarelli)
-                                    </div>
-                                    <div class="cont-pulsante-aggiungi-utente">
-                                        <i class="fa fa-user-plus pulsante-aggiungi-utente"></i>
-                                    </div>
-                                </li>
 
-                            </ul>
                         </div>
 
                         <div class="message">
@@ -914,7 +896,7 @@
 
                 <div class="container-question">
                     <div class="question">
-                        <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler rimuovere l'utente selezionato dagli amici?</p>
+                        <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler rimuovere l'utente selezionato dalla tua lista degli amici?</p>
                     </div>
 
                 </div>
@@ -922,7 +904,7 @@
 
             <!-- Footer del Modal Conferma Rimuovi Amico -->
             <div class="modal-footer footer-rimAmico">
-                <button class="bottone-conferma-rimAmico" type="button" onclick="">Conferma</button>
+                <button class="bottone-conferma-rimAmico" id="tastoConfermaRim" type="button" class="close" data-dismiss="modal">Conferma</button>
                 <button class="bottone-conferma-rimAmico" type="button" class="close" data-dismiss="modal">Annulla</button>
             </div>
 
