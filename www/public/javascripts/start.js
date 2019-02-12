@@ -26,7 +26,8 @@ $(document).ready(function () {
                 '<div class="datiAmico cognomeAmico">' + listaAmici[i].cognome + '</div>' +
                 '<div class="datiAmico nomeUtenteAmico">' + listaAmici[i].nomeUtente + '</div>' +
                 '<div class="datiAmico container-icona-rimuovi-amico">' +
-                '<i class="fa fa-user-times icona-rimuovi-amico" id="rimuovi-amico' + listaAmici[i].idUtente +'"></i> </div>' +
+                '<i class="fa fa-user-times icona-rimuovi-amico" id="rimuovi-amico' + listaAmici[i].idUtente +'"'+
+                'data-toggle="modal" data-target="#modal-conferma-rimAmico"></i> </div>' +
                 '</li>' ;
             $(".listaAmici").append(content);
             content = "";
