@@ -17,11 +17,11 @@ $(document).ready(function () {
 
     $.get('/WebPlayer/amici', function(result){
         var la=JSON.parse(result);
-        for(i=0;la.length(); i++){
-            listaAmici[i]=new Account(la[i])
+        var listaAmici=[];
+        for(i=0; i<la.length; i++){
+            listaAmici[i]=new Account(la)
+            console.log
         }
-        console.log(listaAmici[0]);
-        console.log(listaAmici[1]);
 
         /*
         $(".nomeUtente").html("<br>" + utente.nomeUtente);
