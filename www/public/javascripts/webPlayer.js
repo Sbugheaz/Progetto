@@ -395,25 +395,21 @@ function modificaAccount() {
 }
 
 
-$(document).ready(function () {
+/*function recuperaID() {
     $('i').click(function(){
-        alert( $(this).attr('id') );
+        alert($(this).attr('id').substring(13));
     });
-});
+};
+*/
 
 
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 function eliminaAmico() {
         $.post("/WebPlayer/amici/eliminaAmico",
             {
-                idUtente:
-                    nome.val(),
-                cognome: cognome.val(),
-                data_nascita: data_nascita.val(),
-                sesso: $("input[name=sesso]:checked").val(),
-                email: email1.val(),
-                nomeUtente: nomeUtente.val(),
-                password: password1.val(),
+                idAmico: $('i').click(function() {
+                    $(this).attr('id').substring(13);
+                })
             },
             function (result) {
                 if (result == "OK")

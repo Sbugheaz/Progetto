@@ -190,10 +190,8 @@ router.get('/amici', function (req, res) {
         "WHERE Amicizia.Ref2_IDUtente = Account.IDUtente AND Amicizia.Ref1_IDUtente = " + req.session.idUtente;
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        //Se la query restituisce l'utente lo manda al client
+        //Se la query restituisce gli amici dell'utente li manda al client
         if(result.length != 0) res.send(JSON.stringify(result));
-        //Se la query non trova alcun utente il server manda un errore
-        else res.send("ERR");
     });
 });
 
