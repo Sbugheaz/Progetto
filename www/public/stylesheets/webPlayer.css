@@ -1085,7 +1085,7 @@ table{
 
 /*Propietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
-    overflow: auto;
+    overflow: hidden;
     height: 68.5vh;
     display: none;
     width: 100%;
@@ -1123,6 +1123,21 @@ table{
  text-align: left;
 }
 
+.container-intestazione-amicizione-mobile{
+    text-align: center;
+    height: 20%;
+    padding-top: 5%;
+}
+.container-lista-amici-online{
+    height: 80%;
+    overflow: auto;
+}
+p.paragrafo-amicizie-mobile{
+    font-size: 1.4rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    margin: 0;
+}
 
 
 
