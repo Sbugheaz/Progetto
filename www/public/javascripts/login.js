@@ -14,11 +14,15 @@ $(document).ready(function () {
     });
 });
 
-
 // Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     $("#err_recuperoPass").text("").css("display", "none");
+});
+
+//Funzione che rimuove i messaggi di errore all'inserimento delle credenziali d'accesso
+$("input").on('input',function(){
+    $("#err_dati_accesso").css("display", "none");
 });
 
 
@@ -39,11 +43,8 @@ function login(){
                     $("#err_dati_accesso").text("Nome utente o password errati.").css("display", "block");
                 else if(result == "ERR_2")
                     $("#modal-verifica-email").modal();
-                else if(result == "OK") {
+                else if(result == "OK")
                     window.location.href = '/WebPlayer';
-                    $("#err_dati_accesso").text("").css("display", "none");
-                }
-
             });
     }
 }
