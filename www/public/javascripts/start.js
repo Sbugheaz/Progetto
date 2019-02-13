@@ -38,18 +38,13 @@ $(document).ready(function () {
             }
         );
     });
-});
-
-//funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
-function cercaUtenti() {
-    $.post("/WebPlayer/amici/cercaUtenti",
-        {
-            nomeUtente: $('input[name=nome-utente]').val(),
-        },
-        function (result) {
-            if (result == "ERR") {
-                alert("La ricerca non ha prodotto alcun risultato.");
-            } else {
+    //Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
+    $("#inserisci-nomeUtente").on("keyup", function(){
+        $.post("/WebPlayer/amici/cercaUtenti",
+            {
+                nomeUtente: $('input[name=nome-utente]').val(),
+            },
+            function (result) {
                 var lu = JSON.parse(result);
                 $(".listaUtenti").remove();
                 var content = "";
@@ -62,7 +57,7 @@ function cercaUtenti() {
                         '</li>';
                     $(".listaUtenti").append(content);
                     content = "";
-                }
-            }
-        });
-}
+                    }
+            });
+    });
+});

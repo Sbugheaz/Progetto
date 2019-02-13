@@ -223,19 +223,19 @@ router.post('/amici/aggiungiAmico', function (req, res) {
 
 
 /**
- * Restituisce gli utenti che possono essere aggiunti come amici a seguito di una ricerca da parte dell'utente.
+ * Restituisce gli utenti che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
  */
 router.post('/amici/cercaUtenti', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
-    var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
-                "FROM Account " +
-                "WHERE NomeUtente LIKE '" + nomeUtente +"%'";
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        if(result == 0)
-            res.send("ERR"); //Non ci sono corrispondenze tra il nome utente ricercato e gli utenti nel database
-        else res.send(JSON.stringify(result));
-    });
+    if(nomeUtente != "") {
+        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
+            "FROM Account " +
+            "WHERE NomeUtente LIKE '" + nomeUtente + "%'";
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            if (result != 0) res.send(JSON.stringify(result));
+        });
+    }
 });
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
