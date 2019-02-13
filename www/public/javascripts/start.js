@@ -33,6 +33,7 @@ $(document).ready(function () {
                 },
                 function (result) {
                     if(result=="ERR"){
+                        $(".container-listaUtenti").empty();
                         var messaggio="Nussun utente corrisponde ai criteri di ricerca";
                         $(".container-listaUtenti").html(messaggio).css({
                             'font-size' : '1rem',
@@ -40,6 +41,7 @@ $(document).ready(function () {
                         });
                     }
                     else {
+                        $(".container-listaUtenti").css("padding","0");
                         $(".container-listaUtenti").empty();
                         var lu = JSON.parse(result);
                         stampaAmiciDaAggiungere(lu);

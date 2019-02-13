@@ -209,14 +209,11 @@ $(window).on('load', function () {
 });
 
 
-
-
 $(document).ready(function() {
-    var audioElement = new Audio();// create the audio object// assign the audio file to its src
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
+    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
     audioElement.src ='songs/AC_DC_Back_In_Black.mp3';
-
     audioElement.addEventListener('ended', function() {
         this.play();
     }, false);
@@ -277,45 +274,58 @@ $(document).ready(function() {
 
 
 
-//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-// modifica della password
 $(document).ready(function(){
-    $(".campiPass").on('input',function(){
-        $(".campiPass").removeClass("invalid");
-        $(".pd").css("display", "none");
-    });
-});
-
-//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-// modifica dei dati dell'account
-$(document).ready(function(){
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    // modifica dei dati dell'account
     $(".campi").on('input',function(){
         $(".campi").removeClass("invalid");
         $(".pd").css("display", "none");
     });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica dei dati utente
+    $('#myModal').on('hidden.bs.modal', function () {
+        $(".campi").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_account").text("").css("display", "none");
+        disabilitaScrittura('nome');
+        disabilitaScrittura('cognome');
+        disabilitaScrittura('dataNascita');
+    });
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    // modifica della password
+    $(".campiPass").on('input',function(){
+        $(".campiPass").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica della password
+    $('#myModalPass').on('hidden.bs.modal', function () {
+        $(".campiPass").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_password").text("").css("display", "none");
+    });
 });
 
-
-var x;
+//Variabile che gestisce l'ID degli amici
+var id;
+//Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
 function recuperaID(evento) {
-    x = evento.target.id.substring(13);
+    id = evento.target.id.substring(13);
 };
 
 
 //Funzione che cancella la riga contenente l'utente da rimuovere
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
-        var idListItem = "amico" + x;
+        var idListItem = "amico" + id;
         $("#" + idListItem).remove();
     });
 });
 
+//Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
 $(document).ready(function(){
     $("#inserisci-nomeUtente").on('input',function(){
         $(".listaUtenti").remove();
     });
 });
-
 
 
 //Funzioni che gestiscono la comunicazione con il server
@@ -419,18 +429,23 @@ function modificaAccount() {
     }
 }
 
-
-
-
-
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
         $.post("/WebPlayer/amici/eliminaAmico",
             {
-                idAmico: x
+                idAmico: id
             });
     });
 });
 
-
+//Funzione che gestisce l'eliminazione di un amico da parte dell'utente
+$(document).ready(function(){
+    var idPulsante = "aggiungi-amico" + id;
+    $("#" + idPulsante).click(function(){
+        $.post("/WebPlayer/amici/aggiungiAmico",
+            {
+                idAmico: id
+            });
+    });
+});

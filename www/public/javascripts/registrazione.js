@@ -80,14 +80,6 @@ var password2 = $("input[name=password2]");
         return flag;
     }
 
-    //Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
-    $(document).ready(function(){
-       $(".campi").on('input',function(){
-           $(".campi").removeClass("invalid");
-           $(".pd").css("display", "none");
-       });
-    });
-
     //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -111,6 +103,12 @@ var password2 = $("input[name=password2]");
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         return testo.test(String(password));
     }
+
+//Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+$(".campi").on('input',function(){
+    $(".campi").removeClass("invalid");
+    $(".pd").css("display", "none");
+});
 
 
 //Funzioni che gestiscono la comunicazione con il server

@@ -34,11 +34,23 @@ function stampaAmiciDaAggiungere(lu){
             listaUtenti[i] = new Account(lu[i]);
             content += '<li class="p_listaUtenti">' +
                 '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
-                '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
+                '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente" ' +
+                'id="aggiungi-amico' + listaUtenti[i].idUtente +'"></i> </div>' +
                 '</li>';
             $(".listaUtenti").append(content);
             content = "";
     }
+    $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+            recuperaID(evento);
+            aggiungiRigaAmico()
+
+        }
+    );
+}
+
+// aggiungibili che corrispondono ai criteri di ricerca
+function aggiungiRigaAmico(){
+
 }
 
 
