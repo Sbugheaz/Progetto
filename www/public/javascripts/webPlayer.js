@@ -2,6 +2,7 @@
 var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
+var repeat=false;
 
 
 
@@ -208,16 +209,29 @@ $(window).on('load', function () {
 
 });
 
-
 $(document).ready(function() {
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3"];
+    var indiceCorrente = 0;
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
     var audioElement = new Audio();        // create the audio object// assign the audio file to its src
-    audioElement.src ='songs/AC_DC_Back_In_Black.mp3';
-    audioElement.addEventListener('ended', function() {
-        this.play();
-    }, false);
+    audioElement.src = percorsi[indiceCorrente];
 
+   /*audioElement.addEventListener('ended', function() {
+        this.play();
+    }, false);*/
+
+    audioElement.addEventListener("ended", function() {
+
+            this.pause();
+            indiceCorrente = (++indiceCorrente)%percorsi.length;
+            audioElement.src = percorsi[indiceCorrente];
+            this.play();
+            console.log("ripeti attivo");
+
+
+        
+    });
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
@@ -232,19 +246,41 @@ $(document).ready(function() {
     $('#play').click(function() {
         audioElement.play();
         $('#play').hide();
-        $('#pause').show()
+        $('#pause').show();
 
     });
 
     $('#pause').click(function() {
         audioElement.pause();
         $('#pause').hide();
-        $('#play').show()
+        $('#play').show();
 
     });
 
+    $('#step-forward').click(function() {
+
+            audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
+            $('#pause').hide();
+            $('#play').show();
+
+
+    });
+
+    $('#step-backward').click(function() {
+        if(audioElement.currentTime<3) {
+        audioElement.src = percorsi[((--indiceCorrente)+percorsi.length)%percorsi.length];
+        $('#pause').hide();
+        $('#play').show();
+        }else {
+            audioElement.currentTime=0;
+        }
+
+    });
+
+
+
     $('#repeat').click(function() {
-        audioElement.currentTime = 0;
+        repeat=true;
     });
 
     $("#volume-range").on("slide", function(slideEvt) {
@@ -254,7 +290,6 @@ $(document).ready(function() {
 
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
         var slideVal=$("#barraDiAvanzamento").slider('getValue');
-        console.log( (audioElement.duration *slideVal)/100);
         var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
         audioElement.currentTime=valoreattuale2;
     });
