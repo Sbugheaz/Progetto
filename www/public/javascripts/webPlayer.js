@@ -269,7 +269,6 @@ $(document).ready(function() {
         if(audioElement.currentTime<3) {
             indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
             audioElement.src = percorsi[indiceCorrente];
-            console.log(indiceCorrente);
             $('#pause').hide();
             $('#play').show();
         }else {
