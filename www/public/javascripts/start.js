@@ -55,11 +55,15 @@ $(document).ready(function () {
                 });
         }, 500);
     });
+    richiediAmiciOnline();
+});
 
-    //Funzione che riceve dal database i dati degli amici attualmente online
+
+//Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi
+function richiediAmiciOnline(){
     $.get('/WebPlayer/amiciOnline', function(result){
         if(result != "ERR") {
-            alert("ISA");
         }
+        setInterval(richiediAmiciOnline,30000);
     });
-});
+};
