@@ -234,7 +234,7 @@ $(document).ready(function() {
         var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelSecondoAttuale").text(dur2);
 
-        $('#barraDiAvanzamento').slider({value: avanzamento})
+        $('#barraDiAvanzamento').slider({value: avanzamento});
         $('#barraDiAvanzamento').slider('refresh');
 
 
