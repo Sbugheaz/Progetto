@@ -187,7 +187,7 @@ router.post('/modificaAccount', function (req, res) {
 router.get('/amici', function (req, res) {
     var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
         "FROM Amicizia, Account " +
-        "WHERE Amicizia.Ref2_IDUtente = Account.IDUtente AND Amicizia.Ref1_IDUtente = " + req.session.idUtente;
+        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         //Se la query restituisce gli amici dell'utente li manda al client
@@ -226,14 +226,20 @@ router.post('/amici/aggiungiAmico', function (req, res) {
  * Restituisce gli utenti che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
  */
 router.post('/amici/cercaUtenti', function (req, res) {
-    var nomeUtente = req.body.nomeUtente;
-    if(nomeUtente != "") {
+    var utenteCercato = req.body.utenteCercato;
+    if(utenteCercato != "") {
         var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
-            "FROM Account " +
-            "WHERE NomeUtente LIKE '" + nomeUtente + "%'";
+                    "FROM Account " +
+                    "WHERE (NomeUtente LIKE '" + utenteCercato + "%' OR Nome LIKE '" + utenteCercato + "%' " +
+                            "OR Cognome LIKE '" + utenteCercato + "%') " +
+            "AND IDUtente<>" + req.session.idUtente + " AND IDUtente NOT IN (" +
+                                                "SELECT IDUtente " +
+                                                "FROM Account, Amicizia " +
+                                                "WHERE IDUtente = Ref2_IDUtente AND Ref1_IDUtente = " + req.session.idUtente + ")";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
-            if (result != 0) res.send(JSON.stringify(result));
+            if (result == 0) res.send("ERR"); //Se nessun utente soddisfa i criteri di ricerca il server manda un errore
+            else res.send(JSON.stringify(result));
         });
     }
 });

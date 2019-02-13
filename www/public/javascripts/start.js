@@ -48,7 +48,7 @@ $(document).ready(function () {
             $(".listaUtenti").remove();
             $.post("/WebPlayer/amici/cercaUtenti",
                 {
-                    nomeUtente: $('input[name=nome-utente]').val(),
+                    utenteCercato: $('input[name=nome-utente]').val(),
                 },
                 function (result) {
                     var lu = JSON.parse(result);
