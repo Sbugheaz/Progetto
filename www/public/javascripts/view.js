@@ -27,12 +27,7 @@ function stampaListaAmici(la){
 
 //funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
 // aggiungibili che corrispondono ai criteri di ricerca
-function stampaAmiciDaAggiungere(lu,result){
-    if(result=="ERR"){
-        var messaggio="Nussun utente corrisponde ai criteri di ricerca";
-        $(".container-listaUtenti").html(messaggio);
-    }
-    else {
+function stampaAmiciDaAggiungere(lu){
         var content = "";
         $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
         for (i = 0; i < lu.length; i++) {
@@ -43,7 +38,6 @@ function stampaAmiciDaAggiungere(lu,result){
                 '</li>';
             $(".listaUtenti").append(content);
             content = "";
-        }
     }
 }
 

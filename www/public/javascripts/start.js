@@ -32,8 +32,14 @@ $(document).ready(function () {
                     utenteCercato: $('input[name=nome-utente]').val(),
                 },
                 function (result) {
-                    var lu = JSON.parse(result);
-                    stampaAmiciDaAggiungere(lu,result);
+                    if(result=="ERR"){
+                        var messaggio="Nussun utente corrisponde ai criteri di ricerca";
+                        $(".container-listaUtenti").html(messaggio);
+                    }
+                    else {
+                        var lu = JSON.parse(result);
+                        stampaAmiciDaAggiungere(lu);
+                    }
                 });
         }, 500);
     });
