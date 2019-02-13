@@ -283,28 +283,41 @@ $(document).ready(function() {
 });
 
 
-//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-// modifica della password
 $(document).ready(function(){
-    $(".campiPass").on('input',function(){
-        $(".campiPass").removeClass("invalid");
-        $(".pd").css("display", "none");
-    });
-});
-
-//Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-// modifica dei dati dell'account
-$(document).ready(function(){
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    // modifica dei dati dell'account
     $(".campi").on('input',function(){
         $(".campi").removeClass("invalid");
         $(".pd").css("display", "none");
     });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica dei dati utente
+    $('#myModal').on('hidden.bs.modal', function () {
+        $(".campi").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_account").text("").css("display", "none");
+        disabilitaScrittura('nome');
+        disabilitaScrittura('cognome');
+        disabilitaScrittura('dataNascita');
+    });
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    // modifica della password
+    $(".campiPass").on('input',function(){
+        $(".campiPass").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica della password
+    $('#myModalPass').on('hidden.bs.modal', function () {
+        $(".campiPass").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_password").text("").css("display", "none");
+    });
 });
 
-
-var x;
+//Variabile che gestisce l'ID degli amici
+var id;
+//Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
 function recuperaID(evento) {
-    x = evento.target.id.substring(13);
+    id = evento.target.id.substring(13);
 };
 
 
@@ -425,13 +438,12 @@ function modificaAccount() {
     }
 }
 
-
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
         $.post("/WebPlayer/amici/eliminaAmico",
             {
-                idAmico: x
+                idAmico: id
             });
     });
 });
