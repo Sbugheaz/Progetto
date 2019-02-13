@@ -230,7 +230,7 @@ $(document).ready(function() {
             console.log("ripeti attivo");
 
 
-        
+
     });
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
