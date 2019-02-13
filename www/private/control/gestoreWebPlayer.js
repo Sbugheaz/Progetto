@@ -252,10 +252,10 @@ router.post('/amici/cercaUtenti', function (req, res) {
 router.get('/amiciOnline', function (req, res) {
     var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
         "FROM Amicizia, Account " +
-        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
+        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        //Se la query restituisce gli amici dell'utente li manda al client
+        //Se la query restituisce gli amici online li manda al client
         if(result.length != 0) res.send(JSON.stringify(result));
         else res.send("ERR");
     });

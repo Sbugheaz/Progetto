@@ -56,5 +56,10 @@ $(document).ready(function () {
         }, 500);
     });
 
-
+    //Funzione che riceve dal database i dati degli amici attualmente online
+    $.get('/WebPlayer/amiciOnline', function(result){
+        if(result != "ERR") {
+            alert("ISA");
+        }
+    });
 });
