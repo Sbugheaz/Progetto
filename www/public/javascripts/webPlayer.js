@@ -227,18 +227,7 @@ $(document).ready(function() {
 
     });
 
-    audioElement.addEventListener("timeupdate",function(){
-        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
-        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
-        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
-        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
-        $("#labelSecondoAttuale").text(dur2);
-
-        $('#barraDiAvanzamento').slider({value: avanzamento})
-        $('#barraDiAvanzamento').slider('refresh');
-
-
-    });
+    $(audioElement).on("timeupdate",refresh);
 
     $('#play').click(function() {
         audioElement.play();
@@ -262,25 +251,27 @@ $(document).ready(function() {
             audioElement.volume=slideEvt.value/100;
     });
 
-    $("#barraDiAvanzamento").on("slide", function(slideEvt) {
-        var valoreattuale=((slideEvt.value)*(audioElement.duration))/100;
-        audioElement.currentTime =valoreattuale;
-
-
-    });
 
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
         var slideVal=$("#barraDiAvanzamento").slider('getValue');
-
         console.log( (audioElement.duration *slideVal)/100);
-
         var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
         audioElement.currentTime=valoreattuale2;
-
-
     });
 
+    function refresh(){
+        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
+        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
+        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
+        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
+        $("#labelSecondoAttuale").text(dur2);
+        $("#barraDiAvanzamento").slider("setValue",avanzamento);
+    }
+
+
 });
+
+
 
 
 $(document).ready(function(){
