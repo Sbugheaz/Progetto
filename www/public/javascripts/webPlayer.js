@@ -2,7 +2,8 @@
 var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
-var repeat=false;
+
+var shuffleB=false;
 
 
 
@@ -210,7 +211,8 @@ $(window).on('load', function () {
 });
 
 $(document).ready(function() {
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3"];
+
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL CIELO NELLA STANZA.mp3"];
     var indiceCorrente = 0;
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
@@ -222,15 +224,9 @@ $(document).ready(function() {
     }, false);*/
 
     audioElement.addEventListener("ended", function() {
-
-            this.pause();
-            indiceCorrente = (++indiceCorrente)%percorsi.length;
-            audioElement.src = percorsi[indiceCorrente];
-            this.play();
-            console.log("ripeti attivo");
-
-
-
+                this.pause();
+                audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
+                this.play();
     });
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
@@ -274,6 +270,18 @@ $(document).ready(function() {
         }else {
             audioElement.currentTime=0;
         }
+    });
+
+    $('#random').click(function () {
+        /*if(shuffleB==false){
+            shuffleB==true;
+            percorsi=shuffle(percorsi);
+        }else{
+            shuffleB=false;
+            percorsi=JSON.parse(JSON.stringify(listaOriginale));
+
+        }
+        */
     });
 
 
@@ -516,3 +524,23 @@ function aggiungiAmico() {
     $("#modal-aggiungi-amico").find('form').trigger('reset');
     $(".listaUtenti").remove();
 }
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
