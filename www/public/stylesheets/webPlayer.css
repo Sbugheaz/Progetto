@@ -23,7 +23,7 @@ button{
 }
 
 .input-group {
-    padding-top: 1%;
+    height: 7vh;
 }
 
 button:hover{
@@ -255,11 +255,12 @@ ul.demo {
 input, #barra-ricerca {
     font-size: 3vh;
     border: 0;
-    border-bottom: 2px solid  rgba(0, 114, 255, 0.43);
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
     line-height: 2em;
     background: transparent;
     color: cornsilk;
     width: 30vw;
+    padding: 0;
 }
 
 /*propietà della riga all'interno della barra di ricerca */
@@ -316,6 +317,7 @@ div.slider-handle.min-slider-handle.round{
 
 .navbar-expand-sm{
     height: 9.2vh;
+    padding: 0;
 }
 
 
