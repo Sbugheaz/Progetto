@@ -245,4 +245,20 @@ router.post('/amici/cercaUtenti', function (req, res) {
     }
 });
 
+
+/**
+ * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player.
+ */
+router.get('/amiciOnline', function (req, res) {
+    var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
+        "FROM Amicizia, Account " +
+        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        //Se la query restituisce gli amici dell'utente li manda al client
+        if(result.length != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

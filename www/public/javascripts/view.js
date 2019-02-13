@@ -10,7 +10,7 @@ function stampaListaAmici(listaAmici){
             '<div class="datiAmico nomeUtenteAmico">' + listaAmici[i].nomeUtente + '</div>' +
             '<div class="datiAmico container-icona-rimuovi-amico">' +
             '<i class="fa fa-user-times icona-rimuovi-amico" id="rimuovi-amico' + listaAmici[i].idUtente +'"'+
-            'data-toggle="modal" data-target="#modal-conferma-rimAmico"></i> </div>' +
+            'data-toggle="modal" data-target="#modal-conferma-rimAmico" title="Rimuovi amico"></i> </div>' +
             '</li>' ;
         $(".listaAmici").append(content);
         content = "";
@@ -33,7 +33,7 @@ function stampaAmiciDaAggiungere(lu){
             content += '<li class="p_listaUtenti">' +
                 '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
                 '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente" ' +
-                'id="aggiungi-amico' + listaUtenti[i].idUtente +'"></i> </div>' +
+                'id="aggiungi-amico' + listaUtenti[i].idUtente +'" title="Aggiungi amico"></i> </div>' +
                 '</li>';
             $(".listaUtenti").append(content);
             content = "";
