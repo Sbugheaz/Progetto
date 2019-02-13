@@ -209,11 +209,14 @@ $(window).on('load', function () {
 });
 
 
+
+
 $(document).ready(function() {
+    var audioElement = new Audio();// create the audio object// assign the audio file to its src
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
-    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
     audioElement.src ='songs/AC_DC_Back_In_Black.mp3';
+
     audioElement.addEventListener('ended', function() {
         this.play();
     }, false);
@@ -227,18 +230,7 @@ $(document).ready(function() {
 
     });
 
-    audioElement.addEventListener("timeupdate",function(){
-        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
-        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
-        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
-        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
-        $("#labelSecondoAttuale").text(dur2);
-
-        $('#barraDiAvanzamento').slider({value: avanzamento});
-        $('#barraDiAvanzamento').slider('refresh');
-
-
-    });
+    $(audioElement).on("timeupdate",refresh);
 
     $('#play').click(function() {
         audioElement.play();
@@ -262,25 +254,27 @@ $(document).ready(function() {
             audioElement.volume=slideEvt.value/100;
     });
 
-    $("#barraDiAvanzamento").on("slide", function(slideEvt) {
-        var valoreattuale=((slideEvt.value)*(audioElement.duration))/100;
-        audioElement.currentTime =valoreattuale;
-
-
-    });
 
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
         var slideVal=$("#barraDiAvanzamento").slider('getValue');
-
         console.log( (audioElement.duration *slideVal)/100);
-
         var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
         audioElement.currentTime=valoreattuale2;
-
-
     });
 
+    function refresh(){
+        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
+        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
+        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
+        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
+        $("#labelSecondoAttuale").text(dur2);
+        $("#barraDiAvanzamento").slider("setValue",avanzamento);
+    }
+
+
 });
+
+
 
 
 //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
@@ -420,6 +414,9 @@ function modificaAccount() {
 }
 
 
+
+
+
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
@@ -429,3 +426,5 @@ $(document).ready(function(){
             });
     });
 });
+
+
