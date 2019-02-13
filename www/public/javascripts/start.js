@@ -37,10 +37,10 @@ $(document).ready(function () {
                         $(".container-listaUtenti").html(messaggio).css({
                             'font-size' : '1rem',
                             'padding' : '20px 0',
-                            'color' : 'red'
                         });
                     }
                     else {
+                        $(".container-listaUtenti").empty();
                         var lu = JSON.parse(result);
                         stampaAmiciDaAggiungere(lu);
                     }
