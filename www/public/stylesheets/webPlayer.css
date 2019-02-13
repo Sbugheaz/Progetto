@@ -339,7 +339,7 @@ div.slider-selection{
 
 }
 #contenitore-volume > .slider.slider-horizontal{
-    
+
     width: 100%;
 }
 
@@ -773,7 +773,7 @@ table{
     }
 
     #sezione-controlli-riproduzione > .row > .col-md-12 {
-        margin-bottom: 1.5%;
+        /*margin-bottom: 1.5%;*/
     }
 
     .col-md-1 {
@@ -852,6 +852,9 @@ table{
     }
     #contenitore-lista-amici{
         height: 49vh!important;
+    }
+    #titolo-brano-in-riproduzione {
+        font-size: x-small;
     }
 
     /*Proprietà del pulsante modifica del Modal Profilo*/
