@@ -40,7 +40,7 @@ function stampaAmiciDaAggiungere(lu){
             $(".listaUtenti").append(content);
             content = "";
     }
-    $(".icona-rimuovi-amico").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
             recuperaID(evento);
             aggiungiRigaAmico()
 

@@ -315,17 +315,17 @@ function recuperaID(evento) {
 //Funzione che cancella la riga contenente l'utente da rimuovere
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
-        var idListItem = "amico" + x;
+        var idListItem = "amico" + id;
         $("#" + idListItem).remove();
     });
 });
 
+//Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
 $(document).ready(function(){
     $("#inserisci-nomeUtente").on('input',function(){
         $(".listaUtenti").remove();
     });
 });
-
 
 
 //Funzioni che gestiscono la comunicazione con il server
@@ -433,6 +433,17 @@ function modificaAccount() {
 $(document).ready(function(){
     $("#tastoConfermaRim").click(function(){
         $.post("/WebPlayer/amici/eliminaAmico",
+            {
+                idAmico: id
+            });
+    });
+});
+
+//Funzione che gestisce l'eliminazione di un amico da parte dell'utente
+$(document).ready(function(){
+    var idPulsante = "aggiungi-amico" + id;
+    $("#" + idPulsante).click(function(){
+        $.post("/WebPlayer/amici/aggiungiAmico",
             {
                 idAmico: id
             });

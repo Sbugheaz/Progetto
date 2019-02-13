@@ -213,7 +213,7 @@ router.post('/amici/eliminaAmico', function (req, res) {
  * Aggiunge un amico alla lista degli amici.
  */
 router.post('/amici/aggiungiAmico', function (req, res) {
-    var idAmico = req.body.idAmico; //Da completare
+    var idAmico = req.body.idAmico;
     var query = "INSERT INTO Amicizia VALUES(" + req.session.idUtente + ", " + idAmico + ")";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
