@@ -1,5 +1,5 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici = [], listaUtenti = [];
+var utente, listaAmici = [], listaUtenti = [], listaAmiciOnline = [];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
@@ -65,11 +65,16 @@ function richiediDatiAccount() {
             });
         }
 
-//Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi
+//Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi e invoca la funzione
+//stampaAmiciOnline() per stamparli nell'apposita lista
 function richiediAmiciOnline(){
     $.get('/WebPlayer/amiciOnline', function(result){
         if(result != "ERR") {
+            var lo = JSON.parse(result);
+            for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
+                listaAmiciOnline[i] = new Account(lo[i]);
+            stampaAmiciOnline(listaAmiciOnline);
         }
-        setInterval(richiediAmiciOnline,30000);
+        setInterval(richiediAmiciOnline,5000);
     });
 }
