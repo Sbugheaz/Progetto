@@ -363,6 +363,7 @@ div.slider-selection{
 #pannello-Ricerca{
     display: none;
     height: 75.8vh;
+    overflow: hidden;
 }
 /*Propità pannello di ricerca */
 .elenco-canzone-Autore{
@@ -374,12 +375,189 @@ div.slider-selection{
 btn-conzoni-ricerca{
     background: transparent;
 }
-
-/*contenitore Generi*/
-#pannello-Generi{
+#contenitore-ricerca{
+    height: 75.8vh;
+}
+#contenitore-lista-ricerca{
+    overflow-y: auto;
+    width: 100%;
+    padding: 0 15px;
+    max-height: 55vh;
+}
+.nomeCanzone{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+    height: 35px;
+}
+.nomeArtista{
+    text-align: left;
+    width: 60%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+    height: 35px;
+}
+.p_ricerca{
+    color: cornsilk;
+}
+.datiCanzoni{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+    padding: .75rem;
+    border-bottom: 2px solid #5CA5FF;
+}
+.nomeCanzoneArtista{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.listaRicerca{
+    font-size: 0.8rem;
+    width: 100%;
+}
+.intestazione-listaRicerca{
+    color: cornsilk;
+    margin: 0;
+}
+.titolo-listaRicerca{
+    text-align: center;
+    margin: 3vh 0 1rem 0;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 30px;
+}
+.container-icona-aggiungi-playlist{
+    text-align: center;
+    width: 20%;
+    float: left;
+    box-sizing: border-box;
+}
+.icona-aggiungi-Aplaylist:hover{
+    color: rgba(255,138,0,1);
+}
+/*contenitore Album*/
+#pannello-Album{
     display: none;
     height: 75.8vh;
 }
+/*propietà contenitore Album*/
+
+.flex-container-Album{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 50%;
+    overflow-y: auto;
+}
+
+.flex-item-Album{
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    margin-top: 1vh;
+    margin-left: 1vw;
+}
+.contenitore-nomeAlbum{
+    position: relative;
+    transform: translate(25%,25%);
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
+.nomeAlbum{
+    color: cornsilk;
+    font-size: 13px;
+}
+#contenitore-canzoni-album{
+    height: 50%;
+}
+#contenitore-paragrafo-Album{
+    height: 20%;
+}
+.paragrafo-album{
+    font-size: 1.4vw;
+    text-align: center ;
+    margin-top: 3vh;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+}
+#contenitore-lista-Album{
+    height: 80%;
+    overflow-y: auto;
+}
+.demo-Album{
+    height: 70vh;
+}
+.li_listaAlbum{
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear:left;
+}
+.ordine-Album{
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+}
+.p_Album{
+    color: cornsilk;
+    margin-top: 15px;
+}
+.canzone-album{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+}
+.autore-album{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+}
+.btn-album{
+    float: right;
+}
+.btn-canzoni-album{
+    background: transparent;
+}
+
 
 
 
@@ -661,6 +839,9 @@ table{
     #pannello-Playlist{
         height: 68.5vh!important;
     }
+    #pannello-Album{
+        height: 65.5vh!important;
+    }
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
         width: 70%;
@@ -677,6 +858,19 @@ table{
     /*Proprietà della colonna destra del Modal Profilo*/
     .col-25dx {
         padding-left:0;
+    }
+
+    .canzone-album{
+        width: 30%!important;
+    }
+    .autore-album{
+        width: 30%!important;
+    }
+    .canzone{
+        width: 30%!important;
+    }
+    .autore{
+        width: 30%!important;
     }
 
 
@@ -1014,7 +1208,7 @@ table{
     height: 50%;
 
 }
-#continitore-lista-playlist{
+#contenitore-lista-playlist{
     height: 80%;
     overflow-y: auto;
 }
@@ -1026,7 +1220,7 @@ table{
     height: 70vh;
 }
 
-.btn-conzoni-playlist{
+.btn-canzoni-playlist{
     background: transparent;
 
 
@@ -1095,92 +1289,18 @@ table{
     align-self: auto;
 }
 
-.flex-item:nth-child(2) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(3) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(4) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(5) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(6) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(7) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item:nth-child(8) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
 .flex-item{
     margin-top: 1vh;
     margin-left: 1vw;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
 }
 
 
@@ -1358,7 +1478,7 @@ height: 70.8vh;
     float: left;
     box-sizing: border-box;
     padding: .75rem;
-    border-bottom: 1px solid #5CA5FF;;
+    border-bottom: 1px solid #5CA5FF;
 }
 .container-icona-rimuovi-amico{
      text-align: center;
