@@ -1,10 +1,10 @@
-//dichiarazione degli oggetti
+//Dichiarazione degli oggetti
 var utente, listaAmici = [], listaUtenti = [];
 
-//funzione eseguita al caricamento della pagina
+//Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
 
-    //funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
+    //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
     $.get('/WebPlayer/utente', function(result){
         utente = new Account(JSON.parse(result)[0]);
         $(".nomeUtente").html("<br>" + utente.nomeUtente);
@@ -14,7 +14,7 @@ $(document).ready(function () {
         $('#email').attr("value",utente.email);
     });
 
-    //funzione che riceve dal database i dati relativi agli amici di un utente e li stampa nell'apposita lista
+    //Funzione che riceve dal database i dati relativi agli amici di un utente e li stampa nell'apposita lista
     $.get('/WebPlayer/amici', function(result){
         var la = JSON.parse(result);
         var content="";
@@ -38,26 +38,32 @@ $(document).ready(function () {
             }
         );
     });
+
+
     //Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
+    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#inserisci-nomeUtente").on("keyup", function(){
-        $.post("/WebPlayer/amici/cercaUtenti",
-            {
-                nomeUtente: $('input[name=nome-utente]').val(),
-            },
-            function (result) {
-                var lu = JSON.parse(result);
-                $(".listaUtenti").remove();
-                var content = "";
-                $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
-                for (i = 0; i < lu.length; i++) {
-                    listaUtenti[i] = new Account(lu[i]);
-                    content += '<li class="p_listaUtenti">' +
-                        '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
-                        '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
-                        '</li>';
-                    $(".listaUtenti").append(content);
-                    content = "";
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            $(".listaUtenti").remove();
+            $.post("/WebPlayer/amici/cercaUtenti",
+                {
+                    nomeUtente: $('input[name=nome-utente]').val(),
+                },
+                function (result) {
+                    var lu = JSON.parse(result);
+                    var content = "";
+                    $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
+                    for (i = 0; i < lu.length; i++) {
+                        listaUtenti[i] = new Account(lu[i]);
+                        content += '<li class="p_listaUtenti">' +
+                            '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
+                            '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
+                            '</li>';
+                        $(".listaUtenti").append(content);
+                        content = "";
                     }
-            });
+                });
+        }, 500);
     });
 });
