@@ -1501,4 +1501,5 @@ height: 70.8vh;
  }
 .icona-rimuovi-amico:hover{
     color: rgba(255,138,0,1);
+    cursor: pointer;
 }
