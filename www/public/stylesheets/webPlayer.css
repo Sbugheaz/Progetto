@@ -385,7 +385,7 @@ btn-conzoni-ricerca{
     overflow-y: auto;
     width: 100%;
     padding: 0 15px;
-    max-height: 55vh;
+    height: 80%;
 }
 .nomeCanzone{
     text-align: left;
@@ -436,14 +436,15 @@ btn-conzoni-ricerca{
 .intestazione-listaRicerca{
     color: cornsilk;
     margin: 0;
+    height: 10%;
 }
 .titolo-listaRicerca{
+    padding-top: 2%;
     text-align: center;
-    margin: 3vh 0 1rem 0;
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 30px;
+    height: 10%;
 }
 .container-icona-aggiungi-playlist{
     text-align: center;
@@ -1447,25 +1448,25 @@ fa-paly:hover {
 .intestazione-listaAmici{
     color:cornsilk;
     margin: 0;
+    height: 10%;
 }
 #contenitore-lista-amici{
-height: 54.8vh;
+height: 80%;
     overflow-y: auto;
     padding: 0 15px;
 }
 #contenitore-btnAmici{
-height: 6vh;
+height: 10%;
 }
 #contenitore-amicizie{
-height: 70.8vh;
+height: 90%;
 }
 .titolo-listaAmici{
     text-align: center;
-    margin: 3vh 0 1rem 0;
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 5vh;
+    height: 10%;
 }
 .nomeAmici{
     text-align: left;

@@ -64,7 +64,7 @@ function richiediDatiAccount() {
                 }, 500);
             });
         }
-
+/*
 //Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi e invoca la funzione
 //stampaAmiciOnline() per stamparli nell'apposita lista
 function richiediAmiciOnline(){
@@ -78,3 +78,4 @@ function richiediAmiciOnline(){
         setInterval(richiediAmiciOnline,5000);
     });
 }
+*/
