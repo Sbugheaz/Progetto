@@ -258,7 +258,6 @@ $(document).ready(function() {
     });
 
     $('#step-forward').click(function() {
-
             audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
             $('#pause').hide();
             $('#play').show();
@@ -268,13 +267,14 @@ $(document).ready(function() {
 
     $('#step-backward').click(function() {
         if(audioElement.currentTime<3) {
-        audioElement.src = percorsi[((--indiceCorrente)+percorsi.length)%percorsi.length];
-        $('#pause').hide();
-        $('#play').show();
+            indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
+            audioElement.src = percorsi[indiceCorrente];
+            console.log(indiceCorrente);
+            $('#pause').hide();
+            $('#play').show();
         }else {
             audioElement.currentTime=0;
         }
-
     });
 
 
