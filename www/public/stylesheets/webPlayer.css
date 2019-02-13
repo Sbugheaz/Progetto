@@ -335,10 +335,11 @@ div.slider-selection{
 #contenitore-volume{
     background-color: rgba(0,0,0,0);
     border: 0;
+    transform: translate(-45px,-20px)!important;
 
 }
 #contenitore-volume > .slider.slider-horizontal{
-    transform: translate3d(3vw, 30px, 0px);
+    
     width: 100%;
 }
 
