@@ -34,7 +34,11 @@ $(document).ready(function () {
                 function (result) {
                     if(result=="ERR"){
                         var messaggio="Nussun utente corrisponde ai criteri di ricerca";
-                        $(".container-listaUtenti").html(messaggio);
+                        $(".container-listaUtenti").html(messaggio).css({
+                            'font-size' : '1rem',
+                            'padding' : '20px 0',
+                            'color' : 'red'
+                        });
                     }
                     else {
                         var lu = JSON.parse(result);
