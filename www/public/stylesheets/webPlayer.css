@@ -744,7 +744,14 @@ table{
 }
 
 
-
+@media only screen and (max-height: 515px){
+    #titolo-brano-in-riproduzione {
+        font-size: x-small;
+    }
+    #album2 {
+        display: none;
+    }
+}
 
 
 @media only screen and (max-width: 768px) {
