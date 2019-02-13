@@ -1,11 +1,9 @@
 
 //funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
-function stampaListaAmici(la){
-    $(".listaUtenti").remove();
+function stampaListaAmici(listaAmici){
     var content="";
     $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
-    for(i=0; i<la.length; i++) {
-        listaAmici[i] = new Account(la[i]);
+    for(i=0; i<listaAmici.length; i++) {
         content += '<li class="amico" id="amico' + listaAmici[i].idUtente + '">' +
             '<div class="datiAmico nomeAmico">' + listaAmici[i].nome + '</div>' +
             '<div class="datiAmico cognomeAmico">' + listaAmici[i].cognome + '</div>' +
@@ -15,11 +13,11 @@ function stampaListaAmici(la){
             'data-toggle="modal" data-target="#modal-conferma-rimAmico"></i> </div>' +
             '</li>' ;
         $(".listaAmici").append(content);
-
         content = "";
     }
     $(".icona-rimuovi-amico").click(function(evento) {
-            recuperaID(evento);
+            recuperaIDElimina(evento);
+            eliminaAmico();
         }
     );
 }
@@ -40,17 +38,11 @@ function stampaAmiciDaAggiungere(lu){
             $(".listaUtenti").append(content);
             content = "";
     }
-    $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
-            recuperaID(evento);
-            aggiungiRigaAmico()
-
+        $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+            recuperaIDAggiungi(evento);
+            aggiungiAmico();
         }
     );
-}
-
-// aggiungibili che corrispondono ai criteri di ricerca
-function aggiungiRigaAmico(){
-
 }
 
 

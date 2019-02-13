@@ -6,18 +6,24 @@ $(document).ready(function () {
 
     //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
     $.get('/WebPlayer/utente', function(result){
-        utente = new Account(JSON.parse(result)[0]);
-        $(".nomeUtente").html("<br>" + utente.nomeUtente);
-        $('#nome').attr("value",utente.nome);
-        $('#cognome').attr("value",utente.cognome);
-        $('#dataNascita').attr("value", utente.dataDiNascita.substring(0,10));
-        $('#email').attr("value",utente.email);
+        if(result != "ERR") {
+            utente = new Account(JSON.parse(result)[0]);
+            $(".nomeUtente").html("<br>" + utente.nomeUtente);
+            $('#nome').attr("value", utente.nome);
+            $('#cognome').attr("value", utente.cognome);
+            $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
+            $('#email').attr("value", utente.email);
+        }
     });
 
     //Funzione che riceve dal database i dati relativi agli amici di un utente e invoca la funzione stampaListaAmici() per stamparli nell'apposita lista
     $.get('/WebPlayer/amici', function(result){
-        var la = JSON.parse(result);
-        stampaListaAmici(la);
+        if(result != "ERR") {
+            var la = JSON.parse(result);
+            for(i=0; i<la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
+                listaAmici[i] = new Account(la[i]);
+            stampaListaAmici(listaAmici);
+        }
     });
 
 

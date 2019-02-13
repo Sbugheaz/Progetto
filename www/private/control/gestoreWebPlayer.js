@@ -192,6 +192,7 @@ router.get('/amici', function (req, res) {
         if (err) throw err;
         //Se la query restituisce gli amici dell'utente li manda al client
         if(result.length != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
     });
 });
 

@@ -289,6 +289,7 @@ $(document).ready(function(){
         disabilitaScrittura('nome');
         disabilitaScrittura('cognome');
         disabilitaScrittura('dataNascita');
+        $(".modal-footer").hide();
     });
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
     // modifica della password
@@ -302,23 +303,22 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $("#err_password").text("").css("display", "none");
     });
+    $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        $(".listaUtenti").remove();
+    });
 });
 
 //Variabile che gestisce l'ID degli amici
 var id;
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
-function recuperaID(evento) {
+function recuperaIDElimina(evento) {
     id = evento.target.id.substring(13);
 };
-
-
-//Funzione che cancella la riga contenente l'utente da rimuovere
-$(document).ready(function(){
-    $("#tastoConfermaRim").click(function(){
-        var idListItem = "amico" + id;
-        $("#" + idListItem).remove();
-    });
-});
+//Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'aggiunta e comunicarla al database
+function recuperaIDAggiungi(evento) {
+    id = evento.target.id.substring(14);
+};
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
 $(document).ready(function(){
@@ -326,6 +326,22 @@ $(document).ready(function(){
         $(".listaUtenti").remove();
     });
 });
+
+//Funzione che rimuove un elemento da un array e ne elimina la cella
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
+
+
+
+
+
+
+
+
+
 
 
 //Funzioni che gestiscono la comunicazione con il server
@@ -430,22 +446,39 @@ function modificaAccount() {
 }
 
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
-$(document).ready(function(){
-    $("#tastoConfermaRim").click(function(){
-        $.post("/WebPlayer/amici/eliminaAmico",
-            {
-                idAmico: id
-            });
-    });
-});
+function eliminaAmico() {
+    $.post("/WebPlayer/amici/eliminaAmico",
+        {
+            idAmico: id
+        }, function(result) {
+            if(result == "OK") {
+                $("#tastoConfermaRim").click(function () {
+                    var idListItem = "amico" + id;
+                    $("#" + idListItem).remove(); //Elimina la riga della lista amici
+                    for(i=0; i<listaAmici.length; i++) {
+                        if(listaAmici[i].idUtente == id) {
+                            listaAmici.remove(i);
+                        }
+                    }
+                });
+            }
+        });
+}
 
-//Funzione che gestisce l'eliminazione di un amico da parte dell'utente
-$(document).ready(function(){
-    var idPulsante = "aggiungi-amico" + id;
-    $("#" + idPulsante).click(function(){
-        $.post("/WebPlayer/amici/aggiungiAmico",
-            {
-                idAmico: id
-            });
-    });
-});
+//Funzione che gestisce l'aggiunta di un amico da parte dell'utente
+function aggiungiAmico() {
+    $.post("/WebPlayer/amici/aggiungiAmico",
+        {
+            idAmico: id
+        });
+    $(".listaAmici").remove();
+    for(i=0; i<listaUtenti.length; i++) {
+        if(listaUtenti[i].idUtente == id) {
+            listaAmici.push(listaUtenti[i]);
+        }
+    }
+    listaUtenti.remove(0, listaUtenti.length-1);
+    stampaListaAmici(listaAmici);
+    $("#modal-aggiungi-amico").find('form').trigger('reset');
+    $(".listaUtenti").remove();
+}
