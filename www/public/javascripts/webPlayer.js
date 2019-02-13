@@ -310,6 +310,12 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("#inserisci-nomeUtente").on('input',function(){
+        $(".listaUtenti").remove();
+    });
+});
+
 
 
 //Funzioni che gestiscono la comunicazione con il server

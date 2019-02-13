@@ -1,10 +1,10 @@
-//dichiarazione degli oggetti
+//Dichiarazione degli oggetti
 var utente, listaAmici = [], listaUtenti = [];
 
-//funzione eseguita al caricamento della pagina
+//Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
 
-    //funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
+    //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
     $.get('/WebPlayer/utente', function(result){
         utente = new Account(JSON.parse(result)[0]);
         $(".nomeUtente").html("<br>" + utente.nomeUtente);
@@ -14,50 +14,39 @@ $(document).ready(function () {
         $('#email').attr("value",utente.email);
     });
 
-    //funzione che riceve dal database i dati relativi agli amici di un utente e li stampa nell'apposita lista
+    //Funzione che riceve dal database i dati relativi agli amici di un utente e invoca la funzione stampaListaAmici() per stamparli nell'apposita lista
     $.get('/WebPlayer/amici', function(result){
         var la = JSON.parse(result);
-        var content="";
-        $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
-        for(i=0; i<la.length; i++) {
-            listaAmici[i] = new Account(la[i]);
-            content += '<li class="amico" id="amico' + listaAmici[i].idUtente + '">' +
-                '<div class="datiAmico nomeAmico">' + listaAmici[i].nome + '</div>' +
-                '<div class="datiAmico cognomeAmico">' + listaAmici[i].cognome + '</div>' +
-                '<div class="datiAmico nomeUtenteAmico">' + listaAmici[i].nomeUtente + '</div>' +
-                '<div class="datiAmico container-icona-rimuovi-amico">' +
-                '<i class="fa fa-user-times icona-rimuovi-amico" id="rimuovi-amico' + listaAmici[i].idUtente +'"'+
-                'data-toggle="modal" data-target="#modal-conferma-rimAmico"></i> </div>' +
-                '</li>' ;
-            $(".listaAmici").append(content);
+        stampaListaAmici(la);
+    });
 
-            content = "";
-        }
-        $(".icona-rimuovi-amico").click(function(evento) {
-            recuperaID(evento);
-            }
-        );
-    });
-    //Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca
+
+    //Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca e invoca la
+    // funzione stampaAmiciDaAggiungere() per stamparli nell'apposita lista
+    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#inserisci-nomeUtente").on("keyup", function(){
-        $.post("/WebPlayer/amici/cercaUtenti",
-            {
-                nomeUtente: $('input[name=nome-utente]').val(),
-            },
-            function (result) {
-                var lu = JSON.parse(result);
-                $(".listaUtenti").remove();
-                var content = "";
-                $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
-                for (i = 0; i < lu.length; i++) {
-                    listaUtenti[i] = new Account(lu[i]);
-                    content += '<li class="p_listaUtenti">' +
-                        '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
-                        '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente"></i> </div>' +
-                        '</li>';
-                    $(".listaUtenti").append(content);
-                    content = "";
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            $.post("/WebPlayer/amici/cercaUtenti",
+                {
+                    utenteCercato: $('input[name=nome-utente]').val(),
+                },
+                function (result) {
+                    if(result=="ERR"){
+                        var messaggio="Nussun utente corrisponde ai criteri di ricerca";
+                        $(".container-listaUtenti").html(messaggio).css({
+                            'font-size' : '1rem',
+                            'padding' : '20px 0',
+                        });
                     }
-            });
+                    else {
+                        $(".container-listaUtenti").empty();
+                        var lu = JSON.parse(result);
+                        stampaAmiciDaAggiungere(lu);
+                    }
+                });
+        }, 500);
     });
+
+
 });
