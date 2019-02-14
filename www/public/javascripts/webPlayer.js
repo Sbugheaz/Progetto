@@ -1,7 +1,10 @@
 
-var pannelloAttivo=null;
+var pannelloAttivo;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
+var seeking=false;
+var listaOrigine;
+var shuffleB=false;
 var repeat=false;
 
 
@@ -68,6 +71,17 @@ $(document).ready(function(){
         }
         $("#pannello-Ricerca").show();
         pannelloAttivo= $("#pannello-Ricerca");
+
+    });
+});
+//Funzione che permette di aprire il pannello-Brani in riproduzione{
+$(document).ready(function(){
+    $(".pulsanteA-brani").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-BraniRiproduzione").show();
+        pannelloAttivo= $("#pannello-BraniRiproduzione");
 
     });
 });
@@ -193,6 +207,8 @@ function setDivVisibility(){
 
 
 $(window).on('load', function () {
+    pannelloAttivo=$("#pannello-BraniRiproduzione");
+    $("#pannello-BraniRiproduzione").show();
     if (($(window).width()) > '768'){
         $('#colonna-destra').css('display','block');
         $('#colonna-sinistra').css('display','block');
@@ -210,8 +226,10 @@ $(window).on('load', function () {
 });
 
 $(document).ready(function() {
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3"];
+
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL_CIELO_NELLA_STANZA.mp3","songs/90MIN.mp3"];
     var indiceCorrente = 0;
+    listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
     var audioElement = new Audio();        // create the audio object// assign the audio file to its src
@@ -222,28 +240,30 @@ $(document).ready(function() {
     }, false);*/
 
     audioElement.addEventListener("ended", function() {
-
-            this.pause();
-            indiceCorrente = (++indiceCorrente)%percorsi.length;
-            audioElement.src = percorsi[indiceCorrente];
-            this.play();
-            console.log("ripeti attivo");
-
-
-
+            if(repeat==false && indiceCorrente==(percorsi.length-1)){
+                seeking=false;
+                $('#play').hide();
+                $('#pause').show();
+                this.pause;
+            }else {
+                this.pause();
+                audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
+                this.play();
+            }
     });
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(42));
 
     });
 
     $(audioElement).on("timeupdate",refresh);
 
     $('#play').click(function() {
+        seeking=true;
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
@@ -251,6 +271,7 @@ $(document).ready(function() {
     });
 
     $('#pause').click(function() {
+        seeking=false;
         audioElement.pause();
         $('#pause').hide();
         $('#play').show();
@@ -258,9 +279,13 @@ $(document).ready(function() {
     });
 
     $('#step-forward').click(function() {
-            audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-            $('#pause').hide();
-            $('#play').show();
+
+        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
+            if(seeking==true) {
+                audioElement.play();
+            }else {
+                audioElement.pause();
+            }
 
 
     });
@@ -276,10 +301,32 @@ $(document).ready(function() {
         }
     });
 
+    $('#random').click(function () {
+        if(shuffleB==false){
+            $("#random").css('color', '#5CA5FF');
+            shuffleB=true;
+            percorsi=shuffle(percorsi);
+        }else{
+            shuffleB=false;
+            $("#random").css('color', 'cornsilk');
+            percorsi=JSON.parse(JSON.stringify(listaOrigine));
+
+        }
+
+    });
+
 
 
     $('#repeat').click(function() {
-        repeat=true;
+        if(repeat==false){
+            $("#repeat").css('color', '#5CA5FF');
+            repeat=true;
+        }else{
+            repeat=false;
+            $("#repeat").css('color', 'cornsilk');
+
+
+        }
     });
 
     $("#volume-range").on("slide", function(slideEvt) {
@@ -516,3 +563,25 @@ function aggiungiAmico() {
     $("#modal-aggiungi-amico").find('form').trigger('reset');
     $(".listaUtenti").remove();
 }
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+
+
