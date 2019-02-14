@@ -5,7 +5,7 @@ var pannelloSecondario;
 var seeking=false;
 var listaOrigine;
 var shuffleB=false;
-var repeat;
+var repeat=false;
 
 
 
@@ -227,8 +227,10 @@ $(document).ready(function() {
     }, false);*/
 
     audioElement.addEventListener("ended", function() {
-            if(repeat=true && indiceCorrente==(percorsi.length-1)){
+            if(repeat==false && indiceCorrente==(percorsi.length-1)){
                 seeking=false;
+                $('#play').hide();
+                $('#pause').show();
                 this.pause;
             }else {
                 this.pause();
