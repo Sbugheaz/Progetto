@@ -844,15 +844,10 @@ table{
         width: 100%;
         font-size: 0.7rem;
     }
-    #pannello-Amicizie{
+    #pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: 68.5vh!important;
     }
-    #pannello-Playlist{
-        height: 68.5vh!important;
-    }
-    #pannello-Album{
-        height: 65.5vh!important;
-    }
+
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
         width: 70%;

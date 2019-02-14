@@ -76,7 +76,7 @@ $(document).ready(function(){
 });
 //Funzione che permette di aprire il pannello-Brani in riproduzione{
 $(document).ready(function(){
-    $(".pulsanteA-brani").click(function(){
+    $(".pulsanteA-brani,.btn-mobile-brani").click(function(){
         if(pannelloAttivo!=null){
             pannelloAttivo.hide();
         }
@@ -242,8 +242,6 @@ $(document).ready(function() {
     audioElement.addEventListener("ended", function() {
             if(repeat==false && indiceCorrente==(percorsi.length-1)){
                 seeking=false;
-                $('#play').hide();
-                $('#pause').show();
                 this.pause;
             }else {
                 this.pause();
