@@ -2,6 +2,7 @@
 var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
+var seeking=false;
 
 var shuffleB=false;
 
@@ -212,7 +213,7 @@ $(window).on('load', function () {
 
 $(document).ready(function() {
 
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL CIELO NELLA STANZA.mp3"];
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL CIELO NELLA STANZA.mp3","songs/90MIN.mp3"];
     var indiceCorrente = 0;
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
@@ -240,6 +241,7 @@ $(document).ready(function() {
     $(audioElement).on("timeupdate",refresh);
 
     $('#play').click(function() {
+        seeking=true;
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
@@ -247,6 +249,7 @@ $(document).ready(function() {
     });
 
     $('#pause').click(function() {
+        seeking=false;
         audioElement.pause();
         $('#pause').hide();
         $('#play').show();
@@ -254,9 +257,13 @@ $(document).ready(function() {
     });
 
     $('#step-forward').click(function() {
-            audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-            $('#pause').hide();
-            $('#play').show();
+
+        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
+            if(seeking==true) {
+                audioElement.play();
+            }else {
+                audioElement.pause();
+            }
 
 
     });
