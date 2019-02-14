@@ -75,6 +75,6 @@ function richiediAmiciOnline(){
                 listaAmiciOnline[i] = new Account(lo[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
-        setInterval(richiediAmiciOnline,5000);
+        //setInterval(richiediAmiciOnline,5000);
     });
 }

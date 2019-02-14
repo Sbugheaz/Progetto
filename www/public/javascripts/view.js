@@ -48,6 +48,7 @@ function stampaAmiciDaAggiungere(lu){
 
 //funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaAmiciOnline(listaAmiciOnline){
+    $(".listaAmiciOnline").remove();
     //riempie la colonna destra contenente gli amici online
     var content1="";
     $(".container-listaAmici").append('<ul class="demo listaAmiciOnline">');
@@ -55,10 +56,9 @@ function stampaAmiciOnline(listaAmiciOnline){
         content1 += '<li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome +' '+ listaAmiciOnline[i].cognome  +'<br> <p class="sta-ascoltando">' +
             '<i class="fa fa-music icona-musica"></i>"Tranne Te"</p> </li>' ;
-        $(".listaAmiciOnline").append(content);
+        $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
-
     //riempie la lista di amici online in modalità mobile
     var content2= "";
     $(".container-listaAmici-mobile").append('<ul class="demo demo-mobile">');
