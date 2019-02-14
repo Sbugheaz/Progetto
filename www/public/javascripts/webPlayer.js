@@ -156,6 +156,17 @@ $(document).ready(function(){
 
     });
 });
+//Funzione che permentte di aprire il pannello-Genere
+$(document).ready(function(){
+    $("#tasto-Pop,#tasto-Classico,#tasto-Rock").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Generi").show();
+        pannelloAttivo=$("#pannello-Generi");
+
+    });
+});
 
 
 $(document).ready(function(){

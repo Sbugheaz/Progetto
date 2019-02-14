@@ -1635,3 +1635,114 @@ height: 90%;
 }
 
 /*propietà pannnello generi*/
+#contenitore-genere{
+    height: 75.8vh;
+}
+.titolo-listaBrani-genere{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 10%;
+}
+.intestazione-listaBrani-genere{
+    color: cornsilk;
+    margin: 0;
+    height: 10%;
+}
+.nomeCanzone-genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeArtista-genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeStato-genere{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.p_genere{
+    color: cornsilk;
+}
+
+#contenitore-listaBrani-genere{
+    overflow-y: auto;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+}
+.listaGenere{
+    font-size: 0.8rem;
+    width: 100%;
+    color: cornsilk;
+}
+
+.nomeStato_genere{
+    text-align: left;
+    width: 20%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+
+}
+.nomeArtista_genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeCanzone_genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.container-icona-play-gen{
+    text-align: center;
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+.icona-play-gen:hover,.icona-aggiungi-Aplaylist-gen:hover{
+    color: rgba(255,138,0,1);
+}
+.container-icona-aggiungi-playlist-gen{
+    text-align: center;
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+
