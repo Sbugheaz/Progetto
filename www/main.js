@@ -9,6 +9,7 @@ var session = require('express-session'); // modulo che si occupa della gestione
 var bodyParser = require('body-parser'); // modulo che permette di interpretare il corpo di una risposta http
 var debug = require('debug')('progetto:server'); // modulo che permette l'inizializzazione della porta di ascolto
 var http = require('http'); //modulo necessario alla creazione del server HTTP
+var mysql = require('mysql'); //modulo che gestisce l'interazione col database MySQL
 var gestoreLogin = require('./private/control/gestoreLogin'); // control che gestisce la pagina di login
 var gestoreRegistrazione = require('./private/control/gestoreRegistrazione'); // control che gestisce la pagina di registrazione
 var gestoreWebPlayer = require('./private/control/gestoreWebPlayer'); // control che gestisce la pagina del web player
@@ -83,6 +84,37 @@ function onError(error) {
 }
 
 /**
+ * Inizializzazione della connessione con il database.
+ * @type {Connection}
+ */
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "admin",
+    password: "password",
+    database: "SoundWaveDB",
+
+    typeCast: function castField(field, useDefaultTypeCasting) {
+        /**
+         *  Vogliamo castare solamente i field contenenti un singolo bit. Se il field ha piu di un bit, non possiamo
+         *   assumere che sia un booleano.*/
+        if ((field.type === "BIT") && (field.length === 1)) {
+            var bytes = field.buffer();
+            /**
+             *  Un buffer in node rappresenta un insieme di interi unsigned da 8 bit. Quindi, il nostro singolo
+             *  "bit field" consiste nei bit ad esempio "0000 0001", equivalenti al numero 1.
+             */
+            return (bytes[0] === 1);
+        }
+        return useDefaultTypeCasting();
+    }
+});
+
+//Avvia la connessione al database
+con.connect(function(err) {
+    if (err) throw err;
+});
+
+/**
  * Event listener per gli eventi "listening" del server HTTP.
  */
 
@@ -101,6 +133,10 @@ function onListening() {
  */
 process.on('SIGINT', function () {
     console.log("\nServer terminato a causa di un'interruzione manuale.\n");
+    var query = "UPDATE Account SET StatoOnline = 0"; //Imposta lo stato online di tutti gli utenti a 0 quando il server viene interrotto
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+    });
     process.exit();
 });
 

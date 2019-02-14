@@ -116,17 +116,20 @@ router.post('/Login', function (req, res) {
  * Funzione che gestisce il logout di un utente.
  */
 router.get('/Logout', function (req, res) {
-    var query1 = "UPDATE Account SET StatoOnline = 0 " + "WHERE IDUtente=" + req.session.idUtente;
-    var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
-    req.session.idUtente = undefined;
-    con.query(query1, function (err, result, fields) {
-        if (err) throw err;
-    });
-    con.query(query2, function (err, result, fields) {
-        if (err) throw err;
-        console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
-    });
-    res.send('OK');
+    if(req.session.idUtente == undefined) res.redirect('/');
+    else {
+        var query1 = "UPDATE Account SET StatoOnline = 0 " + "WHERE IDUtente=" + req.session.idUtente;
+        var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
+        req.session.idUtente = undefined;
+        con.query(query1, function (err, result, fields) {
+            if (err) throw err;
+        });
+        con.query(query2, function (err, result, fields) {
+            if (err) throw err;
+            console.log("L'utente " + result[0].NomeUtente + " si è disconnesso.\n");
+        });
+        res.send('OK');
+    }
 });
 
 

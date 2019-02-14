@@ -92,7 +92,6 @@ router.get('/', function (req, res) {
     }
     else {
         res.redirect('/');
-        console.log("Pagina di login inviata a " + req.ip.substr(7) + "\n");
     }
 });
 
@@ -231,8 +230,9 @@ router.post('/amici/cercaUtenti', function (req, res) {
     if(utenteCercato != "") {
         var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
                     "FROM Account " +
-                    "WHERE (NomeUtente LIKE '" + utenteCercato + "%' OR Nome LIKE '" + utenteCercato + "%' " +
-                            "OR Cognome LIKE '" + utenteCercato + "%') " +
+                    "WHERE (NomeUtente LIKE '" + utenteCercato + "%' OR " +
+            "CONCAT(Nome, ' ', Cognome) LIKE '" + utenteCercato + "%' OR " +
+            "CONCAT(Cognome, ' ', Nome) LIKE '" + utenteCercato + "%') " +
             "AND IDUtente<>" + req.session.idUtente + " AND IDUtente NOT IN (" +
                                                 "SELECT IDUtente " +
                                                 "FROM Account, Amicizia " +
@@ -250,15 +250,17 @@ router.post('/amici/cercaUtenti', function (req, res) {
  * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player.
  */
 router.get('/amiciOnline', function (req, res) {
-    var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
-        "FROM Amicizia, Account " +
-        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
-    con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        //Se la query restituisce gli amici online li manda al client
-        if(result.length != 0) res.send(JSON.stringify(result));
-        else res.send("ERR");
-    });
+    if(req.session.idUtente != undefined) {
+        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
+            "FROM Amicizia, Account " +
+            "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            //Se la query restituisce gli amici online li manda al client
+            if (result.length != 0) res.send(JSON.stringify(result));
+            else res.send("ERR");
+        });
+    }
 });
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
