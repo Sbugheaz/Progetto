@@ -3,8 +3,9 @@ var pannelloAttivo=null;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
 var seeking=false;
-
+var listaOrigine;
 var shuffleB=false;
+var repeat;
 
 
 
@@ -213,8 +214,9 @@ $(window).on('load', function () {
 
 $(document).ready(function() {
 
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL CIELO NELLA STANZA.mp3","songs/90MIN.mp3"];
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL_CIELO_NELLA_STANZA.mp3","songs/90MIN.mp3"];
     var indiceCorrente = 0;
+    listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
     var audioElement = new Audio();        // create the audio object// assign the audio file to its src
@@ -225,16 +227,21 @@ $(document).ready(function() {
     }, false);*/
 
     audioElement.addEventListener("ended", function() {
+            if(repeat=true && indiceCorrente==(percorsi.length-1)){
+                seeking=false;
+                this.pause;
+            }else {
                 this.pause();
                 audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
                 this.play();
+            }
     });
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(42));
 
     });
 
@@ -280,21 +287,31 @@ $(document).ready(function() {
     });
 
     $('#random').click(function () {
-        /*if(shuffleB==false){
-            shuffleB==true;
+        if(shuffleB==false){
+            $("#random").css('color', '#5CA5FF');
+            shuffleB=true;
             percorsi=shuffle(percorsi);
         }else{
             shuffleB=false;
-            percorsi=JSON.parse(JSON.stringify(listaOriginale));
+            $("#random").css('color', 'cornsilk');
+            percorsi=JSON.parse(JSON.stringify(listaOrigine));
 
         }
-        */
+
     });
 
 
 
     $('#repeat').click(function() {
-        repeat=true;
+        if(repeat==false){
+            $("#repeat").css('color', '#5CA5FF');
+            repeat=true;
+        }else{
+            repeat=false;
+            $("#repeat").css('color', 'cornsilk');
+
+
+        }
     });
 
     $("#volume-range").on("slide", function(slideEvt) {
@@ -550,4 +567,6 @@ function shuffle(array) {
 
     return array;
 }
+
+
 
