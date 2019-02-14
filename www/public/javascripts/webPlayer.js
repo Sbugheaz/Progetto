@@ -370,7 +370,7 @@ $(document).ready(function(){
         disabilitaScrittura('nome');
         disabilitaScrittura('cognome');
         disabilitaScrittura('dataNascita');
-        $(".modal-footer").hide();
+        $(".footerProfilo").hide();
     });
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
     // modifica della password
@@ -414,6 +414,28 @@ Array.prototype.remove = function(from, to) {
     this.length = from < 0 ? this.length + from : from;
     return this.push.apply(this, rest);
 };
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+
+
 
 
 
@@ -562,25 +584,6 @@ function aggiungiAmico() {
     stampaListaAmici(listaAmici);
     $("#modal-aggiungi-amico").find('form').trigger('reset');
     $(".listaUtenti").remove();
-}
-
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
 }
 
 
