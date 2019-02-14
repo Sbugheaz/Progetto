@@ -1,5 +1,5 @@
 
-var pannelloAttivo=null;
+var pannelloAttivo;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
 var seeking=false;
@@ -71,6 +71,17 @@ $(document).ready(function(){
         }
         $("#pannello-Ricerca").show();
         pannelloAttivo= $("#pannello-Ricerca");
+
+    });
+});
+//Funzione che permette di aprire il pannello-Brani in riproduzione{
+$(document).ready(function(){
+    $(".pulsanteA-brani").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-BraniRiproduzione").show();
+        pannelloAttivo= $("#pannello-BraniRiproduzione");
 
     });
 });
@@ -196,6 +207,8 @@ function setDivVisibility(){
 
 
 $(window).on('load', function () {
+    pannelloAttivo=$("#pannello-BraniRiproduzione");
+    $("#pannello-BraniRiproduzione").show();
     if (($(window).width()) > '768'){
         $('#colonna-destra').css('display','block');
         $('#colonna-sinistra').css('display','block');
