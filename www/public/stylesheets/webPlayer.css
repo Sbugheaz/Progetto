@@ -412,11 +412,10 @@ btn-conzoni-ricerca{
     margin: 0;
 }
 .datiCanzoni{
-
-    float: left;
+    display: inline-block;
     box-sizing: border-box;
-    padding: .75rem;
-    border-bottom: 1px solid #5CA5FF;
+    padding: 10px;
+    margin: 0;
 }
 .nomeCanzoneArtista{
     width: 40%;
@@ -442,7 +441,6 @@ btn-conzoni-ricerca{
 .container-icona-aggiungi-playlist{
     text-align: center;
     width: 20%;
-    float: left;
     box-sizing: border-box;
 }
 .icona-aggiungi-Aplaylist:hover{
@@ -1682,7 +1680,7 @@ height: calc(100% - 90px);
     color: cornsilk;
 }
 
-.nomeStato_genere{
+.imgCover{
     width: 20%;
 
 }
@@ -1697,8 +1695,6 @@ height: calc(100% - 90px);
 .container-icona-play-gen{
     text-align: center;
     width: 10%;
-    float: left;
-    box-sizing: border-box;
     padding: 12px 0;
 }
 .icona-play-gen:hover,.icona-aggiungi-Aplaylist-gen:hover{
@@ -1707,8 +1703,16 @@ height: calc(100% - 90px);
 .container-icona-aggiungi-playlist-gen{
     text-align: center;
     width: 10%;
-    float: left;
-    box-sizing: border-box;
     padding: 12px 0;
 }
+.cover{
+    width: 30px;
+}
 
+.genere {
+    overflow: hidden;
+    border-bottom: 1px solid #5CA5FF;
+}
+.genere > * {
+    vertical-align: middle;
+}
