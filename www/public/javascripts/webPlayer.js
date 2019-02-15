@@ -1,7 +1,10 @@
 
-var pannelloAttivo=null;
+var pannelloAttivo;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
+var seeking=false;
+var listaOrigine;
+var shuffleB=false;
 var repeat=false;
 
 
@@ -68,6 +71,17 @@ $(document).ready(function(){
         }
         $("#pannello-Ricerca").show();
         pannelloAttivo= $("#pannello-Ricerca");
+
+    });
+});
+//Funzione che permette di aprire il pannello-Brani in riproduzione{
+$(document).ready(function(){
+    $(".pulsanteA-brani,.btn-mobile-brani").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-BraniRiproduzione").show();
+        pannelloAttivo= $("#pannello-BraniRiproduzione");
 
     });
 });
@@ -142,8 +156,19 @@ $(document).ready(function(){
 
     });
 });
+//Funzione che permentte di aprire il pannello-Genere
+$(document).ready(function(){
+    $("#tasto-Pop,#tasto-Classico,#tasto-Rock").click(function(){
+        if(pannelloAttivo!=null){
+            pannelloAttivo.hide();
+        }
+        $("#pannello-Generi").show();
+        pannelloAttivo=$("#pannello-Generi");
 
+    });
+});
 
+/*funzione che fa comparire e scomparire il pulsante logout*/
 $(document).ready(function(){
     var block = false;
     $("#pulsante-Logout").mouseenter(function(){
@@ -169,7 +194,7 @@ $(document).ready(function(){
 
     });
 });
-
+/*funzione che contralla i pannelli da aprire in base alla dimensione della pagina*/
 $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
@@ -191,8 +216,10 @@ function setDivVisibility(){
     }
 }
 
-
+/*funzione che inizializza la pagina al caricamento*/
 $(window).on('load', function () {
+    pannelloAttivo=$("#pannello-BraniRiproduzione");
+    $("#pannello-BraniRiproduzione").show();
     if (($(window).width()) > '768'){
         $('#colonna-destra').css('display','block');
         $('#colonna-sinistra').css('display','block');
@@ -208,10 +235,11 @@ $(window).on('load', function () {
 
 
 });
-
+/*funzioni del player*/
 $(document).ready(function() {
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna - Los Angeles.mp3", "songs/Horse-fart-sounds.mp3"];
+    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL_CIELO_NELLA_STANZA.mp3","songs/90MIN.mp3"];
     var indiceCorrente = 0;
+    listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
     var audioElement = new Audio();        // create the audio object// assign the audio file to its src
@@ -221,50 +249,59 @@ $(document).ready(function() {
         this.play();
     }, false);*/
 
+
+    /*funzione che viene invocata quando una canzone finisce*/
     audioElement.addEventListener("ended", function() {
-
-            this.pause();
-            indiceCorrente = (++indiceCorrente)%percorsi.length;
-            audioElement.src = percorsi[indiceCorrente];
-            this.play();
-            console.log("ripeti attivo");
-
-
-
+            if(repeat==false && indiceCorrente==(percorsi.length-1)){
+                seeking=false;
+                this.pause;
+            }else {
+                this.pause();
+                audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
+                this.play();
+            }
     });
+    /*funzione che calcola i minuti e secondi e titolo del brano*/
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
         var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(48));
+        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(42));
 
     });
 
+    /* funzione che permette di aggiornare la barra di avanzamento */
     $(audioElement).on("timeupdate",refresh);
 
+    /*funzione che permette di avviare la musica*/
     $('#play').click(function() {
+        seeking=true;
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
 
     });
-
+    /*funzione che permette di stoppare la musica*/
     $('#pause').click(function() {
+        seeking=false;
         audioElement.pause();
         $('#pause').hide();
         $('#play').show();
 
     });
-
+    /*funzione che permette di passare al brano successivo*/
     $('#step-forward').click(function() {
-            audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-            $('#pause').hide();
-            $('#play').show();
+        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
+            if(seeking==true) {
+                audioElement.play();
+            }else {
+                audioElement.pause();
+            }
 
 
     });
-
+    /*funzione che permette di passare al brano precedente*/
     $('#step-backward').click(function() {
         if(audioElement.currentTime<3) {
             indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
@@ -275,18 +312,40 @@ $(document).ready(function() {
             audioElement.currentTime=0;
         }
     });
+    /*funzione che permette fare lo shuffle delle canzoni*/
+    $('#random').click(function () {
+        if(shuffleB==false){
+            $("#random").css('color', '#5CA5FF');
+            shuffleB=true;
+            percorsi=shuffle(percorsi);
+        }else{
+            shuffleB=false;
+            $("#random").css('color', 'cornsilk');
+            percorsi=JSON.parse(JSON.stringify(listaOrigine));
 
+        }
 
-
-    $('#repeat').click(function() {
-        repeat=true;
     });
 
+
+    /*funzione che permette la ripetizione delle canzoni*/
+    $('#repeat').click(function() {
+        if(repeat==false){
+            $("#repeat").css('color', '#5CA5FF');
+            repeat=true;
+        }else{
+            repeat=false;
+            $("#repeat").css('color', 'cornsilk');
+
+
+        }
+    });
+    /* funzione che permette di regolare il volume*/
     $("#volume-range").on("slide", function(slideEvt) {
             audioElement.volume=slideEvt.value/100;
     });
 
-
+    /* funzione che permette lo slide della barra di avanzamento*/
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
         var slideVal=$("#barraDiAvanzamento").slider('getValue');
         var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
@@ -323,7 +382,7 @@ $(document).ready(function(){
         disabilitaScrittura('nome');
         disabilitaScrittura('cognome');
         disabilitaScrittura('dataNascita');
-        $(".modal-footer").hide();
+        $(".footerProfilo").hide();
     });
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
     // modifica della password
@@ -367,6 +426,28 @@ Array.prototype.remove = function(from, to) {
     this.length = from < 0 ? this.length + from : from;
     return this.push.apply(this, rest);
 };
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+
+
 
 
 
@@ -516,3 +597,6 @@ function aggiungiAmico() {
     $("#modal-aggiungi-amico").find('form').trigger('reset');
     $(".listaUtenti").remove();
 }
+
+
+

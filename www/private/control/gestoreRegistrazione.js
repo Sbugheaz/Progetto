@@ -75,7 +75,7 @@ function validateEmail(email) {
  * @returns {boolean} ritorna vero o falso a seconda che il formato del nome utente sia corretto  o meno.
  */
 function validateUsername(nomeUtente) {
-        var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
+        var testo = /^[A-Za-z][A-Za-z0-9]{1,20}$/;
         return testo.test(String(nomeUtente));
 }
 
@@ -86,7 +86,7 @@ function validateUsername(nomeUtente) {
  * @returns {boolean} ritorna vero o falso a seconda che la stringa sia formattata correttamente o meno.
  */
 function validateName(nome) {
-        var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+        var testo = /^[A-Z][a-z]{1,15}(\s[A-Z][a-z]{1,15})*$/;
         return testo.test(String(nome));
 }
 

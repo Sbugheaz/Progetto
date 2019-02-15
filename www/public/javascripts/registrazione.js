@@ -56,7 +56,7 @@ var password2 = $("input[name=password2]");
                 }
                 else if(!validateUsername(nomeUtente.val())) {
                     nomeUtente.addClass("invalid");
-                    $("#err_registrazione").text("Il nome utente può contenere da due a quindici caratteri, iniziare con una lettera " +
+                    $("#err_registrazione").text("Il nome utente può contenere da due a venti caratteri, iniziare con una lettera " +
                     "e non può contenere spazi o simboli.").css("display", "block");
                 }
                 else if(password1.val() == "") {
@@ -88,13 +88,13 @@ var password2 = $("input[name=password2]");
 
     //Verifica la validità dei campo "Nome" e "Cognome"
     function validateName(nome) {
-    var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
+    var testo = /^[A-Z][a-z]{1,15}(\s[A-Z][a-z]{1,15})*$/;
     return testo.test(String(nome));
 }
 
     //Verifica la validità del campo "Nome utente"
     function validateUsername(nomeUtente) {
-        var testo = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
+        var testo = /^[A-Za-z][A-Za-z0-9]{1,20}$/;
         return testo.test(String(nomeUtente));
     }
 

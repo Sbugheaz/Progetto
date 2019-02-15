@@ -385,7 +385,7 @@ btn-conzoni-ricerca{
     overflow-y: auto;
     width: 100%;
     padding: 0 15px;
-    max-height: 55vh;
+    height: 80%;
 }
 .nomeCanzone{
     text-align: left;
@@ -436,14 +436,15 @@ btn-conzoni-ricerca{
 .intestazione-listaRicerca{
     color: cornsilk;
     margin: 0;
+    height: 10%;
 }
 .titolo-listaRicerca{
+    padding-top: 2%;
     text-align: center;
-    margin: 3vh 0 1rem 0;
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 30px;
+    height: 10%;
 }
 .container-icona-aggiungi-playlist{
     text-align: center;
@@ -843,15 +844,10 @@ table{
         width: 100%;
         font-size: 0.7rem;
     }
-    #pannello-Amicizie{
+    #pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: 68.5vh!important;
     }
-    #pannello-Playlist{
-        height: 68.5vh!important;
-    }
-    #pannello-Album{
-        height: 65.5vh!important;
-    }
+
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
         width: 70%;
@@ -1092,7 +1088,7 @@ table{
 
 /*Propietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
-    overflow: auto;
+    overflow: hidden;
     height: 68.5vh;
     display: none;
     width: 100%;
@@ -1130,6 +1126,21 @@ table{
  text-align: left;
 }
 
+.container-intestazione-amicizione-mobile{
+    text-align: center;
+    height: 20%;
+    padding-top: 5%;
+}
+.container-lista-amici-online{
+    height: 80%;
+    overflow: auto;
+}
+p.paragrafo-amicizie-mobile{
+    font-size: 1.4rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    margin: 0;
+}
 
 
 
@@ -1439,25 +1450,25 @@ fa-paly:hover {
 .intestazione-listaAmici{
     color:cornsilk;
     margin: 0;
+    height: 10%;
 }
 #contenitore-lista-amici{
-height: 54.8vh;
+height: 80%;
     overflow-y: auto;
     padding: 0 15px;
 }
 #contenitore-btnAmici{
-height: 6vh;
+height: 10%;
 }
 #contenitore-amicizie{
-height: 70.8vh;
+height: 90%;
 }
 .titolo-listaAmici{
     text-align: center;
-    margin: 3vh 0 1rem 0;
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 5vh;
+    height: 10%;
 }
 .nomeAmici{
     text-align: left;
@@ -1510,3 +1521,235 @@ height: 70.8vh;
     color: rgba(255,138,0,1);
     cursor: pointer;
 }
+
+
+/*Pannello Brani in riproduzione*/
+#pannello-BraniRiproduzione{
+    height: 75.8vh;
+    display: none;
+}
+
+/*propietà pannnello brani in riproduzione*/
+#contenitore-produzione{
+    height: 75.8vh;
+}
+.titolo-listaBrani-produzione{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 10%;
+}
+.intestazione-listaBrani-prod{
+    color: cornsilk;
+    margin: 0;
+    height: 10%;
+}
+.nomeCanzone-prod{
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeArtista-prod{
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeStato-prod{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.p_prod{
+    color: cornsilk;
+}
+
+#contenitore-listaBrani-produzione{
+    overflow-y: auto;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+}
+.listaProduzione{
+    font-size: 0.8rem;
+    width: 100%;
+    color: cornsilk;
+}
+
+.nomeStato_prod{
+    text-align: left;
+    width: 25%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+
+}
+.nomeArtista_prod{
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeCanzone_prod{
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.container-icona-play{
+    text-align: center;
+    width: 5%;
+    float: left;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+.icona-play-prod:hover{
+    color: rgba(255,138,0,1);
+}
+
+
+/*Pannello Generi*/
+#pannello-Generi{
+    height: 75.8vh;
+    display: none;
+}
+
+/*propietà pannnello generi*/
+#contenitore-genere{
+    height: 75.8vh;
+}
+.titolo-listaBrani-genere{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 10%;
+}
+.intestazione-listaBrani-genere{
+    color: cornsilk;
+    margin: 0;
+    height: 10%;
+}
+.nomeCanzone-genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeArtista-genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeStato-genere{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.p_genere{
+    color: cornsilk;
+}
+
+#contenitore-listaBrani-genere{
+    overflow-y: auto;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+}
+.listaGenere{
+    font-size: 0.8rem;
+    width: 100%;
+    color: cornsilk;
+}
+
+.nomeStato_genere{
+    text-align: left;
+    width: 20%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+
+}
+.nomeArtista_genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeCanzone_genere{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.container-icona-play-gen{
+    text-align: center;
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+.icona-play-gen:hover,.icona-aggiungi-Aplaylist-gen:hover{
+    color: rgba(255,138,0,1);
+}
+.container-icona-aggiungi-playlist-gen{
+    text-align: center;
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+
