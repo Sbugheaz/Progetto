@@ -254,12 +254,13 @@ router.get('/amiciOnline', function (req, res) {
  * Restituisce i brani relativi al genere scelto dall'utente.
  */
 router.get('/musica/genere', function (req, res) {
-    var query = "SELECT IDBrano " +
-        "FROM Amicizia, Account " +
-        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
+    var genere;
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url-cover, Url_brano " +
+        "FROM Brano " +
+        "WHERE Genere = '" + genere + "'";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        //Se la query restituisce gli amici dell'utente li manda al client
+        //Se la query restituisce i brani li manda al client
         if(result.length != 0) res.send(JSON.stringify(result));
         else res.send("ERR");
     });

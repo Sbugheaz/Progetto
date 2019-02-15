@@ -11,7 +11,15 @@ body > .container-fluid {
     overflow-y: hidden;
 }
 
-
+.sezioneTotale{
+    height: 100vh;
+}
+.sezioneCentrale{
+    height: calc(100vh - 165px);
+}
+.row-sezioneCentrale{
+    height: 100%;
+}
 button{
     background-color: rgb(191, 193, 192);
     color: #fef9ff;
@@ -23,7 +31,7 @@ button{
 }
 
 .input-group {
-    height: 7vh;
+
 }
 
 button:hover{
@@ -78,7 +86,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     left: 0;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     background-color: #464B51;
     opacity: 0.70;
 }
@@ -87,7 +95,7 @@ button:focus {outline:0;}
     position: sticky;
     top: 0;
     right: 0;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     background-color: #464B51;
 }
 
@@ -164,7 +172,7 @@ ul.demo {
     bottom: 0;
     left:0;
     z-index: 1000;
-    height: 15vh;
+    height: 100px;
 
 }
 
@@ -253,7 +261,6 @@ ul.demo {
 
 
 input, #barra-ricerca {
-    font-size: 3vh;
     border: 0;
     border-bottom: 2px solid rgba(0, 114, 255, 0.43);
     line-height: 2em;
@@ -261,6 +268,7 @@ input, #barra-ricerca {
     color: cornsilk;
     width: 30vw;
     padding: 0;
+    font-size: 20px;
 }
 
 /*propietà della riga all'interno della barra di ricerca */
@@ -296,7 +304,7 @@ input, #barra-ricerca {
     margin-top: -0.5vh;
     background: transparent;
     color: rgba(0, 114, 255, 0.43);
-    font-size: 3vh;
+
 }
 
 #pulsante-cerca:focus, #pulsante-cerca:hover {
@@ -316,7 +324,7 @@ div.slider-handle.min-slider-handle.round{
 
 
 .navbar-expand-sm{
-    height: 9.2vh;
+    height: 65px;
     padding: 0;
 }
 
@@ -365,7 +373,7 @@ div.slider-selection{
 /*Pannello contenente i risultati di ricerca */
 #pannello-Ricerca{
     display: none;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     overflow: hidden;
 }
 /*Propità pannello di ricerca */
@@ -379,7 +387,7 @@ btn-conzoni-ricerca{
     background: transparent;
 }
 #contenitore-ricerca{
-    height: 75.8vh;
+    height: calc(100vh - 165px);
 }
 #contenitore-lista-ricerca{
     overflow-y: auto;
@@ -449,7 +457,7 @@ btn-conzoni-ricerca{
 /*contenitore Album*/
 #pannello-Album{
     display: none;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
 }
 /*propietà contenitore Album*/
 
@@ -513,6 +521,7 @@ btn-conzoni-ricerca{
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
+    margin: 0;
 }
 #contenitore-lista-Album{
     height: 80%;
@@ -583,6 +592,7 @@ p.paragrafo{
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
+    margin: 0;
 }
 
 .modal-content{
@@ -736,14 +746,7 @@ table{
 }
 
 
-@media only screen and (max-height: 515px){
-    #titolo-brano-in-riproduzione {
-        font-size: x-small;
-    }
-    #album2 {
-        display: none;
-    }
-}
+
 
 
 @media only screen and (max-width: 768px) {
@@ -835,8 +838,8 @@ table{
         width: 100%;
         font-size: 0.7rem;
     }
-    #pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
-        height: 68.5vh!important;
+    #contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
+        height: calc(100vh - 215px)!important;
     }
 
     #contenitore-volume > .slider.slider-horizontal{
@@ -844,12 +847,7 @@ table{
         width: 70%;
 
     }
-    #contenitore-lista-amici{
-        height: 49vh!important;
-    }
-    #titolo-brano-in-riproduzione {
-        font-size: x-small;
-    }
+
 
     /*Proprietà del campo mail del Modal Profilo*/
     .campoMail{
@@ -1058,13 +1056,13 @@ table{
 #menu-orizzontale{
     display: none;
     padding: 0;
-    height: 7.3vh;
+    height: 50px;
 }
 .pulsante-menu-orizzontale{
     background-color: transparent;
     width: auto;
     color: cornsilk;
-    font-size: 3vh;
+    font-size: 20px;
 }
 .pulsante-menu-orizzontale:focus {
     box-shadow: 0 0;
@@ -1141,7 +1139,7 @@ p.paragrafo-amicizie-mobile{
     position: absolute;
     right: 0;
     width: 25%;
-    height: 68.5vh;
+    height: calc(100vh - 215px);
     background-color: rgb(11, 55, 116);
     display: none;
     z-index:1;
@@ -1224,7 +1222,7 @@ p.paragrafo-amicizie-mobile{
 /*propieta pannnelo-playlist*/
 #pannello-Playlist{
     display: none;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     overflow-y: hidden;
 }
 #contenitore-canzoni-playlist{
@@ -1435,7 +1433,7 @@ fa-paly:hover {
     overflow-y: hidden;
     display: none;
     background-color: transparent;
-    height: 75.8vh;
+    height: calc(100vh - 165px);
 }
 
 /*Proprietà lista amici*/
@@ -1520,13 +1518,13 @@ height: calc(100% - 90px);
 
 /*Pannello Brani in riproduzione*/
 #pannello-BraniRiproduzione{
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     display: none;
 }
 
 /*propietà pannnello brani in riproduzione*/
 #contenitore-produzione{
-    height: 75.8vh;
+    height:100%;
 }
 .titolo-listaBrani-produzione{
     padding-top: 2%;
@@ -1613,13 +1611,13 @@ height: calc(100% - 90px);
 
 /*Pannello Generi*/
 #pannello-Generi{
-    height: 75.8vh;
+    height: calc(100vh - 165px);
     display: none;
 }
 
 /*propietà pannnello generi*/
 #contenitore-genere{
-    height: 75.8vh;
+    height: calc(100vh - 165px);
 }
 .titolo-listaBrani-genere{
     padding-top: 2%;
