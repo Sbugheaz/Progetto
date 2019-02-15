@@ -691,7 +691,7 @@ label {
     clear: both;
 }
 .campi{
-    font-size: 2.1vh;
+    font-size: 1rem;
     text-align: center;
     color:black;
 }
@@ -864,10 +864,17 @@ table{
         font-size: x-small;
     }
 
+    /*Proprietà del campo mail del Modal Profilo*/
+    .campoMail{
+        font-size: 0.8rem;
+    }
+
     /*Proprietà del pulsante modifica del Modal Profilo*/
     .pulsanteModifica{
-        font-size: 2vh;
+        font-size: 0.9rem;
+        padding: 0 5px;
     }
+
     /*Proprietà della colonna destra del Modal Profilo*/
     .col-25dx {
         padding-left:0;
