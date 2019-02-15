@@ -3,6 +3,7 @@
 * - Registrazione, pagina che permette di inserire i dati richiesti per registrarsi al sito;
 * - WebPlayer, pagina che adempie a tutte le funzionalità per cui il sito è stato progettato.
  */
+//Moduli utilizzati
 var express = require('express');
 var session = require('express-session'); // modulo che si occupa della gestione delle sessioni degli utenti che accedono
                                          // al sito web.
@@ -24,13 +25,11 @@ app.set('port', port);
 /**
  * Creazione del server HTTP.
  */
-
 var server = http.createServer(app);
 
 /**
  * Il server si mette in ascolto sulla porta fornita, su tutte le interfacce di rete.
  */
-
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -38,7 +37,6 @@ server.on('listening', onListening);
 /**
  * Funzione che normalizza una porta e restituisce il numero, una stringa o false.
  */
-
 function normalizePort(val) {
     var port = parseInt(val, 10);
 

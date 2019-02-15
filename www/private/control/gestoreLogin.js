@@ -53,13 +53,11 @@ function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('base64');
 }
 
-
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
  */
 router.use(express.static('public'));
-
 
 /**
  * Gestisce l'accesso ai servizi offerti dall'applicazione, quando l'utente invia la richiesta direttamente alla root
@@ -78,7 +76,6 @@ router.get('/', function (req, res) {
         console.log("Pagina del web player inviata a " + req.ip.substr(7) + ".\n");
     }
 });
-
 
 /**
  * Verifica se i dati di accesso sono corretti a seguito di una richiesta al DBMS, in caso di risposta positiva
@@ -111,7 +108,6 @@ router.post('/Login', function (req, res) {
     });
 });
 
-
 /**
  * Funzione che gestisce il logout di un utente.
  */
@@ -131,7 +127,6 @@ router.get('/Logout', function (req, res) {
         res.send('OK');
     }
 });
-
 
 /**
  * Funzione che gestisce il recupero della password da parte di un utente, verificando che l'e-mail esista a seguito di una richiesta
@@ -168,6 +163,5 @@ router.post('/RecuperoPassword', function (req, res) {
             }
         });
 });
-
 
 module.exports = router; // Esporta il router cosicchè possa rispondere alle route dal file main.js del server

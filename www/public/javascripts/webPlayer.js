@@ -598,5 +598,16 @@ function aggiungiAmico() {
     $(".listaUtenti").remove();
 }
 
-
-
+//Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
+function richiediBraniPerGenere() {
+    $(".dropdown-item").click(function() {
+        $.post("/WebPlayer/musica/genere",
+            {
+                genere: $(".dropdown-item").val()
+            }, function(result) {
+                if(result != "ERR") {
+                    alert($(".dropdown-item").attr('id').substring(6));
+                }
+        });
+    });
+}
