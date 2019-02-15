@@ -168,7 +168,7 @@ $(document).ready(function(){
     });
 });
 
-
+/*funzione che fa comparire e scomparire il pulsante logout*/
 $(document).ready(function(){
     var block = false;
     $("#pulsante-Logout").mouseenter(function(){
@@ -194,7 +194,7 @@ $(document).ready(function(){
 
     });
 });
-
+/*funzione che contralla i pannelli da aprire in base alla dimensione della pagina*/
 $(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
@@ -216,7 +216,7 @@ function setDivVisibility(){
     }
 }
 
-
+/*funzione che inizializza la pagina al caricamento*/
 $(window).on('load', function () {
     pannelloAttivo=$("#pannello-BraniRiproduzione");
     $("#pannello-BraniRiproduzione").show();
@@ -235,9 +235,8 @@ $(window).on('load', function () {
 
 
 });
-
+/*funzioni del player*/
 $(document).ready(function() {
-
     var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL_CIELO_NELLA_STANZA.mp3","songs/90MIN.mp3"];
     var indiceCorrente = 0;
     listaOrigine = JSON.parse(JSON.stringify(percorsi));
@@ -250,6 +249,8 @@ $(document).ready(function() {
         this.play();
     }, false);*/
 
+
+    /*funzione che viene invocata quando una canzone finisce*/
     audioElement.addEventListener("ended", function() {
             if(repeat==false && indiceCorrente==(percorsi.length-1)){
                 seeking=false;
@@ -260,6 +261,7 @@ $(document).ready(function() {
                 this.play();
             }
     });
+    /*funzione che calcola i minuti e secondi e titolo del brano*/
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
@@ -269,8 +271,10 @@ $(document).ready(function() {
 
     });
 
+    /* funzione che permette di aggiornare la barra di avanzamento */
     $(audioElement).on("timeupdate",refresh);
 
+    /*funzione che permette di avviare la musica*/
     $('#play').click(function() {
         seeking=true;
         audioElement.play();
@@ -278,7 +282,7 @@ $(document).ready(function() {
         $('#pause').show();
 
     });
-
+    /*funzione che permette di stoppare la musica*/
     $('#pause').click(function() {
         seeking=false;
         audioElement.pause();
@@ -286,9 +290,8 @@ $(document).ready(function() {
         $('#play').show();
 
     });
-
+    /*funzione che permette di passare al brano successivo*/
     $('#step-forward').click(function() {
-
         audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
             if(seeking==true) {
                 audioElement.play();
@@ -298,7 +301,7 @@ $(document).ready(function() {
 
 
     });
-
+    /*funzione che permette di passare al brano precedente*/
     $('#step-backward').click(function() {
         if(audioElement.currentTime<3) {
             indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
@@ -309,7 +312,7 @@ $(document).ready(function() {
             audioElement.currentTime=0;
         }
     });
-
+    /*funzione che permette fare lo shuffle delle canzoni*/
     $('#random').click(function () {
         if(shuffleB==false){
             $("#random").css('color', '#5CA5FF');
@@ -325,7 +328,7 @@ $(document).ready(function() {
     });
 
 
-
+    /*funzione che permette la ripetizione delle canzoni*/
     $('#repeat').click(function() {
         if(repeat==false){
             $("#repeat").css('color', '#5CA5FF');
@@ -337,12 +340,12 @@ $(document).ready(function() {
 
         }
     });
-
+    /* funzione che permette di regolare il volume*/
     $("#volume-range").on("slide", function(slideEvt) {
             audioElement.volume=slideEvt.value/100;
     });
 
-
+    /* funzione che permette lo slide della barra di avanzamento*/
     $("#barraDiAvanzamento").on("change", function(slideEvt) {
         var slideVal=$("#barraDiAvanzamento").slider('getValue');
         var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
