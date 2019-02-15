@@ -1,13 +1,12 @@
 /**
- * Modulo per la gestione della pagina del web player.
+ * Modulo per la gestione della pagina del web player (amicizie, brani, playlist, streaming audio).
  */
-
 // Moduli utilizzati
 var express = require('express');
 var router = express.Router(); //modulo che gestisce il routing nel server
 var mysql = require('mysql'); //modulo che gestisce l'interazione col database MySQL
-var crypto = require('crypto'); // modulo che permette la criptografia delle password
-
+var crypto = require('crypto'); //modulo che permette la criptografia delle password
+var mediaserver = require('mediaserver'); //modulo che gestisce lo streaming della musica
 
 /**
  * Inizializzazione della connessione con il database.
@@ -40,7 +39,6 @@ con.connect(function(err) {
     if (err) throw err;
 });
 
-
 /**
  * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
  * @param {string} password - La password in chiaro
@@ -49,7 +47,6 @@ con.connect(function(err) {
 function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('base64');
 }
-
 
 /**
  * Funzione che controlla che la password rispetti la formattazione richiesta.
@@ -61,7 +58,6 @@ function validatePassword(password) {
     return testo.test(String(password));
 }
 
-
 /**
  * Funzione che controlla che il nome e il cognome rispettino la formattazione richiesta.
  * @param nome - Stringa da controllare.
@@ -71,7 +67,6 @@ function validateName(nome) {
     var testo = /^[A-Z][a-z]{1,12}(\s[A-Z][a-z]{1,12})*$/;
     return testo.test(String(nome));
 }
-
 
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
@@ -95,7 +90,6 @@ router.get('/', function (req, res) {
     }
 });
 
-
 /**
  * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
  */
@@ -111,7 +105,6 @@ router.get('/utente', function (req, res) {
             else res.send("ERR");
         });
 });
-
 
 /**
  * Aggiorna la password dell'utente a seguito di una sua modifica.
@@ -147,7 +140,6 @@ router.post('/modificaPassword', function (req, res) {
     });
 });
 
-
 /**
  * Aggiorna i dati dell'account a seguito di una modifica dell'utente
  */
@@ -179,7 +171,6 @@ router.post('/modificaAccount', function (req, res) {
     });
 });
 
-
 /**
  * Restituisce i dati degli amici dell'utente che ha eseguito il login non appena carica la pagina del web player.
  */
@@ -195,7 +186,6 @@ router.get('/amici', function (req, res) {
     });
 });
 
-
 /**
  * Elimina un amico dalla lista amici dell'utente.
  */
@@ -208,7 +198,6 @@ router.post('/amici/eliminaAmico', function (req, res) {
     });
 });
 
-
 /**
  * Aggiunge un amico alla lista degli amici.
  */
@@ -220,7 +209,6 @@ router.post('/amici/aggiungiAmico', function (req, res) {
         else res.send("OK");
     });
 })
-
 
 /**
  * Restituisce gli utenti che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
@@ -245,7 +233,6 @@ router.post('/amici/cercaUtenti', function (req, res) {
     }
 });
 
-
 /**
  * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player.
  */
@@ -262,5 +249,28 @@ router.get('/amiciOnline', function (req, res) {
         });
     }
 });
+
+/**
+ * Restituisce i brani relativi al genere scelto dall'utente.
+ */
+router.get('/musica/genere', function (req, res) {
+    var query = "SELECT IDBrano " +
+        "FROM Amicizia, Account " +
+        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        //Se la query restituisce gli amici dell'utente li manda al client
+        if(result.length != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
+/*router.get(/brano.[0-9]+/, function (req, res) {
+    var brano = '/var/www/html/private/media/' + req.url.slice(1);
+    console.log(brano);
+    //mediaserver.pipe(req, res, song);
+});
+*/
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

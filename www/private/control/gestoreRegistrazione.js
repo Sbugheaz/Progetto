@@ -47,7 +47,6 @@ con.connect(function(err) {
 //Inizializza l'account gmail del server con cui inviare le mail agli utenti
 mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
 
-
 /**
  * Funzione che richiama la funzione della libreria di hashing per criptare laa password passata come argomento.
  * @param {string} password - La password in chiaro.
@@ -56,7 +55,6 @@ mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
 function hashPassword(password) {
         return crypto.createHash('sha256').update(password).digest('base64');
 }
-
 
 /**
  * Funzione che controlla che l'e-mail rispetti la formattazione richiesta.
@@ -68,7 +66,6 @@ function validateEmail(email) {
         return re.test(String(email).toLowerCase());
 }
 
-
 /**
  * Funzione che controlla che il nome utente rispetti la formattazione richiesta.
  * @param nomeUtente - Nome utente da controllare.
@@ -78,7 +75,6 @@ function validateUsername(nomeUtente) {
         var testo = /^[A-Za-z][A-Za-z0-9]{1,20}$/;
         return testo.test(String(nomeUtente));
 }
-
 
 /**
  * Funzione che controlla che il nome e il cognome rispettino la formattazione richiesta.
@@ -90,7 +86,6 @@ function validateName(nome) {
         return testo.test(String(nome));
 }
 
-
 /**
  * Funzione che controlla che la password rispetti la formattazione richiesta.
  * @param password - Password da controllare.
@@ -100,7 +95,6 @@ function validatePassword(password) {
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         return testo.test(String(password));
 }
-
 
 /**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
@@ -116,7 +110,6 @@ router.get('/', function (req, res) {
         res.sendFile('public/registrazione.html', {root: '/var/www/html/'});
         console.log("Pagina di registrazione inviata a " + req.ip.substr(7) + "\n");
 });
-
 
 /**
  * Funzione che gestisce la registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti e che
@@ -169,7 +162,6 @@ router.post('/registrati', function (req, res) {
                 }
         });
 });
-
 
 router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
     var flag = false;
