@@ -268,6 +268,7 @@ input, #barra-ricerca {
     color: cornsilk;
     width: 30vw;
     padding: 0;
+    font-size: 20px;
 }
 
 /*propietà della riga all'interno della barra di ricerca */
@@ -522,6 +523,7 @@ btn-conzoni-ricerca{
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
+    margin: 0;
 }
 #contenitore-lista-Album{
     height: 80%;
@@ -592,6 +594,7 @@ p.paragrafo{
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
+    margin: 0;
 }
 
 .modal-content{
@@ -846,12 +849,7 @@ table{
         width: 70%;
 
     }
-    #contenitore-lista-amici{
-        height: 49vh!important;
-    }
-    #titolo-brano-in-riproduzione {
-        font-size: x-small;
-    }
+
 
     /*Proprietà del campo mail del Modal Profilo*/
     .campoMail{
@@ -1066,7 +1064,7 @@ table{
     background-color: transparent;
     width: auto;
     color: cornsilk;
-    font-size: 3vh;
+    font-size: 20px;
 }
 .pulsante-menu-orizzontale:focus {
     box-shadow: 0 0;
