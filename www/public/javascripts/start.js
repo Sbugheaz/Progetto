@@ -71,7 +71,7 @@ function ricercaUtenti() {
 function richiediAmiciOnline(){
     $.get('/WebPlayer/amiciOnline', function(result){
         if(result != "ERR") {
-            listaAmiciOnline.remove(0, listaAmiciOnline.length-1)
+            listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
             var lo = JSON.parse(result);
             for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                 listaAmiciOnline[i] = new Account(lo[i]);
