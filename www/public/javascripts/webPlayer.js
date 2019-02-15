@@ -65,7 +65,7 @@ $(document).ready(function () {
 });
 //Funzione che permette di aprire il pannello-Ricerca
 $(document).ready(function(){
-    $("#pulsante-cerca").click(function(){
+    $("#barra-ricerca").on('input',function(){
         if(pannelloAttivo!=null){
             pannelloAttivo.hide();
         }
