@@ -80,6 +80,7 @@ function richiediAmiciOnline(){
         else {
             if(listaAmiciOnline.length != 0) listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
             $(".listaAmiciOnline").remove();
+            $(".demo-mobile").remove();
         }
     });
 }

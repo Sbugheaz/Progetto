@@ -59,13 +59,15 @@ function stampaAmiciOnline(listaAmiciOnline){
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
+
     //riempie la lista di amici online in modalità mobile
+    $(".demo-mobile").remove();
     var content2= "";
     $(".container-listaAmici-mobile").append('<ul class="demo demo-mobile">');
     for(i=0; i<listaAmiciOnline.length; i++) {
         content2 += '<li class="p_listaAmici">' +
             '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
-            listaAmiciOnline[i].nome + listaAmiciOnline[i].cognome +'('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
+            listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
             '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>' +
             '</div> </li>' ;
         $(".demo-mobile").append(content2);
