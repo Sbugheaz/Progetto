@@ -14,15 +14,27 @@ $(document).ready(function () {
     });
 });
 
-// Funzione che svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
+//Svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     $("#err_recuperoPass").text("").css("display", "none");
 });
 
-//Funzione che rimuove i messaggi di errore all'inserimento delle credenziali d'accesso
-$("input").on('input',function(){
+//Rimuove i messaggi di errore all'inserimento delle credenziali d'accesso
+$("#username").on('input',function(){
     $("#err_dati_accesso").css("display", "none");
+});
+$("#psw").on('input',function(){
+    $("#err_dati_accesso").css("display", "none");
+});
+
+
+//Chiude i modal per il recupero della password quando l'utente clicca ok
+$('#confermaRecupero').click(function () {
+    $("#myModal").find('form').trigger('reset');
+    $("#myModal").modal('toggle');
+    $("#err_recuperoPass").text("").css("display", "none");
+    $("input").find('form').trigger('reset');
 });
 
 

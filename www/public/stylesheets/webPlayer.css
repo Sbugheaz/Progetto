@@ -384,8 +384,8 @@ btn-conzoni-ricerca{
 #contenitore-lista-ricerca{
     overflow-y: auto;
     width: 100%;
-    padding: 0 15px;
     height: 80%;
+    margin: 0;
 }
 .nomeCanzone{
     text-align: left;
@@ -413,21 +413,15 @@ btn-conzoni-ricerca{
     color: cornsilk;
 }
 .datiCanzoni{
-    width: 40%;
+
     float: left;
     box-sizing: border-box;
     padding: .75rem;
-    border-bottom: 2px solid #5CA5FF;
+    border-bottom: 1px solid #5CA5FF;
 }
 .nomeCanzoneArtista{
-    text-align: left;
     width: 40%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
+
 }
 .listaRicerca{
     font-size: 0.8rem;
@@ -1593,35 +1587,15 @@ height: 90%;
 }
 
 .nomeStato_prod{
-    text-align: left;
     width: 25%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
 
 }
 .nomeArtista_prod{
-    text-align: left;
     width: 35%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
 }
 .nomeCanzone_prod{
-    text-align: left;
     width: 35%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
+
 }
 .container-icona-play{
     text-align: center;
@@ -1705,35 +1679,16 @@ height: 90%;
 }
 
 .nomeStato_genere{
-    text-align: left;
     width: 20%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
 
 }
 .nomeArtista_genere{
-    text-align: left;
     width: 30%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
+
 }
 .nomeCanzone_genere{
-    text-align: left;
     width: 30%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
+
 }
 .container-icona-play-gen{
     text-align: center;

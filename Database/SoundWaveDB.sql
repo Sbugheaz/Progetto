@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Amicizia` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Populating table mydb.Account
+-- Populating table `mydb`.`Account`
 -- -----------------------------------------------------
 INSERT INTO Amicizia
 VALUES 
