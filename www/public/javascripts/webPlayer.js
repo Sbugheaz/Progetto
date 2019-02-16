@@ -262,7 +262,8 @@ $(document).ready(function() {
                 this.play();
             }
     });
-    /*funzione che calcola i minuti e secondi e titolo del brano*/
+    /*
+    funzione che calcola i minuti e secondi e titolo del brano
     audioElement.addEventListener("canplay",function(){
         var minutes = "0" + Math.floor(audioElement.duration / 60);
         var seconds = "0" + Math.floor(audioElement.duration % 60);
@@ -271,6 +272,7 @@ $(document).ready(function() {
         $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(42));
 
     });
+    */
 
     /* funzione che permette di aggiornare la barra di avanzamento */
     $(audioElement).on("timeupdate",refresh);
@@ -639,12 +641,12 @@ function riproduciBrano() {
             urlBrano = listaBrani[i].url_brano;
         }
     }
-    $.post("/WebPlayer/riproduciBrano", {
+    $.get("/WebPlayer/riproduciBrano/musica/0/Perdonami.mp3", {
         urlBrano: urlBrano
     }, function () {
-        //audioElement.src =
-        //audioElement.load();
-        //audioElement.play();
+        audioElement.src = "riproduciBrano/musica/0/Perdonami.mp3";
+        audioElement.load();
+        audioElement.play();
     });
 }
 

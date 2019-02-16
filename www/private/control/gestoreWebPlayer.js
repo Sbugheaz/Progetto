@@ -280,7 +280,6 @@ router.post('/musica/cercaBrani', function (req, res) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
             else res.send(JSON.stringify(result)); //Manda tutti gli album che soddisfano i criteri di ricerca
-            console.log("Prima query riuscita!");
         });
     }
 });
@@ -293,7 +292,7 @@ router.post('/musica/cercaAlbum', function (req, res) {
     if(albumCercati != "") {
         var query = "SELECT * " +
             "FROM Album " +
-            "WHERE Nome = '" + braniCercati + "'";
+            "WHERE Nome = '" + albumCercati + "'";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
@@ -305,12 +304,11 @@ router.post('/musica/cercaAlbum', function (req, res) {
 /**
  * Effettua lo streaming di un brano.
  */
-router.post('/riproduciBrano', function (req, res) {
+router.get('/riproduciBrano/musica/0/Perdonami.mp3', function (req, res) {
     var urlBrano = req.body.urlBrano;
-    var brano = '/var/www/html/private/media/' + urlBrano;
+    var brano = '/var/www/html/private/media/' + "musica/0/Perdonami.mp3";
     mediaserver.pipe(req, res, brano);
 });
-
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
