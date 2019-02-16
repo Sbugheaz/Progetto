@@ -1,5 +1,7 @@
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+
+
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaListaAmici(listaAmici){
     var content="";
     $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
@@ -23,8 +25,8 @@ function stampaListaAmici(listaAmici){
 }
 
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
-// aggiungibili che corrispondono ai criteri di ricerca
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
+//che non sono tra gli amici e corrispondono ai criteri di ricerca
 function stampaAmiciDaAggiungere(lu){
         var content = "";
         $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
@@ -46,7 +48,7 @@ function stampaAmiciDaAggiungere(lu){
 }
 
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaAmiciOnline(listaAmiciOnline){
     $(".listaAmiciOnline").remove();
     //riempie la colonna destra contenente gli amici online
@@ -75,8 +77,8 @@ function stampaAmiciOnline(listaAmiciOnline){
     }
 }
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
-function stampaListaBraniPerGenere(listaBrani,genere){
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
+function stampaListaBraniPerGenere(listaBrani){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
     var content="";
     $("#contenitore-listaBrani-genere").append('<ul class="demo listaGenere">');
@@ -85,14 +87,15 @@ function stampaListaBraniPerGenere(listaBrani,genere){
             ' <div class="datiCanzoni nomeCanzone_genere">' + listaBrani[i].titolo + '</div>' +
             ' <div class="datiCanzoni nomeArtista_genere">' + listaBrani[i].artista + '</div>' +
             ' <div class="datiCanzoni imgCover"><img src="' + listaBrani[i].url_cover + '" class="cover"></div>' +
-            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="'+ listaBrani[i].url_brano + '"></i> </div>' +
+            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="icona-play'+ listaBrani[i].idBrano + '"></i> </div>' +
         ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i></div>' +
         ' </li>' ;
         $(".listaGenere").append(content);
         content = "";
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
-        recuperaUrlBrano(evento);
+        recuperaIDBrano(evento);
+        riproduciBrano();
     }
     );
 }
@@ -120,3 +123,11 @@ function stampalistaBraniRicerca(lb){
 
 
 
+
+//Funzione che converte i secondi in formato mm:ss
+function toMinutes(secondi) {
+    var minutes = "0" + Math.floor(secondi/ 60);
+    var seconds = "0" + Math.floor(secondi % 60);
+    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+    return dur;
+}

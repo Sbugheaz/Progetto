@@ -1,4 +1,3 @@
-
 var pannelloAttivo;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
@@ -6,6 +5,7 @@ var seeking=false;
 var listaOrigine;
 var shuffleB=false;
 var repeat=false;
+var audioElement = new Audio();        // create the audio object// assign the audio file to its src
 
 
 
@@ -242,7 +242,6 @@ $(document).ready(function() {
     listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
-    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
     audioElement.src = percorsi[indiceCorrente];
 
    /*audioElement.addEventListener('ended', function() {
@@ -413,11 +412,10 @@ function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
 };
 
-var url; //variabile che contiene l'url del brano da riprodurre
-//Funzione che recupera l'url del brano della lista per comunicarlo al server e riprodurlo
-function recuperaUrlBrano(evento) {
-    url = evento.target.id;
-    console.log(url);
+var idBrano; //variabile che contiene l'id' del brano da riprodurre
+//Funzione che recupera l'id del brano della lista per comunicarlo al server e riprodurlo
+function recuperaIDBrano(evento) {
+    idBrano = evento.target.id.substring(10);
 };
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
@@ -629,3 +627,23 @@ function richiediBraniPerGenere() {
     });
 }
 
+//Funzione che gestisce lo streaming del brano attualmente in riproduzione
+function riproduciBrano() {
+    var urlBrano;
+    for (i = 0; i < listaBrani.length; i++) {
+        if (listaBrani[i].idBrano == idBrano) {
+            var durata = toMinutes(listaBrani[i].durata);
+            $("#labelDurataTotaleBrano").text(durata);
+            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
+            $("#album2").attr("src", listaBrani[i].url_cover);
+            urlBrano = listaBrani[i].url_brano;
+        }
+    }
+    $.post("/WebPlayer/riproduciBrano", {
+        urlBrano: urlBrano
+    }, function () {
+        //audioElement.src =
+        //audioElement.load();
+        //audioElement.play();
+    });
+}
