@@ -31,3 +31,11 @@ function Playlist(playlist){
     this.nome = playlist.Nome;
     this.numeroBrani = playlist.NumeroBrani;
 }
+
+/*Costruttore dell'oggetto Album*/
+function Album(album){
+    this.idAlbum = album.IDAlbum;
+    this.nome = album.Nome;
+    this.numeroBrani = album.NumeroBrani;
+}
+

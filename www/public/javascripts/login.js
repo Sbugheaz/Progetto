@@ -14,11 +14,13 @@ $(document).ready(function () {
     });
 });
 
+
 //Svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     $("#err_recuperoPass").text("").css("display", "none");
 });
+
 
 //Rimuove i messaggi di errore all'inserimento delle credenziali d'accesso
 $("#username").on('input',function(){
@@ -36,6 +38,17 @@ $('#confermaRecupero').click(function () {
     $("#err_recuperoPass").text("").css("display", "none");
     $("input").find('form').trigger('reset');
 });
+
+
+//Verifica la formattazione dell'indirizzo e-mail nel campo per il recupero della password
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
+
+
 
 
 // Funzioni che gestiscono la comunicazione con il server
@@ -61,6 +74,7 @@ function login(){
     }
 }
 
+
 // Gestisce il recupero della password, inviando al server l'email.
 function recuperoPassword(){
     if($("input[name=email]").val() == "")
@@ -85,8 +99,14 @@ function recuperoPassword(){
     }
 }
 
-//Verifica la formattazione dell'indirizzo e-mail nel campo per il recupero della password
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
+
+String.prototype.hashCode = function() {
+    var hash = 0, i, chr;
+    if (this.length === 0) return hash;
+    for (i = 0; i < this.length; i++) {
+        chr   = this.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+};
