@@ -1,5 +1,5 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [];
+var utente, listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
@@ -10,6 +10,7 @@ $(document).ready(function () {
     setInterval(richiediAmiciOnline,30000); //Funzione che aggiorna la lista degli amici online ogni 30 secondi
     richiediBraniPerGenere(); //Funzione per ottenere tutti i brani di un determinato genere
     ricercaBrani(); //Funzione che permette la ricerca dei brani
+    ricercaAlbum(); //Funzione che permette la ricerca degli album
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
@@ -87,6 +88,7 @@ function richiediAmiciOnline(){
     });
 }
 
+//Funzione che permette di ricercare i brani
 function ricercaBrani() {
     var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
@@ -96,8 +98,8 @@ function ricercaBrani() {
                 {
                     braniCercati: $('#barra-ricerca').val(),
                 },
-                function (result1) {
-                    if (result1 == "ERR") {
+                function (result) {
+                    if (result == "ERR") {
                         $("#contenitore-lista-ricerca-brani").empty();
                         var messaggio = "Nussun brano corrisponde ai criteri di ricerca";
                         $("#contenitore-lista-ricerca-brani").html(messaggio).css({
@@ -108,8 +110,40 @@ function ricercaBrani() {
                     } else {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
-                        var lb = JSON.parse(result1);
+                        var lb = JSON.parse(result);
                         stampalistaBraniRicerca(lb);
+                    }
+                });
+        }, 500);
+    });
+}
+
+//Funzione che permette di ricercare i brani
+function ricercaAlbum() {
+    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    $("#barra-ricerca").on("keyup", function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            $.post("/WebPlayer/musica/cercaAlbum",
+                {
+                    albumCercati: $('#barra-ricerca').val(),
+                },
+                function (result) {
+                console.log(result);
+                    if (result == "ERR") {
+                        $("#contenitore-lista-ricerca-album").empty();
+                        var messaggio = "Nussun album corrisponde ai criteri di ricerca";
+                        $("#contenitore-lista-ricerca-album").html(messaggio).css({
+                            'font-size': '1rem',
+                            'padding': '20px 0',
+                            'color': 'cornsilk',
+                        });
+                    } else {
+                        $("#contenitore-lista-ricerca-album").css("padding", "0");
+                        $("#contenitore-lista-ricerca-album").empty();
+                        var la = JSON.parse(result);
+                        console.log(la);
+                        stampalistaAlbumRicerca(la);
                     }
                 });
         }, 500);
