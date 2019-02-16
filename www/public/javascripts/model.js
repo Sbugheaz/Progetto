@@ -22,6 +22,7 @@ function Account(account){
     this.dataDiNascita = account.DataDiNascita;
     this.statoOnline = account.StatoOnline;
     this.attivazione = account.Attivazione;
+    this.ascolta=account.Ascolta;
 }
 
 /*Costruttore dell'oggetto Playlist*/
