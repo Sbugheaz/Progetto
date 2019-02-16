@@ -77,7 +77,6 @@ function richiediAmiciOnline(){
             var lo = JSON.parse(result);
             for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                 listaAmiciOnline[i] = new Account(lo[i]);
-            console.log(listaAmiciOnline[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
         else {
@@ -98,6 +97,7 @@ function ricercaAlbumEBrani() {
                     braniCercati: $('#barra-ricerca').val(),
                 },
                 function (result1, result2) {
+                //Se non esistono corrispondenze con brani
                     if (result1 == "ERR") {
                         $("#contenitore-lista-ricerca-brani").empty();
                         var messaggio = "Nussun brano corrisponde ai criteri di ricerca";
@@ -106,25 +106,41 @@ function ricercaAlbumEBrani() {
                             'padding': '20px 0',
                             'color': 'cornsilk',
                         });
-                    } else {
+                        if(result2 == "ERR") {
+                            $("#contenitore-lista-ricerca-album").empty();
+                            var messaggio = "Nussun album corrisponde ai criteri di ricerca";
+                            $("#contenitore-lista-ricerca-album").html(messaggio).css({
+                                'font-size': '1rem',
+                                'padding': '20px 0',
+                            });
+                        }
+                        else {
+                            $("#contenitore-lista-ricerca-album").css("padding", "0");
+                            $("#contenitore-lista-ricerca-album").empty();
+                            //var la = JSON.parse(result2);
+                            // stampalistaAlbumRicerca(la);
+                        }
+                    }
+                    //Se esistono corrispondenze con brani
+                    else {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
                         var lb = JSON.parse(result1);
-                        console.log(lb);
                         stampalistaBraniRicerca(lb);
-                    }
-                    if (result2 == "ERR") {
-                        $("#contenitore-lista-ricerca-album").empty();
-                        var messaggio = "Nussun album corrisponde ai criteri di ricerca";
-                        $("#contenitore-lista-ricerca-album").html(messaggio).css({
-                            'font-size': '1rem',
-                            'padding': '20px 0',
-                        });
-                    } else {
-                        $("#contenitore-lista-ricerca-album").css("padding", "0");
-                        $("#contenitore-lista-ricerca-album").empty();
-                        //var la = JSON.parse(result2);
-                       // stampalistaAlbumRicerca(la);
+                        if(result2 == "ERR") {
+                            $("#contenitore-lista-ricerca-album").empty();
+                            var messaggio = "Nussun album corrisponde ai criteri di ricerca";
+                            $("#contenitore-lista-ricerca-album").html(messaggio).css({
+                                'font-size': '1rem',
+                                'padding': '20px 0',
+                            });
+                        }
+                        else {
+                            $("#contenitore-lista-ricerca-album").css("padding", "0");
+                            $("#contenitore-lista-ricerca-album").empty();
+                            //var la = JSON.parse(result2);
+                            // stampalistaAlbumRicerca(la);
+                        }
                     }
                 });
         }, 500);
