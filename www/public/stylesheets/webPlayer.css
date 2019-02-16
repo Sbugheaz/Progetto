@@ -399,6 +399,7 @@ btn-conzoni-ricerca{
 }
 #contenitore-ricerca{
     height: calc(100vh - 165px);
+    overflow-y: auto;
 }
 #contenitore-lista-ricerca{
     overflow-y: auto;
@@ -436,31 +437,53 @@ btn-conzoni-ricerca{
     padding: 10px;
     margin: 0;
 }
-.nomeCanzoneArtista{
-    width: 40%;
-
+.contenitore-imgBrano{
+  width: 25%;
+}
+.contenitore-nomeCanzone-Artista{
+    width: 60%;
+}
+.contenitore-icona-aggiungi-playlist{
+    text-align: center;
+    width: 10%;
+    box-sizing: border-box;
+}
+#coverBrano{
+    width: 100px;
+}
+.li-lista-brani{
+    font-size: calc(0.7rem + 0.5vw);
 }
 .listaRicerca{
     font-size: 0.8rem;
     width: 100%;
 }
-.intestazione-listaRicerca{
-    color: cornsilk;
-    margin: 0;
-    height: 50px;
-}
 .titolo-listaRicerca{
     padding-top: 2%;
-    text-align: center;
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     height: 60px;
 }
-.container-icona-aggiungi-playlist{
-    text-align: center;
-    width: 15%;
-    box-sizing: border-box;
+#contenitore-lista-ricerca-album{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 .icona-aggiungi-Aplaylist:hover{
     color: rgba(255,138,0,1);

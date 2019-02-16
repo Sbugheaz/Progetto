@@ -76,7 +76,7 @@ function stampaAmiciOnline(listaAmiciOnline){
 }
 
 //funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
-function stampaListaBraniPerGenere(listaBrani){
+function stampaListaBraniPerGenere(listaBrani,genere){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
     var content="";
     $("#contenitore-listaBrani-genere").append('<ul class="demo listaGenere">');
@@ -97,7 +97,26 @@ function stampaListaBraniPerGenere(listaBrani){
     );
 }
 
-
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani e degli
+//album che corrispondono ai criteri di ricerca
+function stampalistaBraniRicerca(lb){
+    var content = "";
+    $("#contenitore-lista-ricerca-brani").append('<ul class="demo listaRicerca" style="color:cornsilk;">');
+    for (i = 0; i < lb.length; i++) {
+        listaBrani[i] = new Account(lb[i]);
+        content += '<li class="li-lista-brani">' +
+            '<div class="datiCanzoni contenitore-imgBrano"> <img src="' + listaBrani[i].url_cover + '" id="coverBrano"></div>'+
+            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">"'+ listaBrani[i].titolo +'" - '+ listaBrani[i].artista +'</div>' +
+            '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
+        '</li>';
+        $(".listaRicerca").append(content);
+        content = "";
+    }
+    $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+           // recuperaIDAggiungi(evento);
+        }
+    );
+}
 
 
 
