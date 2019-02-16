@@ -4,7 +4,7 @@ function Brano(brano){
     this.titolo = brano.Titolo;
     this.artista = brano.Artista;
     this.genere = brano.Genere;
-    this.anno = brano.Anno;
+    this.dataUscita = brano.DataUscita;
     this.durata = brano.Durata;
     this.url_cover = brano.Url_cover;
     this.url_brano = brano.Url_brano;

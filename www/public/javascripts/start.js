@@ -1,5 +1,5 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici = [], listaUtenti = [], listaAmiciOnline = [];
+var utente, listaAmici = [], listaUtenti = [], listaAmiciOnline = [], listaBraniPerGenere= [];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
