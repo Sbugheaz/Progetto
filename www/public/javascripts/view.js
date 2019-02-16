@@ -36,7 +36,7 @@ function stampaAmiciDaAggiungere(lu){
                 '</li>';
             $(".listaUtenti").append(content);
             content = "";
-    }
+        }
         $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
             recuperaIDAggiungi(evento);
             aggiungiAmico();
@@ -84,11 +84,14 @@ function stampaListaBraniPerGenere(listaBrani){
             ' <div class="datiCanzoni nomeCanzone_genere">' + listaBrani[i].titolo + '</div>' +
             ' <div class="datiCanzoni nomeArtista_genere">' + listaBrani[i].artista + '</div>' +
             ' <div class="datiCanzoni imgCover"><img src="' + listaBrani[i].url_cover + '" class="cover"></div>' +
-            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"></i> </div>' +
+            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="'+ listaBrani[i].url_brano + '"></i> </div>' +
         ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i></div>' +
         ' </li>' ;
         $(".listaGenere").append(content);
         content = "";
     }
-
+    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+        recuperaUrlBrano(evento);
+    }
+    );
 }
