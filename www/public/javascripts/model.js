@@ -4,7 +4,7 @@ function Brano(brano){
     this.titolo = brano.Titolo;
     this.artista = brano.Artista;
     this.genere = brano.Genere;
-    this.anno = brano.Anno;
+    this.dataUscita = brano.DataUscita;
     this.durata = brano.Durata;
     this.url_cover = brano.Url_cover;
     this.url_brano = brano.Url_brano;
@@ -22,6 +22,7 @@ function Account(account){
     this.dataDiNascita = account.DataDiNascita;
     this.statoOnline = account.StatoOnline;
     this.attivazione = account.Attivazione;
+    this.ascolta=account.Ascolta;
 }
 
 /*Costruttore dell'oggetto Playlist*/
@@ -30,3 +31,11 @@ function Playlist(playlist){
     this.nome = playlist.Nome;
     this.numeroBrani = playlist.NumeroBrani;
 }
+
+/*Costruttore dell'oggetto Album*/
+function Album(album){
+    this.idAlbum = album.IDAlbum;
+    this.nome = album.Nome;
+    this.numeroBrani = album.NumeroBrani;
+}
+

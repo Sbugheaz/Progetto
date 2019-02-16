@@ -1,5 +1,5 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici = [], listaUtenti = [], listaAmiciOnline = [];
+var utente, listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
@@ -76,6 +76,7 @@ function richiediAmiciOnline(){
             var lo = JSON.parse(result);
             for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                 listaAmiciOnline[i] = new Account(lo[i]);
+            console.log(listaAmiciOnline[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
         else {

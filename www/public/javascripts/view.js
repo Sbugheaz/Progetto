@@ -55,7 +55,7 @@ function stampaAmiciOnline(listaAmiciOnline){
     for(i=0; i<listaAmiciOnline.length; i++) {
         content1 += '<li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome +' '+ listaAmiciOnline[i].cognome  +'<br> <p class="sta-ascoltando">' +
-            '<i class="fa fa-music icona-musica"></i>"Tranne Te"</p> </li>' ;
+            '<i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p> </li>' ;
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
@@ -68,12 +68,33 @@ function stampaAmiciOnline(listaAmiciOnline){
         content2 += '<li class="p_listaAmici">' +
             '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
-            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>' +
+            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " \'+ listaAmiciOnline[i].ascolta + \' " </p>' +
             '</div> </li>' ;
         $(".demo-mobile").append(content2);
         content2 = "";
     }
 }
+
+//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
+function stampaListaBraniPerGenere(listaBrani){
+
+    $(".listaGenere").remove(); //svuota la lista contenente i brani
+    var content="";
+    $("#contenitore-listaBrani-genere").append('<ul class="demo listaGenere">');
+    for(i=0; i<listaBrani.length; i++) {
+        content += '<li class="genere">' +
+            ' <div class="datiCanzoni nomeCanzone_genere">' + listaBrani[i].titolo + '</div>' +
+            ' <div class="datiCanzoni nomeArtista_genere">' + listaBrani[i].artista + '</div>' +
+            ' <div class="datiCanzoni imgCover"><img src="' + listaBrani[i].url_cover + '" class="cover"></div>' +
+            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"></i> </div>' +
+        ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i></div>' +
+        ' </li>' ;
+        $(".listaGenere").append(content);
+        content = "";
+    }
+
+}
+
 
 
 

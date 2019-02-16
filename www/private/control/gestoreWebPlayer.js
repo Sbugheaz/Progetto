@@ -238,7 +238,7 @@ router.post('/amici/cercaUtenti', function (req, res) {
  */
 router.get('/amiciOnline', function (req, res) {
     if(req.session.idUtente != undefined) {
-        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
+        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente, Ascolta " +
             "FROM Amicizia, Account " +
             "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
         con.query(query, function (err, result, fields) {
@@ -253,9 +253,9 @@ router.get('/amiciOnline', function (req, res) {
 /**
  * Restituisce i brani relativi al genere scelto dall'utente.
  */
-router.get('/musica/genere', function (req, res) {
-    var genere;
-    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url-cover, Url_brano " +
+router.post('/musica/genere', function (req, res) {
+    var genere = req.body.genere;
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
         "FROM Brano " +
         "WHERE Genere = '" + genere + "'";
     con.query(query, function (err, result, fields) {
@@ -265,6 +265,33 @@ router.get('/musica/genere', function (req, res) {
         else res.send("ERR");
     });
 });
+
+/**
+ * Restituisce i brani e gli album che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
+ */
+router.post('/musica/cercaBrani', function (req, res) {
+    var braniCercati = req.body.braniCercati;
+    if(braniCercati != "") {
+        var query1 = "SELECT IDBrano, Titolo, Artista, Durata, Url_Cover, Url_Brano " +
+                    "FROM Brano " +
+                    "WHERE CONCAT(Titolo, ' ', Artista) LIKE '" + braniCercati + "%' OR " +
+                          "CONCAT(Artista, ' ', Titolo) LIKE '" + braniCercati + "%'";
+        var query2 = "SELECT * " +
+                     "FROM Album " +
+                     "WHERE Nome = '" + braniCercati + "'";
+        con.query(query1, function (err, result1, fields) {
+            if (err) throw err;
+            if (result1 == 0) res.send("ERR"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
+            else res.send(JSON.stringify(result1)); //Manda tutti gli album che soddisfano i criteri di ricerca
+        });
+        con.query(query2, function (err, result2, fields) {
+            if (err) throw err;
+            if (result2 == 0) res.send("ERR"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
+            else res.send(JSON.stringify(result2)); //Manda tutti gli album che soddisfano i criteri di ricerca
+        });
+    }
+});
+
 
 /*router.get(/brano.[0-9]+/, function (req, res) {
     var brano = '/var/www/html/private/media/' + req.url.slice(1);
