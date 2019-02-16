@@ -292,7 +292,7 @@ router.post('/musica/cercaBrani', function (req, res) {
     }
 });
 
-router.post('/riproduciBrano', function (req, res) {
+router.post('/riproduciBrano/musica/0/90MIN.mp3', function (req, res) {
     var urlBrano = req.body.urlBrano;
     var brano = '/var/www/html/private/media/' + urlBrano;
     mediaserver.pipe(req, res, brano);
