@@ -61,7 +61,6 @@ function stampaAmiciOnline(listaAmiciOnline){
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
-
     //riempie la lista di amici online in modalità mobile
     $(".demo-mobile").remove();
     var content2= "";
@@ -100,6 +99,7 @@ function stampaListaBraniPerGenere(listaBrani){
     );
 }
 
+
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani e degli
 //album che corrispondono ai criteri di ricerca
 function stampalistaBraniRicerca(lb){
@@ -124,10 +124,3 @@ function stampalistaBraniRicerca(lb){
 
 
 
-//Funzione che converte i secondi in formato mm:ss
-function toMinutes(secondi) {
-    var minutes = "0" + Math.floor(secondi/ 60);
-    var seconds = "0" + Math.floor(secondi % 60);
-    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
-    return dur;
-}

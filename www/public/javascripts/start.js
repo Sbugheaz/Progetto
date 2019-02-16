@@ -77,7 +77,6 @@ function richiediAmiciOnline(){
             var lo = JSON.parse(result);
             for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                 listaAmiciOnline[i] = new Account(lo[i]);
-            console.log(listaAmiciOnline[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
         else {
@@ -110,7 +109,6 @@ function ricercaBrani() {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
                         var lb = JSON.parse(result1);
-                        console.log(lb);
                         stampalistaBraniRicerca(lb);
                     }
                 });
