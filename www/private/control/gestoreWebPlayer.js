@@ -281,12 +281,12 @@ router.post('/musica/cercaBrani', function (req, res) {
                      "WHERE Nome = '" + braniCercati + "'";
         con.query(query1, function (err, result1, fields) {
             if (err) throw err;
-            if (result1 == 0) res.send("ERR"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
+            if (result1 == 0) res.send("ERR1"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
             else res.send(JSON.stringify(result1)); //Manda tutti gli album che soddisfano i criteri di ricerca
         });
         con.query(query2, function (err, result2, fields) {
             if (err) throw err;
-            if (result2 == 0) res.send("ERR"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
+            if (result2 == 0) res.send("ERR2"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
             else res.send(JSON.stringify(result2)); //Manda tutti gli album che soddisfano i criteri di ricerca
         });
     }

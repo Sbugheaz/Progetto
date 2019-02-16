@@ -606,10 +606,12 @@ function aggiungiAmico() {
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
 function richiediBraniPerGenere() {
     $(".dropdown-item").click(function(evento) {
+        var genere=evento.target.id.substring(6)
         $.post("/WebPlayer/musica/genere",
             {
-                genere: evento.target.id.substring(6)
+                genere: genere
             }, function(result) {
+                $("#nomeGenere").html("Genere: " + genere);
                 if(result != "ERR") {
                     $(".listaGenere").remove();
                     var lb = JSON.parse(result);
