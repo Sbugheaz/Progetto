@@ -1,3 +1,6 @@
+
+
+
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaListaAmici(listaAmici){
     var content="";
@@ -92,7 +95,33 @@ function stampaListaBraniPerGenere(listaBrani){
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaUrlBrano(evento);
-        riproduciBrano();
+        inizializzaPlayer(evento);
+        //riproduciBrano();
     }
     );
 }
+
+//Funzione che inizializza i parametri del player
+function inizializzaPlayer(evento){
+    var url=evento.target.id;
+    for(i=0;i<listaBrani.length;i++){
+        if(listaBrani[i].url_brano==url){
+            var dur=toMinutes(listaBrani[i].durata);
+            $("#labelDurataTotaleBrano").text(dur);
+            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
+            $("#album2").attr("src",listaBrani[i].url_cover);
+        }
+    }
+   
+    audioElement.load();
+    audioElement.play();
+
+}
+//funzione che converte i secondi in formato mm:ss
+function toMinutes(secondi) {
+    var minutes = "0" + Math.floor(secondi/ 60);
+    var seconds = "0" + Math.floor(secondi % 60);
+    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+     return dur;
+}
+

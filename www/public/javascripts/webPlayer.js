@@ -6,6 +6,7 @@ var seeking=false;
 var listaOrigine;
 var shuffleB=false;
 var repeat=false;
+var audioElement = new Audio();        // create the audio object// assign the audio file to its src
 
 
 
@@ -242,7 +243,6 @@ $(document).ready(function() {
     listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
-    var audioElement = new Audio();        // create the audio object// assign the audio file to its src
     audioElement.src = percorsi[indiceCorrente];
 
    /*audioElement.addEventListener('ended', function() {
@@ -626,10 +626,3 @@ function richiediBraniPerGenere() {
     });
 }
 
-//Funzione per la riproduzione dei brani
-function riproduciBrano() {
-    $.post("/WebPlayer/riproduciBrano",
-        {
-            urlBrano: url
-        });
-}
