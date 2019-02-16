@@ -5,7 +5,8 @@ var seeking=false;
 var listaOrigine;
 var shuffleB=false;
 var repeat=false;
-var audioElement = new Audio();        // create the audio object// assign the audio file to its src
+var audioElement = new Audio();// create the audio object// assign the audio file to its src
+var audio= $("<audio>");
 
 
 
@@ -242,6 +243,7 @@ $(document).ready(function() {
     listaOrigine = JSON.parse(JSON.stringify(percorsi));
     $("#volume-range").slider();
     $("#barraDiAvanzamento").slider();
+    audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
     audioElement.src = percorsi[indiceCorrente];
 
    /*audioElement.addEventListener('ended', function() {
@@ -274,43 +276,13 @@ $(document).ready(function() {
     $(audioElement).on("timeupdate",refresh);
 
     /*funzione che permette di avviare la musica*/
-    $('#play').click(function() {
-        seeking=true;
-        audioElement.play();
-        $('#play').hide();
-        $('#pause').show();
-
-    });
+    $('#play').click(riproduciBrano);
     /*funzione che permette di stoppare la musica*/
-    $('#pause').click(function() {
-        seeking=false;
-        audioElement.pause();
-        $('#pause').hide();
-        $('#play').show();
-
-    });
+    $('#pause').click(stoppaBrano);
     /*funzione che permette di passare al brano successivo*/
-    $('#step-forward').click(function() {
-        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-            if(seeking==true) {
-                audioElement.play();
-            }else {
-                audioElement.pause();
-            }
-
-
-    });
+    $('#step-forward').click(branoSuccessivo);
     /*funzione che permette di passare al brano precedente*/
-    $('#step-backward').click(function() {
-        if(audioElement.currentTime<3) {
-            indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
-            audioElement.src = percorsi[indiceCorrente];
-            $('#pause').hide();
-            $('#play').show();
-        }else {
-            audioElement.currentTime=0;
-        }
-    });
+    $('#step-backward').click(branoPrecedente);
     /*funzione che permette fare lo shuffle delle canzoni*/
     $('#random').click(function () {
         if(shuffleB==false){
@@ -323,10 +295,7 @@ $(document).ready(function() {
             percorsi=JSON.parse(JSON.stringify(listaOrigine));
 
         }
-
     });
-
-
     /*funzione che permette la ripetizione delle canzoni*/
     $('#repeat').click(function() {
         if(repeat==false){
@@ -360,7 +329,38 @@ $(document).ready(function() {
         $("#barraDiAvanzamento").slider("setValue",avanzamento);
     }
 
+    function riproduciBrano() {
+        seeking=true;
+        audio.get(0).play();
+        $('#play').hide();
+        $('#pause').show();
+    }
 
+    function stoppaBrano() {
+        seeking=false;
+        audio.get(0).pause();
+        $('#pause').hide();
+        $('#play').show();
+    }
+
+    function branoSuccessivo() {
+        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
+        if(seeking==true) {
+            audioElement.play();
+        }else {
+            audioElement.pause();
+        }
+    }
+    function branoPrecedente() {
+        if(audioElement.currentTime<3) {
+            indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
+            audioElement.src = percorsi[indiceCorrente];
+            $('#pause').hide();
+            $('#play').show();
+        }else {
+            audioElement.currentTime=0;
+        }
+    }
 });
 
 
@@ -646,4 +646,12 @@ function riproduciBrano() {
         //audioElement.load();
         //audioElement.play();
     });
+}
+
+//Funzione che converte i secondi in formato mm:ss
+function toMinutes(secondi) {
+    var minutes = "0" + Math.floor(secondi/ 60);
+    var seconds = "0" + Math.floor(secondi % 60);
+    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+    return dur;
 }
