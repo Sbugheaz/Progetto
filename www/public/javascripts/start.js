@@ -101,12 +101,8 @@ function ricercaBrani() {
                 function (result) {
                     if (result == "ERR") {
                         $("#contenitore-lista-ricerca-brani").empty();
-                        var messaggio = "Nussun brano corrisponde ai criteri di ricerca";
-                        $("#contenitore-lista-ricerca-brani").html(messaggio).css({
-                            'font-size': '1rem',
-                            'padding': '20px 0',
-                            'color': 'cornsilk',
-                        });
+                        var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
+                        $("#contenitore-lista-ricerca-brani").append(messaggio);
                     } else {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
@@ -129,7 +125,6 @@ function ricercaAlbum() {
                     albumCercati: $('#barra-ricerca').val(),
                 },
                 function (result) {
-                console.log(result);
                     if (result == "ERR") {
                         $("#contenitore-lista-ricerca-album").empty();
                         var messaggio = "Nussun album corrisponde ai criteri di ricerca";

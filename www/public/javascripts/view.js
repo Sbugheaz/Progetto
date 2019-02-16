@@ -127,7 +127,6 @@ function stampalistaAlbumRicerca(la){
     var content = "";
     for (i = 0; i < la.length; i++) {
         listaAlbum[i] = new Album(la[i]);
-        console.log(listaAlbum);
         content += '<div class="flex-item-Album"><img src="' + ' images/salmo-playlist.jpg" class="flex-item-img">' +
             '<div class="contenitore-nomeAlbum">\n' +
             '<p class="nomeAlbum">' + listaAlbum[i].nome+'</p></div></div>';

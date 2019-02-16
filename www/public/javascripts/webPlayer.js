@@ -430,6 +430,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#barra-ricerca").on('input',function(){
         $(".listaRicerca").remove();
+        $("#contenitore-lista-ricerca-brani").empty();
     });
 });
 //Funzione che cancella le ricerche precedenti degli album quando viene svuotato il campo ricerca
