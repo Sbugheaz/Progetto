@@ -645,3 +645,11 @@ function riproduciBrano() {
         //audioElement.play();
     });
 }
+
+//Funzione che converte i secondi in formato mm:ss
+function toMinutes(secondi) {
+    var minutes = "0" + Math.floor(secondi/ 60);
+    var seconds = "0" + Math.floor(secondi % 60);
+    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+    return dur;
+}
