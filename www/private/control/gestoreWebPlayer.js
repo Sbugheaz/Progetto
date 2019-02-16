@@ -292,11 +292,10 @@ router.post('/musica/cercaBrani', function (req, res) {
     }
 });
 
-
-/*router.get(/brano.[0-9]+/, function (req, res) {
-    var brano = '/var/www/html/private/media/' + req.url.slice(1);
+/*router.get(/riproduciBrano/?, function (req, res) {
+    var brano = '/var/www/html/private/media/' + req.url;
     console.log(brano);
-    //mediaserver.pipe(req, res, song);
+    //mediaserver.pipe(req, res, brano);
 });
 */
 
