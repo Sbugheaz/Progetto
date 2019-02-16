@@ -112,7 +112,6 @@ function inizializzaPlayer(evento){
             $("#album2").attr("src",listaBrani[i].url_cover);
         }
     }
-   
     audioElement.load();
     audioElement.play();
 
