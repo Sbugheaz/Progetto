@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Account` (
   `DataDiNascita` DATE NOT NULL,
   `StatoOnline` BIT(1) NOT NULL DEFAULT b'0',
   `Attivazione` BIT(1) NOT NULL DEFAULT b'0',
+  `Ascolta` VARCHAR(45) NOT NULL DEFAULT '-',
   PRIMARY KEY (`IDUtente`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   UNIQUE INDEX `NomeUtente_UNIQUE` (`NomeUtente` ASC))
@@ -42,32 +43,32 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Riempimento della tabella 'Account'
 -- -----------------------------------------------------
-INSERT INTO Account
+INSERT INTO Account (IDUtente, NomeUtente, Password, Email, Nome, Cognome, Sesso, DataDiNascita, Attivazione)
 VALUES 
-(1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 0, 1),
-(2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 0, 1),
-(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 0, 1),
-(4, 'vorfreude', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'c.civilleri@yahoo.it', 'Chiara', 'Civilleri', 'F', '1996-07-08', 0, 1),
-(5, 'AlfaMoon', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'garibaldina95@gmail.com', 'Maria Grazia', 'Pizzo', 'F', '1995-05-16', 0, 1),
-(6, 'Narduccio', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'leonardo.digiovanna96@gmail.com', 'Leonardo', 'Di Giovanna', 'M', '1996-09-26', 0, 1),
-(7, 'pappagaloBelo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'valerio.puleo@community.unipa.it', 'Valerio', 'Puleo', 'M', '1996-10-10', 0, 1),
-(8, 'energizer', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gaetano.riccardo.ricotta@community.unipa.it', 'Gaetano Riccardo', 'Ricotta', 'M', '1996-04-08', 0, 1),
-(9, 'vinz96', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.viviani@community.unipa.it', 'Vincenzo', 'Viviani', 'M', '1996-02-19', 0, 1),
-(10, 'ElMosca01', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'davide.moscarelli@gmail.com', 'Davide', 'Moscarelli', 'M', '2001-07-19', 0, 1),
-(11, 'Susina92', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'asusanna.panna96@gmail.com', 'Susanna', 'Panna', 'F', '1987-06-10', 0, 1),
-(12, 'ginosauro', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gino.divita@yahoo.it', 'Girolamo', 'Di Vita', 'M', '1996-07-08', 0, 1),
-(13, 'simocammy', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'simona.cammarata@community.unipa.it', 'Simona', 'Cammarata', 'F', '1994-10-19', 0, 1),
-(14, 'pietroGreen', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'pietro.caldarera96@gmail.com', 'Pietro', 'Caldarera', 'M', '1992-12-08', 0, 1),
-(15, 'Aria94', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'arianna96@gmail.com', 'Arianna', 'Vasca', 'F', '1998-03-11', 0, 1),
-(16, 'alfamotor', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.tivolo@yahoo.it', 'Vincenzo', 'Tivolo', 'M', '1994-07-08', 0, 1),
-(17, 'elGraffo95', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.graffato@community.unipa.it', 'Vincenzo', 'Graffato', 'M', '1995-01-28', 0, 1),
-(18, 'bobBiondo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'roberto.biondo@community.unipa.it', 'Roberto', 'Biondo', 'M', '1990-06-05', 0, 1),
-(19, 'lucas12', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'lucas96@gmail.com', 'Luca', 'Sortino', 'M', '1993-08-14', 0, 1),
-(20, 'mariConc', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'mary.moscarelli@gmail.com', 'Maria Concetta', 'M0scraelli', 'F', '2005-07-05', 0, 1),
-(21, 'angeloMosca', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'angelomoscarelli66@gmail.com', 'Angelo', 'Moscarelli', 'M', '1966-03-04', 0, 1),
-(22, 'stellaAlba', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'alba.stella96@gmail.com', 'Alba', 'Petralia', 'F', '1995-06-05', 0, 1),
-(23, 'edogallo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'edoardo.gallo@commynity.unipa.it', 'Edoardo', 'Gallo', 'M', '1996-10-07', 0, 0),
-(24, 'stallaZ', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vittoria.stalla@yahoo.it', 'Vittoria', 'Stalla', 'F', '1996-07-08', 0, 1);
+(1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 1),
+(2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 1),
+(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 1),
+(4, 'vorfreude', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'c.civilleri@yahoo.it', 'Chiara', 'Civilleri', 'F', '1996-07-08', 1),
+(5, 'AlfaMoon', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'garibaldina95@gmail.com', 'Maria Grazia', 'Pizzo', 'F', '1995-05-16', 1),
+(6, 'Narduccio', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'leonardo.digiovanna96@gmail.com', 'Leonardo', 'Di Giovanna', 'M', '1996-09-26', 1),
+(7, 'pappagaloBelo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'valerio.puleo@community.unipa.it', 'Valerio', 'Puleo', 'M', '1996-10-10', 1),
+(8, 'energizer', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gaetano.riccardo.ricotta@community.unipa.it', 'Gaetano Riccardo', 'Ricotta', 'M', '1996-04-08', 1),
+(9, 'vinz96', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.viviani@community.unipa.it', 'Vincenzo', 'Viviani', 'M', '1996-02-19', 1),
+(10, 'ElMosca01', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'davide.moscarelli@gmail.com', 'Davide', 'Moscarelli', 'M', '2001-07-19', 1),
+(11, 'Susina92', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'asusanna.panna96@gmail.com', 'Susanna', 'Panna', 'F', '1987-06-10', 1),
+(12, 'ginosauro', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gino.divita@yahoo.it', 'Girolamo', 'Di Vita', 'M', '1996-07-08', 1),
+(13, 'simocammy', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'simona.cammarata@community.unipa.it', 'Simona', 'Cammarata', 'F', '1994-10-19', 1),
+(14, 'pietroGreen', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'pietro.caldarera96@gmail.com', 'Pietro', 'Caldarera', 'M', '1992-12-08', 1),
+(15, 'Aria94', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'arianna96@gmail.com', 'Arianna', 'Vasca', 'F', '1998-03-11', 1),
+(16, 'alfamotor', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.tivolo@yahoo.it', 'Vincenzo', 'Tivolo', 'M', '1994-07-08', 1),
+(17, 'elGraffo95', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.graffato@community.unipa.it', 'Vincenzo', 'Graffato', 'M', '1995-01-28', 1),
+(18, 'bobBiondo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'roberto.biondo@community.unipa.it', 'Roberto', 'Biondo', 'M', '1990-06-05', 1),
+(19, 'lucas12', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'lucas96@gmail.com', 'Luca', 'Sortino', 'M', '1993-08-14', 1),
+(20, 'mariConc', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'mary.moscarelli@gmail.com', 'Maria Concetta', 'M0scraelli', 'F', '2005-07-05', 1),
+(21, 'angeloMosca', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'angelomoscarelli66@gmail.com', 'Angelo', 'Moscarelli', 'M', '1966-03-04', 1),
+(22, 'stellaAlba', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'alba.stella96@gmail.com', 'Alba', 'Petralia', 'F', '1995-06-05', 1),
+(23, 'edogallo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'edoardo.gallo@commynity.unipa.it', 'Edoardo', 'Gallo', 'M', '1996-10-07', 0),
+(24, 'stallaZ', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vittoria.stalla@yahoo.it', 'Vittoria', 'Stalla', 'F', '1996-07-08', 1);
 
 
 -- -----------------------------------------------------
@@ -188,6 +189,7 @@ VALUES
 (24, 23),
 (21, 13),
 (22, 10);
+
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Brano`
@@ -351,32 +353,6 @@ VALUES
 (11, 1, 11),
 (12, 1, 12),
 (13, 1, 13);
-
-
--- -----------------------------------------------------
--- Table `SoundWaveDB`.`Ascolta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `SoundWaveDB`.`Ascolta` ;
-
-CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Ascolta` (
-  `Ref_IDUtente` INT NOT NULL,
-  `Ref_IDBrano` INT NOT NULL,
-  PRIMARY KEY (`Ref_IDUtente`, `Ref_IDBrano`),
-  INDEX `fk_Ascolta_Brano1_idx` (`Ref_IDBrano` ASC),
-  CONSTRAINT `fk_Ascolta_Account1`
-    FOREIGN KEY (`Ref_IDUtente`)
-    REFERENCES `SoundWaveDB`.`Account` (`IDUtente`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_Ascolta_Brano1`
-    FOREIGN KEY (`Ref_IDBrano`)
-    REFERENCES `SoundWaveDB`.`Brano` (`IDBrano`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-INSERT INTO Ascolta
-VALUES(1, 1);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
