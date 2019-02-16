@@ -238,7 +238,7 @@ router.post('/amici/cercaUtenti', function (req, res) {
  */
 router.get('/amiciOnline', function (req, res) {
     if(req.session.idUtente != undefined) {
-        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
+        var query = "SELECT IDUtente, Nome, Cognome, NomeUtente, Ascolta " +
             "FROM Amicizia, Account " +
             "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
         con.query(query, function (err, result, fields) {
@@ -253,9 +253,9 @@ router.get('/amiciOnline', function (req, res) {
 /**
  * Restituisce i brani relativi al genere scelto dall'utente.
  */
-router.get('/musica/genere', function (req, res) {
+router.post('/musica/genere', function (req, res) {
     var genere = req.body.genere;
-    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url-cover, Url_brano " +
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
         "FROM Brano " +
         "WHERE Genere = '" + genere + "'";
     con.query(query, function (err, result, fields) {
