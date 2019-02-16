@@ -1,5 +1,4 @@
-
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaListaAmici(listaAmici){
     var content="";
     $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
@@ -23,8 +22,8 @@ function stampaListaAmici(listaAmici){
 }
 
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
-// aggiungibili che corrispondono ai criteri di ricerca
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
+//che non sono tra gli amici e corrispondono ai criteri di ricerca
 function stampaAmiciDaAggiungere(lu){
         var content = "";
         $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
@@ -46,7 +45,7 @@ function stampaAmiciDaAggiungere(lu){
 }
 
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
 function stampaAmiciOnline(listaAmiciOnline){
     $(".listaAmiciOnline").remove();
     //riempie la colonna destra contenente gli amici online
@@ -75,7 +74,7 @@ function stampaAmiciOnline(listaAmiciOnline){
     }
 }
 
-//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
 function stampaListaBraniPerGenere(listaBrani){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
     var content="";
@@ -93,11 +92,7 @@ function stampaListaBraniPerGenere(listaBrani){
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaUrlBrano(evento);
+        riproduciBrano();
     }
     );
 }
-
-
-
-
-

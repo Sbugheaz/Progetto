@@ -292,12 +292,12 @@ router.post('/musica/cercaBrani', function (req, res) {
     }
 });
 
-/*router.get(/riproduciBrano/?, function (req, res) {
-    var brano = '/var/www/html/private/media/' + req.url;
-    console.log(brano);
-    //mediaserver.pipe(req, res, brano);
+router.post('/riproduciBrano', function (req, res) {
+    var urlBrano = req.body.urlBrano;
+    var brano = '/var/www/html/private/media/' + urlBrano;
+    mediaserver.pipe(req, res, brano);
 });
-*/
+
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
