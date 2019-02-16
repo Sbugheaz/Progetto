@@ -254,7 +254,7 @@ router.get('/amiciOnline', function (req, res) {
  * Restituisce i brani relativi al genere scelto dall'utente.
  */
 router.get('/musica/genere', function (req, res) {
-    var genere;
+    var genere = req.body.genere;
     var query = "SELECT IDBrano, Titolo, Artista, Durata, Url-cover, Url_brano " +
         "FROM Brano " +
         "WHERE Genere = '" + genere + "'";
