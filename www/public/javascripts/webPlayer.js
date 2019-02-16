@@ -413,6 +413,13 @@ function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
 };
 
+var url; //variabile che contiene l'url del brano da riprodurre
+//Funzione che recupera l'url del brano della lista per comunicarlo al server e riprodurlo
+function recuperaUrlBrano(evento) {
+    url = evento.target.id;
+    console.log(url);
+};
+
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
 $(document).ready(function(){
     $("#inserisci-nomeUtente").on('input',function(){
@@ -606,11 +613,16 @@ function richiediBraniPerGenere() {
                 genere: evento.target.id.substring(6)
             }, function(result) {
                 if(result != "ERR") {
+                    $(".listaGenere").remove();
                     var lb = JSON.parse(result);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                         listaBrani[i] = new Brano(lb[i]);
                     stampaListaBraniPerGenere(listaBrani);
 
+                }
+                else {
+                    if(listaBrani.length != 0) listaBrani.remove(0, listaBrani.length-1);
+                    $(".listaGenere").remove();
                 }
         });
     });
