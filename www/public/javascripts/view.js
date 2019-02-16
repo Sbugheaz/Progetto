@@ -61,7 +61,6 @@ function stampaAmiciOnline(listaAmiciOnline){
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
-
     //riempie la lista di amici online in modalità mobile
     $(".demo-mobile").remove();
     var content2= "";
@@ -107,10 +106,10 @@ function stampalistaBraniRicerca(lb){
     var content = "";
     $("#contenitore-lista-ricerca-brani").append('<ul class="demo listaRicerca" style="color:cornsilk;">');
     for (i = 0; i < lb.length; i++) {
-        listaBrani[i] = new Account(lb[i]);
+        listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
             '<div class="datiCanzoni contenitore-imgBrano"> <img src="' + listaBrani[i].url_cover + '" id="coverBrano"></div>'+
-            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">"'+ listaBrani[i].titolo +'" - '+ listaBrani[i].artista +'</div>' +
+            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">"'+ listaBrani[i].titolo + '" - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
         $(".listaRicerca").append(content);

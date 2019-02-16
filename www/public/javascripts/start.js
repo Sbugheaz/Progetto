@@ -9,7 +9,7 @@ $(document).ready(function () {
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
     setInterval(richiediAmiciOnline,30000); //Funzione che aggiorna la lista degli amici online ogni 30 secondi
     richiediBraniPerGenere(); //Funzione per ottenere tutti i brani di un determinato genere
-    ricercaAlbumEBrani(); //Funzione che permette la ricerca dei brani e degli album
+    ricercaBrani(); //Funzione che permette la ricerca dei brani
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
@@ -77,7 +77,6 @@ function richiediAmiciOnline(){
             var lo = JSON.parse(result);
             for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                 listaAmiciOnline[i] = new Account(lo[i]);
-            console.log(listaAmiciOnline[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
         else {
@@ -88,7 +87,7 @@ function richiediAmiciOnline(){
     });
 }
 
-function ricercaAlbumEBrani() {
+function ricercaBrani() {
     var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
         clearTimeout(timer);
@@ -97,7 +96,7 @@ function ricercaAlbumEBrani() {
                 {
                     braniCercati: $('#barra-ricerca').val(),
                 },
-                function (result1, result2) {
+                function (result1) {
                     if (result1 == "ERR") {
                         $("#contenitore-lista-ricerca-brani").empty();
                         var messaggio = "Nussun brano corrisponde ai criteri di ricerca";
@@ -110,21 +109,7 @@ function ricercaAlbumEBrani() {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
                         var lb = JSON.parse(result1);
-                        console.log(lb);
                         stampalistaBraniRicerca(lb);
-                    }
-                    if (result2 == "ERR") {
-                        $("#contenitore-lista-ricerca-album").empty();
-                        var messaggio = "Nussun album corrisponde ai criteri di ricerca";
-                        $("#contenitore-lista-ricerca-album").html(messaggio).css({
-                            'font-size': '1rem',
-                            'padding': '20px 0',
-                        });
-                    } else {
-                        $("#contenitore-lista-ricerca-album").css("padding", "0");
-                        $("#contenitore-lista-ricerca-album").empty();
-                        //var la = JSON.parse(result2);
-                       // stampalistaAlbumRicerca(la);
                     }
                 });
         }, 500);
