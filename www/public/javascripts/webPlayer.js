@@ -610,7 +610,6 @@ function richiediBraniPerGenere() {
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                         listaBrani[i] = new Brano(lb[i]);
                     stampaListaBraniPerGenere(listaBrani);
-
                 }
         });
     });
