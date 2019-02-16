@@ -87,40 +87,23 @@ function stampaListaBraniPerGenere(listaBrani){
             ' <div class="datiCanzoni nomeCanzone_genere">' + listaBrani[i].titolo + '</div>' +
             ' <div class="datiCanzoni nomeArtista_genere">' + listaBrani[i].artista + '</div>' +
             ' <div class="datiCanzoni imgCover"><img src="' + listaBrani[i].url_cover + '" class="cover"></div>' +
-            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="'+ listaBrani[i].url_brano + '"></i> </div>' +
+            ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="icona-play'+ listaBrani[i].idBrano + '"></i> </div>' +
         ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i></div>' +
         ' </li>' ;
         $(".listaGenere").append(content);
         content = "";
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
-        recuperaUrlBrano(evento);
-        inizializzaPlayer(evento);
-        //riproduciBrano();
+        recuperaIDBrano(evento);
+        riproduciBrano();
     }
     );
 }
 
-//Funzione che inizializza i parametri del player
-function inizializzaPlayer(evento){
-    var url=evento.target.id;
-    for(i=0;i<listaBrani.length;i++){
-        if(listaBrani[i].url_brano==url){
-            var dur=toMinutes(listaBrani[i].durata);
-            $("#labelDurataTotaleBrano").text(dur);
-            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
-            $("#album2").attr("src",listaBrani[i].url_cover);
-        }
-    }
-    audioElement.load();
-    audioElement.play();
-
-}
-//funzione che converte i secondi in formato mm:ss
+//Funzione che converte i secondi in formato mm:ss
 function toMinutes(secondi) {
     var minutes = "0" + Math.floor(secondi/ 60);
     var seconds = "0" + Math.floor(secondi % 60);
     var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
-     return dur;
+    return dur;
 }
-
