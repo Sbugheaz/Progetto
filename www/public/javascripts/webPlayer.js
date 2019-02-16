@@ -417,7 +417,6 @@ var url; //variabile che contiene l'url del brano da riprodurre
 //Funzione che recupera l'url del brano della lista per comunicarlo al server e riprodurlo
 function recuperaUrlBrano(evento) {
     url = evento.target.id;
-    console.log(url);
 };
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
@@ -627,3 +626,10 @@ function richiediBraniPerGenere() {
     });
 }
 
+//Funzione per la riproduzione dei brani
+function riproduciBrano() {
+    $.post("/WebPlayer/riproduciBrano",
+        {
+            urlBrano: url
+        });
+}

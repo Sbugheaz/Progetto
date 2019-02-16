@@ -92,6 +92,7 @@ function stampaListaBraniPerGenere(listaBrani){
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaUrlBrano(evento);
+        riproduciBrano();
     }
     );
 }
