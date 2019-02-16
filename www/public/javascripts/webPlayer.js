@@ -639,12 +639,12 @@ function riproduciBrano() {
             urlBrano = listaBrani[i].url_brano;
         }
     }
-    $.post("/WebPlayer/riproduciBrano", {
+    $.post("/riproduciBrano", {
         urlBrano: urlBrano
     }, function () {
-        //audioElement.src =
-        //audioElement.load();
-        //audioElement.play();
+        audioElement.src ="/riproduciBrano";
+        audioElement.load();
+        audioElement.play();
     });
 }
 
