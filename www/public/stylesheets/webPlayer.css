@@ -185,13 +185,25 @@ ul.demo {
 #sezione-controlli-riproduzione > .row {
     position: relative;
     font-size: 100%;
-    height: 100%;
 }
 #sezione-controlli-riproduzione {
     background-color:  rgba(0, 114, 255, 0.43);
     color: cornsilk;
     text-align: center;
 
+}
+#riga-slider > .slider-horizontal{
+    display: inline-block;
+    vertical-align: middle;
+}
+.contenitore-slider{
+    height: 40px;
+}
+.intestazione-titolo-brano{
+    height: 30px;
+}
+.contenitore-tasi-riproduzione{
+    height: 30px;
 }
 
 
@@ -224,8 +236,7 @@ ul.demo {
 .testo-controlli-riproduzione {
     display: inline-block;
     vertical-align: middle;
-    line-height: 1.8;
-    font-size: 3vh;
+    font-size: 1.3rem;
 }
 #badge-icona-notifica {
     color: white;
@@ -1432,10 +1443,10 @@ fa-paly:hover {
 }
 
 #labelDurataTotaleBrano{
-    transform: translateY(-1vh);
+
 }
 #labelSecondoAttual{
-    transform: translateY(-1vh);
+
 }
 /*contenitore Amicizie*/
 #pannello-Amicizie{
@@ -1625,7 +1636,7 @@ height: calc(100% - 90px);
 
 /*propietà pannnello generi*/
 #contenitore-genere{
-    height: calc(100vh - 165px);
+    height: calc(100% - 60px);
 }
 .titolo-listaBrani-genere{
     padding-top: 2%;
@@ -1675,11 +1686,11 @@ height: calc(100% - 90px);
     margin: 0;
 }
 
-#contenitore-listaBrani-genere{
+#contenitore-listaBrani-genere {
     overflow-y: auto;
-    width: 100%;
-    height: calc(100% - 110px);
-    margin: 0;
+    height: calc(100% - 50px);
+
+    padding: 0 15px;
 }
 .listaGenere{
     font-size: 0.8rem;

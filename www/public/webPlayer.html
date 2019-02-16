@@ -135,13 +135,14 @@
 
                         </div>
                         <div id="pannello-Generi" class="container-fluid">
-                            <div class="row" id="contenitore-genere" >
+                            <div class="row titolo-listaBrani-genere" >
                                 <div class="col-md-12">
-                                    <div class="row titolo-listaBrani-genere" >
-                                        <div class="col-md-12">
-                                            <p >Genere:</p>
-                                        </div>
-                                    </div>
+                                    <p >Genere:</p>
+                                </div>
+                            </div>
+                            <div class="row" id="contenitore-genere" >
+                                <div class="col-md-12" style="height:100%">
+
                                     <div class="row intestazione-listaBrani-genere">
                                         <div class="nomeCanzone-genere"> <p class="p_genere">Canzone</p> </div>
                                         <div class="nomeArtista-genere"> <p class="p_genere">Artista</p> </div>
@@ -156,6 +157,7 @@
                                                 <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"></i> </div>
                                                 <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i> </div>
                                             </li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -370,10 +372,12 @@
 
                 <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
                     <div id="sezione-controlli-riproduzione">
-                        <div class="row">
+                        <div class="row intestazione-titolo-brano">
                             <div id="titolo-brano-in-riproduzione" class="col-md-12">
                                 <p >AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
                             </div>
+                        </div>
+                        <div class="row contenitore-tasi-riproduzione">
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "><img src="images/cover/default-brano.png" id="album2"></div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                 <div class="row audio-controls">
@@ -407,26 +411,27 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-
-                                        <div class="col-md-12">
-                                            <div class="row" id="riga-slider">
-                                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-sx-sec">
-                                                    <span id="labelSecondoAttuale" class="testo-controlli-riproduzione">--/--</span>
-                                                </div>
-                                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                                    <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 92%"/>
-                                                </div>
-                                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-dx-sec">
-                                                    <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione">--/--</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
+                        <div class="row contenitore-slider">
+                            <div class="col-md-12">
+                                <div class="row" id="riga-slider">
+                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-sx-sec">
+                                        <span id="labelSecondoAttuale" class="testo-controlli-riproduzione">--/--</span>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 92%"/>
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-dx-sec">
+                                        <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione">--/--</span>
+                                    </div>
                                 </div>
                             </div>
-
+                        </div>
                     </div>
+                </div>
+
+                </div>
                 </div>
         </div>
 
