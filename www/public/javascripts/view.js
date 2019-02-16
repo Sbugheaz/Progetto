@@ -68,12 +68,42 @@ function stampaAmiciOnline(listaAmiciOnline){
         content2 += '<li class="p_listaAmici">' +
             '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
-            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i>"Tranne Te-Fabri Fibra"</p>' +
+            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " \'+ listaAmiciOnline[i].ascolta + \' " </p>' +
             '</div> </li>' ;
         $(".demo-mobile").append(content2);
         content2 = "";
     }
 }
+
+//funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+function stampaListaBraniPerGenere(listaBrani){
+    $(".listaAmiciOnline").remove();
+    //riempie la colonna destra contenente gli amici online
+    var content1="";
+    $(".container-listaAmici").append('<ul class="demo listaAmiciOnline">');
+    for(i=0; i<listaAmiciOnline.length; i++) {
+        content1 += '<li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
+            listaAmiciOnline[i].nome +' '+ listaAmiciOnline[i].cognome  +'<br> <p class="sta-ascoltando">' +
+            '<i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p> </li>' ;
+        $(".listaAmiciOnline").append(content1);
+        content1 = "";
+    }
+
+    //riempie la lista di amici online in modalità mobile
+    $(".demo-mobile").remove();
+    var content2= "";
+    $(".container-listaAmici-mobile").append('<ul class="demo demo-mobile">');
+    for(i=0; i<listaAmiciOnline.length; i++) {
+        content2 += '<li class="p_listaAmici">' +
+            '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
+            listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
+            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " \'+ listaAmiciOnline[i].ascolta + \' " </p>' +
+            '</div> </li>' ;
+        $(".demo-mobile").append(content2);
+        content2 = "";
+    }
+}
+
 
 
 

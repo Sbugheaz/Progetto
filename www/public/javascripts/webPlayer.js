@@ -607,11 +607,9 @@ function richiediBraniPerGenere() {
             }, function(result) {
                 if(result != "ERR") {
                     var lb = JSON.parse(result);
-                    console.log(lb);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
-                        listaBraniPerGenere[i] = new Brano(lb[i]);
-                    console.log(listaBraniPerGenere);
-                   // stampaAmiciOnline(listaAmiciOnline);
+                        listaBrani[i] = new Brano(lb[i]);
+                    stampaListaBraniPerGenere(listaBrani);
 
                 }
         });
