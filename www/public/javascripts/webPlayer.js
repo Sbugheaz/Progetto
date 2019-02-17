@@ -426,6 +426,19 @@ $(document).ready(function(){
         $(".listaUtenti").remove();
     });
 });
+//Funzione che cancella le ricerche precedenti dei brani quando viene svuotato il campo ricerca
+$(document).ready(function(){
+    $("#barra-ricerca").on('input',function(){
+        $(".listaRicerca").remove();
+        $("#contenitore-lista-ricerca-brani").empty();
+    });
+});
+//Funzione che cancella le ricerche precedenti degli album quando viene svuotato il campo ricerca
+$(document).ready(function(){
+    $("#barra-ricerca").on('input',function(){
+        $("#contenitore-lista-ricerca-album").empty();
+    });
+});
 
 //Funzione che rimuove un elemento da un array e ne elimina la cella
 Array.prototype.remove = function(from, to) {

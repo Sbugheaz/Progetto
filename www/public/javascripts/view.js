@@ -100,8 +100,8 @@ function stampaListaBraniPerGenere(listaBrani){
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani e degli
-//album che corrispondono ai criteri di ricerca
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
+//che corrispondono ai criteri di ricerca
 function stampalistaBraniRicerca(lb){
     var content = "";
     $("#contenitore-lista-ricerca-brani").append('<ul class="demo listaRicerca" style="color:cornsilk;">');
@@ -117,6 +117,24 @@ function stampalistaBraniRicerca(lb){
     }
     $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
            // recuperaIDAggiungi(evento);
+        }
+    );
+}
+
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli
+//album che corrispondono ai criteri di ricerca
+function stampalistaAlbumRicerca(la){
+    var content = "";
+    for (i = 0; i < la.length; i++) {
+        listaAlbum[i] = new Album(la[i]);
+        content += '<div class="flex-item-Album"><img src="' + ' images/salmo-playlist.jpg" class="flex-item-img">' +
+            '<div class="contenitore-nomeAlbum">\n' +
+            '<p class="nomeAlbum">' + listaAlbum[i].nome+'</p></div></div>';
+        $("#contenitore-lista-ricerca-album").append(content);
+        content = "";
+    }
+    $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+            // recuperaIDAggiungi(evento);
         }
     );
 }
