@@ -68,7 +68,7 @@ button:focus {outline:0;}
 }
 
 #pulsante-aggiungiAmici{
-    width: 100%;
+    width: 30%;
     font-size: 0.8rem;
     margin-top: 1vh;
 }
@@ -877,10 +877,6 @@ table{
         width: 60vw;
     }
 
-    #pulsante-aggiungiAmici {
-        width: 100%;
-        font-size: 0.7rem;
-    }
     #contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: calc(100vh - 215px)!important;
     }
@@ -888,7 +884,6 @@ table{
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
         width: 70%;
-
     }
 
 
@@ -921,6 +916,19 @@ table{
     }
     .autore{
         width: 30%!important;
+    }
+
+    /*Proprietà pannello Amicizie*/
+    .intestazione-listaAmici{
+        font-size: calc(0.6rem + 1vw)!important;
+    }
+    .listaAmici{
+        font-size: calc(0.4rem + 1vw)!important;
+        width: 100%;
+    }
+    #pulsante-aggiungiAmici {
+        width: 35%;
+        font-size: calc(0.4rem + 1vw)!important;
     }
 
 
@@ -1492,6 +1500,7 @@ fa-paly:hover {
 
 /*Proprietà lista amici*/
 .intestazione-listaAmici{
+    font-size: calc(0.4rem + 1vw);
     color:cornsilk;
     margin: 0;
     height: 50px;
@@ -1509,7 +1518,7 @@ height: calc(100% - 90px);
 }
 .titolo-listaAmici{
     text-align: center;
-    font-size: 1.6rem;
+    font-size: calc(1rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     height: 40px;
@@ -1548,7 +1557,7 @@ height: calc(100% - 90px);
     margin:0;
 }
 .listaAmici{
-    font-size: 0.8rem;
+    font-size: calc(0.25rem + 1vw);
     width: 100%;
 }
 .datiAmico{
