@@ -326,7 +326,7 @@ router.get('/playlist', function (req, res) {
     var query = "SELECT * " +
         "FROM Playlist, Possiede, Account " +
         "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = '" + req.session.idUtente + "' " +
-        "ORDER BY Nome";
+        "ORDER BY Playlist.Nome";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         //Se la query restituisce gli amici dell'utente li manda al client

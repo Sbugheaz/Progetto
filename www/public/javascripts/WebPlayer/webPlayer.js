@@ -10,7 +10,7 @@ var percorsi;
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
-
+var idPlaylist; //variabile che contiene l'id' della playlist da stampare
 
 //Funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -418,6 +418,12 @@ function recuperaIDAggiungi(evento) {
 function recuperaIDBrano(evento) {
     idBrano = evento.target.id.substring(10);
 };
+
+//Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
+function recuperaIDPlaylist(evento) {
+    idPlaylist = evento.target.id;
+    console.log(idPlaylist);
+}
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
 $(document).ready(function(){
