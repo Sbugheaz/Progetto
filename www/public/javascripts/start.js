@@ -127,8 +127,9 @@ function ricercaAlbum() {
                 function (result) {
                     if (result == "ERR") {
                         $("#contenitore-lista-ricerca-album").empty();
-                        var messaggio = "Nussun album corrisponde ai criteri di ricerca";
-                        $("#contenitore-lista-ricerca-album").html(messaggio).css({
+                        var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
+                        $("#contenitore-lista-ricerca-album").append(messaggio);
+                        $("#contenitore-lista-ricerca-album").css({
                             'font-size': '1rem',
                             'padding': '20px 0',
                             'color': 'cornsilk',

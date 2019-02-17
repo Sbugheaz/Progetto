@@ -236,7 +236,7 @@ ul.demo {
 .testo-controlli-riproduzione {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.3rem;
+    font-size: calc(0.55rem + 1vw);
 }
 #badge-icona-notifica {
     color: white;
@@ -279,7 +279,7 @@ input, #barra-ricerca {
     color: cornsilk;
     width: 30vw;
     padding: 0;
-    font-size: 20px;
+    font-size: calc(0.4rem + 1vw);
 }
 
 /*propietà della riga all'interno della barra di ricerca */
@@ -459,8 +459,8 @@ btn-conzoni-ricerca{
     width: 100%;
 }
 .titolo-listaRicerca{
-    padding-top: 2%;
-    font-size: 1.6rem;
+    padding-top: 10px;
+    font-size: calc(0.8rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     height: 60px;
@@ -489,7 +489,7 @@ btn-conzoni-ricerca{
 }
 .messaggio{
     margin: auto;
-    font-size: 1rem;
+    font-size: calc(0.25rem + 1vw);
     padding: 20px 0;
     color: cornsilk;
     text-align: center;
@@ -801,11 +801,14 @@ table{
         font-size: 1.5vw;
     }
     .p_listaAmici{
-        font-size:0.7rem;
+        font-size:calc(0.4rem + 1vw)!important;
     }
     #colonna-centrale {
         width: 100% !important;
+    }
 
+    #barra-ricerca{
+    font-size:calc(0.55rem + 1vw);
     }
 
     #colonna-sinistra, #colonna-destra,#album2 {
@@ -816,6 +819,12 @@ table{
         width: 100%;
         left: 0px;
     }
+
+  .testo-controlli-riproduzione {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: calc(0.8rem + 1vw)!important;
+  }
 
     #sezione-controlli-riproduzione > .row > .col-md-12 {
         /*margin-bottom: 1.5%;*/
@@ -933,6 +942,17 @@ table{
         width: 35%;
         font-size: calc(0.4rem + 1vw)!important;
     }
+
+
+    /*Proprietà pannello ricerca*/
+     .titolo-listaRicerca{
+         padding-top: 10px;
+         font-size: calc(1rem + 1vw);
+         height: 50px;
+     }
+  .messaggio{
+    font-size: calc(0.4rem + 1vw)!important;
+  }
 
 
 }
@@ -1118,7 +1138,7 @@ table{
     background-color: transparent;
     width: auto;
     color: cornsilk;
-    font-size: 20px;
+    font-size: calc(0.8rem + 1vw);
 }
 .pulsante-menu-orizzontale:focus {
     box-shadow: 0 0;
@@ -1182,7 +1202,7 @@ table{
     overflow: auto;
 }
 p.paragrafo-amicizie-mobile{
-    font-size: 1.4rem;
+    font-size: calc(1rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     margin: 0;
@@ -1194,7 +1214,7 @@ p.paragrafo-amicizie-mobile{
 #pannello-mobile{
     position: absolute;
     right: 0;
-    width: 25%;
+    width: 35%;
     height: calc(100vh - 215px);
     background-color: rgb(11, 55, 116);
     display: none;
@@ -1206,11 +1226,9 @@ p.paragrafo-amicizie-mobile{
 .btn-mobile{
     width: 100%;
     color: cornsilk;
-    font-size: 2vw;
+    font-size: calc(0.4rem + 1vw);
     background: #0b3774;
     text-align: center;
-
-
 }
 
 /*Proprietà Modal Aggiungi Amico*/

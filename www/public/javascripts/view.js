@@ -69,7 +69,7 @@ function stampaAmiciOnline(listaAmiciOnline){
         content2 += '<li class="p_listaAmici">' +
             '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
-            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " \'+ listaAmiciOnline[i].ascolta + \' " </p>' +
+            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p>' +
             '</div> </li>' ;
         $(".demo-mobile").append(content2);
         content2 = "";
