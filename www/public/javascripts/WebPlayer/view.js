@@ -1,4 +1,12 @@
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i dati dell'account nell'apposito form
+function stampaDatiAccount(utente) {
+    $(".nomeUtente").html("<br>" + utente.nomeUtente);
+    $('#nome').attr("value", utente.nome);
+    $('#cognome').attr("value", utente.cognome);
+    $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
+    $('#email').attr("value", utente.email);
+}
 
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente

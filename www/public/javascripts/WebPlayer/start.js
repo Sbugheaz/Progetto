@@ -13,16 +13,13 @@ $(document).ready(function () {
     ricercaAlbum(); //Funzione che permette la ricerca degli album
 });
 
-//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
+//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
+// e invoca la funzione stampa  stampaDatiAccount per inserirli nell'apposito form
 function richiediDatiAccount() {
     $.get('/WebPlayer/utente', function (result) {
         if (result != "ERR") {
             utente = new Account(JSON.parse(result)[0]);
-            $(".nomeUtente").html("<br>" + utente.nomeUtente);
-            $('#nome').attr("value", utente.nome);
-            $('#cognome').attr("value", utente.cognome);
-            $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
-            $('#email').attr("value", utente.email);
+            stampaDatiAccount(utente);
         }
     });
 }
