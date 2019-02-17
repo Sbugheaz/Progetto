@@ -454,6 +454,28 @@ btn-conzoni-ricerca{
 #coverBrano{
     width: 100px;
 }
+
+ .contenitore-icona-hover:hover{
+     opacity: 0.9;
+     color: cornsilk;
+}
+.contenitore-icona-hover{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    transform: translateY(-100%);
+    opacity: 0;
+
+}
+
+.play-brano{
+    font-size: 30px;
+    transform: translate(150%,100%);
+
+}
+.play-brano:hover{
+    opacity: 1;
+}
 .li-lista-brani{
     font-size: calc(0.7rem + 0.5vw);
 }

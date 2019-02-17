@@ -308,8 +308,6 @@ $(document).ready(function() {
         } else {
             repeat = false;
             $("#repeat").css('color', 'cornsilk');
-
-
         }
     });
     /* funzione che permette di regolare il volume*/
@@ -342,7 +340,7 @@ $(document).ready(function() {
 
     function stoppaBrano() {
         seeking = false;
-        audioElement.pause()
+        audioElement.pause();
         $('#pause').hide();
         $('#play').show();
     }
@@ -663,7 +661,6 @@ function riproduciBrano() {
         seeking=true;
         $("#play").hide();
         $("#pause").show();
-
     });
 }
 

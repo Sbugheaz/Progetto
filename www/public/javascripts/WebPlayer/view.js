@@ -1,4 +1,12 @@
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i dati dell'account nell'apposito form
+function stampaDatiAccount(utente) {
+    $(".nomeUtente").html("<br>" + utente.nomeUtente);
+    $('#nome').attr("value", utente.nome);
+    $('#cognome').attr("value", utente.cognome);
+    $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
+    $('#email').attr("value", utente.email);
+}
 
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
@@ -108,7 +116,7 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano"> <img src="' + listaBrani[i].url_cover + '" id="coverBrano"></div>'+
+            '<div class="datiCanzoni contenitore-imgBrano">  <img src="' + listaBrani[i].url_cover + '" id="coverBrano"><div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
