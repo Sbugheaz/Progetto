@@ -141,7 +141,7 @@ router.post('/modificaPassword', function (req, res) {
 });
 
 /**
- * Aggiorna i dati dell'account a seguito di una modifica dell'utente
+ * Aggiorna i dati dell'account a seguito di una modifica dell'utente.
  */
 router.post('/modificaAccount', function (req, res) {
     var nome = req.body.nome;
@@ -200,7 +200,7 @@ router.post('/amici/eliminaAmico', function (req, res) {
 });
 
 /**
- * Aggiunge un amico alla lista degli amici.
+ * Aggiunge un amico alla lista amici dell'utente.
  */
 router.post('/amici/aggiungiAmico', function (req, res) {
     var idAmico = req.body.idAmico;
@@ -236,7 +236,9 @@ router.post('/amici/cercaUtenti', function (req, res) {
 });
 
 /**
- * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player.
+ * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player. Questa
+ * richiesta viene ricevuta ogni 30 secondi per permettere l'aggiornamento in tempo reale dello stato online degli
+ * amici.
  */
 router.get('/amiciOnline', function (req, res) {
     if(req.session.idUtente != undefined) {
@@ -315,6 +317,22 @@ router.post('/musica/cercaAlbum', function (req, res) {
 router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', function (req, res) {
     var brano = '/var/www/html/private/media/' + req.url.slice(16);
     mediaserver.pipe(req, res, brano);
+});
+
+/**
+ * Restituisce i dati delle playlist dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ */
+router.get('/playlist', function (req, res) {
+    var query = "SELECT * " +
+        "FROM Playlist, Possiede, Account " +
+        "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = '" + req.session.idUtente + "' " +
+        "ORDER BY Nome";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        //Se la query restituisce gli amici dell'utente li manda al client
+        if(result.length != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
 });
 
 

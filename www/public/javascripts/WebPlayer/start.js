@@ -1,9 +1,10 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
+var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
     richiediDatiAccount(); //Funzione che ottiene i dati dell'utente che ha effettuato l'accesso
+    richiediPlaylist(); //Funzione che ottiene i dati delle playlist dell'utente che ha effettuato l'accesso
     richiediListaAmici(); //Funzione che ottiene la lista amici dell'utente che ha effettuato l'accesso
     ricercaUtenti(); //Funzione che permette la ricerca degli utenti per l'amicizia
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
@@ -20,6 +21,21 @@ function richiediDatiAccount() {
         if (result != "ERR") {
             utente = new Account(JSON.parse(result)[0]);
             stampaDatiAccount(utente);
+        }
+    });
+}
+
+//Funzione che riceve i dati delle playlist dell'utente e invoca la funzione stampaPlaylist per stamparli nell'apposita lista
+function richiediPlaylist() {
+    $.get('/WebPlayer/playlist', function (result) {
+        if (result != "ERR") {
+            var lp = JSON.parse(result);
+            for (i = 0; i < lp.length; i++) //Aggiungiamo le playlist dell'utente che ha loggato nel vettore che contiene tutte le playlist
+                listaPlaylist[i] = new Playlist(lp[i]);
+            //stampaListaPlaylist();
+        }
+        else {
+            //L'utente non ha ancora creato alcuna playlist
         }
     });
 }
