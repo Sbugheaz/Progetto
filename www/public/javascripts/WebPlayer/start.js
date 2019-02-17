@@ -138,7 +138,6 @@ function ricercaAlbum() {
                         $("#contenitore-lista-ricerca-album").css("padding", "0");
                         $("#contenitore-lista-ricerca-album").empty();
                         var la = JSON.parse(result);
-                        console.log(la);
                         stampalistaAlbumRicerca(la);
                     }
                 });
