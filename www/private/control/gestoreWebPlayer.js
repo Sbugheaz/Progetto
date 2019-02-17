@@ -275,7 +275,8 @@ router.post('/musica/cercaBrani', function (req, res) {
         var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
                     "FROM Brano " +
                     "WHERE CONCAT(Titolo, ' ', Artista) LIKE '" + braniCercati + "%' OR " +
-                          "CONCAT(Artista, ' ', Titolo) LIKE '" + braniCercati + "%'";
+                          "CONCAT(Artista, ' ', Titolo) LIKE '" + braniCercati + "%' OR " +
+                          "Artista LIKE '%" + braniCercati + "%'";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
@@ -290,9 +291,10 @@ router.post('/musica/cercaBrani', function (req, res) {
 router.post('/musica/cercaAlbum', function (req, res) {
     var albumCercati = req.body.albumCercati;
     if(albumCercati != "") {
-        var query = "SELECT * " +
-            "FROM Album " +
-            "WHERE Nome = '" + albumCercati + "'";
+        var query = "SELECT DISTINCT IDAlbum, Nome, Artista, NumeroBrani, Url_cover " +
+                    "FROM Album, Appartenenza " +
+                    "WHERE IDAlbum = Ref_IDAlbum AND (CONCAT(Nome, ' ', Artista) LIKE '" + albumCercati + "%' OR " +
+                                    "CONCAT(Artista, ' ', Nome) LIKE '" + albumCercati + "%')";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
