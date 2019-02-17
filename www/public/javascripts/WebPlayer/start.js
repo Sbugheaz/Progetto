@@ -1,9 +1,10 @@
 //Dichiarazione degli oggetti
-var utente, listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
+var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
 
 //Funzione eseguita al caricamento della pagina
 $(document).ready(function () {
     richiediDatiAccount(); //Funzione che ottiene i dati dell'utente che ha effettuato l'accesso
+    richiediPlaylist(); //Funzione che ottiene i dati delle playlist dell'utente che ha effettuato l'accesso
     richiediListaAmici(); //Funzione che ottiene la lista amici dell'utente che ha effettuato l'accesso
     ricercaUtenti(); //Funzione che permette la ricerca degli utenti per l'amicizia
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
@@ -13,16 +14,28 @@ $(document).ready(function () {
     ricercaAlbum(); //Funzione che permette la ricerca degli album
 });
 
-//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server e li stampa nel form
+//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
+// e invoca la funzione stampa  stampaDatiAccount per inserirli nell'apposito form
 function richiediDatiAccount() {
     $.get('/WebPlayer/utente', function (result) {
         if (result != "ERR") {
             utente = new Account(JSON.parse(result)[0]);
-            $(".nomeUtente").html("<br>" + utente.nomeUtente);
-            $('#nome').attr("value", utente.nome);
-            $('#cognome').attr("value", utente.cognome);
-            $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
-            $('#email').attr("value", utente.email);
+            stampaDatiAccount(utente);
+        }
+    });
+}
+
+//Funzione che riceve i dati delle playlist dell'utente e invoca la funzione stampaPlaylist per stamparli nell'apposita lista
+function richiediPlaylist() {
+    $.get('/WebPlayer/playlist', function (result) {
+        if (result != "ERR") {
+            var lp = JSON.parse(result);
+            for (i = 0; i < lp.length; i++) //Aggiungiamo le playlist dell'utente che ha loggato nel vettore che contiene tutte le playlist
+                listaPlaylist[i] = new Playlist(lp[i]);
+            //stampaListaPlaylist();
+        }
+        else {
+            //L'utente non ha ancora creato alcuna playlist
         }
     });
 }

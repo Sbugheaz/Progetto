@@ -44,7 +44,7 @@ ENGINE = InnoDB;
 -- Riempimento della tabella 'Account'
 -- -----------------------------------------------------
 INSERT INTO Account (IDUtente, NomeUtente, Password, Email, Nome, Cognome, Sesso, DataDiNascita, Attivazione)
-VALUES 
+VALUES
 (1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 1),
 (2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 1),
 (3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 1),
@@ -56,7 +56,7 @@ VALUES
 (9, 'vinz96', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.viviani@community.unipa.it', 'Vincenzo', 'Viviani', 'M', '1996-02-19', 1),
 (10, 'ElMosca01', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'davide.moscarelli@gmail.com', 'Davide', 'Moscarelli', 'M', '2001-07-19', 1),
 (11, 'Susina92', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'asusanna.panna96@gmail.com', 'Susanna', 'Panna', 'F', '1987-06-10', 1),
-(12, 'ginosauro', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gino.divita@yahoo.it', 'Girolamo', 'Di Vita', 'M', '1996-07-08', 1),
+(12, 'ilginosauro', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gino.divita@yahoo.it', 'Girolamo', 'Di Vita', 'M', '1996-07-08', 1),
 (13, 'simocammy', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'simona.cammarata@community.unipa.it', 'Simona', 'Cammarata', 'F', '1994-10-19', 1),
 (14, 'pietroGreen', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'pietro.caldarera96@gmail.com', 'Pietro', 'Caldarera', 'M', '1992-12-08', 1),
 (15, 'Aria94', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'arianna96@gmail.com', 'Arianna', 'Vasca', 'F', '1998-03-11', 1),
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Brano` (
   `Genere` VARCHAR(45) NOT NULL,
   `DataUscita` DATE NOT NULL,
   `Durata` INT UNSIGNED NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-brano.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-brano.png',
   `Url_brano` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IDBrano`))
 ENGINE = InnoDB;
@@ -250,6 +250,13 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Playlist` (
   PRIMARY KEY (`IDPlaylist`),
   UNIQUE INDEX `Nome_UNIQUE` (`Nome` ASC))
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Riempimento della tabella 'Playlist'
+-- -----------------------------------------------------
+INSERT INTO Playlist
+VALUES 
+(1, 'MyPlaylist', 10);
 
 
 -- -----------------------------------------------------
@@ -300,6 +307,13 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Possiede` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Riempimento della tabella 'Possiede'
+-- -----------------------------------------------------
+INSERT INTO Possiede
+VALUES 
+(2, 1);
+
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Album`
@@ -311,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Album` (
   `Nome` VARCHAR(45) NOT NULL,
   `Artista` VARCHAR(45) NOT NULL,
   `NumeroBrani` INT NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-album.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-album.png',
   PRIMARY KEY (`IDAlbum`))
 ENGINE = InnoDB;
 
@@ -321,7 +335,7 @@ ENGINE = InnoDB;
 INSERT INTO Album
 VALUES 
 (1, 'Playlist', 'Salmo', 13, 'images/cover/playlist-cover.jpg'),
-(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, '/images/cover/default-album.png');
+(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png');
 
 
 -- -----------------------------------------------------
@@ -365,7 +379,17 @@ VALUES
 (10, 1, 10),
 (11, 1, 11),
 (12, 1, 12),
-(13, 1, 13);
+(13, 1, 13),
+
+(14, 2, 7),
+(15, 2, 8),
+(16, 2, 9),
+(17, 2, 5),
+(18, 2, 2),
+(19, 2, 1),
+(20, 2, 4),
+(21, 2, 3),
+(22, 2, 6);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

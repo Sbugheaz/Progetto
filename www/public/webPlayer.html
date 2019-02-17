@@ -99,15 +99,15 @@
         <div id="colonna-sinistra" >
             <div class="btn-group-vertical-justified" >
                 <button type="button" class="btn btn-default pulsanteA pulsanteA-brani">In riproduzione</button>
-                <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Playlist</button>
-                <button type="button" class="btn btn-default pulsanteA pulsanteA-album">Album</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Le mie playlist</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-album">Tutti gli album</button>
                 <button type="button" class="btn btn-default pulsanteA" data-toggle="dropdown">
-                    Generi
+                    Brani per genere
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" id="tasto-Pop" href="#">Pop</a>
-                    <a class="dropdown-item" id="tasto-Rock"href="#">Rock</a>
-                    <a class="dropdown-item" id="tasto-Classico"href="#">Classico</a>
+                    <a class="dropdown-item" id="tasto-Pop">Pop</a>
+                    <a class="dropdown-item" id="tasto-Rock">Rock</a>
+                    <a class="dropdown-item" id="tasto-Classico">Classico</a>
                 </div>
             </div>
         </div>
@@ -259,7 +259,7 @@
                             <div class="flex-container">
                                 <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-playlist"><i class="fa fa-music"></i> </a> </div><div class="contenitore-nomePlaylist"><p class="nomePlaylist">Bauso</p></div></div></div>
                                 <div class="flex-item"><img src="images/cover/playlist-cover.jpg" class="flex-item-img"><div class="overly"><a class="icon"><i class="fa fa-play"></i> </a> </img></div></div>
-                                <div class="flex-item"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i> </a> </div><div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div></div></div>
+                                <div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist"><div class="flex-item-conteiner"><div class="flex-item-conteiner-icon"><a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i> </a> </div><div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div></div></div>
                             </div>
                             <div id="contenitore-canzoni-playlist">
                                 <div id="contenitore-paragrafo">
@@ -460,7 +460,7 @@
 
             <!-- Intestazione del Modal Profilo -->
             <div class="header" id="intestazione">
-                <h4 class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></h4>
+                <p class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></p>
             </div>
 
             <!-- Body del Modal Profilo -->
@@ -561,7 +561,7 @@
 
             <!-- Intestazione del Modal modifica Password -->
             <div class="header" id="intestazionePass">
-                <h4 class="title" id="titolo-modalPass">Modifica password<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></h4>
+                <p class="title" id="titolo-modalPass">Modifica password<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></p>
             </div>
 
             <!-- Body del Modal modifica Password -->
@@ -638,8 +638,8 @@
 
             <!-- Intestazione del Modal Conferma Logout -->
             <div class="header" id="intestazione-logout">
-                <h4 class="title" id="titolo-logout">Conferma Logout
-                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></h4>
+                <p class="title" id="titolo-logout">Conferma Logout
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
             </div>
 
             <!-- Body del Modal Conferma Logout -->
@@ -647,13 +647,10 @@
                 <div class="contenitore-icona-logout">
                     <i class="fa fa-question-circle" id= "icona-logout"></i>
                 </div>
-
-
                 <div class="container-question">
                     <div class="question">
                         <p style="margin-top: 15px; padding-right: 5px;">Sei sicuro di voler uscire da SoundWave?</p>
                     </div>
-
                 </div>
             </div>
 
@@ -662,7 +659,6 @@
                 <button class="bottone-conferma-uscita" type="button" onclick="logout()">Esci</button>
                 <button class="bottone-conferma-uscita" type="button" class="close" data-dismiss="modal">Annulla</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -677,7 +673,7 @@
 
                 <!-- Intestazione del Modal -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Aggiungi amici</h4>
+                    <p class="modal-title">Aggiungi amici</p>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -693,15 +689,12 @@
                             </div>
                         </div>
                     </form>
-
                         <div class="container-listaUtenti">
                         </div>
                         <div class="message">
                             <p class="pd" style=" font-size:14px;text-align:left; color: red; display:none; margin: 15px 0 0;" id="notifica-agg-amico"></p>
                         </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -716,7 +709,7 @@
 
             <!-- Intestazione del Modal Successo Modifica Password -->
             <div class="header" id="intestazione-successoModPass">
-                <h4 class="title" id="titolo-successoModPass">Password modificata</h4>
+                <p class="title" id="titolo-successoModPass">Password modificata</p>
             </div>
 
             <!-- Body del Modal Successo Modifica Password  -->
@@ -724,13 +717,10 @@
                 <div class="contenitore-icona-successoModPass">
                     <i class="fa fa-check" id= "icona-succModPass"></i>
                 </div>
-
-
                 <div class="container-message">
                     <div class="message">
                         <p style="margin-top: 15px; padding-right: 5px;">La tua password è stata modificata con successo!</p>
                     </div>
-
                 </div>
             </div>
 
@@ -751,7 +741,7 @@
 
             <!-- Intestazione del Modal Successo Modifica Dati Account -->
             <div class="header" id="intestazione-successoModDatiAccount">
-                <h4 class="title" id="titolo-successoModDatiAccount">Dati account modificati</h4>
+                <p class="title" id="titolo-successoModDatiAccount">Dati account modificati</p>
             </div>
 
             <!-- Body del Modal Successo Modifica Dati Account  -->
@@ -785,8 +775,8 @@
 
             <!-- Intestazione del Modal Conferma Rimuovi Amico -->
             <div class="header" id="intestazione-rimAmico">
-                <h4 class="title" id="titolo-rimAmico">Conferma Rimozione Amico
-                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></h4>
+                <p class="title" id="titolo-rimAmico">Conferma Rimozione Amico
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
             </div>
 
             <!-- Body del Modal Conferma Rimuovi Amico -->
@@ -806,13 +796,49 @@
 
             <!-- Footer del Modal Conferma Rimuovi Amico -->
             <div class="modal-footer footer-rimAmico">
-                <button class="bottone-conferma-rimAmico" id="tastoConfermaRim" type="button" class="close" data-dismiss="modal">Conferma</button>
-                <button class="bottone-conferma-rimAmico" type="button" class="close" data-dismiss="modal">Annulla</button>
+                <button class="bottone-conferma-rimAmico" id="tastoConfermaRim" type="button"  data-dismiss="modal">Conferma</button>
+                <button class="bottone-conferma-rimAmico" type="button"  data-dismiss="modal">Annulla</button>
             </div>
 
         </div>
     </div>
 </div>
+
+
+<!-- Modal Crea Playlist-->
+<div class="modal" id="modal-crea-playlist">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal Crea Playlist-->
+            <div class="modal-header">
+                <p class="modal-title titolo-creaPlaylist">Crea Playlist</p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Corpo del Modal Crea Playlist-->
+            <div class="modal-body">
+                <form id="regForm-CreaPlaylist" action="/">
+                    <div class="tab tab-nome-playlist">
+                        <p>Inserisci il nome della playlist che desideri creare:</p>
+                        <div class="container-input">
+                            <input class="campoNomePlaylist" placeholder="Nome Playlist" type="text" name="nome-playlist" id="inserisci-nomePlaylist">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer del Modal Crea Playlist -->
+            <div class="modal-footer footerCreaPlaylist">
+                <button class="btn btn-default bottone-crea-playlist" type="button"  data-dismiss="modal">Crea Playlist</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
 
 <script src="javascripts/WebPlayer/view.js"></script>
 <script src="javascripts/WebPlayer/start.js"></script>

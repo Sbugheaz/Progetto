@@ -1,4 +1,12 @@
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i dati dell'account nell'apposito form
+function stampaDatiAccount(utente) {
+    $(".nomeUtente").html("<br>" + utente.nomeUtente);
+    $('#nome').attr("value", utente.nome);
+    $('#cognome').attr("value", utente.cognome);
+    $('#dataNascita').attr("value", utente.dataDiNascita.substring(0, 10));
+    $('#email').attr("value", utente.email);
+}
 
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
@@ -127,7 +135,7 @@ function stampalistaAlbumRicerca(la){
     var content = "";
     for (i = 0; i < la.length; i++) {
         listaAlbum[i] = new Album(la[i]);
-        content += '<div class="flex-item-Album"><img src="' + ' images/salmo-playlist.jpg" class="flex-item-img">' +
+        content += '<div class="flex-item-Album"><img src="' + listaAlbum[i].url_cover + '" class="flex-item-img">' +
             '<div class="contenitore-nomeAlbum">\n' +
             '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbum[i].nome+ '" <br>'  + listaAlbum[i].artista +'<br>'+ listaAlbum[i].numeroBrani + ' brani </p></div></div>';
         $("#contenitore-lista-ricerca-album").append(content);
