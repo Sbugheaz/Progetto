@@ -625,6 +625,7 @@ function richiediBraniPerGenere() {
             }, function(result) {
                 $("#nomeGenere").html("Genere: " + genere);
                 if(result != "ERR") {
+                    listaBrani.remove(0, listaAmiciOnline.length-1);
                     $(".listaGenere").remove();
                     var lb = JSON.parse(result);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
