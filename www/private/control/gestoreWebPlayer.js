@@ -177,7 +177,8 @@ router.post('/modificaAccount', function (req, res) {
 router.get('/amici', function (req, res) {
     var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
         "FROM Amicizia, Account " +
-        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente;
+        "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente +
+        " ORDER BY Nome";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         //Se la query restituisce gli amici dell'utente li manda al client
@@ -224,7 +225,8 @@ router.post('/amici/cercaUtenti', function (req, res) {
             "AND IDUtente<>" + req.session.idUtente + " AND IDUtente NOT IN (" +
                                                 "SELECT IDUtente " +
                                                 "FROM Account, Amicizia " +
-                                                "WHERE IDUtente = Ref2_IDUtente AND Ref1_IDUtente = " + req.session.idUtente + ")";
+                                                "WHERE IDUtente = Ref2_IDUtente AND Ref1_IDUtente = " + req.session.idUtente + ") " +
+            "ORDER BY NomeUtente";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun utente soddisfa i criteri di ricerca il server manda un errore
@@ -240,7 +242,8 @@ router.get('/amiciOnline', function (req, res) {
     if(req.session.idUtente != undefined) {
         var query = "SELECT IDUtente, Nome, Cognome, NomeUtente, Ascolta " +
             "FROM Amicizia, Account " +
-            "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1";
+            "WHERE Ref2_IDUtente = IDUtente AND Ref1_IDUtente = " + req.session.idUtente + " AND StatoOnline = 1 " +
+            "ORDER BY Nome";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             //Se la query restituisce gli amici online li manda al client
@@ -257,7 +260,8 @@ router.post('/musica/genere', function (req, res) {
     var genere = req.body.genere;
     var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
         "FROM Brano " +
-        "WHERE Genere = '" + genere + "'";
+        "WHERE Genere = '" + genere + "' " +
+        "ORDER BY Titolo";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         //Se la query restituisce i brani li manda al client
@@ -276,7 +280,8 @@ router.post('/musica/cercaBrani', function (req, res) {
                     "FROM Brano " +
                     "WHERE CONCAT(Titolo, ' ', Artista) LIKE '" + braniCercati + "%' OR " +
                           "CONCAT(Artista, ' ', Titolo) LIKE '" + braniCercati + "%' OR " +
-                          "Artista LIKE '%" + braniCercati + "%'";
+                          "Artista LIKE '%" + braniCercati + "%' " +
+            "ORDER BY Titolo";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun brano soddisfa i criteri di ricerca il server manda un errore
@@ -294,7 +299,8 @@ router.post('/musica/cercaAlbum', function (req, res) {
         var query = "SELECT DISTINCT IDAlbum, Nome, Artista, NumeroBrani, Url_cover " +
                     "FROM Album, Appartenenza " +
                     "WHERE IDAlbum = Ref_IDAlbum AND (CONCAT(Nome, ' ', Artista) LIKE '" + albumCercati + "%' OR " +
-                                    "CONCAT(Artista, ' ', Nome) LIKE '" + albumCercati + "%')";
+                                    "CONCAT(Artista, ' ', Nome) LIKE '" + albumCercati + "%') " +
+                    "ORDER BY Nome";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
             if (result == 0) res.send("ERR"); //Se nessun album soddisfa i criteri di ricerca il server manda un errore
@@ -306,9 +312,8 @@ router.post('/musica/cercaAlbum', function (req, res) {
 /**
  * Effettua lo streaming di un brano.
  */
-router.get('/riproduciBrano/musica/' + '.[0-9]' + '/Perdonami.mp3', function (req, res) {
+router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', function (req, res) {
     var brano = '/var/www/html/private/media/' + req.url.slice(16);
-    console.log(brano);
     mediaserver.pipe(req, res, brano);
 });
 

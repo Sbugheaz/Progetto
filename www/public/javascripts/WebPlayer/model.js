@@ -38,6 +38,6 @@ function Album(album){
     this.nome = album.Nome;
     this.artista = album.Artista;
     this.numeroBrani = album.NumeroBrani;
-    this.url_cover = album.url_cover;
+    this.url_cover = album.Url_cover;
 }
 

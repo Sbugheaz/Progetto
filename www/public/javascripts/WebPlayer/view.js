@@ -127,7 +127,7 @@ function stampalistaAlbumRicerca(la){
     var content = "";
     for (i = 0; i < la.length; i++) {
         listaAlbum[i] = new Album(la[i]);
-        content += '<div class="flex-item-Album"><img src="' + ' images/salmo-playlist.jpg" class="flex-item-img">' +
+        content += '<div class="flex-item-Album"><img src="' + listaAlbum[i].url_cover + '" class="flex-item-img">' +
             '<div class="contenitore-nomeAlbum">\n' +
             '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbum[i].nome+ '" <br>'  + listaAlbum[i].artista +'<br>'+ listaAlbum[i].numeroBrani + ' brani </p></div></div>';
         $("#contenitore-lista-ricerca-album").append(content);

@@ -627,6 +627,7 @@ function richiediBraniPerGenere() {
             }, function(result) {
                 $("#nomeGenere").html("Genere: " + genere);
                 if(result != "ERR") {
+                    listaBrani.remove(0, listaAmiciOnline.length-1);
                     $(".listaGenere").remove();
                     var lb = JSON.parse(result);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
@@ -656,7 +657,7 @@ function riproduciBrano() {
         percorsi[i]=listaBrani[i].url_brano;
     }
     $.get("/WebPlayer/riproduciBrano/" + percorsi[indiceCorrente], function () {
-        audioElement.src ="riproduciBrano/musica/0/Perdonami.mp3";
+        audioElement.src ="riproduciBrano/" + percorsi[indiceCorrente];
         audioElement.load();
         audioElement.play();
         seeking=true;

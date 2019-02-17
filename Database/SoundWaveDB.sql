@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Brano` (
   `Genere` VARCHAR(45) NOT NULL,
   `DataUscita` DATE NOT NULL,
   `Durata` INT UNSIGNED NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-brano.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-brano.png',
   `Url_brano` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IDBrano`))
 ENGINE = InnoDB;
@@ -213,19 +213,29 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Brano
 VALUES 
-(1, '90min', 'Salmo', 'Pop', '2018-11-09', 222, 'images/cover/playlist-cover.jpg', 'musica/0/90MIN.mp3'),
-(2, 'Stai zitto', 'Salmo ft. Fabri Fibra', 'Pop', '2018-11-09', 202, 'images/cover/playlist-cover.jpg', 'musica/0/STAI_ZITTO.mp3'),
-(3, 'Ricchi e morti', 'Salmo', 'Pop', '2018-11-09', 138, 'images/cover/playlist-cover.jpg', 'musica/0/RICCHI_E_MORTI.mp3'),
-(4, 'Dispovery Channel', 'Salmo ft. Nitro', 'Pop', '2018-11-09', 204, 'images/cover/playlist-cover.jpg', 'musica/0/DISPOVERY_CHANNEL.mp3'),
-(5, 'Cabriolet', 'Salmo ft. Sfera Ebbasta', 'Pop', '2018-11-09', 185, 'images/cover/playlist-cover.jpg', 'musica/0/CABRIOLET.mp3'),
-(6, 'Ho paura di uscire', 'Salmo', 'Pop', '2018-11-09', 197, 'images/cover/playlist-cover.jpg', 'musica/0/HO_PAURA_DI_USCIRE.mp3'),
-(7, 'Sparare alla luna', 'Salmo ft. Coez', 'Pop', '2018-11-09', 211, 'images/cover/playlist-cover.jpg', 'musica/0/SPARARE_ALLA_LUNA.mp3'),
+(1, '90min', 'Salmo', 'Pop', '2018-11-09', 232, 'images/cover/playlist-cover.jpg', 'musica/0/90min.mp3'),
+(2, 'Stai zitto', 'Salmo ft. Fabri Fibra', 'Pop', '2018-11-09', 202, 'images/cover/playlist-cover.jpg', 'musica/0/Stai_zitto.mp3'),
+(3, 'Ricchi e morti', 'Salmo', 'Pop', '2018-11-09', 138, 'images/cover/playlist-cover.jpg', 'musica/0/Ricchi_e_morti.mp3'),
+(4, 'Dispovery Channel', 'Salmo ft. Nitro', 'Pop', '2018-11-09', 204, 'images/cover/playlist-cover.jpg', 'musica/0/Dispovery_channel.mp3'),
+(5, 'Cabriolet', 'Salmo ft. Sfera Ebbasta', 'Pop', '2018-11-09', 185, 'images/cover/playlist-cover.jpg', 'musica/0/Cabriolet.mp3'),
+(6, 'Ho paura di uscire', 'Salmo', 'Pop', '2018-11-09', 197, 'images/cover/playlist-cover.jpg', 'musica/0/Ho_paura_di_uscire.mp3'),
+(7, 'Sparare alla luna', 'Salmo ft. Coez', 'Pop', '2018-11-09', 211, 'images/cover/playlist-cover.jpg', 'musica/0/Sparare_alla_luna.mp3'),
 (8, 'PxM', 'Salmo', 'Pop', '2018-11-09', 184, 'images/cover/playlist-cover.jpg', 'musica/0/PXM.mp3'),
-(9, 'Il cielo nella stanza', 'Salmo ft. Nstasia', 'Pop', '2018-11-09', 186, 'images/cover/playlist-cover.jpg', 'musica/0/IL CIELO NELLA STANZA.mp3'),
-(10, 'Tiè', 'Salmo', 'Pop', '2018-11-09', 91, 'images/cover/playlist-cover.jpg', 'musica/0/TIE.mp3'),
-(11, 'Ora che fai?', 'Salmo', 'Pop', '2018-11-09', 130, 'images/cover/playlist-cover.jpg', 'musica/0/ORA_CHE_FAI.mp3'),
+(9, 'Il cielo nella stanza', 'Salmo ft. Nstasia', 'Pop', '2018-11-09', 186, 'images/cover/playlist-cover.jpg', 'musica/0/Il_cielo_nella_stanza.mp3'),
+(10, 'Tiè!', 'Salmo', 'Pop', '2018-11-09', 91, 'images/cover/playlist-cover.jpg', 'musica/0/Tie.mp3'),
+(11, 'Ora che fai?', 'Salmo', 'Pop', '2018-11-09', 130, 'images/cover/playlist-cover.jpg', 'musica/0/Ora_che_fai.mp3'),
 (12, 'Perdonami', 'Salmo', 'Pop', '2018-11-09', 135, 'images/cover/playlist-cover.jpg', 'musica/0/Perdonami.mp3'),
-(13, 'Lunedì', 'Salmo', 'Pop', '2018-11-09', 205, 'images/cover/playlist-cover.jpg', 'musica/0/LUNEDI.mp3');
+(13, 'Lunedì', 'Salmo', 'Pop', '2018-11-09', 205, 'images/cover/playlist-cover.jpg', 'musica/0/Lunedi.mp3'),
+
+(14, 'Any Colour You Like', 'Pink Floyd', 'Rock', '1973-03-01', 205, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Any_colour_you_like.mp3'),
+(15, 'Brain Damage', 'Pink Floyd', 'Rock', '1973-03-01', 230, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Brain_damage.mp3'),
+(16, 'Eclipse', 'Pink Floyd', 'Rock', '1973-03-01', 124, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Eclipse.mp3'),
+(17, 'Money', 'Pink Floyd', 'Rock', '1973-03-01', 392, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Money.mp3'),
+(18, 'On the Run', 'Pink Floyd', 'Rock', '1973-03-01', 213, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/On_the_run.mp3'),
+(19, 'Speak to Me Breathe', 'Pink Floyd', 'Rock', '1973-03-01', 240, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Speak_to_me_breathe.mp3'),
+(20, 'The great Gig in the Sky', 'Pink Floyd', 'Rock', '1973-03-01', 284, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/The_great_gig_in_the_sky.mp3'),
+(21, 'Time', 'Pink Floyd', 'Rock', '1973-03-01', 426, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Time.mp3'),
+(22, 'Us and Them', 'Pink Floyd', 'Rock', '1973-03-01', 460, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Us_and_them.mp3');
 
 
 -- -----------------------------------------------------
@@ -301,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Album` (
   `Nome` VARCHAR(45) NOT NULL,
   `Artista` VARCHAR(45) NOT NULL,
   `NumeroBrani` INT NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-album.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-album.png',
   PRIMARY KEY (`IDAlbum`))
 ENGINE = InnoDB;
 
@@ -310,7 +320,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Album
 VALUES 
-(1, 'Playlist', 'Salmo', 13, 'images/cover/playlist-cover.jpg');
+(1, 'Playlist', 'Salmo', 13, 'images/cover/playlist-cover.jpg'),
+(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png');
 
 
 -- -----------------------------------------------------
@@ -354,7 +365,17 @@ VALUES
 (10, 1, 10),
 (11, 1, 11),
 (12, 1, 12),
-(13, 1, 13);
+(13, 1, 13),
+
+(14, 2, 7),
+(15, 2, 8),
+(16, 2, 9),
+(17, 2, 5),
+(18, 2, 2),
+(19, 2, 1),
+(20, 2, 4),
+(21, 2, 3),
+(22, 2, 6);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
