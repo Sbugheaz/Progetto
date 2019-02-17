@@ -127,40 +127,42 @@ router.post('/registrati', function (req, res) {
         if(!validateName(nome) || !validateName(cognome) || data_nascita == "" || !validateEmail(email) ||
              !validateUsername(nomeUtente) || !validatePassword(password))
                 res.send("ERR_1"); //i dati inseriti non rispettano il formato corretto
-        var query1 = "SELECT Email " +
-            "FROM Account " +
-            "WHERE Email = '" + email + "'";
-        con.query(query1, function (err, result, fields) {
+        else {
+            var query1 = "SELECT Email " +
+                "FROM Account " +
+                "WHERE Email = '" + email + "'";
+            con.query(query1, function (err, result, fields) {
                 if (err) throw err;
                 //controllo se l'email sia disponibile o meno
                 if (result.length != 0)
-                        res.send("ERR_2"); //l'e-mail è già associata ad un altro account
+                    res.send("ERR_2"); //l'e-mail è già associata ad un altro account
                 else {
-                   var query2 = "SELECT NomeUtente " +
+                    var query2 = "SELECT NomeUtente " +
                         "FROM Account " +
                         "WHERE NomeUtente = '" + nomeUtente + "'";
-                   con.query(query2, function (err, result, fields) {
-                         if (err) throw err;
-                            if(result.length !=0)
-                                 res.send("ERR_3"); //il nome utente è già utilizzato da un altro account}
-                            else {
-                                var query3 = "INSERT INTO Account (nomeUtente, password, Email, Nome, Cognome, Sesso," +
+                    con.query(query2, function (err, result, fields) {
+                        if (err) throw err;
+                        if (result.length != 0)
+                            res.send("ERR_3"); //il nome utente è già utilizzato da un altro account}
+                        else {
+                            var query3 = "INSERT INTO Account (nomeUtente, password, Email, Nome, Cognome, Sesso," +
                                 " dataDiNascita, Attivazione) VALUES ('" + nomeUtente + "', '" + hashPassword(password) +
                                 "', '" + email + "', '" + nome + "', '" + cognome + "', '" + sesso + "', '" + data_nascita + "', 0)";
-                                con.query(query3, function (err, result, fields) {
-                                    if (err) throw err;
-                                    else {
-                                        var randNum = Math.floor(Math.random() * (99999999 - 10000000) + 10000000) + 1;
-                                        numeriAttivazione.push(randNum);
-                                        var urlAttivazione = "http://192.168.33.10:3000/Registrazione/" + randNum + "/" + nomeUtente;
-                                        mailer.inviaMailAttivazioneAccount(nome, cognome, email, urlAttivazione);
-                                        res.send("OK");
-                                    }
-                                });
-                            }
-                        });
+                            con.query(query3, function (err, result, fields) {
+                                if (err) throw err;
+                                else {
+                                    var randNum = Math.floor(Math.random() * (99999999 - 10000000) + 10000000) + 1;
+                                    numeriAttivazione.push(randNum);
+                                    var urlAttivazione = "http://192.168.33.10:3000/Registrazione/" + randNum + "/" + nomeUtente;
+                                    mailer.inviaMailAttivazioneAccount(nome, cognome, email, urlAttivazione);
+                                    res.send("OK");
+                                }
+                            });
+                        }
+                    });
                 }
-        });
+            });
+        }
 });
 
 router.get('/((\\d+)' + '/(\\w+))', function (req, res) {

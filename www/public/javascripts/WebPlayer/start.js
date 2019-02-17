@@ -21,10 +21,9 @@ $(document).ready(function () {
     $('#random').click(shuffleBrani);//Evento che permette fare lo shuffle delle canzoni
     $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
     //Evento che permette lo slide della barra del volume*/
-    $("#volume-range").on("slide", function (slideEvt) {
+    $("#volume-range").on("slide", function (slideEvt) { //Evento che permette lo slide della barra di avanzamento
         audioElement.volume = slideEvt.value / 100;
     });
-    /* Evento che permette lo slide della barra di avanzamento*/
     $("#barraDiAvanzamento").on("change", function (slideEvt) {
         var slideVal = $("#barraDiAvanzamento").slider('getValue');
         var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
@@ -73,7 +72,7 @@ function richiediListaAmici() {
 //Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca e invoca la
 // funzione stampaAmiciDaAggiungere() per stamparli nell'apposita lista
 function ricercaUtenti() {
-    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#inserisci-nomeUtente").on("keyup", function () {
         clearTimeout(timer);
         timer = setTimeout(function () {
@@ -96,7 +95,7 @@ function ricercaUtenti() {
                     stampaAmiciDaAggiungere(lu);
                 }
             });
-            }, 500);
+            }, 700);
     });
 }
 
@@ -121,7 +120,7 @@ function richiediAmiciOnline(){
 
 //Funzione che permette di ricercare i brani
 function ricercaBrani() {
-    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
         clearTimeout(timer);
         timer = setTimeout(function () {
@@ -141,13 +140,13 @@ function ricercaBrani() {
                         stampalistaBraniRicerca(lb);
                     }
                 });
-        }, 500);
+        }, 700);
     });
 }
 
 //Funzione che permette di ricercare i brani
 function ricercaAlbum() {
-    var timer = 500; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
         clearTimeout(timer);
         timer = setTimeout(function () {
@@ -158,7 +157,7 @@ function ricercaAlbum() {
                 function (result) {
                     if (result == "ERR") {
                         $("#contenitore-lista-ricerca-album").empty();
-                        var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
+                        var messaggio = '<p class="messaggio"> Nessun album corrisponde ai criteri di ricerca </p>';
                         $("#contenitore-lista-ricerca-album").append(messaggio);
                         $("#contenitore-lista-ricerca-album").css({
                             'font-size': '1rem',
@@ -172,6 +171,6 @@ function ricercaAlbum() {
                         stampalistaAlbumRicerca(la);
                     }
                 });
-        }, 500);
+        }, 700);
     });
 }

@@ -246,9 +246,8 @@ DROP TABLE IF EXISTS `SoundWaveDB`.`Playlist` ;
 CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Playlist` (
   `IDPlaylist` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
-  `NumeroBrani` INT NOT NULL,
-  PRIMARY KEY (`IDPlaylist`),
-  UNIQUE INDEX `Nome_UNIQUE` (`Nome` ASC))
+  `NumeroBrani` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`IDPlaylist`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

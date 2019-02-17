@@ -166,7 +166,7 @@
                                 <div class="col-md-12">
                                     <div class="row titolo-listaBrani-produzione" >
                                         <div class="col-md-12">
-                                            <p >Brani in riproduzione:</p>
+                                            <p >Brani in riproduzione</p>
                                         </div>
                                     </div>
                                     <div class="row intestazione-listaBrani-prod">
@@ -819,15 +819,16 @@
                     <div class="tab tab-nome-playlist">
                         <p>Inserisci il nome della playlist che desideri creare:</p>
                         <div class="container-input">
-                            <input class="campoNomePlaylist" placeholder="Nome Playlist" type="text" name="nome-playlist" id="inserisci-nomePlaylist">
+                            <input class="campoNomePlaylist" placeholder="Nome playlist" type="text" name="nome-playlist" id="inserisci-nomePlaylist">
                         </div>
                     </div>
                 </form>
             </div>
+            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_playlist"></p>
 
             <!-- Footer del Modal Crea Playlist -->
             <div class="modal-footer footerCreaPlaylist">
-                <button class="btn btn-default bottone-crea-playlist" type="button"  data-dismiss="modal">Crea Playlist</button>
+                <button class="btn btn-default bottone-crea-playlist" type="button" onclick="creaPlaylist()">Crea Playlist</button>
             </div>
 
         </div>
