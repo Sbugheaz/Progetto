@@ -65,7 +65,7 @@ function stampaAmiciOnline(listaAmiciOnline){
     for(i=0; i<listaAmiciOnline.length; i++) {
         content1 += '<li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome +' '+ listaAmiciOnline[i].cognome  +'<br> <p class="sta-ascoltando">' +
-            '<i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p> </li>' ;
+            '<i class="fa fa-music icona-musica"></i> "'+ listaAmiciOnline[i].ascolta + '" </p> </li>' ;
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }

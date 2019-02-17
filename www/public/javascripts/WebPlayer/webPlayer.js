@@ -6,7 +6,7 @@ var listaOrigine;
 var shuffleB=false;
 var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
-var percorsi;
+var percorsi = [];
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
@@ -240,8 +240,7 @@ $(window).on('load', function () {
 });
 /*funzioni del player*/
 $(document).ready(function() {
-    percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3", "songs/IL_CIELO_NELLA_STANZA.mp3", "songs/90MIN.mp3"];
-    listaOrigine = JSON.parse(JSON.stringify(percorsi));
+    //listaOrigine = JSON.parse(JSON.stringify(percorsi));
     //$("#volume-range").slider();
     //$("#barraDiAvanzamento").slider();
     //audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
@@ -278,11 +277,6 @@ $(document).ready(function() {
     /* funzione che permette di aggiornare la barra di avanzamento */
     $(audioElement).on("timeupdate", refresh);
 
-    /*funzione che permette di avviare la musica*/
-    $('#play').click(avviaBrano);
-    /*funzione che permette di stoppare la musica*/
-
-    $('#pause').click(stoppaBrano);
     /*funzione che permette di passare al brano successivo*/
     $('#step-forward').click(branoSuccessivo);
     /*funzione che permette di passare al brano precedente*/
@@ -329,20 +323,6 @@ $(document).ready(function() {
         var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelSecondoAttuale").text(dur2);
         $("#barraDiAvanzamento").slider("setValue", avanzamento);
-    }
-
-    function avviaBrano() {
-        seeking = true;
-        audioElement.play();
-        $('#play').hide();
-        $('#pause').show();
-    }
-
-    function stoppaBrano() {
-        seeking = false;
-        audioElement.pause();
-        $('#pause').hide();
-        $('#play').show();
     }
 
     function branoSuccessivo() {
@@ -462,6 +442,36 @@ function shuffle(array) {
 
     return array;
 }
+
+
+//Funzione che converte i secondi in formato mm:ss
+function toMinutes(secondi) {
+    var minutes = "0" + Math.floor(secondi/ 60);
+    var seconds = "0" + Math.floor(secondi % 60);
+    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+    return dur;
+}
+
+//Funzione che permette di avviare riproduzione del brano
+function avviaBrano() {
+    seeking = true;
+    audioElement.play();
+    $('#play').hide();
+    $('#pause').show();
+}
+
+//Funzione che permette di mettere in pausa il brano
+function stoppaBrano() {
+    seeking = false;
+    audioElement.pause();
+    $('#pause').hide();
+    $('#play').show();
+}
+
+
+
+
+
 
 
 
@@ -642,32 +652,34 @@ function richiediBraniPerGenere() {
 
 //Funzione che gestisce lo streaming del brano attualmente in riproduzione
 function riproduciBrano() {
-    var urlBrano;
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
             var durata = toMinutes(listaBrani[i].durata);
             $("#labelDurataTotaleBrano").text(durata);
             $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
             $("#album2").attr("src", listaBrani[i].url_cover);
-            urlBrano = listaBrani[i].url_brano;
             indiceCorrente=i;
         }
         percorsi[i]=listaBrani[i].url_brano;
     }
-    $.get("/WebPlayer/riproduciBrano/" + percorsi[indiceCorrente], function () {
-        audioElement.src ="riproduciBrano/" + percorsi[indiceCorrente];
-        audioElement.load();
-        audioElement.play();
-        seeking=true;
-        $("#play").hide();
-        $("#pause").show();
-    });
+    streamingBrano(percorsi[indiceCorrente]);
 }
 
-//Funzione che converte i secondi in formato mm:ss
-function toMinutes(secondi) {
-    var minutes = "0" + Math.floor(secondi/ 60);
-    var seconds = "0" + Math.floor(secondi % 60);
-    var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
-    return dur;
+//Funzione che richiede lo streaming del brano e lo carica
+function streamingBrano(urlBrano) {
+    $.get("/WebPlayer/riproduciBrano/" + urlBrano, function () {
+    });
+    audioElement.src ="riproduciBrano/" + urlBrano;
+    audioElement.load();
+    avviaBrano(); //Mette in riproduzione il brano richiesto
+    comunicaBranoInAscolto();
+}
+
+//Funzione che imposta la canzone ascoltata dall'utente
+function comunicaBranoInAscolto() {
+    $.post("/WebPlayer/ascolta",
+        {
+            branoInAscolto: $("#titolo-brano-in-riproduzione").text()
+        }, function () {
+    });
 }

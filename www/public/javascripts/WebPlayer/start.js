@@ -12,6 +12,8 @@ $(document).ready(function () {
     richiediBraniPerGenere(); //Funzione per ottenere tutti i brani di un determinato genere
     ricercaBrani(); //Funzione che permette la ricerca dei brani
     ricercaAlbum(); //Funzione che permette la ricerca degli album
+    $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+    $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
