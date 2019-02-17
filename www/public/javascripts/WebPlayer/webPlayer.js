@@ -340,7 +340,7 @@ $(document).ready(function() {
 
     function stoppaBrano() {
         seeking = false;
-        audioElement.pause()
+        audioElement.pause();
         $('#pause').hide();
         $('#play').show();
     }
