@@ -909,9 +909,9 @@ table{
 
     /*Proprietà del pulsante modifica del Modal Profilo*/
     .pulsanteModifica{
-        font-size: 0.9rem;
+        font-size: calc(0.65rem + 0.5vw);
         padding: 0 5px;
-        width: 80%;
+        width: 90%;
     }
 
     /*Proprietà della colonna destra del Modal Profilo*/
@@ -956,6 +956,11 @@ table{
   .messaggio{
     font-size: calc(0.4rem + 1vw)!important;
   }
+
+    /*Proprietà dell'intestazione dei modal*/
+    .modal-header, .header{
+        font-size: calc(1rem + 1vw)!important;
+    }
 
 
 }
@@ -1182,8 +1187,6 @@ table{
     float: left;
     box-sizing: border-box;
 }
-
-
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: 59vh;
 }
@@ -1701,7 +1704,7 @@ height: calc(100% - 90px);
     display: none;
 }
 
-/*propietà pannnello generi*/
+/*Propietà pannnello generi*/
 #contenitore-genere{
     height: calc(100% - 60px);
 }
@@ -1752,7 +1755,6 @@ height: calc(100% - 90px);
     color: cornsilk;
     margin: 0;
 }
-
 #contenitore-listaBrani-genere {
     overflow-y: auto;
     height: calc(100% - 50px);
@@ -1764,18 +1766,14 @@ height: calc(100% - 90px);
     width: 100%;
     color: cornsilk;
 }
-
 .imgCover{
     width: 15%;
-
 }
 .nomeArtista_genere{
     width: 30%;
-
 }
 .nomeCanzone_genere{
     width: 30%;
-
 }
 .container-icona-play-gen{
     text-align: center;
@@ -1800,4 +1798,36 @@ height: calc(100% - 90px);
 }
 .genere > * {
     vertical-align: middle;
+}
+
+/*Proprietà Modal Crea Playlist*/
+.footerCreaPlaylist{
+    border-top: 0px;
+}
+.bottone-crea-playlist{
+    margin:auto;
+}
+.tab-nome-playlist{
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#inserisci-nomePlaylist{
+    outline: none;
+    font-size: calc(0.6rem + 0.5vw);
+    border: 0;
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
+    line-height: 2em;
+    background: transparent;
+    color: #212529;
+    width: 100%;
+    text-align: center;
+}
+.tab-nome-playlist>.container-input{
+    float:none;
+    margin:auto;
+    width:60%;
+}
+.modal-header, .header{
+    font-size: calc(0.8rem + 0.9vw);
 }
