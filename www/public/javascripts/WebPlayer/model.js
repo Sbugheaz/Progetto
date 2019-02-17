@@ -36,6 +36,8 @@ function Playlist(playlist){
 function Album(album){
     this.idAlbum = album.IDAlbum;
     this.nome = album.Nome;
+    this.artista = album.Artista;
     this.numeroBrani = album.NumeroBrani;
+    this.url_cover = album.url_cover;
 }
 

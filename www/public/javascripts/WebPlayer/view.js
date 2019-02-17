@@ -69,7 +69,7 @@ function stampaAmiciOnline(listaAmiciOnline){
         content2 += '<li class="p_listaAmici">' +
             '<div class="nomeUtente_online"> <i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome + ' '+ listaAmiciOnline[i].cognome +' ('+ listaAmiciOnline[i].nomeUtente +')' +'</div>' +
-            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " \'+ listaAmiciOnline[i].ascolta + \' " </p>' +
+            '<div class="branoAscoltato"> <p class="sta-ascoltando"><i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p>' +
             '</div> </li>' ;
         $(".demo-mobile").append(content2);
         content2 = "";
@@ -109,7 +109,7 @@ function stampalistaBraniRicerca(lb){
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
             '<div class="datiCanzoni contenitore-imgBrano"> <img src="' + listaBrani[i].url_cover + '" id="coverBrano"></div>'+
-            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">"'+ listaBrani[i].titolo + '" - '+ listaBrani[i].artista +'</div>' +
+            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
         $(".listaRicerca").append(content);
@@ -129,7 +129,7 @@ function stampalistaAlbumRicerca(la){
         listaAlbum[i] = new Album(la[i]);
         content += '<div class="flex-item-Album"><img src="' + ' images/salmo-playlist.jpg" class="flex-item-img">' +
             '<div class="contenitore-nomeAlbum">\n' +
-            '<p class="nomeAlbum">' + listaAlbum[i].nome+'</p></div></div>';
+            '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbum[i].nome+ '" <br>'  + listaAlbum[i].artista +'<br>'+ listaAlbum[i].numeroBrani + ' brani </p></div></div>';
         $("#contenitore-lista-ricerca-album").append(content);
         content = "";
     }

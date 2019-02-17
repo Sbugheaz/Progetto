@@ -8,6 +8,8 @@ var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
 var percorsi;
 var indiceCorrente=0;
+var id; //Variabile che gestisce l'ID degli amici
+var idBrano; //variabile che contiene l'id' del brano da riprodurre
 
 
 //Funzione che mostra le password nascoste
@@ -401,8 +403,6 @@ $(document).ready(function(){
     });
 });
 
-//Variabile che gestisce l'ID degli amici
-var id;
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
 function recuperaIDElimina(evento) {
     id = evento.target.id.substring(13);
@@ -412,7 +412,6 @@ function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
 };
 
-var idBrano; //variabile che contiene l'id' del brano da riprodurre
 //Funzione che recupera l'id del brano della lista per comunicarlo al server e riprodurlo
 function recuperaIDBrano(evento) {
     idBrano = evento.target.id.substring(10);
@@ -654,10 +653,7 @@ function riproduciBrano() {
         }
         percorsi[i]=listaBrani[i].url_brano;
     }
-    $.get("/WebPlayer/riproduciBrano/musica/0/Perdonami.mp3", {
-        urlBrano: urlBrano
-    }, function () {
-
+    $.get("/WebPlayer/riproduciBrano/" + percorsi[indiceCorrente], function () {
         audioElement.src ="riproduciBrano/musica/0/Perdonami.mp3";
         audioElement.load();
         audioElement.play();
