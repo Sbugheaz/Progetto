@@ -283,6 +283,22 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Composizione` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Riempimento della tabella 'Composizione'
+-- -----------------------------------------------------
+INSERT INTO Composizione
+VALUES 
+(1, 1, 13),
+(2, 1, 12),
+(3, 1, 22),
+(4, 1, 21),
+(5, 1, 1),
+(6, 1, 5),
+(7, 1, 15),
+(8, 1, 18),
+(9, 1, 20),
+(10, 1, 14);
+
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Possiede`

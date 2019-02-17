@@ -131,7 +131,7 @@ function onListening() {
  */
 process.on('SIGINT', function () {
     console.log("\nServer terminato a causa di un'interruzione manuale.\n");
-    var query = "UPDATE Account SET StatoOnline = 0"; //Imposta lo stato online di tutti gli utenti a 0 quando il server viene interrotto
+    var query = "UPDATE Account SET StatoOnline = 0, Ascolta = '-'"; //Imposta lo stato online di tutti gli utenti a 0 quando il server viene interrotto
     con.query(query, function (err, result, fields) {
         if (err) throw err;
     });
