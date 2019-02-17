@@ -382,6 +382,9 @@ div.slider-selection{
 
 
 /*Pannello contenente i risultati di ricerca */
+.nomeAlbumRicerca{
+    font-size: calc(0.5rem + 0.5vw)
+}
 #pannello-Ricerca{
     display: none;
     height: calc(100vh - 165px);
@@ -460,7 +463,7 @@ btn-conzoni-ricerca{
 }
 .titolo-listaRicerca{
     padding-top: 10px;
-    font-size: calc(0.8rem + 1vw);
+    font-size: calc(0.7rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     height: 60px;
