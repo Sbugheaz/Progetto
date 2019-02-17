@@ -382,6 +382,9 @@ div.slider-selection{
 
 
 /*Pannello contenente i risultati di ricerca */
+.nomeAlbumRicerca{
+    font-size: calc(0.5rem + 0.5vw)
+}
 #pannello-Ricerca{
     display: none;
     height: calc(100vh - 165px);
