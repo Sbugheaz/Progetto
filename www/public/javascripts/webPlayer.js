@@ -6,8 +6,8 @@ var listaOrigine;
 var shuffleB=false;
 var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
-var audio= $("<audio>");
-
+var percorsi;
+var indiceCorrente=0;
 
 
 //Funzione che mostra le password nascoste
@@ -238,29 +238,28 @@ $(window).on('load', function () {
 });
 /*funzioni del player*/
 $(document).ready(function() {
-    var percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3","songs/IL_CIELO_NELLA_STANZA.mp3","songs/90MIN.mp3"];
-    var indiceCorrente = 0;
+    percorsi = ["songs/AC_DC_Back_In_Black.mp3", "songs/Luna-Los_Angeles.mp3", "songs/Horse-fart-sounds.mp3", "songs/IL_CIELO_NELLA_STANZA.mp3", "songs/90MIN.mp3"];
     listaOrigine = JSON.parse(JSON.stringify(percorsi));
-    $("#volume-range").slider();
-    $("#barraDiAvanzamento").slider();
-    audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
-    audioElement.src = percorsi[indiceCorrente];
+    //$("#volume-range").slider();
+    //$("#barraDiAvanzamento").slider();
+    //audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
+    //audioElement.src = percorsi[indiceCorrente];
 
-   /*audioElement.addEventListener('ended', function() {
-        this.play();
-    }, false);*/
+    /*audioElement.addEventListener('ended', function() {
+         this.play();
+     }, false);*/
 
 
     /*funzione che viene invocata quando una canzone finisce*/
-    audioElement.addEventListener("ended", function() {
-            if(repeat==false && indiceCorrente==(percorsi.length-1)){
-                seeking=false;
-                this.pause;
-            }else {
-                this.pause();
-                audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
-                this.play();
-            }
+    audioElement.addEventListener("ended", function () {
+        if (repeat == false && indiceCorrente == (percorsi.length - 1)) {
+            seeking = false;
+            this.pause;
+        } else {
+            this.pause();
+            audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
+            this.play();
+        }
     });
     /*
     funzione che calcola i minuti e secondi e titolo del brano
@@ -275,11 +274,12 @@ $(document).ready(function() {
     */
 
     /* funzione che permette di aggiornare la barra di avanzamento */
-    $(audioElement).on("timeupdate",refresh);
+    $(audioElement).on("timeupdate", refresh);
 
     /*funzione che permette di avviare la musica*/
-    $('#play').click(riproduciBrano);
+    $('#play').click(avviaBrano);
     /*funzione che permette di stoppare la musica*/
+
     $('#pause').click(stoppaBrano);
     /*funzione che permette di passare al brano successivo*/
     $('#step-forward').click(branoSuccessivo);
@@ -287,86 +287,86 @@ $(document).ready(function() {
     $('#step-backward').click(branoPrecedente);
     /*funzione che permette fare lo shuffle delle canzoni*/
     $('#random').click(function () {
-        if(shuffleB==false){
+        if (shuffleB == false) {
             $("#random").css('color', '#5CA5FF');
-            shuffleB=true;
-            percorsi=shuffle(percorsi);
-        }else{
-            shuffleB=false;
+            shuffleB = true;
+            percorsi = shuffle(percorsi);
+        } else {
+            shuffleB = false;
             $("#random").css('color', 'cornsilk');
-            percorsi=JSON.parse(JSON.stringify(listaOrigine));
+            percorsi = JSON.parse(JSON.stringify(listaOrigine));
 
         }
     });
     /*funzione che permette la ripetizione delle canzoni*/
-    $('#repeat').click(function() {
-        if(repeat==false){
+    $('#repeat').click(function () {
+        if (repeat == false) {
             $("#repeat").css('color', '#5CA5FF');
-            repeat=true;
-        }else{
-            repeat=false;
+            repeat = true;
+        } else {
+            repeat = false;
             $("#repeat").css('color', 'cornsilk');
 
 
         }
     });
     /* funzione che permette di regolare il volume*/
-    $("#volume-range").on("slide", function(slideEvt) {
-            audioElement.volume=slideEvt.value/100;
+    $("#volume-range").on("slide", function (slideEvt) {
+        audioElement.volume = slideEvt.value / 100;
     });
 
     /* funzione che permette lo slide della barra di avanzamento*/
-    $("#barraDiAvanzamento").on("change", function(slideEvt) {
-        var slideVal=$("#barraDiAvanzamento").slider('getValue');
-        var valoreattuale2=($("#barraDiAvanzamento").slider('getValue')*(audioElement.duration))/100;
-        audioElement.currentTime=valoreattuale2;
+    $("#barraDiAvanzamento").on("change", function (slideEvt) {
+        var slideVal = $("#barraDiAvanzamento").slider('getValue');
+        var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
+        audioElement.currentTime = valoreattuale2;
     });
 
-    function refresh(){
-        var avanzamento= ((audioElement.currentTime/audioElement.duration)*100);
-        var minutes = "0" + Math.floor(audioElement.currentTime/ 60);
+    function refresh() {
+        var avanzamento = ((audioElement.currentTime / audioElement.duration) * 100);
+        var minutes = "0" + Math.floor(audioElement.currentTime / 60);
         var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
         var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
         $("#labelSecondoAttuale").text(dur2);
-        $("#barraDiAvanzamento").slider("setValue",avanzamento);
+        $("#barraDiAvanzamento").slider("setValue", avanzamento);
     }
 
-    function riproduciBrano() {
-        seeking=true;
-        audio.get(0).play();
+    function avviaBrano() {
+        seeking = true;
+        audioElement.play();
         $('#play').hide();
         $('#pause').show();
     }
 
     function stoppaBrano() {
-        seeking=false;
-        audio.get(0).pause();
+        seeking = false;
+        audioElement.pause()
         $('#pause').hide();
         $('#play').show();
     }
 
     function branoSuccessivo() {
         audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-        if(seeking==true) {
+        if (seeking == true) {
             audioElement.play();
-        }else {
+        } else {
             audioElement.pause();
         }
     }
+
     function branoPrecedente() {
-        if(audioElement.currentTime<3) {
-            indiceCorrente=((--indiceCorrente) +percorsi.length)%percorsi.length;
+        if (audioElement.currentTime < 3) {
+            indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
             audioElement.src = percorsi[indiceCorrente];
             $('#pause').hide();
             $('#play').show();
-        }else {
-            audioElement.currentTime=0;
+        } else {
+            audioElement.currentTime = 0;
         }
     }
+
+
 });
-
-
-
 
 $(document).ready(function(){
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
@@ -639,14 +639,21 @@ function riproduciBrano() {
             $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
             $("#album2").attr("src", listaBrani[i].url_cover);
             urlBrano = listaBrani[i].url_brano;
+            indiceCorrente=i;
         }
+        percorsi[i]=listaBrani[i].url_brano;
     }
     $.get("/WebPlayer/riproduciBrano/musica/0/Perdonami.mp3", {
         urlBrano: urlBrano
     }, function () {
-        audioElement.src = "riproduciBrano/musica/0/Perdonami.mp3";
+
+        audioElement.src ="riproduciBrano/musica/0/Perdonami.mp3";
         audioElement.load();
         audioElement.play();
+        seeking=true;
+        $("#play").hide();
+        $("#pause").show();
+
     });
 }
 
