@@ -660,7 +660,6 @@ function riproduciBrano() {
         seeking=true;
         $("#play").hide();
         $("#pause").show();
-
     });
 }
 
