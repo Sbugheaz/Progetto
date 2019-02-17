@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Brano` (
   `Genere` VARCHAR(45) NOT NULL,
   `DataUscita` DATE NOT NULL,
   `Durata` INT UNSIGNED NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-brano.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-brano.png',
   `Url_brano` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IDBrano`))
 ENGINE = InnoDB;
@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Album` (
   `Nome` VARCHAR(45) NOT NULL,
   `Artista` VARCHAR(45) NOT NULL,
   `NumeroBrani` INT NOT NULL,
-  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-album.png',
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT 'images/cover/default-album.png',
   PRIMARY KEY (`IDAlbum`))
 ENGINE = InnoDB;
 
@@ -321,7 +321,7 @@ ENGINE = InnoDB;
 INSERT INTO Album
 VALUES 
 (1, 'Playlist', 'Salmo', 13, 'images/cover/playlist-cover.jpg'),
-(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, '/images/cover/default-album.png');
+(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png');
 
 
 -- -----------------------------------------------------
@@ -365,7 +365,17 @@ VALUES
 (10, 1, 10),
 (11, 1, 11),
 (12, 1, 12),
-(13, 1, 13);
+(13, 1, 13),
+
+(14, 2, 7),
+(15, 2, 8),
+(16, 2, 9),
+(17, 2, 5),
+(18, 2, 2),
+(19, 2, 1),
+(20, 2, 4),
+(21, 2, 3),
+(22, 2, 6);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
