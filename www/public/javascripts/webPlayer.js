@@ -306,8 +306,6 @@ $(document).ready(function() {
         } else {
             repeat = false;
             $("#repeat").css('color', 'cornsilk');
-
-
         }
     });
     /* funzione che permette di regolare il volume*/
