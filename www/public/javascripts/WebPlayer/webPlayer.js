@@ -2,7 +2,7 @@ var pannelloAttivo;
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;
 var seeking=false;
-var listaOrigine;
+var listaOrigine=[];
 var shuffleB=false;
 var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
@@ -240,7 +240,7 @@ $(window).on('load', function () {
 });
 /*funzioni del player*/
 $(document).ready(function() {
-    //listaOrigine = JSON.parse(JSON.stringify(percorsi));
+
     //$("#volume-range").slider();
     //$("#barraDiAvanzamento").slider();
     //audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
@@ -251,17 +251,6 @@ $(document).ready(function() {
      }, false);*/
 
 
-    /*funzione che viene invocata quando una canzone finisce*/
-    audioElement.addEventListener("ended", function () {
-        if (repeat == false && indiceCorrente == (percorsi.length - 1)) {
-            seeking = false;
-            this.pause;
-        } else {
-            this.pause();
-            audioElement.src = percorsi[(++indiceCorrente) % percorsi.length];
-            this.play();
-        }
-    });
     /*
     funzione che calcola i minuti e secondi e titolo del brano
     audioElement.addEventListener("canplay",function(){
@@ -273,77 +262,6 @@ $(document).ready(function() {
 
     });
     */
-
-    /* funzione che permette di aggiornare la barra di avanzamento */
-    $(audioElement).on("timeupdate", refresh);
-
-    /*funzione che permette di passare al brano successivo*/
-    $('#step-forward').click(branoSuccessivo);
-    /*funzione che permette di passare al brano precedente*/
-    $('#step-backward').click(branoPrecedente);
-    /*funzione che permette fare lo shuffle delle canzoni*/
-    $('#random').click(function () {
-        if (shuffleB == false) {
-            $("#random").css('color', '#5CA5FF');
-            shuffleB = true;
-            percorsi = shuffle(percorsi);
-        } else {
-            shuffleB = false;
-            $("#random").css('color', 'cornsilk');
-            percorsi = JSON.parse(JSON.stringify(listaOrigine));
-
-        }
-    });
-    /*funzione che permette la ripetizione delle canzoni*/
-    $('#repeat').click(function () {
-        if (repeat == false) {
-            $("#repeat").css('color', '#5CA5FF');
-            repeat = true;
-        } else {
-            repeat = false;
-            $("#repeat").css('color', 'cornsilk');
-        }
-    });
-    /* funzione che permette di regolare il volume*/
-    $("#volume-range").on("slide", function (slideEvt) {
-        audioElement.volume = slideEvt.value / 100;
-    });
-
-    /* funzione che permette lo slide della barra di avanzamento*/
-    $("#barraDiAvanzamento").on("change", function (slideEvt) {
-        var slideVal = $("#barraDiAvanzamento").slider('getValue');
-        var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
-        audioElement.currentTime = valoreattuale2;
-    });
-
-    function refresh() {
-        var avanzamento = ((audioElement.currentTime / audioElement.duration) * 100);
-        var minutes = "0" + Math.floor(audioElement.currentTime / 60);
-        var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
-        var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
-        $("#labelSecondoAttuale").text(dur2);
-        $("#barraDiAvanzamento").slider("setValue", avanzamento);
-    }
-
-    function branoSuccessivo() {
-        audioElement.src = percorsi[((++indiceCorrente) + percorsi.length) % percorsi.length];
-        if (seeking == true) {
-            audioElement.play();
-        } else {
-            audioElement.pause();
-        }
-    }
-
-    function branoPrecedente() {
-        if (audioElement.currentTime < 3) {
-            indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
-            audioElement.src = percorsi[indiceCorrente];
-            $('#pause').hide();
-            $('#play').show();
-        } else {
-            audioElement.currentTime = 0;
-        }
-    }
 
 
 });
@@ -423,7 +341,10 @@ Array.prototype.remove = function(from, to) {
     this.length = from < 0 ? this.length + from : from;
     return this.push.apply(this, rest);
 };
-
+/*funzione che ritorna il vettore passato con gli elementi disordinati;
+*@param array
+*@returns array disordinato
+ */
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -439,6 +360,7 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
+
 
     return array;
 }
@@ -468,16 +390,80 @@ function stoppaBrano() {
     $('#play').show();
 }
 
+//Funzione che determina il brano successivo in base alla modalità di riproduzione
+function verificaBranoSuccessivo() {
+    if (repeat == false && indiceCorrente == (percorsi.length - 1)) {
+        seeking = false;
+        stoppaBrano();
+    } else {
+        stoppaBrano();
+        indiceCorrente=(++indiceCorrente) % percorsi.length;
+        aggiornaPlayer();
+        streamingBrano(percorsi[indiceCorrente]);
 
 
+    }
+}
+//Funzione che aggiorna il campo secondo attualmente in riproduzione e aggiorna la barra di avanzamento del player
+function refresh() {
+    var avanzamento = ((audioElement.currentTime / audioElement.duration) * 100);
+    var minutes = "0" + Math.floor(audioElement.currentTime / 60);
+    var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
+    var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
+    $("#labelSecondoAttuale").text(dur2);
+    $("#barraDiAvanzamento").slider("setValue", avanzamento);
+}
+//Funzione che determina il brano successivo da riprodurre
+function branoSuccessivo() {
+    indiceCorrente=((++indiceCorrente) + percorsi.length) % percorsi.length;
+    streamingBrano(percorsi[indiceCorrente]);
+    aggiornaPlayer();
+    if (seeking == true) {
+        audioElement.play();
+    } else {
+        audioElement.pause();
+    }
+}
+//Funzione che determina il brano precedente da riprodurre
+function branoPrecedente() {
+    if (audioElement.currentTime < 3) {
+        stoppaBrano();
+        indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
+        aggiornaPlayer();
+        streamingBrano(percorsi[indiceCorrente]);
+    } else {
+        audioElement.currentTime = 0;
+    }
+}
+//Funzione che effettua lo shuffle del vettore percorsi
+function shuffleBrani() {
+    if (shuffleB == false) {
+        $("#random").css('color', '#5CA5FF');
+        shuffleB = true;
+        percorsi=shuffle(percorsi);
+    } else {
+        shuffleB = false;
+        $("#random").css('color', 'cornsilk');
+        percorsi = JSON.parse(JSON.stringify(listaOrigine));
 
-
-
-
-
-
-
-
+    }
+}
+//Funzione che permette di riprodurre i brani in loop
+function ripetizione() {
+    if (repeat == false) {
+        $("#repeat").css('color', '#5CA5FF');
+        repeat = true;
+    } else {
+        repeat = false;
+        $("#repeat").css('color', 'cornsilk');
+    }
+}
+//Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
+function aggiornaPlayer() {
+    var durata = toMinutes(listaBrani[indiceCorrente].durata);
+    $("#labelDurataTotaleBrano").text(durata);
+    $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].titolo);
+}
 
 
 
@@ -652,6 +638,8 @@ function richiediBraniPerGenere() {
 
 //Funzione che gestisce lo streaming del brano attualmente in riproduzione
 function riproduciBrano() {
+    percorsi=[];
+    listaOrigine=[];
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
             var durata = toMinutes(listaBrani[i].durata);
@@ -662,6 +650,7 @@ function riproduciBrano() {
         }
         percorsi[i]=listaBrani[i].url_brano;
     }
+    listaOrigine = JSON.parse(JSON.stringify(percorsi));
     streamingBrano(percorsi[indiceCorrente]);
 }
 
@@ -672,7 +661,7 @@ function streamingBrano(urlBrano) {
     audioElement.src ="riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    comunicaBranoInAscolto();
+    //comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone ascoltata dall'utente
