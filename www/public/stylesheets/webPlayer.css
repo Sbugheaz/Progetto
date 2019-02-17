@@ -881,8 +881,11 @@ table{
         width: 100%;
         font-size: 0.7rem;
     }
-    #contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
+    #pannello-Amicizie-mobile,#pannello-Generi,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: calc(100vh - 215px)!important;
+    }
+    #contenitore-genere{
+        height: calc(100vh - 275px)!important;
     }
 
     #contenitore-volume > .slider.slider-horizontal{
