@@ -153,9 +153,9 @@ function stampaListaPlaylist(listaPlaylist){
     var content="";
     for(i=0; i<listaPlaylist.length; i++) {
         content += '<div class="flex-item container-playlist" id="a'+ listaPlaylist[i].idPlaylist +'">' +
-                       '<div class="flex-item-conteiner" id="aa">' +
-                            '<div class="flex-item-conteiner-icon"><a class="icona-playlist"><i class="fa fa-music"></i></a></div>' +
-                            '<div class="contenitore-nomePlaylist"><p class="nomePlaylist">'+ listaPlaylist[i].nome +'</p></div>' +
+                       '<div class="flex-item-conteiner" style="pointer-events: none;">' +
+                            '<div class="flex-item-conteiner-icon" style="pointer-events: none;"><a class="icona-playlist"><i class="fa fa-music"></i></a></div>' +
+                            '<div class="contenitore-nomePlaylist" style="pointer-events: none;"><p class="nomePlaylist">'+ listaPlaylist[i].nome +'</p></div>' +
                         '</div>' +
                     '</div>' ;
         $("#contenitore-playlist").append(content);
@@ -170,7 +170,6 @@ function stampaListaPlaylist(listaPlaylist){
                                         '</div>');
 
     $(".container-playlist").click(function(evento) {
-        console.log(evento.target.id);
             recuperaIDPlaylist(evento);
 
 

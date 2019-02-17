@@ -400,7 +400,6 @@ function recuperaIDBrano(evento) {
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
     idPlaylist = evento.target.id;
-    console.log(idPlaylist);
 }
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
