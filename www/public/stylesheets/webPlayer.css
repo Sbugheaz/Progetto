@@ -880,6 +880,9 @@ table{
     #contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: calc(100vh - 215px)!important;
     }
+    #contenitore-genere{
+        height: calc(100vh - 275px)!important;
+    }
 
     #contenitore-volume > .slider.slider-horizontal{
        transform:  translate3d(1px, -1px, 0px);
