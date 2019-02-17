@@ -50,7 +50,7 @@ function richiediPlaylist() {
             var lp = JSON.parse(result);
             for (i = 0; i < lp.length; i++) //Aggiungiamo le playlist dell'utente che ha loggato nel vettore che contiene tutte le playlist
                 listaPlaylist[i] = new Playlist(lp[i]);
-            //stampaListaPlaylist();
+                stampaListaPlaylist(listaPlaylist);
         }
         else {
             //L'utente non ha ancora creato alcuna playlist
