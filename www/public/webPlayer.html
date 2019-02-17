@@ -122,6 +122,11 @@
                                 <button type="button" class="btn btn-default btn-mobile btn-mobile-album">Album</button>
                                 <button type="button" class="btn btn-default btn-mobile btn-mobile-brani">Brani in riproduzione</button>
                                 <button type="button" class="btn btn-default btn-mobile" data-toggle="dropdown">Generi</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="tasto-Pop-mobile" href="#">Pop</a>
+                                    <a class="dropdown-item" id="tasto-Rock-mobile"href="#">Rock</a>
+                                    <a class="dropdown-item" id="tasto-Classico-mobile"href="#">Classico</a>
+                                </div>
                                 <button type="button" class="btn btn-default btn-mobile"data-toggle="modal" data-target="#modal-conferma-logout">Logout</button>
                             </div>
                         </div>
@@ -327,9 +332,7 @@
                         <!--contiene la lista degli amici -->
                         <div id="pannello-Amicizie" class="container-fluid">
                             <div class="row" id="contenitore-btnAmici">
-                                <div class="col-md-8">
-                                </div>
-                                <div class="col-md-4" style="padding:0 8px;">
+                                <div class="col-md-12" style="padding:0 8px; text-align:right ">
                                 <button type="button" class="btn btn-default pulsanteA" id="pulsante-aggiungiAmici" data-toggle="modal" data-target="#modal-aggiungi-amico">
                                     <i class="fa fa-plus icona-hover " id="cercaAmici"></i>  Aggiungi amici </button>
                                 </div>
