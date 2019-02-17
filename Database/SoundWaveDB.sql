@@ -300,6 +300,7 @@ CREATE TABLE IF NOT EXISTS `SoundWaveDB`.`Album` (
   `IDAlbum` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `NumeroBrani` INT NOT NULL,
+  `Url_cover` VARCHAR(150) NOT NULL DEFAULT '/images/cover/default-album.png',
   PRIMARY KEY (`IDAlbum`))
 ENGINE = InnoDB;
 
@@ -308,7 +309,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Album
 VALUES 
-(1, 'Playlist', 13);
+(1, 'Playlist', 13, 'images/cover/playlist-cover.jpg');
 
 
 -- -----------------------------------------------------
