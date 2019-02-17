@@ -213,19 +213,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Brano
 VALUES 
-(1, '90min', 'Salmo', 'Pop', '2018-11-09', 222, 'images/cover/playlist-cover.jpg', 'musica/0/90MIN.mp3'),
-(2, 'Stai zitto', 'Salmo ft. Fabri Fibra', 'Pop', '2018-11-09', 202, 'images/cover/playlist-cover.jpg', 'musica/0/STAI_ZITTO.mp3'),
-(3, 'Ricchi e morti', 'Salmo', 'Pop', '2018-11-09', 138, 'images/cover/playlist-cover.jpg', 'musica/0/RICCHI_E_MORTI.mp3'),
-(4, 'Dispovery Channel', 'Salmo ft. Nitro', 'Pop', '2018-11-09', 204, 'images/cover/playlist-cover.jpg', 'musica/0/DISPOVERY_CHANNEL.mp3'),
-(5, 'Cabriolet', 'Salmo ft. Sfera Ebbasta', 'Pop', '2018-11-09', 185, 'images/cover/playlist-cover.jpg', 'musica/0/CABRIOLET.mp3'),
-(6, 'Ho paura di uscire', 'Salmo', 'Pop', '2018-11-09', 197, 'images/cover/playlist-cover.jpg', 'musica/0/HO_PAURA_DI_USCIRE.mp3'),
-(7, 'Sparare alla luna', 'Salmo ft. Coez', 'Pop', '2018-11-09', 211, 'images/cover/playlist-cover.jpg', 'musica/0/SPARARE_ALLA_LUNA.mp3'),
+(1, '90min', 'Salmo', 'Pop', '2018-11-09', 222, 'images/cover/playlist-cover.jpg', 'musica/0/90min.mp3'),
+(2, 'Stai zitto', 'Salmo ft. Fabri Fibra', 'Pop', '2018-11-09', 202, 'images/cover/playlist-cover.jpg', 'musica/0/Stai_zitto.mp3'),
+(3, 'Ricchi e morti', 'Salmo', 'Pop', '2018-11-09', 138, 'images/cover/playlist-cover.jpg', 'musica/0/Ricchi_e_morti.mp3'),
+(4, 'Dispovery Channel', 'Salmo ft. Nitro', 'Pop', '2018-11-09', 204, 'images/cover/playlist-cover.jpg', 'musica/0/Dispovery_channel.mp3'),
+(5, 'Cabriolet', 'Salmo ft. Sfera Ebbasta', 'Pop', '2018-11-09', 185, 'images/cover/playlist-cover.jpg', 'musica/0/Cabriolet.mp3'),
+(6, 'Ho paura di uscire', 'Salmo', 'Pop', '2018-11-09', 197, 'images/cover/playlist-cover.jpg', 'musica/0/Ho_paura_di_uscire.mp3'),
+(7, 'Sparare alla luna', 'Salmo ft. Coez', 'Pop', '2018-11-09', 211, 'images/cover/playlist-cover.jpg', 'musica/0/Sparare_alla_luna.mp3'),
 (8, 'PxM', 'Salmo', 'Pop', '2018-11-09', 184, 'images/cover/playlist-cover.jpg', 'musica/0/PXM.mp3'),
-(9, 'Il cielo nella stanza', 'Salmo ft. Nstasia', 'Pop', '2018-11-09', 186, 'images/cover/playlist-cover.jpg', 'musica/0/IL CIELO NELLA STANZA.mp3'),
-(10, 'Tiè', 'Salmo', 'Pop', '2018-11-09', 91, 'images/cover/playlist-cover.jpg', 'musica/0/TIE.mp3'),
-(11, 'Ora che fai?', 'Salmo', 'Pop', '2018-11-09', 130, 'images/cover/playlist-cover.jpg', 'musica/0/ORA_CHE_FAI.mp3'),
+(9, 'Il cielo nella stanza', 'Salmo ft. Nstasia', 'Pop', '2018-11-09', 186, 'images/cover/playlist-cover.jpg', 'musica/0/Il_cielo_nella_stanza.mp3'),
+(10, 'Tiè', 'Salmo', 'Pop', '2018-11-09', 91, 'images/cover/playlist-cover.jpg', 'musica/0/Tie.mp3'),
+(11, 'Ora che fai?', 'Salmo', 'Pop', '2018-11-09', 130, 'images/cover/playlist-cover.jpg', 'musica/0/Ora_che_fai.mp3'),
 (12, 'Perdonami', 'Salmo', 'Pop', '2018-11-09', 135, 'images/cover/playlist-cover.jpg', 'musica/0/Perdonami.mp3'),
-(13, 'Lunedì', 'Salmo', 'Pop', '2018-11-09', 205, 'images/cover/playlist-cover.jpg', 'musica/0/LUNEDI.mp3');
+(13, 'Lunedì', 'Salmo', 'Pop', '2018-11-09', 205, 'images/cover/playlist-cover.jpg', 'musica/0/Lunedi.mp3');
 
 
 -- -----------------------------------------------------
