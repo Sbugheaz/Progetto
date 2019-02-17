@@ -65,7 +65,7 @@ function stampaAmiciOnline(listaAmiciOnline){
     for(i=0; i<listaAmiciOnline.length; i++) {
         content1 += '<li class="p_listaAmici"><i class="fa fa-circle pallino" style="padding-right:5%"> </i>' +
             listaAmiciOnline[i].nome +' '+ listaAmiciOnline[i].cognome  +'<br> <p class="sta-ascoltando">' +
-            '<i class="fa fa-music icona-musica"></i> " '+ listaAmiciOnline[i].ascolta + ' " </p> </li>' ;
+            '<i class="fa fa-music icona-musica"></i> "'+ listaAmiciOnline[i].ascolta + '" </p> </li>' ;
         $(".listaAmiciOnline").append(content1);
         content1 = "";
     }
@@ -116,7 +116,7 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano"> <img src="' + listaBrani[i].url_cover + '" id="coverBrano"></div>'+
+            '<div class="datiCanzoni contenitore-imgBrano">  <img src="' + listaBrani[i].url_cover + '" id="coverBrano"><div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';

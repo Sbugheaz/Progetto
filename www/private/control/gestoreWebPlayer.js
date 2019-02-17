@@ -256,6 +256,20 @@ router.get('/amiciOnline', function (req, res) {
 });
 
 /**
+ * Aggiorna il brano che l'utente sta ascoltando attualmente. Il brano in ascolto verrà visualizzato nella sezione
+ * "Amici online" degli altri utenti che lo hanno aggiunto alla loro lista amici.
+ */
+
+router.post('/ascolta', function (req, res) {
+    var branoInAscolto = req.body.branoInAscolto;
+            var query = "UPDATE Account SET Ascolta = '" + branoInAscolto + "' WHERE IDUtente= '" + req.session.idUtente + "'";
+            con.query(query, function (err, result, fields) {
+                if (err) throw err;
+            });
+});
+
+
+/**
  * Restituisce i brani relativi al genere scelto dall'utente.
  */
 router.post('/musica/genere', function (req, res) {
@@ -323,7 +337,7 @@ router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', fun
  * Restituisce i dati delle playlist dell'utente che ha eseguito il login non appena carica la pagina del web player.
  */
 router.get('/playlist', function (req, res) {
-    var query = "SELECT * " +
+    var query = "SELECT IDPlaylist, Playlist.Nome, NumeroBrani " +
         "FROM Playlist, Possiede, Account " +
         "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = '" + req.session.idUtente + "' " +
         "ORDER BY Playlist.Nome";
