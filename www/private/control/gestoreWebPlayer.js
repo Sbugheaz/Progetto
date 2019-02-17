@@ -306,9 +306,9 @@ router.post('/musica/cercaAlbum', function (req, res) {
 /**
  * Effettua lo streaming di un brano.
  */
-router.get('/riproduciBrano/musica/0/Perdonami.mp3', function (req, res) {
-    var urlBrano = req.body.urlBrano;
-    var brano = '/var/www/html/private/media/' + "musica/0/Perdonami.mp3";
+router.get('/riproduciBrano/musica/' + '.[0-9]' + '/Perdonami.mp3', function (req, res) {
+    var brano = '/var/www/html/private/media/' + req.url.slice(16);
+    console.log(brano);
     mediaserver.pipe(req, res, brano);
 });
 
