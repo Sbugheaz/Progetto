@@ -415,7 +415,7 @@ router.post('/playlist/mostraBrani', function (req, res) {
         "WHERE A.IDUtente = Po.Ref_IDUtente AND Pl.IDPlaylist = Po.Ref_IDPlaylist " +
               "AND Pl.IDPlaylist = C.Ref_IDPlaylist AND B.IDBrano = C.Ref_IDBrano " +
               "AND A.IDUtente = " + req.session.idUtente + " AND Pl.IDPlaylist = " + idPlaylist +
-        "ORDER BY C.OrdineBrano";
+        " ORDER BY C.OrdineBrano";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         if(result != 0) res.send(JSON.stringify(result));
