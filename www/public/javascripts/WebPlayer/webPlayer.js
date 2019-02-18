@@ -442,7 +442,6 @@ function branoPrecedente() {
             }
         } else {
             audioElement.currentTime = 0;
-        
         }
 }
 //Funzione che effettua lo shuffle del vettore percorsi
