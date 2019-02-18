@@ -109,12 +109,13 @@ router.post('/Login', function (req, res) {
 });
 
 /**
- * Funzione che gestisce il logout di un utente.
+ * Funzione che gestisce il logout di un utente, imposta il suo stato online a 0 (offline) e la canzone attualmente in
+ * ascolto al valore di default.
  */
 router.get('/Logout', function (req, res) {
     if(req.session.idUtente == undefined) res.redirect('/');
     else {
-        var query1 = "UPDATE Account SET StatoOnline = 0 " + "WHERE IDUtente=" + req.session.idUtente;
+        var query1 = "UPDATE Account SET StatoOnline = 0, Ascolta = '-' WHERE IDUtente=" + req.session.idUtente;
         var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
         req.session.idUtente = undefined;
         con.query(query1, function (err, result, fields) {
