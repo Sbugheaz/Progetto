@@ -1504,6 +1504,7 @@ fa-paly:hover {
     width: 150px;
     display: block;
     background-color: rgba(65, 69, 74, 0.53);
+    cursor: pointer;
 }
 
 .flex-item-conteiner-icon{

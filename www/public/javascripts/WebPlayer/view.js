@@ -151,6 +151,13 @@ function stampalistaAlbumRicerca(la){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutte le playlist di un utente
 function stampaListaPlaylist(listaPlaylist){
     var content="";
+    $("#contenitore-playlist").append('<div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">' +
+        '<div class="flex-item-conteiner">' +
+        '<div class="flex-item-conteiner-icon">' +
+        '<a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a></div>' +
+        '<div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>' +
+        '</div>' +
+        '</div>');
     for(i=0; i<listaPlaylist.length; i++) {
         content += '<div class="flex-item container-playlist" id="a'+ listaPlaylist[i].idPlaylist +'">' +
                        '<div class="flex-item-conteiner" style="pointer-events: none;">' +
@@ -161,14 +168,6 @@ function stampaListaPlaylist(listaPlaylist){
         $("#contenitore-playlist").append(content);
         content = "";
         }
-    $("#contenitore-playlist").append('<div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">' +
-                                            '<div class="flex-item-conteiner">' +
-                                                '<div class="flex-item-conteiner-icon">' +
-                                                    '<a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a></div>' +
-                                                '<div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>' +
-                                            '</div>' +
-                                        '</div>');
-
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
 

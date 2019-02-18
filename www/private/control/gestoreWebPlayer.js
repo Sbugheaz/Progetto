@@ -69,6 +69,16 @@ function validateName(nome) {
 }
 
 /**
+ * Funzione che controlla che il nome di una playlist rispetti la formattazione richiesta.
+ * @param nomePlaylist - Nome della playlist da controllare.
+ * @returns {boolean} ritorna vero o falso a seconda che il formato del nome della playlist sia corretto  o meno.
+ */
+function validatePlaylist(nomePlaylist) {
+    var testo = /^[A-Za-z][A-Za-z0-9]{1,25}$/;
+    return testo.test(String(nomePlaylist));
+}
+
+/**
  * Chiamata che rende statiche le risorse del server, a partire dalla cartella 'public' per poterle inviare insieme alle
  * pagine.
  */
@@ -350,28 +360,34 @@ router.get('/playlist', function (req, res) {
 });
 
 /**
- * Crea una playlist i cui nome non sia già stato utilizzato da altre playlist di quell'utente.
+ * Crea una playlist il cui nome non sia già stato utilizzato da altre playlist di quell'utente.
  */
 router.post('/playlist/creaPlaylist', function (req, res) {
     var nomePlaylist = req.body.nomePlaylist;
-    if(nomePlaylist == "") //Se il nome della playlist è una stringa vuota
-        res.send("ERR_1");
+    if(nomePlaylist == "")
+        res.send("ERR_1"); //Se il nome della playlist è una stringa vuota o non rispetta il formato corretto manda un errore
+        else if(!validatePlaylist(nomePlaylist))
+            res.send("ERR_2"); //Se il nome della playlist non rispetta il formato corretto manda un errore
     else {
         var query1 = "SELECT Playlist.Nome " +
             "FROM Playlist, Possiede, Account " +
-            "WHERE IDPlaylist = Ref_IDPlaylist AND IDUtente = Ref_IDUtente AND IDUtente = " + req.session.idUtente;
+            "WHERE IDPlaylist = Ref_IDPlaylist AND IDUtente = Ref_IDUtente AND IDUtente = " + req.session.idUtente +
+            " AND Playlist.Nome = '" + nomePlaylist + "'";
         con.query(query1, function (err, result, fields) {
             if (err) throw err;
             if (result.length != 0) {
-                res.send("ERR_2"); //L'utente ha già creato una playlist con lo stesso nome
+                res.send("ERR_3"); //L'utente ha già creato una playlist con lo stesso nome
             }
             else {
-                var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "');" +
-                    "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "')";
                 con.query(query2, function (err, result, fields) {
                     if (err) throw err;
-                    res.send("OK");
+                    var query3 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                    con.query(query3, function (err, result, fields) {
+                        if (err) throw err;
+                    });
                 });
+                res.send("OK");
             }
         });
     }
@@ -394,7 +410,7 @@ router.post('/playlist/eliminaPlaylist', function (req, res) {
  */
 router.post('/playlist/mostraBrani', function (req, res) {
     var idPlaylist = req.body.idPlaylist;
-    var query = "SELECT C.OrdineBrano, B.IDBrano, B.Titolo, B.Artista, B.Durata, B.Url_cover, B.Url_brano " +
+    var query = "SELECT B.IDBrano, B.Titolo, B.Artista, B.Durata, B.Url_cover, B.Url_brano " +
         "FROM Account A, Possiede Po, Playlist Pl, Composizione C, Brano B " +
         "WHERE A.IDUtente = Po.Ref_IDUtente AND Pl.IDPlaylist = Po.Ref_IDPlaylist " +
               "AND Pl.IDPlaylist = C.Ref_IDPlaylist AND B.IDBrano = C.Ref_IDBrano " +
@@ -402,8 +418,10 @@ router.post('/playlist/mostraBrani', function (req, res) {
         "ORDER BY C.OrdineBrano";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
-        else res.send("OK");
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
     });
 });
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
