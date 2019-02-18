@@ -731,7 +731,7 @@ function creaPlaylist() {
     var nomePlaylist = $("input[name=nome-playlist]");
     if(nomePlaylist.val() == "") {
         $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
-        $(".campoNomePlaylist").addClass("invalid");
+        nomePlaylist.addClass("invalid");
     }
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
@@ -778,4 +778,19 @@ function eliminaPlaylist() {
             }
             */
         });
+}
+
+//Funzione che richiede i brani di una specifica playlist
+function mostraBraniPlaylist() {
+    $.post("/WebPlayer/playlist/mostraBrani",
+        {
+            idPlaylist: id //Da completare
+        }, function(result) {
+        if (result != "ERR") {
+            var lb = JSON.parse(result);
+            for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
+            listaAmici[i] = new Brano(lb[i]);
+            //stampaListaAmici(listaAmici);
+    }
+});
 }
