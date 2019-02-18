@@ -688,14 +688,14 @@ function aggiungiAmico() {
 function richiediBraniPerGenere() {
     //Cattura l'evento dei tasti Genere in modalità desktop
     $(".dropdown-item-desktop").click(function(evento) {
-        var genere=evento.target.id.substring(6)
+        var genere=evento.target.id.substring(6);
         $.post("/WebPlayer/musica/genere",
             {
                 genere: genere
             }, function(result) {
                 $("#nomeGenere").html("Genere: " + genere);
                 if(result != "ERR") {
-                    listaBrani.remove(0, listaAmiciOnline.length-1);
+                    listaBrani.remove(0, listaBrani.length-1);
                     $(".listaGenere").remove();
                     var lb = JSON.parse(result);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
