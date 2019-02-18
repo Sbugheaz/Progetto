@@ -29,7 +29,6 @@ function Account(account){
 function Playlist(playlist){
     this.idPlaylist = playlist.IDPlaylist;
     this.nome = playlist.Nome;
-    this.numeroBrani = playlist.NumeroBrani;
 }
 
 /*Costruttore dell'oggetto Album*/

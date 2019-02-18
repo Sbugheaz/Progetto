@@ -1240,7 +1240,6 @@ p.paragrafo-amicizie-mobile{
 
 /*propietà pannello-mobile*/
 #pannello-mobile{
-    top: 115px;
     position: absolute;
     right: 0;
     width: 35%;
@@ -1368,8 +1367,7 @@ p.paragrafo-amicizie-mobile{
 
 .btn-canzoni-playlist{
     background: transparent;
-
-
+    box-shadow: none!important;
 }
 .btn-playlist{
     float: right;
@@ -1839,6 +1837,7 @@ height: calc(100% - 90px);
 }
 .bottone-crea-playlist{
     margin:auto;
+    box-shadow: none!important;
 }
 .tab-nome-playlist{
     text-align: center;

@@ -777,9 +777,11 @@ function creaPlaylist() {
                     $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.")
                         .css("display", "block");
                     nomePlaylist.addClass("invalid");
-                } else if (result == "OK") {
+                } else {
                     $("#err_playlist").text("").css("display", "none");
-                    alert("Playlist creata con successo.");
+                    var nuovaPlaylist = new Playlist(result);
+                    listaPlaylist.push(nuovaPlaylist);
+                    stampaListaPlaylist(listaPlaylist);
                 }
             });
     }
