@@ -247,30 +247,30 @@ function setDivVisibility(){
         $("#volume-range").slider("disable");
     }
     function abilitaPlayer(){
-        $("#barraDiAvanzamento").slider('enable');
-        $("#volume-range").slider("enable");
-
         //Eventi che riguardano il player e tutte le sue funzionalità
-        $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
-        $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
         $('#random').click(shuffleBrani);//Evento che permette fare lo shuffle delle canzoni
         $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
+        $("#barraDiAvanzamento").slider('enable');
+        $("#volume-range").slider("enable");
+        $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+        $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
         audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
         $(audioElement).on("timeupdate", refresh);//Evento che permette di aggiornare la barra di avanzamento
+        audioElement.addEventListener("canplay",aggiornaPlayer);
         $('#step-forward').click(branoSuccessivo);//Evento che permette di passare al brano successivo
         $('#step-backward').click(branoPrecedente);//Evento che permette di passare al brano precedente
-
-
         //Evento che permette lo slide della barra del volume*/
         $("#volume-range").on("slide", function (slideEvt) { //Evento che permette lo slide della barra di avanzamento
             audioElement.volume = slideEvt.value / 100;
         });
+        //Evento che permette lo slide della barra di avanzamento della canzone in riproduzione
         $("#barraDiAvanzamento").on("change", function (slideEvt) {
             var slideVal = $("#barraDiAvanzamento").slider('getValue');
             var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
             audioElement.currentTime = valoreattuale2;
         });
     }
+    //funzione che disabilita lo shuffle quando è attivo
     function disabilitaShuffle(){
         if(shuffleB==true){
             shuffleBrani();
@@ -456,7 +456,6 @@ function verificaBranoSuccessivo() {
     } else {
         stoppaBrano();
         indiceCorrente=(++indiceCorrente) % percorsi.length;
-        aggiornaPlayer();
         streamingBrano(percorsi[indiceCorrente].url_brano);
 
 
@@ -476,7 +475,6 @@ function branoSuccessivo() {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
             streamingBrano(percorsi[indiceCorrente].url_brano);
-            aggiornaPlayer();
             if (seeking == true) {
                 audioElement.play();
             } else {
@@ -486,12 +484,15 @@ function branoSuccessivo() {
 }
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
-        if (audioElement.currentTime < 3) {
-            if((indiceCorrente>0 &&repeat==false)||repeat==true) {
+    console.log(audioElement.currentTime,indiceCorrente);
+        if (audioElement.currentTime < 3) {//se il brano è stato avviato da più di tre secondi
+            if( (indiceCorrente>0 &&repeat==false) || repeat==true) {
                 stoppaBrano();
-                indiceCorrente = ((--indiceCorrente) + percorsi.length) %percorsi.length;
-                aggiornaPlayer();
+
+                indiceCorrente = ((--indiceCorrente) + percorsi.length) %percorsi.length;//prendo il valore assoluto
+
                 streamingBrano(percorsi[indiceCorrente].url_brano);
+
             }
         } else {
             audioElement.currentTime = 0;
@@ -499,25 +500,29 @@ function branoPrecedente() {
 }
 //Funzione che effettua lo shuffle del vettore lista brani
 function shuffleBrani() {
-    if (shuffleB == false) {
-        $("#random").css('color', '#5CA5FF');
-        shuffleB = true;
-        percorsi=shuffle(percorsi);
-    } else {
-        shuffleB = false;
-        $("#random").css('color', 'cornsilk');
-        percorsi= JSON.parse(JSON.stringify(listaOrigine));
+    if(percorsi.length>0) {
+        if (shuffleB == false) {
+            jQuery('#random').addClass('active');
+            shuffleB = true;
+            percorsi = shuffle(percorsi);
+        } else {
+            shuffleB = false;
+            jQuery('#random').removeClass('active');
+            percorsi = JSON.parse(JSON.stringify(listaOrigine));
 
+        }
     }
 }
 //Funzione che permette di riprodurre i brani in loop
 function ripetizione() {
-    if (repeat == false) {
-        $("#repeat").css('color', '#5CA5FF');
-        repeat = true;
-    } else {
-        repeat = false;
-        $("#repeat").css('color', 'cornsilk');
+    if(percorsi.length>0) {
+        if (repeat == false) {
+            jQuery('#repeat').addClass('active');
+            repeat = true;
+        } else {
+            repeat = false;
+            jQuery('#repeat').removeClass('active');
+        }
     }
 }
 //Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
@@ -531,19 +536,20 @@ function aggiornaPlayer() {
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
+
+    listaOrigine=[];
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
+    percorsi=[];
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
-    disabilitaShuffle();
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
             indiceCorrente=i;
-            aggiornaPlayer();
         }
     }
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
-    abilitaPlayer();
     streamingBrano(percorsi[indiceCorrente].url_brano);
+    abilitaPlayer();
 }
 
 
