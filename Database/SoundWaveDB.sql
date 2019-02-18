@@ -407,6 +407,17 @@ VALUES
 (22, 2, 6);
 
 
+-- ---------------------------------------------------------------------------
+-- Creazione della vista `Brani_Playlist` che contiene i dati dell'utente, 
+-- della playlist e dei brani associati a quella playlist.
+-- ---------------------------------------------------------------------------
+CREATE VIEW Brani_Playlist AS
+SELECT Pl.IDPlaylist, A.IDUtente, B.IDBrano, B.Titolo, B.Artista, B.Durata, B.Url_cover, B.Url_brano
+FROM Account A, Possiede Po, Playlist Pl, Composizione C, Brano B
+WHERE A.IDUtente = Po.Ref_IDUtente AND Pl.IDPlaylist = Po.Ref_IDPlaylist AND
+	  Pl.IDPlaylist = C.Ref_IDPlaylist AND B.IDBrano = C.Ref_IDBrano
+ORDER BY OrdineBrano;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

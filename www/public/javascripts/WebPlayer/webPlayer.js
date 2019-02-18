@@ -826,7 +826,7 @@ function richiediBraniPlaylist() {
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
                     $("#contenitore-canzoni-playlist").append('<div id="contenitore-paragrafo">' +
                         '<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
-                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist"> </i></p> </div>');
+                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist" title="Elimina playlist"> </i></p> </div>');
                 }
             }
             stampaBraniPlaylist();
