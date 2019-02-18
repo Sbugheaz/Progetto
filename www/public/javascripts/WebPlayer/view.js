@@ -26,11 +26,12 @@ function stampaListaAmici(listaAmici){
         content = "";
     }
     $(".icona-rimuovi-amico").click(function(evento) {
-        recuperaIDElimina(evento);
-        $("#tastoConfermaRim").click(function () {
-            eliminaAmico();
-        });
-    });
+            recuperaIDElimina(evento);
+            $("#tastoConfermaRim").click(function () {
+                eliminaAmico();
+            });
+        }
+    );
 }
 
 
@@ -151,9 +152,18 @@ function stampalistaAlbumRicerca(la){
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutte le playlist di un utente
 function stampaListaPlaylist(listaPlaylist){
+    $("#contenitore-playlist").empty();
+    $("#contenitore-playlist").append('<div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">\n' +
+        '                                    <div class="flex-item-conteiner">\n' +
+        '                                        <div class="flex-item-conteiner-icon">\n' +
+        '                                            <a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>\n' +
+        '                                    </div>\n' +
+        '                                </div>');
     var content="";
     for(i=0; i<listaPlaylist.length; i++) {
-        content += '<div class="flex-item container-playlist" id="'+ listaPlaylist[i].idPlaylist +'">' +
+        content += '<div class="flex-item container-playlist" id="playlist'+ listaPlaylist[i].idPlaylist +'">' +
                        '<div class="flex-item-conteiner" style="pointer-events: none;">' +
                             '<div class="flex-item-conteiner-icon" style="pointer-events: none;"><a class="icona-playlist"><i class="fa fa-music"></i></a></div>' +
                             '<div class="contenitore-nomePlaylist" style="pointer-events: none;"><p class="nomePlaylist">'+ listaPlaylist[i].nome +'</p></div>' +
@@ -181,7 +191,7 @@ function stampaBraniPlaylist(){
                 '<p class="p_playList">'+ (i+1) +'</p>' +
             '</div>'+
             '<div class="canzone">' +
-                '<p class="p_playList" style="color: cornsilk">' + listaBrani[i].titolo + '</p>' +
+                '<p class="p_playList" style="color:cornsilk">' + listaBrani[i].titolo + '</p>' +
             '</div>'+
             '<div class="autore">'+
                 '<p class="p_playList">'+ listaBrani[i].artista +'</p>' +
