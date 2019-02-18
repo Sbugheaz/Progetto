@@ -712,7 +712,6 @@ function richiediBraniPerGenere() {
     //Cattura l'evento dei tasti Genere in modalità mobile
     $(".dropdown-item-mobile").click(function(evento) {
         var genere=evento.target.id.substring(13);
-        console.log(genere)
         $.post("/WebPlayer/musica/genere",
             {
                 genere: genere
@@ -807,7 +806,6 @@ function eliminaPlaylist() {
 
         });
 }
-
 
 //Funzione che richiede i brani di una specifica playlist
 function richiediBraniPlaylist() {
