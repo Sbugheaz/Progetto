@@ -121,24 +121,43 @@ function mostraPannelloAmicizieMobile(){
 
 }
 
-//Funzione che permette di aprire il pannello mobile
+//Funzione che permette di aprire e chiudere il pannello mobile
 function mostraPannelloMobile(){
-    $("#pannello-mobile").show(500);
-    pannelloSecondario=$('#pannello-mobile');
+    if(pannelloSecondario==null) {
+        $("#pannello-mobile").show(500);
+        pannelloSecondario = $('#pannello-mobile');
+    }else{
+        pannelloSecondario.hide(500);
+        pannelloSecondario=null;
+    }
 }
 
 
 //Funzione che chiude il pannello-mobile
 $(document).mouseup(function (e) {
     try {
-        if (!pannelloSecondario.is(e.target) // if the target of the click isn't the container...
-            && pannelloSecondario.has(e.target).length === 0) // ... nor a descendant of the container
+        if ((!pannelloSecondario.is(e.target)|| !$("#altro").is(e.target) ) // if the target of the click isn't the container...
+            && (pannelloSecondario.has(e.target).length === 0 && $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
         {
             pannelloSecondario.hide(500);
+            pannelloSecondario=null;
         }
     }catch(ex){
            console.log();
         }
+});
+
+//Funzione che svuota la ricerca quando clicchiamo fuori dalla barra di ricerca o dal pannello ricerca
+$(document).mouseup(function (e) {
+    try {
+        if ((!$("#barra-ricerca").is(e.target)||!$("#pannello-Ricerca").is(e.target)) // if the target of the click isn't the container...
+            && ($("#barra-ricerca").has(e.target).length === 0) && ($("#pannello-Ricerca").has(e.target).length === 0))// ... nor a descendant of the container
+        {
+            $("#barra-ricerca").val("");
+        }
+    }catch(ex){
+        console.log();
+    }
 });
 
 
@@ -479,7 +498,8 @@ function ripetizione() {
 function aggiornaPlayer() {
     var durata = toMinutes(listaBrani[indiceCorrente].durata);
     $("#labelDurataTotaleBrano").text(durata);
-    $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].titolo);
+    $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].artista + " "+listaBrani[indiceCorrente].titolo);
+    $("#album2").attr("src", listaBrani[indiceCorrente].url_cover);
 }
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
@@ -487,11 +507,8 @@ function riproduciBrano() {
     listaOrigine=[];
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
-            var durata = toMinutes(listaBrani[i].durata);
-            $("#labelDurataTotaleBrano").text(durata);
-            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
-            $("#album2").attr("src", listaBrani[i].url_cover);
             indiceCorrente=i;
+            aggiornaPlayer();
         }
     }
     abilitaPlayer();
@@ -734,7 +751,7 @@ function streamingBrano(urlBrano) {
 function comunicaBranoInAscolto() {
     $.post("/WebPlayer/ascolta",
         {
-            branoInAscolto: $("#titolo-brano-in-riproduzione").text()
+            branoInAscolto: listaBrani[indiceCorrente].titolo
         }, function () {
     });
 }

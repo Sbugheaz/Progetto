@@ -8,14 +8,14 @@ $(document).ready(function () {
     richiediListaAmici(); //Funzione che ottiene la lista amici dell'utente che ha effettuato l'accesso
     ricercaUtenti(); //Funzione che permette la ricerca degli utenti per l'amicizia
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
-    setInterval(richiediAmiciOnline,30000); //Funzione che aggiorna la lista degli amici online ogni 30 secondi
+    setInterval(richiediAmiciOnline,5000); //Funzione che aggiorna la lista degli amici online ogni 30 secondi
     richiediBraniPerGenere(); //Funzione per ottenere tutti i brani di un determinato genere
     ricercaBrani(); //Funzione che permette la ricerca dei brani
     ricercaAlbum(); //Funzione che permette la ricerca degli album
 
 
     //Eventi che riguardano i pannelli della pagina
-    $(window).on('load',loadPagina);//Evento che carica le informazioni della pagina
+    loadPagina();//Evento che carica le informazioni della pagina
     $(window).resize(setDivVisibility);//Evento che permmette di cambiare le propietà della pagina in base alla dimensioni della pagina
     $("#pulsante-Logout").mouseleave(nascondiTastologout);//Evento che permette di far scomparire il pulsante logout
     $("#pulsante-Logout").mouseenter(mostraTastoLogout);//Evento che permette di far comparire il pulsante logout
