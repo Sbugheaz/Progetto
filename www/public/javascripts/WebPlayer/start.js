@@ -32,6 +32,22 @@ $(document).ready(function () {
         var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
         audioElement.currentTime = valoreattuale2;
     });
+
+
+    //Eventi che riguardano i pannelli della pagina
+    $(window).on('load',loadPagina);//Evento che carica le informazioni della pagina
+    $(window).resize(setDivVisibility);//Evento che permmette di cambiare le propietà della pagina in base alla dimensioni della pagina
+    $("#pulsante-Logout").mouseleave(nascondiTastologout);//Evento che permette di far scomparire il pulsante logout
+    $("#pulsante-Logout").mouseenter(mostraTastoLogout);//Evento che permette di far comparire il pulsante logout
+    $("#barra-ricerca").on('input',mostraPannelloRicerca);//Evento che permette di far comparire il pannello di ricerca
+    $(".pulsanteA-brani,.btn-mobile-brani").click(mostraPannelloBrani);//Evento che permette di far comparire il pannello dei brani in riproduzione
+    $(".pulsanteGestioneAmicizie,#gest-amicizie").click(mostraPannelloAmicizie);//Evento che permette di far comparire il pannello amicizie
+    $(".pulsanteA-album,.btn-mobile-album").click(mostraPannelloAlbum);//Evento che permette di far comparire il pannello album
+    $("#amici-online").click(mostraPannelloAmicizieMobile);//Evento che permette di far comparire il pannello delle amicizie lato mobile
+    $("#altro").click(mostraPannelloMobile);//Evento che permette di far comparire una tendina lateralmente a destra lato mobile
+    $(".pulsanteA-playlist,.btn-mobile-playlist").click(mostraPannelloPlaylist);//Evento che permette di far comparire il pannello playlist
+    $("#tasto-Pop,#tasto-Classico,#tasto-Rock,#tasto-Pop-mobile,#tasto-mobile-Pop,#tasto-mobile-Rock,#tasto-mobile-Classico").click(mostraPannelloGenere);//Evento che permette di far comparire il pannello del genere selezionato
+
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server

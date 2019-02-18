@@ -6,11 +6,11 @@ var listaOrigine=[];
 var shuffleB=false;
 var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
-var percorsi = [];
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist da stampare
+var block = false;
 
 //Funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -66,73 +66,66 @@ $(document).ready(function () {
         }, 0);
     });
 });
+
+
 //Funzione che permette di aprire il pannello-Ricerca
-$(document).ready(function(){
-    $("#barra-ricerca").on('input',function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Ricerca").show();
-        pannelloAttivo= $("#pannello-Ricerca");
+function mostraPannelloRicerca(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Ricerca").show();
+    pannelloAttivo= $("#pannello-Ricerca");
 
-    });
-});
+}
+
+
 //Funzione che permette di aprire il pannello-Brani in riproduzione{
-$(document).ready(function(){
-    $(".pulsanteA-brani,.btn-mobile-brani").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-BraniRiproduzione").show();
-        pannelloAttivo= $("#pannello-BraniRiproduzione");
+function mostraPannelloBrani(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-BraniRiproduzione").show();
+    pannelloAttivo= $("#pannello-BraniRiproduzione");
+}
 
-    });
-});
+
 
 //Funzione che permette di aprire il pannello-amicizie
-$(document).ready(function(){
-    $(".pulsanteGestioneAmicizie,#gest-amicizie").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Amicizie").show();
-        pannelloAttivo= $("#pannello-Amicizie");
+function mostraPannelloAmicizie(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Amicizie").show();
+    pannelloAttivo= $("#pannello-Amicizie");
 
-    });
-});
+}
+
+
 //Funzione che permette di aprire il pannello-Album
-$(document).ready(function(){
-    $(".pulsanteA-album,.btn-mobile-album").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Album").show();
-        pannelloAttivo= $("#pannello-Album");
+function mostraPannelloAlbum(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Album").show();
+    pannelloAttivo= $("#pannello-Album");
 
-    });
-});
+}
 
 //Funzione che permette di aprire il pannello degli amici online
-$(document).ready(function(){
-    $("#amici-online").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Amicizie-mobile").show();
-        pannelloAttivo= $("#pannello-Amicizie-mobile");
+function mostraPannelloAmicizieMobile(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Amicizie-mobile").show();
+    pannelloAttivo= $("#pannello-Amicizie-mobile");
 
-    });
-});
+}
 
 //Funzione che permette di aprire il pannello mobile
-$(document).ready(function(){
-    $("#altro").click(function(){
-        $("#pannello-mobile").show(500);
-        pannelloSecondario=$('#pannello-mobile');
-
-    });
-});
-
+function mostraPannelloMobile(){
+    $("#pannello-mobile").show(500);
+    pannelloSecondario=$('#pannello-mobile');
+}
 
 
 //Funzione che chiude il pannello-mobile
@@ -148,57 +141,52 @@ $(document).mouseup(function (e) {
         }
 });
 
+
+
 //Funzione che permentte di aprire il pannello-playlist
-$(document).ready(function(){
-    $(".pulsanteA-playlist,.btn-mobile-playlist").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Playlist").show();
-        pannelloAttivo=$("#pannello-Playlist");
+function mostraPannelloPlaylist() {
+    if (pannelloAttivo != null) {
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Playlist").show();
+    pannelloAttivo = $("#pannello-Playlist");
+}
 
-    });
-});
+
+
 //Funzione che permentte di aprire il pannello-Genere
-$(document).ready(function(){
-    $("#tasto-Pop,#tasto-Classico,#tasto-Rock,#tasto-Pop-mobile,#tasto-Rock-mobile,#tasto-Classico-mobile").click(function(){
-        if(pannelloAttivo!=null){
-            pannelloAttivo.hide();
-        }
-        $("#pannello-Generi").show();
-        pannelloAttivo=$("#pannello-Generi");
+function mostraPannelloGenere(){
+    if(pannelloAttivo!=null){
+        pannelloAttivo.hide();
+    }
+    $("#pannello-Generi").show();
+    pannelloAttivo=$("#pannello-Generi");
 
-    });
-});
+}
 
-/*funzione che fa comparire e scomparire il pulsante logout*/
-$(document).ready(function(){
-    var block = false;
-    $("#pulsante-Logout").mouseenter(function(){
-    if(!block) {
+/*funzione che fa comparire il pulsante logout*/
+function mostraTastoLogout() {
+    if (!block) {
         block = true;
         $(this).html("<i class=\'fa fa-sign-out\'></i> Logout");
         $(this).stop(true, true).animate({
             width: '100%'
         });
-        block=false;
-        }
-    });
-
-    $("#pulsante-Logout").mouseleave(function(){
-        if(!block) {
-            block = true;
-            $(this).html("<i class=\'fa fa-sign-out\'></i>");
-            $(this).stop(true,true).animate({
-                width: '35%'
-            });
-            block = false;
-        }
-
-    });
-});
+        block = false;
+    }
+}
+/*funzione che fa scomparire il pulsante logout*/
+function nascondiTastologout() {
+    if (!block) {
+        block = true;
+        $(this).html("<i class=\'fa fa-sign-out\'></i>");
+        $(this).stop(true, true).animate({
+            width: '35%'
+        });
+        block = false;
+    }
+}
 /*funzione che contralla i pannelli da aprire in base alla dimensione della pagina*/
-$(window).resize(setDivVisibility);
 function setDivVisibility(){
     if (($(window).width()) > '768'){
         try {
@@ -220,24 +208,19 @@ function setDivVisibility(){
 }
 
 /*funzione che inizializza la pagina al caricamento*/
-$(window).on('load', function () {
-    pannelloAttivo=$("#pannello-BraniRiproduzione");
-    $("#pannello-BraniRiproduzione").show();
-    if (($(window).width()) > '768'){
-        $('#colonna-destra').css('display','block');
-        $('#colonna-sinistra').css('display','block');
+    function loadPagina() {
+        pannelloAttivo = $("#pannello-BraniRiproduzione");
+        $("#pannello-BraniRiproduzione").show();
+        if (($(window).width()) > '768') {
+            $('#colonna-destra').css('display', 'block');
+            $('#colonna-sinistra').css('display', 'block');
 
-    } else {
-        $('#menu-orizzontale').css('display','block');
+        } else {
+            $('#menu-orizzontale').css('display', 'block');
+        }
+        $("#volume-range").slider({value: 50});
     }
 
-        $("#volume-range").slider({
-            value: 50
-        });
-
-
-
-});
 /*funzioni del player*/
 $(document).ready(function() {
 
@@ -410,14 +393,14 @@ function stoppaBrano() {
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
 function verificaBranoSuccessivo() {
-    if (repeat == false && indiceCorrente == (percorsi.length - 1)) {
+    if (repeat == false && indiceCorrente == (listaBrani.length - 1)) {
         seeking = false;
         stoppaBrano();
     } else {
         stoppaBrano();
-        indiceCorrente=(++indiceCorrente) % percorsi.length;
+        indiceCorrente=(++indiceCorrente) % listaBrani.length;
         aggiornaPlayer();
-        streamingBrano(percorsi[indiceCorrente]);
+        streamingBrano(listaBrani[indiceCorrente].url_brano);
 
 
     }
@@ -433,9 +416,9 @@ function refresh() {
 }
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
-    if((indiceCorrente!=percorsi.length-1 &&repeat==false)||repeat==true) {
-        indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
-        streamingBrano(percorsi[indiceCorrente]);
+    if((indiceCorrente!=listaBrani.length-1 &&repeat==false)||repeat==true) {
+        indiceCorrente = ((++indiceCorrente) + listaBrani.length) % listaBrani.length;
+        streamingBrano(listaBrani[indiceCorrente].url_brano);
         aggiornaPlayer();
         if (seeking == true) {
             audioElement.play();
@@ -449,24 +432,24 @@ function branoPrecedente() {
         if (audioElement.currentTime < 3) {
             if((indiceCorrente>0 &&repeat==false)||repeat==true) {
                 stoppaBrano();
-                indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
+                indiceCorrente = ((--indiceCorrente) + listaBrani.length) %listaBrani.length;
                 aggiornaPlayer();
-                streamingBrano(percorsi[indiceCorrente]);
+                streamingBrano(listaBrani[indiceCorrente].url_brano);
             }
         } else {
             audioElement.currentTime = 0;
         }
 }
-//Funzione che effettua lo shuffle del vettore percorsi
+//Funzione che effettua lo shuffle del vettore lista brani
 function shuffleBrani() {
     if (shuffleB == false) {
         $("#random").css('color', '#5CA5FF');
         shuffleB = true;
-        percorsi=shuffle(percorsi);
+        listaBrani=shuffle(listaBrani);
     } else {
         shuffleB = false;
         $("#random").css('color', 'cornsilk');
-        percorsi = JSON.parse(JSON.stringify(listaOrigine));
+        listaBrani = JSON.parse(JSON.stringify(listaOrigine));
 
     }
 }
@@ -489,7 +472,6 @@ function aggiornaPlayer() {
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-    percorsi=[];
     listaOrigine=[];
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
@@ -499,10 +481,9 @@ function riproduciBrano() {
             $("#album2").attr("src", listaBrani[i].url_cover);
             indiceCorrente=i;
         }
-        percorsi[i]=listaBrani[i].url_brano;
     }
-    listaOrigine = JSON.parse(JSON.stringify(percorsi));
-    streamingBrano(percorsi[indiceCorrente]);
+    listaOrigine = JSON.parse(JSON.stringify(listaBrani));
+    streamingBrano(listaBrani[indiceCorrente].url_brano);
 }
 
 
@@ -714,7 +695,7 @@ function streamingBrano(urlBrano) {
     audioElement.src ="riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //comunicaBranoInAscolto();
+    comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
