@@ -209,7 +209,7 @@ router.post('/amici/aggiungiAmico', function (req, res) {
         if (err) throw err;
         else res.send("OK");
     });
-})
+});
 
 /**
  * Restituisce gli utenti che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
@@ -262,7 +262,7 @@ router.get('/amiciOnline', function (req, res) {
 
 router.post('/ascolta', function (req, res) {
     var branoInAscolto = req.body.branoInAscolto;
-            var query = "UPDATE Account SET Ascolta = '" + branoInAscolto + "' WHERE IDUtente= '" + req.session.idUtente + "'";
+            var query = "UPDATE Account SET Ascolta = '" + branoInAscolto + "' WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
             });
@@ -339,8 +339,8 @@ router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', fun
 router.get('/playlist', function (req, res) {
     var query = "SELECT IDPlaylist, Playlist.Nome, NumeroBrani " +
         "FROM Playlist, Possiede, Account " +
-        "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = '" + req.session.idUtente + "' " +
-        "ORDER BY Playlist.Nome";
+        "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = " + req.session.idUtente +
+        " ORDER BY Playlist.Nome";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         //Se la query restituisce gli amici dell'utente li manda al client
@@ -349,5 +349,61 @@ router.get('/playlist', function (req, res) {
     });
 });
 
+/**
+ * Crea una playlist i cui nome non sia già stato utilizzato da altre playlist di quell'utente.
+ */
+router.post('/playlist/creaPlaylist', function (req, res) {
+    var nomePlaylist = req.body.nomePlaylist;
+    if(nomePlaylist == "") //Se il nome della playlist è una stringa vuota
+        res.send("ERR_1");
+    else {
+        var query1 = "SELECT Playlist.Nome " +
+            "FROM Playlist, Possiede, Account " +
+            "WHERE IDPlaylist = Ref_IDPlaylist AND IDUtente = Ref_IDUtente AND IDUtente = " + req.session.idUtente;
+        con.query(query1, function (err, result, fields) {
+            if (err) throw err;
+            if (result.length != 0) {
+                res.send("ERR_2"); //L'utente ha già creato una playlist con lo stesso nome
+            }
+            else {
+                var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "');" +
+                    "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                con.query(query2, function (err, result, fields) {
+                    if (err) throw err;
+                    res.send("OK");
+                });
+            }
+        });
+    }
+});
+
+/**
+ * Elimina la playlist selezionata dall'utente.
+ */
+router.post('/playlist/eliminaPlaylist', function (req, res) {
+        var idPlaylist = req.body.idPlaylist;
+        var query = "DELETE FROM Playlist WHERE IDPlaylist = " + idPlaylist;
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            else res.send("OK");
+        });
+});
+
+/**
+ * Restituisce tutti i brani contenuti in una playlist.
+ */
+router.post('/playlist/mostraBrani', function (req, res) {
+    var idPlaylist = req.body.idPlaylist;
+    var query = "SELECT C.OrdineBrano, B.IDBrano, B.Titolo, B.Artista, B.Durata, B.Url_cover, B.Url_brano " +
+        "FROM Account A, Possiede Po, Playlist Pl, Composizione C, Brano B " +
+        "WHERE A.IDUtente = Po.Ref_IDUtente AND Pl.IDPlaylist = Po.Ref_IDPlaylist " +
+              "AND Pl.IDPlaylist = C.Ref_IDPlaylist AND B.IDBrano = C.Ref_IDBrano " +
+              "AND A.IDUtente = " + req.session.idUtente + " AND Pl.IDPlaylist = " + idPlaylist +
+        "ORDER BY C.OrdineBrano";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        else res.send("OK");
+    });
+});
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

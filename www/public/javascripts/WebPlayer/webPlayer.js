@@ -295,9 +295,16 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $("#err_password").text("").css("display", "none");
     });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la ricerca degli utenti
     $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
+    });
+    //Funzione che resetta tutti i campi alla chiusura del modal per la creazione di una nuova playlist
+    $('#modal-crea-playlist').on('hidden.bs.modal', function () {
+        $(".campoNomePlaylist").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_playlist").text("").css("display", "none");
     });
 });
 
@@ -474,6 +481,30 @@ function aggiornaPlayer() {
     $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].titolo);
 }
 
+//Funzione che gestisce i dati del brano attualmente in riproduzione
+function riproduciBrano() {
+    percorsi=[];
+    listaOrigine=[];
+    for (i = 0; i < listaBrani.length; i++) {
+        if (listaBrani[i].idBrano == idBrano) {
+            var durata = toMinutes(listaBrani[i].durata);
+            $("#labelDurataTotaleBrano").text(durata);
+            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
+            $("#album2").attr("src", listaBrani[i].url_cover);
+            indiceCorrente=i;
+        }
+        percorsi[i]=listaBrani[i].url_brano;
+    }
+    listaOrigine = JSON.parse(JSON.stringify(percorsi));
+    streamingBrano(percorsi[indiceCorrente]);
+}
+
+
+
+
+
+
+
 
 
 
@@ -645,24 +676,6 @@ function richiediBraniPerGenere() {
     });
 }
 
-//Funzione che gestisce lo streaming del brano attualmente in riproduzione
-function riproduciBrano() {
-    percorsi=[];
-    listaOrigine=[];
-    for (i = 0; i < listaBrani.length; i++) {
-        if (listaBrani[i].idBrano == idBrano) {
-            var durata = toMinutes(listaBrani[i].durata);
-            $("#labelDurataTotaleBrano").text(durata);
-            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
-            $("#album2").attr("src", listaBrani[i].url_cover);
-            indiceCorrente=i;
-        }
-        percorsi[i]=listaBrani[i].url_brano;
-    }
-    listaOrigine = JSON.parse(JSON.stringify(percorsi));
-    streamingBrano(percorsi[indiceCorrente]);
-}
-
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
     $.get("/WebPlayer/riproduciBrano/" + urlBrano, function () {
@@ -670,14 +683,63 @@ function streamingBrano(urlBrano) {
     audioElement.src ="riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //comunicaBranoInAscolto();
+    comunicaBranoInAscolto();
 }
 
-//Funzione che imposta la canzone ascoltata dall'utente
+//Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
     $.post("/WebPlayer/ascolta",
         {
             branoInAscolto: $("#titolo-brano-in-riproduzione").text()
         }, function () {
     });
+}
+
+//Funzione che gestisce la creazione di una nuova playlist da parte dell'utente
+function creaPlaylist() {
+    var nomePlaylist = $("input[name=nome-playlist]");
+    if(nomePlaylist.val() == "") {
+        $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
+        nomePlaylist.addClass("invalid");
+    }
+    else {
+        $.post("/WebPlayer/playlist/creaPlaylist",
+            {
+                nomePlaylist: nomePlaylist
+            },
+            function (result) {
+                if (result == "ERR_1") {
+                    $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
+                    nomePlaylist.addClass("invalid");
+                } else if (result == "ERR_2") {
+                    $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.").css("display", "block");
+                    nomePlaylist.addClass("invalid");
+                } else if (result == "OK") {
+                    $("#err_playlist").text("").css("display", "none");
+                    alert("Playlist creata con successo.");
+                }
+            });
+    }
+}
+
+//Funzione che gestisce l'eliminazione di una playlist da parte dell'utente
+function eliminaPlaylist() {
+    $.post("/WebPlayer/playlist/eliminaPlaylist",
+        {
+            idPlaylist: id //Da completare
+        }, function(result) {
+        /*
+            if(result == "OK") {
+                $("#tastoConfermaRim").click(function () {
+                    var idListItem = "amico" + id;
+                    $("#" + idListItem).remove(); //Elimina la riga della lista amici
+                    for(i=0; i<listaAmici.length; i++) {
+                        if(listaAmici[i].idUtente == id) {
+                            listaAmici.remove(i);
+                        }
+                    }
+                });
+            }
+            */
+        });
 }
