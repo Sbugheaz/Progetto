@@ -649,7 +649,8 @@ function aggiungiAmico() {
 
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
 function richiediBraniPerGenere() {
-    $(".dropdown-item").click(function(evento) {
+    //Cattura l'evento dei tasti Genere in modalità desktop
+    $(".dropdown-item-desktop").click(function(evento) {
         var genere=evento.target.id.substring(6)
         $.post("/WebPlayer/musica/genere",
             {
@@ -669,6 +670,30 @@ function richiediBraniPerGenere() {
                     $(".listaGenere").remove();
                 }
         });
+    });
+
+    //Cattura l'evento dei tasti Genere in modalità mobile
+    $(".dropdown-item-mobile").click(function(evento) {
+        var genere=evento.target.id.substring(13);
+        console.log(genere)
+        $.post("/WebPlayer/musica/genere",
+            {
+                genere: genere
+            }, function(result) {
+                $("#nomeGenere").html("Genere: " + genere);
+                if(result != "ERR") {
+                    listaBrani.remove(0, listaAmiciOnline.length-1);
+                    $(".listaGenere").remove();
+                    var lb = JSON.parse(result);
+                    for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
+                        listaBrani[i] = new Brano(lb[i]);
+                    stampaListaBraniPerGenere(listaBrani);
+                }
+                else {
+                    if(listaBrani.length != 0) listaBrani.remove(0, listaBrani.length-1);
+                    $(".listaGenere").remove();
+                }
+            });
     });
 }
 
