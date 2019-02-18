@@ -1240,6 +1240,7 @@ p.paragrafo-amicizie-mobile{
 
 /*propietà pannello-mobile*/
 #pannello-mobile{
+    top: 115px;
     position: absolute;
     right: 0;
     width: 35%;

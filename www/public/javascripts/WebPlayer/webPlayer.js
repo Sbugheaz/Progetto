@@ -121,24 +121,43 @@ function mostraPannelloAmicizieMobile(){
 
 }
 
-//Funzione che permette di aprire il pannello mobile
+//Funzione che permette di aprire e chiudere il pannello mobile
 function mostraPannelloMobile(){
-    $("#pannello-mobile").show(500);
-    pannelloSecondario=$('#pannello-mobile');
+    if(pannelloSecondario==null) {
+        $("#pannello-mobile").show(500);
+        pannelloSecondario = $('#pannello-mobile');
+    }else{
+        pannelloSecondario.hide(500);
+        pannelloSecondario=null;
+    }
 }
 
 
 //Funzione che chiude il pannello-mobile
 $(document).mouseup(function (e) {
     try {
-        if (!pannelloSecondario.is(e.target) // if the target of the click isn't the container...
-            && pannelloSecondario.has(e.target).length === 0) // ... nor a descendant of the container
+        if ((!pannelloSecondario.is(e.target)|| !$("#altro").is(e.target) ) // if the target of the click isn't the container...
+            && (pannelloSecondario.has(e.target).length === 0 && $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
         {
             pannelloSecondario.hide(500);
+            pannelloSecondario=null;
         }
     }catch(ex){
            console.log();
         }
+});
+
+//Funzione che svuota la ricerca quando clicchiamo fuori dalla barra di ricerca o dal pannello ricerca
+$(document).mouseup(function (e) {
+    try {
+        if ((!$("#barra-ricerca").is(e.target)||!$("#pannello-Ricerca").is(e.target)) // if the target of the click isn't the container...
+            && ($("#barra-ricerca").has(e.target).length === 0) && ($("#pannello-Ricerca").has(e.target).length === 0))// ... nor a descendant of the container
+        {
+            $("#barra-ricerca").val("");
+        }
+    }catch(ex){
+        console.log();
+    }
 });
 
 
@@ -219,7 +238,18 @@ function setDivVisibility(){
             $('#menu-orizzontale').css('display', 'block');
         }
         $("#volume-range").slider({value: 50});
+        disabilitaPlayer();
     }
+
+    function disabilitaPlayer(){
+        $("#barraDiAvanzamento").slider('disable');
+        $("#volume-range").slider("disable");
+    }
+    function abilitaPlayer(){
+        $("#barraDiAvanzamento").slider('enable');
+        $("#volume-range").slider("enable");
+    }
+
 
 /*funzioni del player*/
 $(document).ready(function() {
@@ -377,10 +407,10 @@ function toMinutes(secondi) {
 
 //Funzione che permette di avviare riproduzione del brano
 function avviaBrano() {
-    seeking = true;
-    audioElement.play();
-    $('#play').hide();
-    $('#pause').show();
+        seeking = true;
+        audioElement.play();
+        $('#play').hide();
+        $('#pause').show();
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -416,16 +446,16 @@ function refresh() {
 }
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
-    if((indiceCorrente!=listaBrani.length-1 &&repeat==false)||repeat==true) {
-        indiceCorrente = ((++indiceCorrente) + listaBrani.length) % listaBrani.length;
-        streamingBrano(listaBrani[indiceCorrente].url_brano);
-        aggiornaPlayer();
-        if (seeking == true) {
-            audioElement.play();
-        } else {
-            audioElement.pause();
+        if ((indiceCorrente != listaBrani.length - 1 && repeat == false) || repeat == true) {
+            indiceCorrente = ((++indiceCorrente) + listaBrani.length) % listaBrani.length;
+            streamingBrano(listaBrani[indiceCorrente].url_brano);
+            aggiornaPlayer();
+            if (seeking == true) {
+                audioElement.play();
+            } else {
+                audioElement.pause();
+            }
         }
-    }
 }
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
@@ -467,7 +497,8 @@ function ripetizione() {
 function aggiornaPlayer() {
     var durata = toMinutes(listaBrani[indiceCorrente].durata);
     $("#labelDurataTotaleBrano").text(durata);
-    $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].titolo);
+    $("#titolo-brano-in-riproduzione").text(listaBrani[indiceCorrente].artista + " "+listaBrani[indiceCorrente].titolo);
+    $("#album2").attr("src", listaBrani[indiceCorrente].url_cover);
 }
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
@@ -475,13 +506,30 @@ function riproduciBrano() {
     listaOrigine=[];
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
-            var durata = toMinutes(listaBrani[i].durata);
-            $("#labelDurataTotaleBrano").text(durata);
-            $("#titolo-brano-in-riproduzione").text(listaBrani[i].titolo);
-            $("#album2").attr("src", listaBrani[i].url_cover);
             indiceCorrente=i;
+            aggiornaPlayer();
         }
     }
+    abilitaPlayer();
+    //Eventi che riguardano il player e tutte le sue funzionalità
+    $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+    $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
+    audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
+    $(audioElement).on("timeupdate", refresh);//Evento che permette di aggiornare la barra di avanzamento
+    $('#step-forward').click(branoSuccessivo);//Evento che permette di passare al brano successivo
+    $('#step-backward').click(branoPrecedente);//Evento che permette di passare al brano precedente
+    $('#random').click(shuffleBrani);//Evento che permette fare lo shuffle delle canzoni
+    $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
+    //Evento che permette lo slide della barra del volume*/
+    $("#volume-range").on("slide", function (slideEvt) { //Evento che permette lo slide della barra di avanzamento
+        audioElement.volume = slideEvt.value / 100;
+    });
+    $("#barraDiAvanzamento").on("change", function (slideEvt) {
+        var slideVal = $("#barraDiAvanzamento").slider('getValue');
+        var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
+        audioElement.currentTime = valoreattuale2;
+    });
+
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     streamingBrano(listaBrani[indiceCorrente].url_brano);
 }
@@ -700,7 +748,7 @@ function streamingBrano(urlBrano) {
 function comunicaBranoInAscolto() {
     $.post("/WebPlayer/ascolta",
         {
-            branoInAscolto: $("#titolo-brano-in-riproduzione").text()
+            branoInAscolto: listaBrani[indiceCorrente].titolo
         }, function () {
     });
 }

@@ -14,28 +14,8 @@ $(document).ready(function () {
     ricercaAlbum(); //Funzione che permette la ricerca degli album
 
 
-    //Eventi che riguardano il player e tutte le sue funzionalità
-    $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
-    $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
-    audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
-    $(audioElement).on("timeupdate", refresh);//Evento che permette di aggiornare la barra di avanzamento
-    $('#step-forward').click(branoSuccessivo);//Evento che permette di passare al brano successivo
-    $('#step-backward').click(branoPrecedente);//Evento che permette di passare al brano precedente
-    $('#random').click(shuffleBrani);//Evento che permette fare lo shuffle delle canzoni
-    $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
-    //Evento che permette lo slide della barra del volume*/
-    $("#volume-range").on("slide", function (slideEvt) { //Evento che permette lo slide della barra di avanzamento
-        audioElement.volume = slideEvt.value / 100;
-    });
-    $("#barraDiAvanzamento").on("change", function (slideEvt) {
-        var slideVal = $("#barraDiAvanzamento").slider('getValue');
-        var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
-        audioElement.currentTime = valoreattuale2;
-    });
-
-
     //Eventi che riguardano i pannelli della pagina
-    loadPagina()//Evento che carica le informazioni della pagina
+    loadPagina();//Evento che carica le informazioni della pagina
     $(window).resize(setDivVisibility);//Evento che permmette di cambiare le propietà della pagina in base alla dimensioni della pagina
     $("#pulsante-Logout").mouseleave(nascondiTastologout);//Evento che permette di far scomparire il pulsante logout
     $("#pulsante-Logout").mouseenter(mostraTastoLogout);//Evento che permette di far comparire il pulsante logout

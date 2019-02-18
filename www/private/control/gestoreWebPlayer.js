@@ -375,9 +375,8 @@ router.post('/playlist/creaPlaylist', function (req, res) {
             " AND Playlist.Nome = '" + nomePlaylist + "'";
         con.query(query1, function (err, result, fields) {
             if (err) throw err;
-            if (result.length != 0) {
+            if (result.length != 0)
                 res.send("ERR_3"); //L'utente ha già creato una playlist con lo stesso nome
-            }
             else {
                 var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "')";
                 con.query(query2, function (err, result, fields) {
@@ -406,22 +405,51 @@ router.post('/playlist/eliminaPlaylist', function (req, res) {
 });
 
 /**
- * Restituisce tutti i brani contenuti in una playlist.
+ * Restituisce tutti i brani contenuti in una playlist utilizzando una vista creata all'interno del database.
  */
 router.post('/playlist/mostraBrani', function (req, res) {
     var idPlaylist = req.body.idPlaylist;
-    var query = "SELECT B.IDBrano, B.Titolo, B.Artista, B.Durata, B.Url_cover, B.Url_brano " +
-        "FROM Account A, Possiede Po, Playlist Pl, Composizione C, Brano B " +
-        "WHERE A.IDUtente = Po.Ref_IDUtente AND Pl.IDPlaylist = Po.Ref_IDPlaylist " +
-              "AND Pl.IDPlaylist = C.Ref_IDPlaylist AND B.IDBrano = C.Ref_IDBrano " +
-              "AND A.IDUtente = " + req.session.idUtente + " AND Pl.IDPlaylist = " + idPlaylist +
-        " ORDER BY C.OrdineBrano";
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
+                "FROM Brani_Playlist " +
+                "WHERE IDUtente = " + req.session.idUtente + " AND IDPlaylist = " + idPlaylist;
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         if(result != 0) res.send(JSON.stringify(result));
         else res.send("ERR");
     });
 });
+
+/**
+ * Aggiunge un brano in coda alla playlist selezionata dall'utente.
+ */
+router.post('/playlist/aggiungiBrano', function (req, res) {
+    var idPlaylist = req.body.idPlaylist;
+    var idBrano = req.body.idBrano;
+    var query1 = "SELECT IDBrano " +
+        "FROM Brani_Playlist " +
+        "WHERE IDPlaylist = " + idPlaylist + " AND IDUtente = " + req.session.idUtente + " AND IDBrano = " + idBrano;
+    con.query(query1, function (err, result, fields) {
+        if (err) throw err;
+        if (result.length != 0)
+            res.send("ERR_1"); //L'utente ha già aggiunto il brano alla selezionata playlist
+        else {
+            var query2 = "SELECT MAX(OrdineBrano)+1 " +
+                "FROM Composizione " +
+                "WHERE Ref_IDPlaylist = " + idPlaylist;
+            con.query(query2, function (err, result, fields) {
+                if (err) throw err;
+                var ordineBranoDaInserire = JSON.stringify(result);
+                var query3 = "INSERT INTO Composizione VALUES " +
+                    "(" + ordineBranoDaInserire + ", " + idPlaylist + ", " + idBrano + ")";
+                con.query(query3, function (err, result, fields) {
+                    if (err) throw err;
+                });
+            });
+            res.send("OK");
+        }
+    });
+});
+
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
