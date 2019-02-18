@@ -433,25 +433,29 @@ function refresh() {
 }
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
-    indiceCorrente=((++indiceCorrente) + percorsi.length) % percorsi.length;
-    streamingBrano(percorsi[indiceCorrente]);
-    aggiornaPlayer();
-    if (seeking == true) {
-        audioElement.play();
-    } else {
-        audioElement.pause();
+    if((indiceCorrente!=percorsi.length-1 &&repeat==false)||repeat==true) {
+        indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
+        streamingBrano(percorsi[indiceCorrente]);
+        aggiornaPlayer();
+        if (seeking == true) {
+            audioElement.play();
+        } else {
+            audioElement.pause();
+        }
     }
 }
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
-    if (audioElement.currentTime < 3) {
-        stoppaBrano();
-        indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
-        aggiornaPlayer();
-        streamingBrano(percorsi[indiceCorrente]);
-    } else {
-        audioElement.currentTime = 0;
-    }
+        if (audioElement.currentTime < 3) {
+            if((indiceCorrente>0 &&repeat==false)||repeat==true) {
+                stoppaBrano();
+                indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
+                aggiornaPlayer();
+                streamingBrano(percorsi[indiceCorrente]);
+            }
+        } else {
+            audioElement.currentTime = 0;
+        }
 }
 //Funzione che effettua lo shuffle del vettore percorsi
 function shuffleBrani() {
@@ -655,8 +659,9 @@ function aggiungiAmico() {
 
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
 function richiediBraniPerGenere() {
-    $(".dropdown-item").click(function(evento) {
-        var genere=evento.target.id.substring(6);
+    //Cattura l'evento dei tasti Genere in modalità desktop
+    $(".dropdown-item-desktop").click(function(evento) {
+        var genere=evento.target.id.substring(6)
         $.post("/WebPlayer/musica/genere",
             {
                 genere: genere
@@ -675,6 +680,30 @@ function richiediBraniPerGenere() {
                     $(".listaGenere").remove();
                 }
         });
+    });
+
+    //Cattura l'evento dei tasti Genere in modalità mobile
+    $(".dropdown-item-mobile").click(function(evento) {
+        var genere=evento.target.id.substring(13);
+        console.log(genere)
+        $.post("/WebPlayer/musica/genere",
+            {
+                genere: genere
+            }, function(result) {
+                $("#nomeGenere").html("Genere: " + genere);
+                if(result != "ERR") {
+                    listaBrani.remove(0, listaAmiciOnline.length-1);
+                    $(".listaGenere").remove();
+                    var lb = JSON.parse(result);
+                    for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
+                        listaBrani[i] = new Brano(lb[i]);
+                    stampaListaBraniPerGenere(listaBrani);
+                }
+                else {
+                    if(listaBrani.length != 0) listaBrani.remove(0, listaBrani.length-1);
+                    $(".listaGenere").remove();
+                }
+            });
     });
 }
 
