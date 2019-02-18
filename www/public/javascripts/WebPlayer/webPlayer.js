@@ -284,6 +284,12 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
     });
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    //creazione di una nuova playlist
+    $("#inserisci-nomePlaylist").on('input',function(){
+        $(".campoNomePlaylist").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
     //Funzione che resetta tutti i campi alla chiusura del modal per la creazione di una nuova playlist
     $('#modal-crea-playlist').on('hidden.bs.modal', function () {
         $(".campoNomePlaylist").removeClass("invalid");
@@ -714,14 +720,19 @@ function creaPlaylist() {
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
             {
-                nomePlaylist: nomePlaylist
+                nomePlaylist: nomePlaylist.val(),
             },
             function (result) {
                 if (result == "ERR_1") {
                     $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_2") {
-                    $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.").css("display", "block");
+                    $("#err_playlist").text("Il nome della playlist può contenere da due a venticinque caratteri, iniziare con una lettera " +
+                    "e non può contenere spazi o simboli.").css("display", "block");
+                    nomePlaylist.addClass("invalid");
+                } else if (result == "ERR_3") {
+                    $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.")
+                        .css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "OK") {
                     $("#err_playlist").text("").css("display", "none");
@@ -751,4 +762,19 @@ function eliminaPlaylist() {
             }
             */
         });
+}
+
+//Funzione che richiede i brani di una specifica playlist
+function mostraBraniPlaylist() {
+    $.post("/WebPlayer/playlist/mostraBrani",
+        {
+            idPlaylist: id //Da completare
+        }, function(result) {
+        if (result != "ERR") {
+            var lb = JSON.parse(result);
+            for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
+            listaAmici[i] = new Brano(lb[i]);
+            //stampaListaAmici(listaAmici);
+    }
+});
 }

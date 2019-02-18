@@ -257,10 +257,19 @@
                         <!--contiene le  playlist con le relative canzoni -->
                         <div id="pannello-Playlist" class="container-fluid">
                             <div class="flex-container" id="contenitore-playlist">
+                                <div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">
+                                    <div class="flex-item-conteiner">
+                                        <div class="flex-item-conteiner-icon">
+                                            <a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="contenitore-canzoni-playlist">
                                 <div id="contenitore-paragrafo">
-                                    <p  class="paragrafo-playlist" style="font-size: x-large">Playlist:</p>
+                                    <p  class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">Playlist:<i class="fa fa-trash icona-eliminaPlaylist"> </i></p>
+
                                 </div>
                                 <div id="contenitore-lista-playlist">
                                     <ul  class="demo demo-playlist">

@@ -1327,6 +1327,15 @@ p.paragrafo-amicizie-mobile{
     height: calc(100vh - 165px);
     overflow-y: hidden;
 }
+.icona-eliminaPlaylist{
+  color: #007bff;
+  float:right;
+  padding-right: 10px;
+}
+.icona-eliminaPlaylist:hover{
+  color: #6ca8fb;
+  cursor:pointer;
+}
 #contenitore-canzoni-playlist{
     height: 50%;
 
@@ -1499,6 +1508,7 @@ fa-paly:hover {
     width: 150px;
     display: block;
     background-color: rgba(65, 69, 74, 0.53);
+    cursor: pointer;
 }
 
 .flex-item-conteiner-icon{

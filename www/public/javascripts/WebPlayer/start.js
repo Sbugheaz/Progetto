@@ -12,6 +12,9 @@ $(document).ready(function () {
     richiediBraniPerGenere(); //Funzione per ottenere tutti i brani di un determinato genere
     ricercaBrani(); //Funzione che permette la ricerca dei brani
     ricercaAlbum(); //Funzione che permette la ricerca degli album
+
+
+    //Eventi che riguardano il player e tutte le sue funzionalità
     $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
     $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
     audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
