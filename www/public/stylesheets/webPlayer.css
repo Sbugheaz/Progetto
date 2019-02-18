@@ -1332,6 +1332,10 @@ p.paragrafo-amicizie-mobile{
   float:right;
   padding-right: 10px;
 }
+.icona-eliminaPlaylist:hover{
+  color: #6ca8fb;
+  cursor:pointer;
+}
 #contenitore-canzoni-playlist{
     height: 50%;
 
