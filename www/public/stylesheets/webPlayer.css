@@ -1327,6 +1327,11 @@ p.paragrafo-amicizie-mobile{
     height: calc(100vh - 165px);
     overflow-y: hidden;
 }
+.icona-eliminaPlaylist{
+  color: #007bff;
+  float:right;
+  padding-right: 10px;
+}
 #contenitore-canzoni-playlist{
     height: 50%;
 

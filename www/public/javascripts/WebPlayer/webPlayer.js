@@ -708,7 +708,7 @@ function streamingBrano(urlBrano) {
     audioElement.src ="riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    comunicaBranoInAscolto();
+    //comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
