@@ -6,7 +6,6 @@ var listaOrigine=[];
 var shuffleB=false;
 var repeat=false;
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
-var percorsi = [];
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
@@ -394,14 +393,14 @@ function stoppaBrano() {
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
 function verificaBranoSuccessivo() {
-    if (repeat == false && indiceCorrente == (percorsi.length - 1)) {
+    if (repeat == false && indiceCorrente == (listaBrani.length - 1)) {
         seeking = false;
         stoppaBrano();
     } else {
         stoppaBrano();
-        indiceCorrente=(++indiceCorrente) % percorsi.length;
+        indiceCorrente=(++indiceCorrente) % listaBrani.length;
         aggiornaPlayer();
-        streamingBrano(percorsi[indiceCorrente]);
+        streamingBrano(listaBrani[indiceCorrente].url_brano);
 
 
     }
@@ -417,9 +416,9 @@ function refresh() {
 }
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
-    if((indiceCorrente!=percorsi.length-1 &&repeat==false)||repeat==true) {
-        indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
-        streamingBrano(percorsi[indiceCorrente]);
+    if((indiceCorrente!=listaBrani.length-1 &&repeat==false)||repeat==true) {
+        indiceCorrente = ((++indiceCorrente) + listaBrani.length) % listaBrani.length;
+        streamingBrano(listaBrani[indiceCorrente].url_brano);
         aggiornaPlayer();
         if (seeking == true) {
             audioElement.play();
@@ -433,24 +432,24 @@ function branoPrecedente() {
         if (audioElement.currentTime < 3) {
             if((indiceCorrente>0 &&repeat==false)||repeat==true) {
                 stoppaBrano();
-                indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;
+                indiceCorrente = ((--indiceCorrente) + listaBrani.length) %listaBrani.length;
                 aggiornaPlayer();
-                streamingBrano(percorsi[indiceCorrente]);
+                streamingBrano(listaBrani[indiceCorrente].url_brano);
             }
         } else {
             audioElement.currentTime = 0;
         }
 }
-//Funzione che effettua lo shuffle del vettore percorsi
+//Funzione che effettua lo shuffle del vettore lista brani
 function shuffleBrani() {
     if (shuffleB == false) {
         $("#random").css('color', '#5CA5FF');
         shuffleB = true;
-        percorsi=shuffle(percorsi);
+        listaBrani=shuffle(listaBrani);
     } else {
         shuffleB = false;
         $("#random").css('color', 'cornsilk');
-        percorsi = JSON.parse(JSON.stringify(listaOrigine));
+        listaBrani = JSON.parse(JSON.stringify(listaOrigine));
 
     }
 }
@@ -473,7 +472,6 @@ function aggiornaPlayer() {
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-    percorsi=[];
     listaOrigine=[];
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
@@ -483,10 +481,9 @@ function riproduciBrano() {
             $("#album2").attr("src", listaBrani[i].url_cover);
             indiceCorrente=i;
         }
-        percorsi[i]=listaBrani[i].url_brano;
     }
-    listaOrigine = JSON.parse(JSON.stringify(percorsi));
-    streamingBrano(percorsi[indiceCorrente]);
+    listaOrigine = JSON.parse(JSON.stringify(listaBrani));
+    streamingBrano(listaBrani[indiceCorrente].url_brano);
 }
 
 
