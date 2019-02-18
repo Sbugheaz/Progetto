@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 
     //Eventi che riguardano i pannelli della pagina
-    $(window).on('load',loadPagina);//Evento che carica le informazioni della pagina
+    $(window).on('load',loadPagina());//Evento che carica le informazioni della pagina
     $(window).resize(setDivVisibility);//Evento che permmette di cambiare le propietà della pagina in base alla dimensioni della pagina
     $("#pulsante-Logout").mouseleave(nascondiTastologout);//Evento che permette di far scomparire il pulsante logout
     $("#pulsante-Logout").mouseenter(mostraTastoLogout);//Evento che permette di far comparire il pulsante logout
