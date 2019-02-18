@@ -173,7 +173,7 @@ function stampaListaPlaylist(listaPlaylist){
 function stampaBraniPlaylist(){
     var content = "";
     $("#contenitore-canzoni-playlist").append('<div id="contenitore-lista-playlist">\n' +
-                                                '<ul  class="demo demo-playlist">');
+                                                '<ul  class="demo demo-playlist"></ul></div>');
     for (i = 0; i < listaBrani.length; i++) {
         content += '<li class="li_listaPlaylist">'+
             '<div class="ordine-playlist">'+

@@ -761,6 +761,7 @@ function eliminaPlaylist() {
         });
 }
 
+
 //Funzione che richiede i brani di una specifica playlist
 function richiediBraniPlaylist() {
     $.post("/WebPlayer/playlist/mostraBrani",
@@ -768,6 +769,7 @@ function richiediBraniPlaylist() {
             idPlaylist: idPlaylist
         }, function(result) {
         if (result != "ERR") {
+            $("#contenitore-canzoni-playlist").empty();
             var lb = JSON.parse(result);
             for (i = 0; i < lb.length; i++)
             listaBrani[i] = new Brano(lb[i]);
@@ -781,6 +783,7 @@ function richiediBraniPlaylist() {
             stampaBraniPlaylist();
         }
         else{
+            $("#contenitore-canzoni-playlist").empty();
             for(i=0; i<listaPlaylist.length; i++){
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
                     $("#contenitore-canzoni-playlist").append('<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
