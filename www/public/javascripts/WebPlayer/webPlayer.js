@@ -778,8 +778,11 @@ function creaPlaylist() {
                     nomePlaylist.addClass("invalid");
                 } else {
                     $("#err_playlist").text("").css("display", "none");
-                    var nuovaPlaylist = new Playlist(result);
+                    var nuovaPlaylist = new Playlist(JSON.parse(result)[0]);
                     listaPlaylist.push(nuovaPlaylist);
+
+                    $('#modal-crea-playlist').modal('hide');
+
                     stampaListaPlaylist(listaPlaylist);
                 }
             });
@@ -815,6 +818,7 @@ function richiediBraniPlaylist() {
         }, function(result) {
         if (result != "ERR") {
             $("#contenitore-canzoni-playlist").empty();
+            listaBrani.remove(0, listaBrani.length-1);
             var lb = JSON.parse(result);
             for (i = 0; i < lb.length; i++)
             listaBrani[i] = new Brano(lb[i]);
@@ -829,6 +833,8 @@ function richiediBraniPlaylist() {
             stampaBraniPlaylist();
         }
         else{
+            if(listaBrani.length != 0)
+                listaBrani.remove(0, listaBrani.length-1);
             $("#contenitore-canzoni-playlist").empty();
             for(i=0; i<listaPlaylist.length; i++){
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
