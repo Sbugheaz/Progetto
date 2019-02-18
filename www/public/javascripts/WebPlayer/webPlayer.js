@@ -300,6 +300,12 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
     });
+    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
+    //creazione di una nuova playlist
+    $("#inserisci-nomePlaylist").on('input',function(){
+        $(".campoNomePlaylist").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
     //Funzione che resetta tutti i campi alla chiusura del modal per la creazione di una nuova playlist
     $('#modal-crea-playlist').on('hidden.bs.modal', function () {
         $(".campoNomePlaylist").removeClass("invalid");
@@ -650,7 +656,7 @@ function aggiungiAmico() {
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
 function richiediBraniPerGenere() {
     $(".dropdown-item").click(function(evento) {
-        var genere=evento.target.id.substring(6)
+        var genere=evento.target.id.substring(6);
         $.post("/WebPlayer/musica/genere",
             {
                 genere: genere
@@ -696,19 +702,24 @@ function creaPlaylist() {
     var nomePlaylist = $("input[name=nome-playlist]");
     if(nomePlaylist.val() == "") {
         $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
-        nomePlaylist.addClass("invalid");
+        $(".campoNomePlaylist").addClass("invalid");
     }
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
             {
-                nomePlaylist: nomePlaylist
+                nomePlaylist: nomePlaylist.val(),
             },
             function (result) {
                 if (result == "ERR_1") {
                     $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_2") {
-                    $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.").css("display", "block");
+                    $("#err_playlist").text("Il nome della playlist può contenere da due a venticinque caratteri, iniziare con una lettera " +
+                    "e non può contenere spazi o simboli.").css("display", "block");
+                    nomePlaylist.addClass("invalid");
+                } else if (result == "ERR_3") {
+                    $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.")
+                        .css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "OK") {
                     $("#err_playlist").text("").css("display", "none");
