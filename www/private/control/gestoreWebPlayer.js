@@ -450,6 +450,18 @@ router.post('/playlist/aggiungiBrano', function (req, res) {
     });
 });
 
+/**
+ * Elimina un brano all'interno della playlist selezionata dall'utente.
+ */
+router.post('/playlist/eliminaPlaylist', function (req, res) {
+    var idPlaylist = req.body.idPlaylist;
+    var idBrano = req.body.idBrano;
+    var query = "DELETE FROM Composizione WHERE Ref_IDPlaylist = " + idPlaylist +" AND Ref_IDBrano = " + idBrano;
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        else res.send("OK");
+    });
+});
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server

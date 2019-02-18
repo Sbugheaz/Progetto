@@ -639,7 +639,6 @@ function eliminaAmico() {
             idAmico: id
         }, function(result) {
             if(result == "OK") {
-                $("#tastoConfermaRim").click(function () {
                     var idListItem = "amico" + id;
                     $("#" + idListItem).remove(); //Elimina la riga della lista amici
                     for(i=0; i<listaAmici.length; i++) {
@@ -647,7 +646,6 @@ function eliminaAmico() {
                             listaAmici.remove(i);
                         }
                     }
-                });
             }
         });
 }

@@ -26,10 +26,11 @@ function stampaListaAmici(listaAmici){
         content = "";
     }
     $(".icona-rimuovi-amico").click(function(evento) {
-            recuperaIDElimina(evento);
+        recuperaIDElimina(evento);
+        $("#tastoConfermaRim").click(function () {
             eliminaAmico();
-        }
-    );
+        });
+    });
 }
 
 
