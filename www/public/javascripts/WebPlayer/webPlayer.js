@@ -229,7 +229,6 @@ function setDivVisibility(){
 
 /*funzione che inizializza la pagina al caricamento*/
     function loadPagina() {
-
         pannelloAttivo = $("#pannello-BraniRiproduzione");
         $("#pannello-BraniRiproduzione").show();
         if (($(window).width()) > '768') {
@@ -371,7 +370,7 @@ function recuperaIDBrano(evento) {
 
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
-    idPlaylist = evento.target.id;
+    idPlaylist = evento.target.id.substring(8);
 }
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
@@ -668,7 +667,6 @@ function eliminaAmico() {
             idAmico: id
         }, function(result) {
             if(result == "OK") {
-                $("#tastoConfermaRim").click(function () {
                     var idListItem = "amico" + id;
                     $("#" + idListItem).remove(); //Elimina la riga della lista amici
                     for(i=0; i<listaAmici.length; i++) {
@@ -676,7 +674,6 @@ function eliminaAmico() {
                             listaAmici.remove(i);
                         }
                     }
-                });
             }
         });
 }
@@ -727,7 +724,6 @@ function richiediBraniPerGenere() {
     //Cattura l'evento dei tasti Genere in modalità mobile
     $(".dropdown-item-mobile").click(function(evento) {
         var genere=evento.target.id.substring(13);
-        console.log(genere)
         $.post("/WebPlayer/musica/genere",
             {
                 genere: genere
@@ -792,9 +788,11 @@ function creaPlaylist() {
                     $("#err_playlist").text("Hai già creato una playlist con lo stesso nome, inserisci un nome diverso.")
                         .css("display", "block");
                     nomePlaylist.addClass("invalid");
-                } else if (result == "OK") {
+                } else {
                     $("#err_playlist").text("").css("display", "none");
-                    alert("Playlist creata con successo.");
+                    var nuovaPlaylist = new Playlist(result);
+                    listaPlaylist.push(nuovaPlaylist);
+                    stampaListaPlaylist(listaPlaylist);
                 }
             });
     }
@@ -804,24 +802,22 @@ function creaPlaylist() {
 function eliminaPlaylist() {
     $.post("/WebPlayer/playlist/eliminaPlaylist",
         {
-            idPlaylist: id //Da completare
+            idPlaylist: idPlaylist
         }, function(result) {
-        /*
             if(result == "OK") {
-                $("#tastoConfermaRim").click(function () {
-                    var idListItem = "amico" + id;
-                    $("#" + idListItem).remove(); //Elimina la riga della lista amici
-                    for(i=0; i<listaAmici.length; i++) {
-                        if(listaAmici[i].idUtente == id) {
-                            listaAmici.remove(i);
+                    var idPlay = "playlist" + idPlaylist;
+                    $("#" + idPlay).remove(); //Elimina il flex-item contenente la playlist da eliminare
+                    $("#contenitore-canzoni-playlist").empty();
+                    for(i=0; i<listaPlaylist.length; i++) {
+                        if(listaPlaylist[i].idPlaylist == idPlaylist) {
+                            listaPlaylist.remove(i);
                         }
                     }
-                });
+
             }
-            */
+
         });
 }
-
 
 //Funzione che richiede i brani di una specifica playlist
 function richiediBraniPlaylist() {
@@ -838,7 +834,8 @@ function richiediBraniPlaylist() {
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
                     $("#contenitore-canzoni-playlist").append('<div id="contenitore-paragrafo">' +
                         '<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
-                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist" title="Elimina playlist"> </i></p> </div>');
+                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist" ' +
+                        'id="elimPlay'+ listaPlaylist[i].idPlaylist +'"data-toggle="modal" data-target="#modal-conferma-rimPlaylist"></i></p> </div>');
                 }
             }
             stampaBraniPlaylist();
@@ -848,9 +845,17 @@ function richiediBraniPlaylist() {
             for(i=0; i<listaPlaylist.length; i++){
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
                     $("#contenitore-canzoni-playlist").append('<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
-                        'La playlist "'+ listaPlaylist[i].nome +'" è vuota. </p>');
+                        'La playlist "'+ listaPlaylist[i].nome +'" è vuota. ' +
+                        '<i class="fa fa-trash icona-eliminaPlaylist" ' +
+                        'id="elimPlay'+ listaPlaylist[i].idPlaylist +'" data-toggle="modal" data-target="#modal-conferma-rimPlaylist"></i></p>');
                 }
             }
         }
-});
+            $(".icona-eliminaPlaylist").click(function(evento) {
+                    recuperaIDPlaylist(evento);
+                    $("#tastoConfermaRimPlaylist").click(function () {
+                        eliminaPlaylist();
+                    });
+            });
+    });
 }

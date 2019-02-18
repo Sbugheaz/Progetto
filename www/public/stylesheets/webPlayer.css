@@ -1107,8 +1107,8 @@ table{
 }
 
 
-/*Proprietà Modal Conferma Logout e Modal Conferma Rimozione Amico*/
-#intestazione-logout, #intestazione-rimAmico {
+/*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
+#intestazione-logout, #intestazione-rimAmico, #intestazione-rimPlaylist {
     background-color: #898989;
     text-align: center;
     padding: 0.5rem 1rem;
@@ -1116,10 +1116,10 @@ table{
     border-top-right-radius: .3rem;
     border-bottom: 2px solid rgba(0,114,255,0.43);
 }
-#titolo-logout, #titolo-rimAmico{
+#titolo-logout, #titolo-rimAmico, #titolo-rimPlaylist{
     margin: 0;
 }
-.contenitore-icona-logout, .contenitore-icona-rimAmico {
+.contenitore-icona-logout, .contenitore-icona-rimAmico, .contenitore-icona-rimPlaylist {
     width: 15%;
     float: left;
     font-size: 8vh;
@@ -1138,11 +1138,11 @@ table{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.footerLogout, .footer-rimAmico {
+.footerLogout, .footer-rimAmico, .footer-rimPlaylist {
     border-top:0;
     padding-top: 0;
 }
-.bottone-conferma-uscita, .bottone-conferma-rimAmico{
+.bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
     border-radius: 4px;
     padding: 3px 5px;
     font-size: 0.8rem;
@@ -1150,7 +1150,7 @@ table{
     height: 1.5rem;
     color: black;
 }
-.bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover{
+.bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
     font-size: 15px;
     color: white;
     background-color: rgba(0,114,255,0.43);
@@ -1240,7 +1240,6 @@ p.paragrafo-amicizie-mobile{
 
 /*propietà pannello-mobile*/
 #pannello-mobile{
-    top: 115px;
     position: absolute;
     right: 0;
     width: 35%;
@@ -1368,8 +1367,7 @@ p.paragrafo-amicizie-mobile{
 
 .btn-canzoni-playlist{
     background: transparent;
-
-
+    box-shadow: none!important;
 }
 .btn-playlist{
     float: right;
@@ -1839,6 +1837,7 @@ height: calc(100% - 90px);
 }
 .bottone-crea-playlist{
     margin:auto;
+    box-shadow: none!important;
 }
 .tab-nome-playlist{
     text-align: center;

@@ -347,7 +347,7 @@ router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', fun
  * Restituisce i dati delle playlist dell'utente che ha eseguito il login non appena carica la pagina del web player.
  */
 router.get('/playlist', function (req, res) {
-    var query = "SELECT IDPlaylist, Playlist.Nome, NumeroBrani " +
+    var query = "SELECT IDPlaylist, Playlist.Nome " +
         "FROM Playlist, Possiede, Account " +
         "WHERE Ref_IDUtente = IDUtente AND Ref_IDPlaylist = IDPlaylist AND IDUtente = " + req.session.idUtente +
         " ORDER BY Playlist.Nome";
@@ -384,9 +384,15 @@ router.post('/playlist/creaPlaylist', function (req, res) {
                     var query3 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
                     con.query(query3, function (err, result, fields) {
                         if (err) throw err;
+                        var query4 = "SELECT * " +
+                            "FROM Playlist " +
+                            "WHERE IDPlaylist = LAST_INSERT_ID()";
+                        con.query(query4, function (err, result, fields) {
+                            if (err) throw err;
+                            res.send(JSON.stringify(result));
+                        });
                     });
                 });
-                res.send("OK");
             }
         });
     }
@@ -450,6 +456,18 @@ router.post('/playlist/aggiungiBrano', function (req, res) {
     });
 });
 
+/**
+ * Elimina un brano all'interno della playlist selezionata dall'utente.
+ */
+router.post('/playlist/eliminaPlaylist', function (req, res) {
+    var idPlaylist = req.body.idPlaylist;
+    var idBrano = req.body.idBrano;
+    var query = "DELETE FROM Composizione WHERE Ref_IDPlaylist = " + idPlaylist +" AND Ref_IDBrano = " + idBrano;
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        else res.send("OK");
+    });
+});
 
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
