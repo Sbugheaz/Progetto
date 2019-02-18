@@ -781,16 +781,31 @@ function eliminaPlaylist() {
 }
 
 //Funzione che richiede i brani di una specifica playlist
-function mostraBraniPlaylist() {
+function richiediBraniPlaylist() {
     $.post("/WebPlayer/playlist/mostraBrani",
         {
-            idPlaylist: id //Da completare
+            idPlaylist: idPlaylist
         }, function(result) {
         if (result != "ERR") {
             var lb = JSON.parse(result);
-            for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
-            listaAmici[i] = new Brano(lb[i]);
-            //stampaListaAmici(listaAmici);
-    }
+            for (i = 0; i < lb.length; i++)
+            listaBrani[i] = new Brano(lb[i]);
+            for(i=0; i<listaPlaylist.length; i++){
+                if(listaPlaylist[i].idPlaylist==idPlaylist){
+                    $("#contenitore-canzoni-playlist").append('<div id="contenitore-paragrafo">' +
+                        '<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
+                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist"> </i></p> </div>');
+                }
+            }
+            stampaBraniPlaylist();
+        }
+        else{
+            for(i=0; i<listaPlaylist.length; i++){
+                if(listaPlaylist[i].idPlaylist==idPlaylist){
+                    $("#contenitore-canzoni-playlist").append('<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
+                        'La playlist "'+ listaPlaylist[i].nome +'" è vuota. </p>');
+                }
+            }
+        }
 });
 }

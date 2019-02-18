@@ -163,14 +163,40 @@ function stampaListaPlaylist(listaPlaylist){
         }
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
-            mostraBraniPlaylist();
-
-
-           // eliminaPlaylist();
+            richiediBraniPlaylist();
         }
     );
 }
 
-
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
+//appartenenti alla playlist scelta dall'utente
+function stampaBraniPlaylist(){
+    var content = "";
+    $("#contenitore-canzoni-playlist").append('<div id="contenitore-lista-playlist">\n' +
+                                                '<ul  class="demo demo-playlist">');
+    for (i = 0; i < listaBrani.length; i++) {
+        content += '<li class="li_listaPlaylist">'+
+            '<div class="ordine-playlist">'+
+                '<p class="p_playList">'+ (i+1) +'</p>' +
+            '</div>'+
+            '<div class="canzone">' +
+                '<p class="p_playList" style="color: cornsilk">' + listaBrani[i].titolo + '</p>' +
+            '</div>'+
+            '<div class="autore">'+
+                '<p class="p_playList">'+ listaBrani[i].artista +'</p>' +
+            '</div>'+
+            '<div class="btn-group-orizontal-justified btn-playlist" >' +
+            '<button type="button" class="btn btn-default btn-canzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>' +
+            '</div>'+
+            '</li>';
+        $(".demo-playlist").append(content);
+        content = "";
+    }
+    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+            // recuperaIDAggiungi(evento);
+        //}
+    //);
+}
 
 
