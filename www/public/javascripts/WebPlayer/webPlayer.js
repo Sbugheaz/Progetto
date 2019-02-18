@@ -775,6 +775,6 @@ function mostraBraniPlaylist() {
             for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
             listaAmici[i] = new Brano(lb[i]);
             //stampaListaAmici(listaAmici);
-    }
-});
+            }
+    });
 }
