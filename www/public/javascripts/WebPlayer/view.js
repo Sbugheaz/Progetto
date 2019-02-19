@@ -189,6 +189,32 @@ function stampaListaPlaylist(listaPlaylist){
     );
 }
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'aposita lista
+function stampaListaAlbum(listaAlbum){
+    $(".flex-container-Album").empty();
+    //Stampo il flex-item-container contenente tutti i singoli
+    $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/default-album.png" class="flex-item-img" id="singoli">' +
+                                        '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">Singoli</p></div></div>');
+    $("#singoli").click(function(evento) {
+            richiediBraniSingoli();
+        }
+    );
+
+    var content="";
+    for(i=0; i<listaAlbum.length; i++) {
+        content += '<div class="flex-item-Album">' +
+            '<img src="'+ listaAlbum[i].url_cover +'" class="flex-item-img coverAlbum" id="album_n'+ listaAlbum[i].idAlbum +'">' +
+            '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">'+ listaAlbum[i].nome +'</p></div></div>' ;
+        $(".flex-container-Album").append(content);
+        content = "";
+    }
+    $(".coverAlbum").click(function(evento) {
+            recuperaIDAlbum(evento);
+            richiediBraniAlbum();
+        }
+    );
+}
+
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
@@ -254,6 +280,50 @@ function stampaBraniPlaylist(){
     //);
 }
 
+
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
+//appartenenti all'album scelto dall'utente
+function stampaBraniAlbum(){
+        $("#contenitore-lista-album").remove();
+        var content = "";
+        $("#contenitore-canzoni-album").append('<div id="contenitore-lista-Album">' +
+            '<ul  class="demo demo-Album"></ul></div>');
+    for (i = 0; i < listaBrani.length; i++) {
+        content += '<li class="li_listaAlbum">' +
+            '<div class="ordine-Album">' +
+            '<p class="p_Album">' + (i+1) + '</p>' +
+            '</div>' +
+            '<div class="canzone-album">' +
+            '<p class="p_Album" style="color: cornsilk">'+ listaBrani[i].titolo +'</p>' +
+            '</div>' +
+            '<div class="autore-album">' +
+            '<p class="p_Album">'+ listaBrani[i].artista +'</p>' +
+            '</div>' +
+            '<div class="btn-group-orizontal-justified btn-album">' +
+            '<button type="button" class="btn btn-default btn-canzoni-album"><i class="fa fa-caret-square-o-right"></i></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-album"><i class="fa fa-plus-circle"></i></button>' +
+            '</div>' +
+            '</li>';
+        $(".demo-Album").append(content);
+        content = "";
+    }
+
+    $(".play").click(function(evento) {
+            recuperaIDBrano(evento);
+            riproduciBrano();
+
+        }
+    );
+    $(".rimuovi").click(function(evento) {
+            recuperaIDBrano(evento);
+            rimuoviBrano();
+        }
+    );
+    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    // recuperaIDAggiungi(evento);
+    //}
+    //);
+}
 
 //Funzione che stampa nel Pannello In Riproduzione i brani, gli album o le playlist in riproduzione
 function stampaBraniInRiproduzione() {

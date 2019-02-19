@@ -100,7 +100,7 @@ router.get('/', function (req, res) {
 });
 
 /**
- * Restituisce i dati dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ * Restituisce i dati dell'utente che ha eseguito il login al caricamento della pagina del web player.
  */
 router.get('/utente', function (req, res) {
         var query1 = "SELECT NomeUtente, Nome, Cognome, DataDiNascita, Email " +
@@ -186,7 +186,7 @@ router.post('/modificaAccount', function (req, res) {
 });
 
 /**
- * Restituisce i dati degli amici dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ * Restituisce i dati degli amici dell'utente che ha eseguito il login al caricamento della pagina del web player.
  */
 router.get('/amici', function (req, res) {
     var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
@@ -250,7 +250,7 @@ router.post('/amici/cercaUtenti', function (req, res) {
 });
 
 /**
- * Restituisce i dati degli amici dell'utente attualmente online non appena carica la pagina del web player. Questa
+ * Restituisce i dati degli amici dell'utente attualmente online al caricamento della pagina del web player. Questa
  * richiesta viene ricevuta ogni 30 secondi per permettere l'aggiornamento in tempo reale dello stato online degli
  * amici.
  */
@@ -349,7 +349,7 @@ router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', fun
 });
 
 /**
- * Restituisce i dati delle playlist dell'utente che ha eseguito il login non appena carica la pagina del web player.
+ * Restituisce i dati delle playlist dell'utente che ha eseguito il login al caricamento della pagina del web player.
  */
 router.get('/playlist', function (req, res) {
     var query = "SELECT IDPlaylist, Playlist.Nome " +
@@ -386,15 +386,21 @@ router.post('/playlist/creaPlaylist', function (req, res) {
                 var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "')";
                 con.query(query2, function (err, result, fields) {
                     if (err) throw err;
-                    var query3 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                    var query3 = "SELECT MAX(IDPlaylist) AS Max " +
+                        "FROM Playlist ";
                     con.query(query3, function (err, result, fields) {
-                        if (err) throw err;
-                        var query4 = "SELECT * " +
-                            "FROM Playlist " +
-                            "WHERE IDPlaylist = LAST_INSERT_ID()";
+                        if(err) throw (err);
+                        var idPlaylist = result[0].Max;
+                        var query4 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", " + idPlaylist + ")";
                         con.query(query4, function (err, result, fields) {
                             if (err) throw err;
-                            res.send(JSON.stringify(result));
+                            var query5 = "SELECT * " +
+                                "FROM Playlist " +
+                                "WHERE IDPlaylist = " + idPlaylist;
+                            con.query(query5, function (err, result, fields) {
+                                if (err) throw err;
+                                res.send(JSON.stringify(result));
+                            });
                         });
                     });
                 });
@@ -416,7 +422,8 @@ router.post('/playlist/eliminaPlaylist', function (req, res) {
 });
 
 /**
- * Restituisce tutti i brani contenuti in una playlist utilizzando una vista creata all'interno del database.
+ * Restituisce tutti i brani contenuti in una playlist utilizzando una vista creata nella fase di riempimento del
+ * database.
  */
 router.post('/playlist/mostraBrani', function (req, res) {
     var idPlaylist = req.body.idPlaylist;
@@ -471,6 +478,53 @@ router.post('/playlist/eliminaBrano', function (req, res) {
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         else res.send("OK");
+    });
+});
+
+/**
+ * Restituisce i dati di tutti gli album presenti al caricamento della pagina.
+ */
+router.get('/album', function (req, res) {
+    var query = "SELECT * " +
+                "FROM Album " +
+                "ORDER BY Nome ";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        //Se la query restituisce gli amici dell'utente li manda al client
+        if(result.length != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
+/**
+ * Restituisce tutti i brani contenuti in un album.
+ */
+router.post('/album/mostraBrani', function (req, res) {
+    var idAlbum = req.body.idAlbum;
+    var query = "SELECT IDBrano, Titolo, B.Artista, Durata, B.Url_cover, Url_brano " +
+        "FROM Album A, Appartenenza Ap, Brano B " +
+        "WHERE A.IDAlbum = Ap.Ref_IDAlbum AND B.IDBrano = Ap.Ref_IDBrano AND IDAlbum = " + idAlbum +
+        " ORDER BY OrdineBrano";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
+/**
+ * Restituisce tutti i singoli (i brani che non appartengono a nessun album).
+ */
+router.get('/album/mostraSingoli', function (req, res) {
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
+        "FROM Brano " +
+        "WHERE IDBrano NOT IN (SELECT IDBrano " +
+                              "FROM Album, Appartenenza, Brano " +
+                              "WHERE IDAlbum = Ref_IDAlbum AND IDBrano = Ref_IDBrano)";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
     });
 });
 

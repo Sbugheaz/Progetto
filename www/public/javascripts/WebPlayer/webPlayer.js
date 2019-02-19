@@ -9,7 +9,9 @@ var audioElement = new Audio();// create the audio object// assign the audio fil
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
-var idPlaylist; //variabile che contiene l'id' della playlist da stampare
+var idPlaylist; //variabile che contiene l'id' della playlist selezionata
+var idAlbum; //variabile che contiene l'id' dell'album selezionato
+
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
 
@@ -354,6 +356,10 @@ function recuperaIDBrano(evento) {
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
     idPlaylist = evento.target.id.substring(8);
+}
+//Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
+function recuperaIDAlbum(evento) {
+    idAlbum = evento.target.id.substring(7);
 }
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
@@ -760,10 +766,10 @@ function richiediBraniPerGenere() {
 
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
-    audioElement.src = "riproduciBrano/" + urlBrano;
+    audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    setTimeout(comunicaBranoInAscolto, 40000);
+    setTimeout(comunicaBranoInAscolto, 20000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
@@ -878,6 +884,49 @@ function richiediBraniPlaylist() {
     });
 }
 
+//Funzione che richiede i brani di uno specifico album
+function richiediBraniAlbum() {
+    $.post("/WebPlayer/album/mostraBrani",
+        {
+            idAlbum: idAlbum
+        }, function(result) {
+            if (result != "ERR") {
+                $("#contenitore-canzoni-album").empty();
+                listaBrani.remove(0, listaBrani.length-1);
+                var lb = JSON.parse(result);
+                for (i = 0; i < lb.length; i++)
+                    listaBrani[i] = new Brano(lb[i]);
+                for(i=0; i<listaAlbum.length; i++){
+                    if(listaAlbum[i].idAlbum==idAlbum){
+                        $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                            '<p class="paragrafo-album" style="font-size: x-large">' +
+                            '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
+                            '</div>');
+                    }
+                }
+                stampaBraniAlbum();
+            }
+        });
+}
+
+//Funzione che richiede tutti i brani singoli
+function richiediBraniSingoli() {
+    $.get("/WebPlayer/album/mostraSingoli",
+         function(result) {
+            if (result != "ERR") {
+                $("#contenitore-canzoni-album").empty();
+                listaBrani.remove(0, listaBrani.length-1);
+                var lb = JSON.parse(result);
+                for (i = 0; i < lb.length; i++)
+                    listaBrani[i] = new Brano(lb[i]);
+                $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                            '<p class="paragrafo-album" style="font-size: x-large"> Singoli </p>' +
+                            '</div>');
+                stampaBraniAlbum();
+            }
+        });
+}
+
 //Funzione che gestisce la rimozione di un brano da una playlist da parte dell'utente
 function rimuoviBrano() {
     $.post("/WebPlayer/playlist/eliminaBrano",
@@ -889,8 +938,8 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        percorsi.remove(i);
-                        listaOrigine.remove(i);
+                        //percorsi.remove(i);
+                        //listaOrigine.remove(i);
                     }
                 }
                 stampaBraniPlaylist();

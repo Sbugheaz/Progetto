@@ -5,6 +5,7 @@ var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnlin
 $(document).ready(function () {
     richiediDatiAccount(); //Funzione che ottiene i dati dell'utente che ha effettuato l'accesso
     richiediPlaylist(); //Funzione che ottiene i dati delle playlist dell'utente che ha effettuato l'accesso
+    richiediAlbum();//Funzione che ottiene i dati di tutti gli album
     richiediListaAmici(); //Funzione che ottiene la lista amici dell'utente che ha effettuato l'accesso
     ricercaUtenti(); //Funzione che permette la ricerca degli utenti per l'amicizia
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
@@ -70,8 +71,17 @@ function richiediPlaylist() {
                 listaPlaylist[i] = new Playlist(lp[i]);
                 stampaListaPlaylist(listaPlaylist);
         }
-        else {
-            //L'utente non ha ancora creato alcuna playlist
+    });
+}
+
+//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaAlbum per stamparli nell'apposita lista
+function richiediAlbum() {
+    $.get('/WebPlayer/album', function (result) {
+        if (result != "ERR") {
+            var lab = JSON.parse(result);
+            for (i = 0; i < lab.length; i++) //Aggiungiamo tutti gli album nel vettore listaAlbum
+                listaAlbum[i] = new Album(lab[i]);
+            stampaListaAlbum(listaAlbum);
         }
     });
 }
