@@ -154,13 +154,13 @@ function stampalistaAlbumRicerca(la){
 function stampaListaPlaylist(listaPlaylist){
     $("#contenitore-playlist").empty();
     $("#contenitore-playlist").append('<div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">\n' +
-        '                                    <div class="flex-item-conteiner">\n' +
-        '                                        <div class="flex-item-conteiner-icon">\n' +
-        '                                            <a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a>\n' +
-        '                                        </div>\n' +
-        '                                        <div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>\n' +
-        '                                    </div>\n' +
-        '                                </div>');
+                                            '<div class="flex-item-conteiner">\n' +
+                                                '<div class="flex-item-conteiner-icon">\n' +
+                                                    '<a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a>\n' +
+                                                '</div>\n' +
+                                                '<div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>\n' +
+                                            '</div>\n' +
+                                        '</div>');
     var content="";
     for(i=0; i<listaPlaylist.length; i++) {
         content += '<div class="flex-item container-playlist" id="playlist'+ listaPlaylist[i].idPlaylist +'">' +
@@ -182,11 +182,12 @@ function stampaListaPlaylist(listaPlaylist){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
+    $(".demo-playlist").empty();
     var content = "";
     $("#contenitore-canzoni-playlist").append('<div id="contenitore-lista-playlist">\n' +
                                                 '<ul  class="demo demo-playlist"></ul></div>');
     for (i = 0; i < listaBrani.length; i++) {
-        content += '<li class="li_listaPlaylist">'+
+        content += '<li class="li_listaPlaylist" id="brano-playlist'+ listaBrani[i].idBrano+'">'+
             '<div class="ordine-playlist">'+
                 '<p class="p_playList">'+ (i+1) +'</p>' +
             '</div>'+
@@ -197,13 +198,26 @@ function stampaBraniPlaylist(){
                 '<p class="p_playList">'+ listaBrani[i].artista +'</p>' +
             '</div>'+
             '<div class="btn-group-orizontal-justified btn-playlist" >' +
-            '<button type="button" class="btn btn-default btn-canzoni-playlist"> <a href="#"><i class="fa fa-caret-square-o-right"></i></a></button>' +
-            '<button type="button" class="btn btn-default btn-canzoni-playlist"><a href="#"><i class="fa fa-close"></i></a></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-playlist play" id="play-brano'+ listaBrani[i].idBrano + '">' +
+                '<i class="fa fa-caret-square-o-right" style="pointer-events: none;"></i></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-playlist rimuovi" id="rimu-brano'+ listaBrani[i].idBrano + '">' +
+                '<i class="fa fa-close" style="pointer-events: none;"></i></button>' +
             '</div>'+
             '</li>';
         $(".demo-playlist").append(content);
         content = "";
     }
+    $(".play").click(function(evento) {
+            recuperaIDBrano(evento);
+
+        }
+    );
+    $(".rimuovi").click(function(evento) {
+            recuperaIDBrano(evento);
+            rimuoviBrano();
+            stampaBraniPlaylist();
+        }
+    );
     //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
             // recuperaIDAggiungi(evento);
         //}
