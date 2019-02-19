@@ -519,7 +519,6 @@ function aggiornaPlayer() {
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-
     listaOrigine=[];
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=[];

@@ -10,10 +10,11 @@ var generator = require('generate-password'); //modulo che permette di generare 
 var mailer = require('../mailer'); // modulo che gestisce le comunicazioni del server via mail
 
 /**
- * Inizializzazione della connessione con il database.
- * @type {Connection}
+ * Creazione di un pool di connessioni per permettere la comunicazione con il database, in questo modo ogni richiesta
+ * avverrà su una connessione distinta per evitare il flooding di richieste al database.
+ * @type {Pool}
  */
-var con = mysql.createConnection({
+var con = mysql.createPool({
     host: "localhost",
     user: "admin",
     password: "password",
@@ -34,12 +35,6 @@ var con = mysql.createConnection({
         return useDefaultTypeCasting();
     }
 });
-
-//Avvia la connessione al database
-con.connect(function(err) {
-    if (err) throw err;
-});
-
 
 //Inizializza l'account gmail del server con cui inviare le mail agli utenti
 mailer.inizializza("s.wave2019@gmail.com", "soundwave15", "gmail");
