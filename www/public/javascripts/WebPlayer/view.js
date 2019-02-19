@@ -190,10 +190,10 @@ function stampaListaPlaylist(listaPlaylist){
 }
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'aposita lista
-function stampaListaAlbum(listaPlaylist){
+function stampaListaAlbum(listaAlbum){
     $(".flex-container-Album").empty();
     //Stampo il flex-item-container contenente tutti i singoli
-    $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/dafault-album.png" class="flex-item-img">' +
+    $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/default-album.png" class="flex-item-img">' +
                                         '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">Singoli</p></div></div>');
 
     var content="";

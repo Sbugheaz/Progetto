@@ -5,6 +5,7 @@ var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnlin
 $(document).ready(function () {
     richiediDatiAccount(); //Funzione che ottiene i dati dell'utente che ha effettuato l'accesso
     richiediPlaylist(); //Funzione che ottiene i dati delle playlist dell'utente che ha effettuato l'accesso
+    richiediAlbum();//Funzione che ottiene i dati di tutti gli album
     richiediListaAmici(); //Funzione che ottiene la lista amici dell'utente che ha effettuato l'accesso
     ricercaUtenti(); //Funzione che permette la ricerca degli utenti per l'amicizia
     richiediAmiciOnline(); //Funzione che ottiene la lista degli amici online dell'utente che ha effettuato l'accesso
