@@ -209,6 +209,7 @@ function stampaBraniPlaylist(){
     }
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
+            riproduciBrano();
 
         }
     );
