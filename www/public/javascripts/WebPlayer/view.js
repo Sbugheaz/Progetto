@@ -300,22 +300,25 @@ function stampaBraniAlbum(){
             '<p class="p_Album">'+ listaBrani[i].artista +'</p>' +
             '</div>' +
             '<div class="btn-group-orizontal-justified btn-album">' +
-            '<button type="button" class="btn btn-default btn-canzoni-album"><i class="fa fa-caret-square-o-right"></i></button>' +
-            '<button type="button" class="btn btn-default btn-canzoni-album"><i class="fa fa-plus-circle"></i></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-album riproduci" id="riproduci-'+ listaBrani[i].idBrano +'">' +
+            '<i class="fa fa-caret-square-o-right" style="pointer-events:none;"></i></button>' +
+            '<button type="button" class="btn btn-default btn-canzoni-album aggingiAPlaylist" id="agg-a-play'+ listaBrani[i].idBrano+'">' +
+            '<i class="fa fa-plus-circle" style="pointer-events:none;"></i></button>' +
             '</div>' +
             '</li>';
         $(".demo-Album").append(content);
         content = "";
     }
 
-    $(".play").click(function(evento) {
+    $(".riproduci").click(function(evento) {
             recuperaIDBrano(evento);
             riproduciBrano();
 
         }
     );
-    $(".rimuovi").click(function(evento) {
+    $(".aggingiAPlaylist").click(function(evento) {
             recuperaIDBrano(evento);
+            console.log(idBrano)
             rimuoviBrano();
         }
     );
