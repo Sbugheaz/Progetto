@@ -468,7 +468,6 @@ function branoSuccessivo() {
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
     if(percorsi!=null) {
-        console.log(audioElement.currentTime, indiceCorrente);
         if (audioElement.currentTime < 3) {//se il brano è stato avviato da più di tre secondi
             if ((indiceCorrente > 0 && repeat == false) || repeat == true) {
                 stoppaBrano();
@@ -529,11 +528,13 @@ function riproduciBrano() {
             indiceCorrente=i;
         }
     }
+    abilitaPlayer();
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
-    abilitaPlayer();
     streamingBrano(percorsi[indiceCorrente].url_brano);
-    setInterval(comunicaBranoInAscolto, 20000);
+    setInterval(comunicaBranoInAscolto, 40000);
+
+
 }
 
 
