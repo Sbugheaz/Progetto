@@ -242,6 +242,9 @@ ul.demo {
     color: white;
     background-color: rgba(255,138,0,1);
 }
+.active{
+ color:#5CA5FF;
+}
 
 
 /*propità barra ricerca*/

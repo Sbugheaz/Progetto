@@ -28,6 +28,7 @@ $(document).ready(function () {
     $(".pulsanteA-playlist,.btn-mobile-playlist").click(mostraPannelloPlaylist);//Evento che permette di far comparire il pannello playlist
     $("#tasto-Pop,#tasto-Classico,#tasto-Rock,#tasto-Pop-mobile,#tasto-mobile-Pop,#tasto-mobile-Rock,#tasto-mobile-Classico").click(mostraPannelloGenere);//Evento che permette di far comparire il pannello del genere selezionato
 
+
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
