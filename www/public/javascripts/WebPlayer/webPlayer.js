@@ -893,8 +893,8 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        percorsi.remove(i);
-                        listaOrigine.remove(i);
+                        //percorsi.remove(i);
+                        //listaOrigine.remove(i);
                     }
                 }
                 stampaBraniPlaylist();

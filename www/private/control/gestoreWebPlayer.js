@@ -386,15 +386,21 @@ router.post('/playlist/creaPlaylist', function (req, res) {
                 var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "')";
                 con.query(query2, function (err, result, fields) {
                     if (err) throw err;
-                    var query3 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                    var query3 = "SELECT MAX(IDPlaylist) AS Max " +
+                        "FROM Playlist ";
                     con.query(query3, function (err, result, fields) {
-                        if (err) throw err;
-                        var query4 = "SELECT * " +
-                            "FROM Playlist " +
-                            "WHERE IDPlaylist = LAST_INSERT_ID()";
+                        if(err) throw (err);
+                        var idPlaylist = result[0].Max;
+                        var query4 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", " + idPlaylist + ")";
                         con.query(query4, function (err, result, fields) {
                             if (err) throw err;
-                            res.send(JSON.stringify(result));
+                            var query5 = "SELECT * " +
+                                "FROM Playlist " +
+                                "WHERE IDPlaylist = " + idPlaylist;
+                            con.query(query5, function (err, result, fields) {
+                                if (err) throw err;
+                                res.send(JSON.stringify(result));
+                            });
                         });
                     });
                 });
