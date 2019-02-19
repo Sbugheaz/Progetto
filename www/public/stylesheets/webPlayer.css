@@ -242,6 +242,9 @@ ul.demo {
     color: white;
     background-color: rgba(255,138,0,1);
 }
+.active{
+ color:#5CA5FF;
+}
 
 
 /*propità barra ricerca*/
@@ -369,11 +372,11 @@ div.slider-selection{
 
 }
 /*propietà tasti webplayer*/
-#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Classico:focus{
+#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz:focus{
     color: cornsilk;
 }
 
-#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Classico:hover{
+#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz:hover{
     background-color: #5CA5FF;
 }
 

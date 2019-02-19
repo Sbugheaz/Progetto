@@ -123,7 +123,7 @@ router.post('/modificaPassword', function (req, res) {
     var password = req.body.vecchiaPassword;
     var nuovaPassword = req.body.nuovaPassword;
     var confermaNuovaPassword = req.body.confermaNuovaPassword;
-    var query1 = "SELECT IDUtente " +
+    var query1 = "SELECT IDUtente, NomeUtente " +
         "FROM Account " +
         "WHERE IDUtente = '" + req.session.idUtente + "' AND Password = '" + hashPassword(password) + "'";
     con.query(query1, function (err, result, fields) {
@@ -145,6 +145,7 @@ router.post('/modificaPassword', function (req, res) {
                     if (err) throw err;
                 });
                 res.send("OK");
+                console.log("L'utente " + result[0].NomeUtente + " ha aggiornato la sua password.\n");
             }
         }
     });
@@ -157,7 +158,7 @@ router.post('/modificaAccount', function (req, res) {
     var nome = req.body.nome;
     var cognome = req.body.cognome;
     var dataNascita = req.body.dataNascita;
-    var query1 = "SELECT IDUtente " +
+    var query1 = "SELECT IDUtente, NomeUtente " +
         "FROM Account " +
         "WHERE IDUtente = '" + req.session.idUtente + "'";
     con.query(query1, function (err, result, fields) {
@@ -177,6 +178,7 @@ router.post('/modificaAccount', function (req, res) {
                 if (err) throw err;
             });
             res.send("OK");
+            console.log("L'utente " + result[0].NomeUtente + " ha aggiornato i suoi dati utente.\n");
             }
     });
 });
@@ -323,8 +325,8 @@ router.post('/musica/cercaAlbum', function (req, res) {
     var albumCercati = req.body.albumCercati;
     if(albumCercati != "") {
         var query = "SELECT DISTINCT IDAlbum, Nome, Artista, NumeroBrani, Url_cover " +
-                    "FROM Album, Appartenenza " +
-                    "WHERE IDAlbum = Ref_IDAlbum AND (CONCAT(Nome, ' ', Artista) LIKE '" + albumCercati + "%' OR " +
+                    "FROM Album " +
+                    "WHERE (CONCAT(Nome, ' ', Artista) LIKE '" + albumCercati + "%' OR " +
                                     "CONCAT(Artista, ' ', Nome) LIKE '" + albumCercati + "%') " +
                     "ORDER BY Nome";
         con.query(query, function (err, result, fields) {
@@ -341,6 +343,7 @@ router.post('/musica/cercaAlbum', function (req, res) {
 router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', function (req, res) {
     var brano = '/var/www/html/private/media/' + req.url.slice(16);
     mediaserver.pipe(req, res, brano);
+    console.log("Richiesto lo streaming di un brano.\n");
 });
 
 /**
