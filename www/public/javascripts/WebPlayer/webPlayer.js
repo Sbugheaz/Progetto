@@ -1,17 +1,17 @@
-var pannelloAttivo;
+var pannelloAttivo;//variabile che indica il pannello attualmente in riproduzione.
 var nome=$("#pulsante-Logout").text();
-var pannelloSecondario;
-var seeking=false;
-var listaOrigine=[];
-var shuffleB=false;
-var repeat=false;
+var pannelloSecondario;//variabile dedicata a un pannello secondario da aprire
+var seeking=false;//variabile che indica se una canzone è in riproduzione;
+var listaOrigine;//vettore che contiene una copia della lista dei brani da riprodurre
+var shuffleB=false;//variabile booleana che imposta la modalità di riproduzione "random"
+var repeat=false;//variabile booleana che imposta la modalità di riproduzione "ripeti"
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist da stampare
 var block = false;
-var percorsi;
+var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
 
 //Funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -517,11 +517,11 @@ function aggiornaPlayer() {
     $("#album2").attr("src", percorsi[indiceCorrente].url_cover);
 }
 
-//Funzione che gestisce i dati del brano attualmente in riproduzione
+//Funzione che inizializza il vettore dei percorsi e gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-    listaOrigine=[];
+    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);
+    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
-    percorsi=[];
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
@@ -536,20 +536,23 @@ function riproduciBrano() {
 
 
 }
+//Funzione che permette la riproduzione di un singlo brano;
 function riproduciBranoSingolo() {
-    listaOrigine=[];
+    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);
+    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);
     percorsi=[];
+    listaOrigine=[];
 
     for (i = 0; i < listaBrani.length; i++) {
         if (listaBrani[i].idBrano == idBrano) {
-            indiceCorrente=i;
-            listaOrigine[i] = JSON.parse(JSON.stringify(listaBrani[i]));
-            percorsi[i]=JSON.parse(JSON.stringify(listaOrigine[i]));
+            listaOrigine.push(listaBrani[i]);
+            percorsi.push(listaBrani[i]);
         }
     }
+    indiceCorrente=0;
     abilitaPlayer();
     streamingBrano(percorsi[indiceCorrente].url_brano);
-    //setInterval(comunicaBranoInAscolto, 40000);
+    setInterval(comunicaBranoInAscolto, 40000);
 
 
 }

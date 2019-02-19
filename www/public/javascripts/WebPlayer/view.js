@@ -131,6 +131,7 @@ function stampalistaBraniRicerca(lb){
         recuperaIDBrano(evento);
         abilitaPlayer();
         riproduciBranoSingolo();
+
         }
     );
 
