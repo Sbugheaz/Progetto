@@ -354,21 +354,22 @@ function stampaBraniInRiproduzione() {
 
     $(".icona-play-prod").click(function(evento) {//funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
             recuperaIDBrano(evento);
-            console.log(indiceCorrente,idBrano);
 
             if(seeking==true && indiceCorrente==idBrano) {
+                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
                 stoppaBrano();
-                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
-
+                mostraPannelloBrani();
             }else if( indiceCorrente!=idBrano){
-                $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
+                $('#brano-ripr' + indiceCorrente).removeClass('fa-play').addClass('fa-pause');
                 indiceCorrente = idBrano;
-                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
                 streamingBrano(percorsi[indiceCorrente].url_brano);
+                mostraPannelloBrani();
 
             }else if (seeking==false && indiceCorrente==idBrano){
-                $('#brano-ripr'+ indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
                 avviaBrano();
+                mostraPannelloBrani();
             }
         }
     );

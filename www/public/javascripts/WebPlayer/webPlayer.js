@@ -428,7 +428,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
-        $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+    $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -437,6 +437,7 @@ function stoppaBrano() {
     audioElement.pause();
     $('#pause').hide();
     $('#play').show();
+    $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
 }
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
@@ -463,12 +464,14 @@ function refresh() {
 function branoSuccessivo() {
     if(percorsi!=null) {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
+            $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
             streamingBrano(percorsi[indiceCorrente].url_brano);
+            $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             if (seeking == true) {
-                audioElement.play();
+               avviaBrano();
             } else {
-                audioElement.pause();
+                stoppaBrano();
             }
         }
     }
@@ -479,11 +482,10 @@ function branoPrecedente() {
         if (audioElement.currentTime < 3) {//se il brano è stato avviato da più di tre secondi
             if ((indiceCorrente > 0 && repeat == false) || repeat == true) {
                 stoppaBrano();
-
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
                 indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;//prendo il valore assoluto
-
                 streamingBrano(percorsi[indiceCorrente].url_brano);
-
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             }
         } else {
             audioElement.currentTime = 0;
