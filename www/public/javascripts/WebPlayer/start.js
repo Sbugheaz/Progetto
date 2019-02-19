@@ -70,8 +70,17 @@ function richiediPlaylist() {
                 listaPlaylist[i] = new Playlist(lp[i]);
                 stampaListaPlaylist(listaPlaylist);
         }
-        else {
-            //L'utente non ha ancora creato alcuna playlist
+    });
+}
+
+//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaAlbum per stamparli nell'apposita lista
+function richiediAlbum() {
+    $.get('/WebPlayer/album', function (result) {
+        if (result != "ERR") {
+            var lab = JSON.parse(result);
+            for (i = 0; i < lab.length; i++) //Aggiungiamo tutti gli album nel vettore listaAlbum
+                listaAlbum[i] = new Album(lab[i]);
+            stampaListaAlbum(listaAlbum);
         }
     });
 }

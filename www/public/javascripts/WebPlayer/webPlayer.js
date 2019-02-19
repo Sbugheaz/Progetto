@@ -9,7 +9,9 @@ var audioElement = new Audio();// create the audio object// assign the audio fil
 var indiceCorrente=0;
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
-var idPlaylist; //variabile che contiene l'id' della playlist da stampare
+var idPlaylist; //variabile che contiene l'id' della playlist selezionata
+var idAlbum; //variabile che contiene l'id' dell'album selezionato
+
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
 
@@ -354,6 +356,10 @@ function recuperaIDBrano(evento) {
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
     idPlaylist = evento.target.id.substring(8);
+}
+//Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
+function recuperaIDAlbum(evento) {
+    idAlbum = evento.target.id.substring(7);
 }
 
 //Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca

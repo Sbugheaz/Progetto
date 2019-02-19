@@ -189,6 +189,28 @@ function stampaListaPlaylist(listaPlaylist){
     );
 }
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'aposita lista
+function stampaListaAlbum(listaPlaylist){
+    $(".flex-container-Album").empty();
+    //Stampo il flex-item-container contenente tutti i singoli
+    $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/dafault-album.png" class="flex-item-img">' +
+                                        '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">Singoli</p></div></div>');
+
+    var content="";
+    for(i=0; i<listaAlbum.length; i++) {
+        content += '<div class="flex-item-Album">' +
+            '<img src="'+ listaAlbum[i].url_cover +'" class="flex-item-img coverAlbum" id="album_n'+ listaAlbum[i].idAlbum +'">' +
+            '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">'+ listaAlbum[i].nome +'</p></div></div>' ;
+        $(".flex-container-Album").append(content);
+        content = "";
+    }
+    $(".coverAlbum").click(function(evento) {
+            recuperaIDAlbum(evento);
+            //richiediBraniAlbum();
+        }
+    );
+}
+
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
