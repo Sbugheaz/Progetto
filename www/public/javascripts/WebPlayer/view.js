@@ -240,6 +240,7 @@ function stampaBraniPlaylist(){
             recuperaIDBrano(evento);
             riproduciBrano();
 
+
         }
     );
     $(".rimuovi").click(function(evento) {
@@ -276,12 +277,29 @@ function stampaBraniInRiproduzione() {
         $(".listaRiproduzione").append(content);
         content = "";
     }
+    if(seeking==true) {
+        $('#brano-ripr' + indiceCorrente).removeClass('fa-play').addClass('fa-pause');
+    }
 }
 
-    $(".icona-play-prod").click(function(evento) {  //funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
+    $(".icona-play-prod").click(function(evento) {//funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
             recuperaIDBrano(evento);
-            indiceCorrente=idBrano;
-            streamingBrano(percorsi[indiceCorrente].url_brano);
+            console.log(indiceCorrente,idBrano);
+
+            if(seeking==true && indiceCorrente==idBrano) {
+                stoppaBrano();
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+
+            }else if( indiceCorrente!=idBrano){
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
+                indiceCorrente = idBrano;
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+                streamingBrano(percorsi[indiceCorrente].url_brano);
+
+            }else if (seeking==false && indiceCorrente==idBrano){
+                $('#brano-ripr'+ indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+                avviaBrano();
+            }
         }
     );
 

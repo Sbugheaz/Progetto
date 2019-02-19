@@ -250,7 +250,7 @@ function setDivVisibility(){
     function abilitaPlayer(){
         $("#barraDiAvanzamento").slider('enable');
         $("#volume-range").slider("enable");
-        $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+        $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
         $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
     }
     //funzione che disabilita lo shuffle quando è attivo
@@ -422,6 +422,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
+        $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -548,6 +549,7 @@ function riproduciBranoSingolo() {
         if (listaBrani[i].idBrano == idBrano) {
             listaOrigine.push(listaBrani[i]);
             percorsi.push(listaBrani[i]);
+            break;
         }
     }
     indiceCorrente=0;
