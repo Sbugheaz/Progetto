@@ -252,7 +252,7 @@ function setDivVisibility(){
     function abilitaPlayer(){
         $("#barraDiAvanzamento").slider('enable');
         $("#volume-range").slider("enable");
-        $('#play').click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+        $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
         $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
     }
     //funzione che disabilita lo shuffle quando è attivo
@@ -428,6 +428,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
+    $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -436,6 +437,7 @@ function stoppaBrano() {
     audioElement.pause();
     $('#pause').hide();
     $('#play').show();
+    $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
 }
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
@@ -462,12 +464,14 @@ function refresh() {
 function branoSuccessivo() {
     if(percorsi!=null) {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
+            $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
             streamingBrano(percorsi[indiceCorrente].url_brano);
+            $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             if (seeking == true) {
-                audioElement.play();
+               avviaBrano();
             } else {
-                audioElement.pause();
+                stoppaBrano();
             }
         }
     }
@@ -478,11 +482,10 @@ function branoPrecedente() {
         if (audioElement.currentTime < 3) {//se il brano è stato avviato da più di tre secondi
             if ((indiceCorrente > 0 && repeat == false) || repeat == true) {
                 stoppaBrano();
-
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
                 indiceCorrente = ((--indiceCorrente) + percorsi.length) % percorsi.length;//prendo il valore assoluto
-
                 streamingBrano(percorsi[indiceCorrente].url_brano);
-
+                $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             }
         } else {
             audioElement.currentTime = 0;
@@ -554,6 +557,7 @@ function riproduciBranoSingolo() {
         if (listaBrani[i].idBrano == idBrano) {
             listaOrigine.push(listaBrani[i]);
             percorsi.push(listaBrani[i]);
+            break;
         }
     }
     indiceCorrente=0;
@@ -767,7 +771,7 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    setTimeout(comunicaBranoInAscolto, 20000);
+    //setTimeout(comunicaBranoInAscolto, 20000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
@@ -936,8 +940,16 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        //percorsi.remove(i);
-                        //listaOrigine.remove(i);
+                        if(percorsi!=null){
+                            if(shuffleB==true){
+                                listaOrigine.remove(i);
+                                percorsi=JSON.parse(JSON.stringify(listaOrigine));
+                                percorsi=shuffle(percorsi);
+                            }else {
+                                percorsi.remove(i);
+                                listaOrigine.remove(i);
+                            }
+                        }
                     }
                 }
                 stampaBraniPlaylist();
