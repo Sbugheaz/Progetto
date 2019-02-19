@@ -251,16 +251,17 @@ function stampaBraniPlaylist(){
     //);
 }
 
+
+//Funzione che stampa nel Pannello In Riproduzione i brani, gli album o le playlist in riproduzione
 function stampaBraniInRiproduzione() {
     if(percorsi == null){
-        $("#contenitore-braniInRiproduzione").empty();
-                $("#contenitore-braniInRiproduzione").append('<p class="messaggio-riproduzione">' +
+        $("#contenitore-listaBrani-produzione").empty();
+                $("#contenitore-listaBrani-produzione").append('<p class="messaggio-riproduzione">' +
                     'Nessun brano in riproduzione. </p>');
         }
 
     else {
-
-    $(".listaRiproduzione").remove(); //svuota la lista contenente i brani in riproduzione
+    $("#contenitore-listaBrani-produzione").empty(); //svuota la lista contenente i brani in riproduzione
     var content = "";
     $("#contenitore-listaBrani-produzione").append('<ul class="demo listaRiproduzione">');
     for (i = 0; i < percorsi.length; i++) {
