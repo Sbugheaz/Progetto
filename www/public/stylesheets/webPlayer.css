@@ -1670,6 +1670,7 @@ height: calc(100% - 90px);
     height: 50px;
 }
 .nomeCanzone-prod{
+    overflow:hidden;
     text-align: left;
     width: 35%;
     font-weight: bold;

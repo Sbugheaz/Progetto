@@ -253,16 +253,17 @@ function stampaBraniPlaylist(){
     //);
 }
 
+
+//Funzione che stampa nel Pannello In Riproduzione i brani, gli album o le playlist in riproduzione
 function stampaBraniInRiproduzione() {
     if(percorsi == null){
-        $("#contenitore-braniInRiproduzione").empty();
-                $("#contenitore-braniInRiproduzione").append('<p class="messaggio-riproduzione">' +
+        $("#contenitore-listaBrani-produzione").empty();
+                $("#contenitore-listaBrani-produzione").append('<p class="messaggio-riproduzione">' +
                     'Nessun brano in riproduzione. </p>');
         }
 
     else {
-
-    $(".listaRiproduzione").remove(); //svuota la lista contenente i brani in riproduzione
+    $("#contenitore-listaBrani-produzione").empty(); //svuota la lista contenente i brani in riproduzione
     var content = "";
     $("#contenitore-listaBrani-produzione").append('<ul class="demo listaRiproduzione">');
     for (i = 0; i < percorsi.length; i++) {
@@ -270,19 +271,20 @@ function stampaBraniInRiproduzione() {
                         '<div class="datiCanzoni nomeCanzone_prod">'+ percorsi[i].titolo +'</div>\n' +
                             '<div class="datiCanzoni nomeArtista_prod">'+ percorsi[i].artista + '</div>\n' +
                             '<div class="datiCanzoni nomeStato_prod">'+ toMinutes(percorsi[i].durata) +'</div>\n' +
-                            '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod"></i> </div>\n' +
+                            '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod" id="brano-ripr'+ (i) +'"></i> </div>\n' +
                     '</li>';
         $(".listaRiproduzione").append(content);
         content = "";
     }
 }
-    /*
-    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+
+    $(".icona-play-prod").click(function(evento) {  //funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
             recuperaIDBrano(evento);
-            riproduciBrano();
+            indiceCorrente=idBrano;
+            streamingBrano(percorsi[indiceCorrente].url_brano);
         }
     );
-    */
+
 }
 
 

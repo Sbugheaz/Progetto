@@ -230,8 +230,8 @@ function setDivVisibility(){
 
 /*funzione che inizializza la pagina al caricamento*/
     function loadPagina() {
-        pannelloAttivo = $("#pannello-BraniRiproduzione");
-        $("#pannello-BraniRiproduzione").show();
+        pannelloAttivo = $("#pannello-Album");
+        $("#pannello-Album").show();
         if (($(window).width()) > '768') {
             $('#colonna-destra').css('display', 'block');
             $('#colonna-sinistra').css('display', 'block');
