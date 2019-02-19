@@ -474,7 +474,7 @@ btn-conzoni-ricerca{
 .play-brano{
     font-size: 30px;
     transform: translate(150%,100%);
-
+    pointer-events: none;
 }
 .play-brano:hover{
     opacity: 1;
