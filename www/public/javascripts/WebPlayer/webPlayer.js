@@ -764,7 +764,7 @@ function richiediBraniPerGenere() {
 
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
-    audioElement.src = "riproduciBrano/" + urlBrano;
+    audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
     setTimeout(comunicaBranoInAscolto, 20000);
@@ -772,8 +772,6 @@ function streamingBrano(urlBrano) {
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
-    console.log("Brano comunicato");
-    console.log("Brano comunicato");
     var titoloBrano = percorsi[indiceCorrente].titolo.replace("'", "''");
     $.post("/WebPlayer/ascolta",
         {
@@ -938,8 +936,8 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        percorsi.remove(i);
-                        listaOrigine.remove(i);
+                        //percorsi.remove(i);
+                        //listaOrigine.remove(i);
                     }
                 }
                 stampaBraniPlaylist();

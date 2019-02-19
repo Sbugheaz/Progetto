@@ -386,15 +386,21 @@ router.post('/playlist/creaPlaylist', function (req, res) {
                 var query2 = "INSERT INTO Playlist (Nome) VALUES ('" + nomePlaylist + "')";
                 con.query(query2, function (err, result, fields) {
                     if (err) throw err;
-                    var query3 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", (SELECT LAST_INSERT_ID()))";
+                    var query3 = "SELECT MAX(IDPlaylist) AS Max " +
+                        "FROM Playlist ";
                     con.query(query3, function (err, result, fields) {
-                        if (err) throw err;
-                        var query4 = "SELECT * " +
-                            "FROM Playlist " +
-                            "WHERE IDPlaylist = LAST_INSERT_ID()";
+                        if(err) throw (err);
+                        var idPlaylist = result[0].Max;
+                        var query4 = "INSERT INTO Possiede VALUES (" + req.session.idUtente + ", " + idPlaylist + ")";
                         con.query(query4, function (err, result, fields) {
                             if (err) throw err;
-                            res.send(JSON.stringify(result));
+                            var query5 = "SELECT * " +
+                                "FROM Playlist " +
+                                "WHERE IDPlaylist = " + idPlaylist;
+                            con.query(query5, function (err, result, fields) {
+                                if (err) throw err;
+                                res.send(JSON.stringify(result));
+                            });
                         });
                     });
                 });
@@ -499,6 +505,22 @@ router.post('/album/mostraBrani', function (req, res) {
         "FROM Album A, Appartenenza Ap, Brano B " +
         "WHERE A.IDAlbum = Ap.Ref_IDAlbum AND B.IDBrano = Ap.Ref_IDBrano AND IDAlbum = " + idAlbum +
         " ORDER BY OrdineBrano";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
+/**
+ * Restituisce tutti i singoli (i brani che non appartengono a nessun album).
+ */
+router.get('/album/mostraSingoli', function (req, res) {
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
+        "FROM Brano " +
+        "WHERE IDBrano NOT IN (SELECT IDBrano " +
+                              "FROM Album, Appartenenza, Brano " +
+                              "WHERE IDAlbum = Ref_IDAlbum AND IDBrano = Ref_IDBrano)";
     con.query(query, function (err, result, fields) {
         if (err) throw err;
         if(result != 0) res.send(JSON.stringify(result));
