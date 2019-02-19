@@ -884,6 +884,49 @@ function richiediBraniPlaylist() {
     });
 }
 
+//Funzione che richiede i brani di uno specifico album
+function richiediBraniAlbum() {
+    $.post("/WebPlayer/album/mostraBrani",
+        {
+            idAlbum: idAlbum
+        }, function(result) {
+            if (result != "ERR") {
+                $("#contenitore-canzoni-album").empty();
+                listaBrani.remove(0, listaBrani.length-1);
+                var lb = JSON.parse(result);
+                for (i = 0; i < lb.length; i++)
+                    listaBrani[i] = new Brano(lb[i]);
+                for(i=0; i<listaAlbum.length; i++){
+                    if(listaAlbum[i].idAlbum==idAlbum){
+                        $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                            '<p class="paragrafo-album" style="font-size: x-large">' +
+                            '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
+                            '</div>');
+                    }
+                }
+                stampaBraniAlbum();
+            }
+        });
+}
+
+//Funzione che richiede tutti i brani singoli
+function richiediBraniAlbum() {
+    $.get("/WebPlayer/album/mostraSingoli",
+         function(result) {
+            if (result != "ERR") {
+                $("#contenitore-canzoni-album").empty();
+                listaBrani.remove(0, listaBrani.length-1);
+                var lb = JSON.parse(result);
+                for (i = 0; i < lb.length; i++)
+                    listaBrani[i] = new Brano(lb[i]);
+                $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                            '<p class="paragrafo-album" style="font-size: x-large"> Singoli </p>' +
+                            '</div>');
+                stampaBraniAlbum();
+            }
+        });
+}
+
 //Funzione che gestisce la rimozione di un brano da una playlist da parte dell'utente
 function rimuoviBrano() {
     $.post("/WebPlayer/playlist/eliminaBrano",
