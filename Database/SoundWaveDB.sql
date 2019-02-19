@@ -235,8 +235,34 @@ VALUES
 (19, 'Speak to Me Breathe', 'Pink Floyd', 'Rock', '1973-03-01', 240, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Speak_to_me_breathe.mp3'),
 (20, 'The great Gig in the Sky', 'Pink Floyd', 'Rock', '1973-03-01', 284, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/The_great_gig_in_the_sky.mp3'),
 (21, 'Time', 'Pink Floyd', 'Rock', '1973-03-01', 426, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Time.mp3'),
-(22, 'Us and Them', 'Pink Floyd', 'Rock', '1973-03-01', 460, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Us_and_them.mp3');
+(22, 'Us and Them', 'Pink Floyd', 'Rock', '1973-03-01', 460, 'images/cover/dark_side_of_the_moon-cover.png', 'musica/1/Us_and_them.mp3'),
 
+(23, 'So What', 'Miles Davis', 'Jazz', '1959-08-17', 564 ,'images/cover/kind_of_blue-cover.jpg', 'musica/2/So_What.mp3'),
+(24, 'Freddie Freeloader', 'Miles Davis', 'Jazz', '1959-08-17', 588 ,'images/cover/kind_of_blue-cover.jpg', 'musica/2/Freddie_Freeloader.mp3'),
+(25, 'Blue in Green', 'Miles Davis', 'Jazz', '1959-08-17', 337 ,'images/cover/kind_of_blue-cover.jpg', 'musica/2/Blue_in_Green.mp3'),
+(26, 'All Blues', 'Miles Davis', 'Jazz', '1959-08-17', 695 ,'images/cover/kind_of_blue-cover.jpg', 'musica/2/All_Blues.mp3'),
+(27, 'Flamenco Sketches', 'Miles Davis', 'Jazz', '1959-08-17', 565 ,'images/cover/kind_of_blue-cover.jpg', 'musica/2/Flamenco_Sketches.mp3'),
+
+(28, 'Out There', 'Luke Combs', 'Country', '2017-06-02', 202, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Out_There.mp3'),
+(29, 'Memories Are Made Of', 'Luke Combs', 'Country', '2017-06-02', 216, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Memories_Are_Made_Of.mp3'),
+(30, 'Lonely One', 'Luke Combs', 'Country', '2017-06-02', 206, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Lonely_One.mp3'),
+(31, 'Beer Can', 'Luke Combs', 'Country', '2017-06-02', 210, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Beer_Can.mp3'),
+(32, 'Hurricane', 'Luke Combs', 'Country', '2017-06-02', 223, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Hurricane.mp3'),
+(33, 'One Number Away', 'Luke Combs', 'Country', '2017-06-02', 222, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/One_Number_Away.mp3'),
+(34, 'Don\'t Tempt Me', 'Luke Combs', 'Country', '2017-06-02', 211, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Dont_Tempt_Me.mp3'),
+(35, 'When It Rains It Pours', 'Luke Combs', 'Country', '2017-06-02', 242, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/When_It_Rains_It_Pours.mp3'),
+(36, 'This One\'s for You', 'Luke Combs', 'Country', '2017-06-02', 231, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/This_Ones_For_You.mp3'),
+(37, 'Be Careful What You Wish For', 'Luke Combs', 'Country', '2017-06-02', 175, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Be_Careful_What_You_Wish_For.mp3'),
+(38, 'I Got Away with You', 'Luke Combs', 'Country', '2017-06-02', 230, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/I_Got_Away_With_You.mp3'),
+(39, 'Honky Tonk Highway', 'Luke Combs', 'Country', '2017-06-02', 210, 'images/cover/this_ones_for_you-cover.jpg', 'musica/3/Honky_Tonk_Highway.mp3'),
+
+(40, 'P.Funk (Wants to Get Funked Up)', 'Parliament', 'Funky', '1975-12-15', 460, 'images/cover/mothership_connection-cover.jpg', 'musica/4/P_Funk.mp3'),
+(41, 'Mothership Connection (Star Child)', 'Parliament', 'Funky', '1975-12-15', 373, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Mothership_Connection.mp3'),
+(42, 'Unfunky UFO', 'Parliament', 'Funky', '1975-12-15', 263, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Unfunky_UFO.mp3'),
+(43, 'Supergroovalisticprosifunkstication', 'Parliament', 'Funky', '1975-12-15', 304, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Supergrooval.mp3'),
+(44, 'Handcuffs', 'Parliament', 'Funky', '1975-12-15', 243, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Handcuffs.mp3'),
+(45, 'Give Up the Funk', 'Parliament', 'Funky', '1975-12-15', 347, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Give_Up_the_Funk.mp3'),
+(46, 'Night of the Thumpasorus Peoples', 'Parliament', 'Funky', '1975-12-15',310, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Night_of_the_Thumpasorus_Peoples.mp3');
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Playlist`
@@ -349,7 +375,10 @@ ENGINE = InnoDB;
 INSERT INTO Album
 VALUES 
 (1, 'Playlist', 'Salmo', 13, 'images/cover/playlist-cover.jpg'),
-(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png');
+(2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png'),
+(3, 'Kind of Blue', 'Miles Davis', 5, 'images/cover/kind_of_blue-cover.jpg'),
+(4, 'This One\'s for You', 'Luke Combs', 12, 'images/cover/this_ones_for_you-cover.jpg'),
+(5, 'Mothership Connection', 'Parliament', 7, 'images/cover/mothership_connection-cover.jpg');
 
 
 -- -----------------------------------------------------
@@ -403,7 +432,34 @@ VALUES
 (19, 2, 1),
 (20, 2, 4),
 (21, 2, 3),
-(22, 2, 6);
+(22, 2, 6),
+
+(23, 3, 1),
+(24, 3, 2),
+(25, 3, 3),
+(26, 3, 4),
+(27, 3, 5),
+
+(28, 4, 1),
+(29, 4, 2),
+(30, 4, 3),
+(31, 4, 4),
+(32, 4, 5),
+(33, 4, 6),
+(34, 4, 7),
+(35, 4, 8),
+(36, 4, 9),
+(37, 4, 10),
+(38, 4, 11),
+(39, 4, 12),
+
+(40, 5, 1),
+(41, 5, 2),
+(42, 5, 3),
+(43, 5, 4),
+(44, 5, 5),
+(45, 5, 6),
+(46, 5, 7);
 
 
 -- ---------------------------------------------------------------------------

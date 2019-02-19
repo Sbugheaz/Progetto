@@ -522,7 +522,6 @@ function ripetizione() {
 }
 //Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
 function aggiornaPlayer() {
-    console.log(percorsi[0].titolo);
     var durata = toMinutes(percorsi[indiceCorrente].durata);
     $("#labelDurataTotaleBrano").text(durata);
     $("#titolo-brano-in-riproduzione").text(percorsi[indiceCorrente].artista + " "+percorsi[indiceCorrente].titolo);
@@ -747,9 +746,9 @@ function richiediBraniPerGenere() {
 
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
-    $.get("/WebPlayer/riproduciBrano/" + urlBrano, function () {
-    });
-    audioElement.src ="riproduciBrano/" + urlBrano;
+    //$.get("/WebPlayer/riproduciBrano/" + urlBrano, function () {
+    //});
+    audioElement.src = "riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
     //comunicaBranoInAscolto();
