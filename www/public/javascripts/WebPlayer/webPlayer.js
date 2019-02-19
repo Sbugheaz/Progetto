@@ -532,9 +532,7 @@ function riproduciBrano() {
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
     streamingBrano(percorsi[indiceCorrente].url_brano);
-    setInterval(comunicaBranoInAscolto, 40000);
-
-
+    setInterval(comunicaBranoInAscolto, 20000);
 }
 
 

@@ -19,6 +19,9 @@ var con = mysql.createPool({
     user: "admin",
     password: "password",
     database: "SoundWaveDB",
+    multipleStatements: true,
+    waitForConnections: true,
+    queueLimit: 1000,
 
     typeCast: function castField(field, useDefaultTypeCasting) {
         /**
