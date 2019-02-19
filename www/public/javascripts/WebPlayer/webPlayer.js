@@ -576,10 +576,6 @@ function riproduciBranoSingolo() {
 
 
 
-
-
-
-
 //Funzioni che gestiscono la comunicazione con il server
 
 /*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
