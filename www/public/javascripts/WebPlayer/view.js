@@ -129,7 +129,7 @@ function stampalistaBraniRicerca(lb){
     }
     $(".contenitore-icona-hover").click(function (evento) {
         recuperaIDBrano(evento);
-        
+
         }
     );
 
