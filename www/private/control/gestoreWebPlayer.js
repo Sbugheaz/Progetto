@@ -506,5 +506,21 @@ router.post('/album/mostraBrani', function (req, res) {
     });
 });
 
+/**
+ * Restituisce tutti i singoli (i brani che non appartengono a nessun album).
+ */
+router.get('/album/mostraSingoli', function (req, res) {
+    var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
+        "FROM Brano " +
+        "WHERE IDBrano NOT IN (SELECT IDBrano " +
+                              "FROM Album, Appartenenza, Brano " +
+                              "WHERE IDAlbum = Ref_IDAlbum AND IDBrano = Ref_IDBrano)";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
