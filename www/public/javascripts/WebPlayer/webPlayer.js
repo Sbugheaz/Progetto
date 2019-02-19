@@ -771,7 +771,7 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    setTimeout(comunicaBranoInAscolto, 20000);
+    //setTimeout(comunicaBranoInAscolto, 20000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
@@ -940,8 +940,16 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        //percorsi.remove(i);
-                        //listaOrigine.remove(i);
+                        if(percorsi!=null){
+                            if(shuffleB==true){
+                                listaOrigine.remove(i);
+                                percorsi=JSON.parse(JSON.stringify(listaOrigine));
+                                percorsi=shuffle(percorsi);
+                            }else {
+                                percorsi.remove(i);
+                                listaOrigine.remove(i);
+                            }
+                        }
                     }
                 }
                 stampaBraniPlaylist();
