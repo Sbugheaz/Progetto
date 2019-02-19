@@ -129,6 +129,8 @@ function stampalistaBraniRicerca(lb){
     }
     $(".contenitore-icona-hover").click(function (evento) {
         recuperaIDBrano(evento);
+        abilitaPlayer();
+        riproduciBranoSingolo();
 
         }
     );
@@ -249,6 +251,38 @@ function stampaBraniPlaylist(){
             // recuperaIDAggiungi(evento);
         //}
     //);
+}
+
+function stampaBraniInRiproduzione() {
+    if(percorsi == null){
+        $("#contenitore-braniInRiproduzione").empty();
+                $("#contenitore-braniInRiproduzione").append('<p class="messaggio-riproduzione">' +
+                    'Nessun brano in riproduzione. </p>');
+        }
+
+    else {
+
+    $(".listaRiproduzione").remove(); //svuota la lista contenente i brani in riproduzione
+    var content = "";
+    $("#contenitore-listaBrani-produzione").append('<ul class="demo listaRiproduzione">');
+    for (i = 0; i < percorsi.length; i++) {
+        content += '<li class="InRiproduzione">\n' +
+                        '<div class="datiCanzoni nomeCanzone_prod">'+ percorsi[i].titolo +'</div>\n' +
+                            '<div class="datiCanzoni nomeArtista_prod">'+ percorsi[i].artista + '</div>\n' +
+                            '<div class="datiCanzoni nomeStato_prod">'+ toMinutes(percorsi[i].durata) +'</div>\n' +
+                            '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod"></i> </div>\n' +
+                    '</li>';
+        $(".listaRiproduzione").append(content);
+        content = "";
+    }
+}
+    /*
+    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+            recuperaIDBrano(evento);
+            riproduciBrano();
+        }
+    );
+    */
 }
 
 

@@ -1654,7 +1654,15 @@ height: calc(100% - 90px);
     font-size: 1.6rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 60px;
+    height:60px;
+}
+#contenitore-braniInRiproduzione{
+    height: calc(100% - 60px);
+}
+.messaggio-riproduzione{
+    margin:auto;
+    color:cornsilk;
+    font-size: calc(0.7rem + 0.5vw);
 }
 .intestazione-listaBrani-prod{
     color: cornsilk;
@@ -1681,7 +1689,7 @@ height: calc(100% - 90px);
     padding:12px;
     margin:0;
 }
-.nomeStato-prod{
+.nomeDurata-prod{
     text-align: left;
     width: 30%;
     font-weight: bold;
@@ -1698,11 +1706,10 @@ height: calc(100% - 90px);
 
 #contenitore-listaBrani-produzione{
     overflow-y: auto;
-    width: 100%;
-    height: calc(100% - 110px);
-    margin: 0;
+    height: calc(100% - 50px);
+    padding: 0 15px;
 }
-.listaProduzione{
+.listaRiproduzione{
     font-size: 0.8rem;
     width: 100%;
     color: cornsilk;
