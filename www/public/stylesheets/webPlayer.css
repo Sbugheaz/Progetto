@@ -1392,9 +1392,9 @@ p.paragrafo-amicizie-mobile{
 }
 .contenitore-nomePlaylist{
     position: relative;
-    transform: translate(25%,25%);
+    transform: translate(0,25%);
     height: 50px;
-    width: 100px;
+    margin: auto;
     text-align: center;
 
 
@@ -1452,8 +1452,7 @@ p.paragrafo-amicizie-mobile{
 
 
 .flex-item-img{
-    height: 150px;
-    width: 150px;
+    width: calc(7rem + 3vw);
     display: block;
 }
 
@@ -1509,12 +1508,12 @@ fa-paly:hover {
 }
 
 .flex-item-conteiner{
+    text-align: center;
     border-radius: 15%;
-    height: 150px;
-    width: 150px;
+    width: calc(7rem + 3vw);
     display: block;
     background-color: rgba(65, 69, 74, 0.53);
-    cursor: pointer;
+    cursor: pointer
 }
 
 .flex-item-conteiner-icon{
@@ -1524,7 +1523,8 @@ fa-paly:hover {
     height: 100px;
     width: 100px;
     background-color: rgba(255,138,0,1);
-    transform: translate(25%, 25%);
+    transform: translate(0%,25%);
+    margin: auto;
 }
 .li_listaPlaylist{
     text-align: left;
