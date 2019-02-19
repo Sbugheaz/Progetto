@@ -82,8 +82,7 @@ router.get('/', function (req, res) {
  */
 router.post('/Login', function (req, res) {
     var nomeUtente = req.body.nomeUtente;
-    var password = req.body.password;
-    password = hashPassword(req.body.password);
+    var password = hashPassword(req.body.password);
     var query = "SELECT * " +
                 "FROM Account " +
                 "WHERE " + "NomeUtente = '" + nomeUtente + "' AND " + "Password = '" + password + "'";
@@ -113,7 +112,7 @@ router.post('/Login', function (req, res) {
 router.get('/Logout', function (req, res) {
     if(req.session.idUtente == undefined) res.redirect('/');
     else {
-        var query1 = "UPDATE Account SET StatoOnline = 0, Ascolta = '-' WHERE IDUtente=" + req.session.idUtente;
+        var query1 = "UPDATE Account SET StatoOnline = 0, Ascolta = '-' WHERE IDUtente = " + req.session.idUtente;
         var query2 = "SELECT NomeUtente FROM Account WHERE IDUtente = '" + req.session.idUtente + "'";
         req.session.idUtente = undefined;
         con.query(query1, function (err, result, fields) {
