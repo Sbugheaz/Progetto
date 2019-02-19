@@ -26,7 +26,8 @@ $(document).ready(function () {
     $("#amici-online").click(mostraPannelloAmicizieMobile);//Evento che permette di far comparire il pannello delle amicizie lato mobile
     $("#altro").click(mostraPannelloMobile);//Evento che permette di far comparire una tendina lateralmente a destra lato mobile
     $(".pulsanteA-playlist,.btn-mobile-playlist").click(mostraPannelloPlaylist);//Evento che permette di far comparire il pannello playlist
-    $("#tasto-Pop,#tasto-Classico,#tasto-Rock,#tasto-Pop-mobile,#tasto-mobile-Pop,#tasto-mobile-Rock,#tasto-mobile-Classico").click(mostraPannelloGenere);//Evento che permette di far comparire il pannello del genere selezionato
+    $("#tasto-Pop,#tasto-Country,#tasto-Funky,#tasto-Jazz,#tasto-Rock,#tasto-mobile-Pop,#tasto-mobile-Rock,#tasto-mobile-Country,#tasto-mobile-Funky,#tasto-mobile-Jazz")
+        .click(mostraPannelloGenere);//Evento che permette di far comparire il pannello del genere selezionato
 
 
 });
