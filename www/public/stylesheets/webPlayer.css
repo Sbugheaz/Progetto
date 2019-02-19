@@ -1371,6 +1371,7 @@ p.paragrafo-amicizie-mobile{
 .btn-canzoni-playlist{
     background: transparent;
     box-shadow: none!important;
+    color: #007bff;
 }
 .btn-playlist{
     float: right;

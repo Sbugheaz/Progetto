@@ -363,7 +363,7 @@ function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
 };
 
-//Funzione che recupera l'id del brano della lista per comunicarlo al server e riprodurlo
+//Funzione che recupera l'id del brano della lista per comunicarlo al server e riprodurlo o rimuoverlo dalla playlist
 function recuperaIDBrano(evento) {
     idBrano = evento.target.id.substring(10);
 };
@@ -867,4 +867,23 @@ function richiediBraniPlaylist() {
                     });
             });
     });
+}
+
+//Funzione che gestisce la rimozione di un brano da una playlist da parte dell'utente
+function rimuoviBrano() {
+    $.post("/WebPlayer/playlist/eliminaBrano",
+        {
+            idBrano: idBrano,
+            idPlaylist: idPlaylist
+        }, function(result) {
+            if(result == "OK") {
+                for(i=0; i<listaBrani.length; i++) {
+                    if(listaBrani[i].idBrano == idBrano) {
+                        listaBrani.remove(i);
+                    }
+                }
+
+            }
+
+        });
 }
