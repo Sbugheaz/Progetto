@@ -752,8 +752,6 @@ function richiediBraniPerGenere() {
 
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
-    //$.get("/WebPlayer/riproduciBrano/" + urlBrano, function () {
-    //});
     audioElement.src = "riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
