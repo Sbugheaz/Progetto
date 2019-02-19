@@ -118,7 +118,9 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano">  <img src="' + listaBrani[i].url_cover + '" id="coverBrano"><div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
+            '<div class="datiCanzoni contenitore-imgBrano">  ' +
+            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" id="coverBrano'+ listaBrani[i].idBrano+ '">' +
+            '<div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
@@ -182,9 +184,7 @@ function stampaListaPlaylist(listaPlaylist){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
-    console.log(listaBrani.length)
     if(listaBrani.length==0){
-        console.log("ciao")
         $("#contenitore-canzoni-playlist").empty();
         for(i=0; i<listaPlaylist.length; i++){
             if(listaPlaylist[i].idPlaylist==idPlaylist){
@@ -230,6 +230,8 @@ function stampaBraniPlaylist(){
     }
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
+            riproduciBrano();
+
         }
     );
     $(".rimuovi").click(function(evento) {

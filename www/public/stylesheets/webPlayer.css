@@ -454,7 +454,7 @@ btn-conzoni-ricerca{
     width: 10%;
     box-sizing: border-box;
 }
-#coverBrano{
+.coverBrano{
     width: 100px;
 }
 
@@ -1355,9 +1355,6 @@ p.paragrafo-amicizie-mobile{
     height: 20%;
 }
 
-.demo-playlist{
-    height: 70vh;
-}
 .paragrafo-playlist{
     font-size: 1.4vw;
     text-align: center ;
@@ -1808,6 +1805,7 @@ height: calc(100% - 90px);
     width: 30%;
 }
 .nomeCanzone_genere{
+    overflow: hidden;
     width: 30%;
 }
 .container-icona-play-gen{
