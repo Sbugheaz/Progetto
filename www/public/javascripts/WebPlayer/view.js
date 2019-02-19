@@ -269,19 +269,20 @@ function stampaBraniInRiproduzione() {
                         '<div class="datiCanzoni nomeCanzone_prod">'+ percorsi[i].titolo +'</div>\n' +
                             '<div class="datiCanzoni nomeArtista_prod">'+ percorsi[i].artista + '</div>\n' +
                             '<div class="datiCanzoni nomeStato_prod">'+ toMinutes(percorsi[i].durata) +'</div>\n' +
-                            '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod"></i> </div>\n' +
+                            '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod" id="brano-ripr'+ (i) +'"></i> </div>\n' +
                     '</li>';
         $(".listaRiproduzione").append(content);
         content = "";
     }
 }
-    /*
-    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+
+    $(".icona-play-prod").click(function(evento) {  //funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
             recuperaIDBrano(evento);
-            riproduciBrano();
+            indiceCorrente=idBrano;
+            streamingBrano(percorsi[indiceCorrente].url_brano);
         }
     );
-    */
+
 }
 
 
