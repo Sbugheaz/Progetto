@@ -311,6 +311,9 @@ router.post('/musica/cercaBrani', function (req, res) {
                     "WHERE CONCAT(Titolo, ' ', Artista) LIKE '" + braniCercati + "%' OR " +
                           "CONCAT(Artista, ' ', Titolo) LIKE '" + braniCercati + "%' OR " +
                           "Artista LIKE '%" + braniCercati + "%' " +
+            "OR IDBrano IN (SELECT IDBrano " +
+                            "FROM Brano, Appartenenza, Album " +
+                            "WHERE IDBrano = Ref_IDBrano AND IDAlbum = Ref_IDAlbum AND Album.Nome LIKE '" + braniCercati + "%') " +
             "ORDER BY Titolo";
         con.query(query, function (err, result, fields) {
             if (err) throw err;
