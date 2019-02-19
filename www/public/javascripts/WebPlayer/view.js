@@ -318,8 +318,6 @@ function stampaBraniAlbum(){
     );
     $(".aggingiAPlaylist").click(function(evento) {
             recuperaIDBrano(evento);
-            console.log(idBrano)
-            rimuoviBrano();
         }
     );
     //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico

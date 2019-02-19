@@ -262,7 +262,38 @@ VALUES
 (43, 'Supergroovalisticprosifunkstication', 'Parliament', 'Funky', '1975-12-15', 304, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Supergrooval.mp3'),
 (44, 'Handcuffs', 'Parliament', 'Funky', '1975-12-15', 243, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Handcuffs.mp3'),
 (45, 'Give Up the Funk', 'Parliament', 'Funky', '1975-12-15', 347, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Give_Up_the_Funk.mp3'),
-(46, 'Night of the Thumpasorus Peoples', 'Parliament', 'Funky', '1975-12-15',310, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Night_of_the_Thumpasorus_Peoples.mp3');
+(46, 'Night of the Thumpasorus Peoples', 'Parliament', 'Funky', '1975-12-15', 310, 'images/cover/mothership_connection-cover.jpg', 'musica/4/Night_of_the_Thumpasorus_Peoples.mp3'),
+
+(47, 'The Ringer', 'Eminem', 'Rap', '2018-08-31', 337, 'images/cover/kamikaze-cover.jpg', 'musica/5/The_Ringer.mp3'),
+(48, 'Greatest', 'Eminem', 'Rap', '2018-08-31', 226, 'images/cover/kamikaze-cover.jpg', 'musica/5/Greatest.mp3'),
+(49, 'Lucky You', 'Eminem feat. Joyner Lucas', 'Rap', '2018-08-31', 244, 'images/cover/kamikaze-cover.jpg', 'musica/5/Lucky_You.mp3'),
+(50, 'Normal', 'Eminem', 'Rap', '2018-08-31', 222, 'images/cover/kamikaze-cover.jpg', 'musica/5/Normal.mp3'),
+(51, 'Stepping Stone', 'Eminem', 'Rap', '2018-08-31', 309, 'images/cover/kamikaze-cover.jpg', 'musica/5/Stepping_Stone.mp3'),
+(52, 'Not Alike', 'Eminem feat. Royce da 5\'9', 'Rap', '2018-08-31', 288, 'images/cover/kamikaze-cover.jpg', 'musica/5/Not_Alike.mp3'),
+(53, 'Fall', 'Eminem', 'Rap', '2018-08-31', 216, 'images/cover/kamikaze-cover.jpg', 'musica/5/Fall.mp3'),
+(54, 'Kamikaze', 'Eminem', 'Rap', '2018-08-31', 262, 'images/cover/kamikaze-cover.jpg', 'musica/5/Kamikaze.mp3'),
+(55, 'Nice Guy', 'Eminem feat. Jessie Reyez', 'Rap', '2018-08-31', 150, 'images/cover/kamikaze-cover.jpg', 'musica/5/Nice_Guy.mp3'),
+(56, 'Good Guy', 'Eminem feat. Jessie Reyez', 'Rap', '2018-08-31', 142, 'images/cover/kamikaze-cover.jpg', 'musica/5/Good_Guy.mp3'),
+(57, 'Venom', 'Eminem', 'Rap', '2018-08-31', 269, 'images/cover/kamikaze-cover.jpg', 'musica/5/Venom.mp3'),
+
+(58, 'Walk On Water', 'Eminem feat. Beyoncé', 'Rap', '2017-12-15', 303, 'images/cover/revival-cover.png', 'musica/6/Walk_On_Water.mp3'),
+(59, 'Believe', 'Eminem', 'Rap', '2017-12-15', 315, 'images/cover/revival-cover.png', 'musica/6/Believe.mp3'),
+(60, 'Chloraseptic', 'Eminem feat. PHRESHER', 'Rap', '2017-12-15', 301, 'images/cover/revival-cover.png', 'musica/6/Chloraseptic.mp3'),
+(61, 'Untouchable', 'Eminem', 'Rap', '2017-12-15', 370, 'images/cover/revival-cover.png', 'musica/6/Untouchable.mp3'),
+(62, 'River', 'Eminem feat. Ed Sheeran', 'Rap', '2017-12-15', 221, 'images/cover/revival-cover.png', 'musica/6/River.mp3'),
+(63, 'Remind Me', 'Eminem', 'Rap', '2017-12-15', 225, 'images/cover/revival-cover.png', 'musica/6/Remind_Me.mp3'),
+(64, 'Like Home', 'Eminem feat. Alicia Keys', 'Rap', '2017-12-15', 245, 'images/cover/revival-cover.png', 'musica/6/Like_Home.mp3'),
+(65, 'Bad Husband', 'Eminem feat. X Ambassadors', 'Rap', '2017-12-15', 288, 'images/cover/revival-cover.png', 'musica/6/Bad_Husband.mp3'),
+(66, 'Tragic Endings', 'Eminem feat. Skylar Grey', 'Rap', '2017-12-15', 252, 'images/cover/revival-cover.png', 'musica/6/Tragic_Endings.mp3'),
+(67, 'Framed', 'Eminem', 'Rap', '2017-12-15', 253, 'images/cover/revival-cover.png', 'musica/6/Framed.mp3'),
+(68, 'Nowhere Fast', 'Eminem feat. Kehlani', 'Rap', '2017-12-15', 264, 'images/cover/revival-cover.png', 'musica/6/Nowhere_Fast.mp3'),
+(69, 'Heat', 'Eminem', 'Rap', '2017-12-15', 250, 'images/cover/revival-cover.png', 'musica/6/Heat.mp3'),
+(70, 'Offended', 'Eminem', 'Rap', '2017-12-15', 321, 'images/cover/revival-cover.png', 'musica/6/Offended.mp3'),
+(71, 'Need Me', 'Eminem feat. P!nk', 'Rap', '2017-12-15', 265, 'images/cover/revival-cover.png', 'musica/6/Need_Me.mp3'),
+(72, 'In Your Head', 'Eminem', 'Rap', '2017-12-15', 182, 'images/cover/revival-cover.png', 'musica/6/In_Your_Head.mp3'),
+(73, 'Castle', 'Eminem', 'Rap', '2017-12-15', 254, 'images/cover/revival-cover.png', 'musica/6/Castle.mp3'),
+(74, 'Arose', 'Eminem', 'Rap', '2017-12-15', 274, 'images/cover/revival-cover.png', 'musica/6/Arose.mp3');
+
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Playlist`
@@ -378,7 +409,9 @@ VALUES
 (2, 'The Dark Side of The Moon', 'Pink Floyd', 9, 'images/cover/dark_side_of_the_moon-cover.png'),
 (3, 'Kind of Blue', 'Miles Davis', 5, 'images/cover/kind_of_blue-cover.jpg'),
 (4, 'This One\'s for You', 'Luke Combs', 12, 'images/cover/this_ones_for_you-cover.jpg'),
-(5, 'Mothership Connection', 'Parliament', 7, 'images/cover/mothership_connection-cover.jpg');
+(5, 'Mothership Connection', 'Parliament', 7, 'images/cover/mothership_connection-cover.jpg'),
+(6, 'Kamikaze', 'Eminem', 11, 'images/cover/kamikaze-cover.jpg'),
+(7, 'Revival', 'Eminem', 17, 'images/cover/revival-cover.png');
 
 
 -- -----------------------------------------------------
@@ -459,7 +492,37 @@ VALUES
 (4, 5, 43),
 (5, 5, 44),
 (6, 5, 45),
-(7, 5, 46);
+(7, 5, 46),
+
+(1, 6, 47),
+(2, 6, 48),
+(3, 6, 49),
+(4, 6, 50),
+(5, 6, 51),
+(6, 6, 52),
+(7, 6, 53),
+(8, 6, 54),
+(9, 6, 55),
+(10, 6, 56),
+(11, 6, 57),
+
+(1, 7, 58),
+(2, 7, 59),
+(3, 7, 60),
+(4, 7, 61),
+(5, 7, 62),
+(6, 7, 63),
+(7, 7, 64),
+(8, 7, 65),
+(9, 7, 66),
+(10, 7, 67),
+(11, 7, 68),
+(12, 7, 69),
+(13, 7, 70),
+(14, 7, 71),
+(15, 7, 72),
+(16, 7, 73),
+(17, 7, 74);
 
 
 -- ---------------------------------------------------------------------------
