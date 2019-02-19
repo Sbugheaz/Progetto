@@ -882,8 +882,7 @@ function rimuoviBrano() {
                         listaBrani.remove(i);
                     }
                 }
-
+                stampaBraniPlaylist();
             }
-
         });
 }
