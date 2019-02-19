@@ -381,6 +381,7 @@ Array.prototype.remove = function(from, to) {
     this.length = from < 0 ? this.length + from : from;
     return this.push.apply(this, rest);
 };
+
 /*funzione che ritorna il vettore passato con gli elementi disordinati;
 *@param array
 *@returns array disordinato
@@ -439,10 +440,7 @@ function verificaBranoSuccessivo() {
         stoppaBrano();
         indiceCorrente=(++indiceCorrente) % percorsi.length;
         streamingBrano(percorsi[indiceCorrente].url_brano);
-
-
     }
-
 }
 //Funzione che aggiorna il campo secondo attualmente in riproduzione e aggiorna la barra di avanzamento del player
 function refresh() {
@@ -748,9 +746,10 @@ function streamingBrano(urlBrano) {
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
+    var titoloBrano = percorsi[indiceCorrente].titolo.replace("'", "''");
     $.post("/WebPlayer/ascolta",
         {
-            branoInAscolto: listaBrani[indiceCorrente].titolo
+            branoInAscolto: titoloBrano
         }, function () {
     });
 }

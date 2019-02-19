@@ -178,7 +178,7 @@ router.post('/modificaAccount', function (req, res) {
                 if (err) throw err;
             });
             res.send("OK");
-            console.log("L'utente " + result[0].NomeUtente + " ha aggiornato i suoi dati utente.\n");
+            console.log("L'utente " + result[0].NomeUtente + " ha aggiornato dati del suo account.\n");
             }
     });
 });
