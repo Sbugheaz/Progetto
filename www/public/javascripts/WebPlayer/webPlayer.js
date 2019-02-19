@@ -520,7 +520,6 @@ function aggiornaPlayer() {
 
 //Funzione che gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-
     listaOrigine=[];
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=[];
@@ -532,8 +531,9 @@ function riproduciBrano() {
     }
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
-    streamingBrano(percorsi[indiceCorrente].url_brano);
     abilitaPlayer();
+    streamingBrano(percorsi[indiceCorrente].url_brano);
+    setInterval(comunicaBranoInAscolto, 20000);
 }
 
 

@@ -9,14 +9,18 @@ var crypto = require('crypto'); //modulo che permette la criptografia delle pass
 var mediaserver = require('mediaserver'); //modulo che gestisce lo streaming della musica
 
 /**
- * Inizializzazione della connessione con il database.
- * @type {Connection}
+ * Creazione di un pool di connessioni per permettere la comunicazione con il database, in questo modo ogni richiesta
+ * avverrà su una connessione distinta per evitare il flooding di richieste al database.
+ * @type {Pool}
  */
-var con = mysql.createConnection({
+var con = mysql.createPool({
     host: "localhost",
     user: "admin",
     password: "password",
     database: "SoundWaveDB",
+    multipleStatements: true,
+    waitForConnections: true,
+    queueLimit: 1000,
 
     typeCast: function castField(field, useDefaultTypeCasting) {
         /**
@@ -32,11 +36,6 @@ var con = mysql.createConnection({
         }
         return useDefaultTypeCasting();
     }
-});
-
-//Avvia la connessione al database
-con.connect(function(err) {
-    if (err) throw err;
 });
 
 /**
