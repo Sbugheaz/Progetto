@@ -533,7 +533,24 @@ function riproduciBrano() {
     listaOrigine = JSON.parse(JSON.stringify(listaBrani));
     percorsi=JSON.parse(JSON.stringify(listaOrigine));
     streamingBrano(percorsi[indiceCorrente].url_brano);
-    setInterval(comunicaBranoInAscolto, 40000);
+
+
+
+}
+function riproduciBranoSingolo() {
+    listaOrigine=[];
+    percorsi=[];
+
+    for (i = 0; i < listaBrani.length; i++) {
+        if (listaBrani[i].idBrano == idBrano) {
+            indiceCorrente=i;
+            listaOrigine[i] = JSON.parse(JSON.stringify(listaBrani[i]));
+            percorsi[i]=JSON.parse(JSON.stringify(listaOrigine[i]));
+        }
+    }
+    abilitaPlayer();
+    streamingBrano(percorsi[indiceCorrente].url_brano);
+    //setInterval(comunicaBranoInAscolto, 40000);
 
 
 }
@@ -742,6 +759,7 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano;
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
+    setTimeout(comunicaBranoInAscolto, 40000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
