@@ -118,7 +118,9 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano">  <img src="' + listaBrani[i].url_cover + '" id="coverBrano"><div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
+            '<div class="datiCanzoni contenitore-imgBrano">  ' +
+            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" id="coverBrano'+ listaBrani[i].idBrano+ '">' +
+            '<div class="contenitore-icona-hover"><i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
@@ -182,30 +184,49 @@ function stampaListaPlaylist(listaPlaylist){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
-    $(".demo-playlist").empty();
-    var content = "";
-    $("#contenitore-canzoni-playlist").append('<div id="contenitore-lista-playlist">\n' +
-                                                '<ul  class="demo demo-playlist"></ul></div>');
-    for (i = 0; i < listaBrani.length; i++) {
-        content += '<li class="li_listaPlaylist" id="brano-playlist'+ listaBrani[i].idBrano+'">'+
-            '<div class="ordine-playlist">'+
-                '<p class="p_playList">'+ (i+1) +'</p>' +
-            '</div>'+
-            '<div class="canzone">' +
+    if(listaBrani.length==0){
+        $("#contenitore-canzoni-playlist").empty();
+        for(i=0; i<listaPlaylist.length; i++){
+            if(listaPlaylist[i].idPlaylist==idPlaylist){
+                $("#contenitore-canzoni-playlist").append('<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
+                    'La playlist "'+ listaPlaylist[i].nome +'" è vuota. ' +
+                    '<i class="fa fa-trash icona-eliminaPlaylist" ' +
+                    'id="elimPlay'+ listaPlaylist[i].idPlaylist +'" data-toggle="modal" data-target="#modal-conferma-rimPlaylist"></i></p>');
+            }
+        }
+        $(".icona-eliminaPlaylist").click(function(evento) {
+            recuperaIDPlaylist(evento);
+            $("#tastoConfermaRimPlaylist").click(function () {
+                eliminaPlaylist();
+            });
+        });
+    }
+    else {
+        $("#contenitore-lista-playlist").remove();
+        var content = "";
+        $("#contenitore-canzoni-playlist").append('<div id="contenitore-lista-playlist">\n' +
+            '<ul  class="demo demo-playlist"></ul></div>');
+        for (i = 0; i < listaBrani.length; i++) {
+            content += '<li class="li_listaPlaylist" id="brano-playlist' + listaBrani[i].idBrano + '">' +
+                '<div class="ordine-playlist">' +
+                '<p class="p_playList">' + (i + 1) + '</p>' +
+                '</div>' +
+                '<div class="canzone">' +
                 '<p class="p_playList" style="color:cornsilk">' + listaBrani[i].titolo + '</p>' +
-            '</div>'+
-            '<div class="autore">'+
-                '<p class="p_playList">'+ listaBrani[i].artista +'</p>' +
-            '</div>'+
-            '<div class="btn-group-orizontal-justified btn-playlist" >' +
-            '<button type="button" class="btn btn-default btn-canzoni-playlist play" id="play-brano'+ listaBrani[i].idBrano + '">' +
+                '</div>' +
+                '<div class="autore">' +
+                '<p class="p_playList">' + listaBrani[i].artista + '</p>' +
+                '</div>' +
+                '<div class="btn-group-orizontal-justified btn-playlist" >' +
+                '<button type="button" class="btn btn-default btn-canzoni-playlist play" id="play-brano' + listaBrani[i].idBrano + '">' +
                 '<i class="fa fa-caret-square-o-right" style="pointer-events: none;"></i></button>' +
-            '<button type="button" class="btn btn-default btn-canzoni-playlist rimuovi" id="rimu-brano'+ listaBrani[i].idBrano + '">' +
-                '<i class="fa fa-close" style="pointer-events: none;"></i></button>' +
-            '</div>'+
-            '</li>';
-        $(".demo-playlist").append(content);
-        content = "";
+                '<button type="button" class="btn btn-default btn-canzoni-playlist rimuovi" id="rimu-brano' + listaBrani[i].idBrano + '">' +
+                '<i class="fa fa-close" style="pointer-events:none;"></i></button>' +
+                '</div>' +
+                '</li>';
+            $(".demo-playlist").append(content);
+            content = "";
+        }
     }
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
@@ -216,7 +237,6 @@ function stampaBraniPlaylist(){
     $(".rimuovi").click(function(evento) {
             recuperaIDBrano(evento);
             rimuoviBrano();
-            stampaBraniPlaylist();
         }
     );
     //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
