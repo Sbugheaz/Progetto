@@ -908,7 +908,7 @@ function richiediBraniAlbum() {
 }
 
 //Funzione che richiede tutti i brani singoli
-function richiediBraniAlbum() {
+function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
          function(result) {
             if (result != "ERR") {
