@@ -773,6 +773,7 @@ function streamingBrano(urlBrano) {
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
     console.log("Brano comunicato");
+    console.log("Brano comunicato");
     var titoloBrano = percorsi[indiceCorrente].titolo.replace("'", "''");
     $.post("/WebPlayer/ascolta",
         {

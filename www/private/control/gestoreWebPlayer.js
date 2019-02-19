@@ -490,5 +490,21 @@ router.get('/album', function (req, res) {
     });
 });
 
+/**
+ * Restituisce tutti i brani contenuti in un album.
+ */
+router.post('/album/mostraBrani', function (req, res) {
+    var idAlbum = req.body.idAlbum;
+    var query = "SELECT IDBrano, Titolo, B.Artista, Durata, B.Url_cover, Url_brano " +
+        "FROM Album A, Appartenenza Ap, Brano B " +
+        "WHERE A.IDAlbum = Ap.Ref_IDAlbum AND B.IDBrano = Ap.Ref_IDBrano AND IDAlbum = " + idAlbum +
+        " ORDER BY OrdineBrano";
+    con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        if(result != 0) res.send(JSON.stringify(result));
+        else res.send("ERR");
+    });
+});
+
 
 module.exports = router; //esporta il router cosicchè possa essere chiamato dal file main.js del server
