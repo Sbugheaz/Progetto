@@ -87,6 +87,7 @@ function mostraPannelloBrani(){
     }
     $("#pannello-BraniRiproduzione").show();
     pannelloAttivo= $("#pannello-BraniRiproduzione");
+    stampaBraniInRiproduzione();
 }
 
 
@@ -556,6 +557,8 @@ function riproduciBranoSingolo() {
 
 
 }
+
+
 
 
 
