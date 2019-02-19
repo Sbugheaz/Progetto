@@ -553,7 +553,6 @@ function riproduciBranoSingolo() {
     indiceCorrente=0;
     abilitaPlayer();
     streamingBrano(percorsi[indiceCorrente].url_brano);
-
 }
 
 
