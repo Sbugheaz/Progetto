@@ -454,12 +454,13 @@ router.post('/playlist/aggiungiBrano', function (req, res) {
         if (result.length != 0)
             res.send("ERR"); //L'utente ha già aggiunto il brano alla playlist selezionata
         else {
-            var query2 = "SELECT MAX(OrdineBrano)+1  AS Max " +
+            var query2 = "SELECT COALESCE( " +
+                "(SELECT MAX(OrdineBrano)+1 " +
                 "FROM Composizione " +
-                "WHERE Ref_IDPlaylist = " + idPlaylist;
+                "WHERE Ref_IDPlaylist = " + idPlaylist + "), 1) AS Ordine";
             con.query(query2, function (err, result, fields) {
                 if (err) throw err;
-                var ordineBranoDaInserire = result[0].Max;
+                var ordineBranoDaInserire = result[0].Ordine;
                 var query3 = "INSERT INTO Composizione VALUES " +
                     "(" + ordineBranoDaInserire + ", " + idPlaylist + ", " + idBrano + ")";
                 con.query(query3, function (err, result, fields) {

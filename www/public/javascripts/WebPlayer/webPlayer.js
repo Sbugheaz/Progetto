@@ -339,17 +339,18 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
     });
-    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-    //creazione di una nuova playlist
+    //Funzione che rimuove il paragrafo di errore alla creazione di una nuova playlist
     $("#inserisci-nomePlaylist").on('input',function(){
-        $(".campoNomePlaylist").removeClass("invalid");
         $(".pd").css("display", "none");
     });
-    //Funzione che resetta tutti i campi alla chiusura del modal per la creazione di una nuova playlist
+    //Funzione che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la creazione di una nuova playlist
     $('#modal-crea-playlist').on('hidden.bs.modal', function () {
-        $(".campoNomePlaylist").removeClass("invalid");
         $(this).find('form').trigger('reset');
         $("#err_playlist").text("").css("display", "none");
+    });
+    //Funzione che resetta il paragrafo di errore alla chiusura del modal per l'aggiunta di un brano ad una playlist
+    $('#modal-aggiungi-APlaylist').on('hidden.bs.modal', function () {
+        $("#err_aggiungiBrano").text("").css("display", "none");
     });
 });
 
