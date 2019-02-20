@@ -69,6 +69,7 @@ button:focus {outline:0;}
 }
 
 #pulsante-aggiungiAmici{
+    box-shadow: none;
     width: 30%;
     font-size: 0.8rem;
     margin-top: 1vh;
@@ -1000,7 +1001,6 @@ table{
     .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
         font-size: calc(0.75rem + 0.5vw)!important;
     }
-
 }
 
 /*Proprietà modal modifica password*/
