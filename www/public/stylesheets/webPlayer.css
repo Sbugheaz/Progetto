@@ -1396,8 +1396,6 @@ p.paragrafo-amicizie-mobile{
     height: 50px;
     margin: auto;
     text-align: center;
-
-
 }
 
 /*propità flex box*/
@@ -1874,4 +1872,38 @@ height: calc(100% - 90px);
 }
 .modal-header, .header{
     font-size: calc(0.8rem + 0.9vw);
+}
+
+/*Proprietà Modal Aggiungi A Playlist*/
+.tab-agg-brano{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.listaPlaylist{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.p_listaPlaylist{
+    margin: 1rem 0;
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear: left;
+}
+.nome_playlist{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.cont-pulsante-aggiungi-brano{
+    text-align: center;
+    width: 50%;
+    font-size: 1.2rem;
+    float: left;
+    box-sizing: border-box;
+}
+.pulsante-aggiungi-brano:hover{
+    color:rgba(255,138,0,1);
+    cursor: pointer;
 }
