@@ -964,3 +964,26 @@ function rimuoviBrano() {
             }
         });
 }
+
+//Funzione che gestisce l'aggiunta di un brano ad una playlist da parte dell'utente
+function aggiungiBranoAPlaylist() {
+    $.post("/WebPlayer/playlist/aggiungiBrano",
+        {
+            idBrano: idBrano,
+            idPlaylist: idPlaylist
+        }, function(result) {
+            if(result == "OK") {
+                /*
+                if(percorsi!=null){
+                    if(shuffleB==true){
+                        listaOrigine.remove(i);
+                        percorsi=JSON.parse(JSON.stringify(listaOrigine));
+                        percorsi=shuffle(percorsi);
+                    }else {
+                        percorsi.remove(i);
+                        listaOrigine.remove(i);
+                    }
+                }*/
+            }
+        });
+}
