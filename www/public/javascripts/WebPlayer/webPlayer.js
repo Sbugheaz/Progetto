@@ -363,17 +363,18 @@ $(document).ready(function(){
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
     });
-    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-    //creazione di una nuova playlist
+    //Funzione che rimuove il paragrafo di errore alla creazione di una nuova playlist
     $("#inserisci-nomePlaylist").on('input',function(){
-        $(".campoNomePlaylist").removeClass("invalid");
         $(".pd").css("display", "none");
     });
-    //Funzione che resetta tutti i campi alla chiusura del modal per la creazione di una nuova playlist
+    //Funzione che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la creazione di una nuova playlist
     $('#modal-crea-playlist').on('hidden.bs.modal', function () {
-        $(".campoNomePlaylist").removeClass("invalid");
         $(this).find('form').trigger('reset');
         $("#err_playlist").text("").css("display", "none");
+    });
+    //Funzione che resetta il paragrafo di errore alla chiusura del modal per l'aggiunta di un brano ad una playlist
+    $('#modal-aggiungi-APlaylist').on('hidden.bs.modal', function () {
+        $("#err_aggiungiBrano").text("").css("display", "none");
     });
 });
 
@@ -819,12 +820,11 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //setTimeout(comunicaBranoInAscolto, 20000);
+    //comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
-    var titoloBrano = percorsi[indiceCorrente].titolo.replace("'", "''");
     $.post("/WebPlayer/ascolta",
         {
             branoInAscolto: titoloBrano
@@ -850,7 +850,7 @@ function creaPlaylist() {
                     $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_2") {
-                    $("#err_playlist").text("Il nome della playlist può contenere da due a venticinque caratteri, iniziare con una lettera " +
+                    $("#err_playlist").text("Il nome della playlist può contenere da due a trenta caratteri, iniziare con una lettera " +
                     "e non può contenere spazi o simboli.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_3") {
@@ -1011,7 +1011,9 @@ function aggiungiBranoAPlaylist() {
             idBrano: idBrano,
             idPlaylist: idPlaylist
         }, function(result) {
-            if(result == "OK") {
+            if(result == "ERR")
+                $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
+            else if(result == "OK") {
                 /*
                 if(percorsi!=null){
                     if(shuffleB==true){
@@ -1023,6 +1025,8 @@ function aggiungiBranoAPlaylist() {
                         listaOrigine.remove(i);
                     }
                 }*/
+                $("#err_aggiungiBrano").text("").css("display", "none");
+                $('#modal-aggiungi-APlaylist').modal('hide');
             }
         });
 }

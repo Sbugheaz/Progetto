@@ -69,6 +69,7 @@ button:focus {outline:0;}
 }
 
 #pulsante-aggiungiAmici{
+    box-shadow: none;
     width: 30%;
     font-size: 0.8rem;
     margin-top: 1vh;
@@ -147,10 +148,12 @@ ul.demo {
 }
 
 .sta-ascoltando{
+    width:100%;
     display: block;
     top:30px;
     color: rgba(255,138,0,1);
     margin-bottom: 0.5rem;
+    overflow: hidden;
 }
 .icona-musica{
     padding: 1.5% 2% 0% 0%;
@@ -525,6 +528,7 @@ btn-conzoni-ricerca{
 }
 .icona-aggiungi-Aplaylist:hover{
     color: rgba(255,138,0,1);
+    cursor: pointer;
 }
 /*contenitore Album*/
 #pannello-Album{
@@ -906,6 +910,11 @@ table{
         width: 100%;
     }
 
+    /*Proprietà pannello amici online mobile*/
+    .icona-musica{
+        padding: 0;
+    }
+
     #pulsante-Logout{
         display: none;
     }
@@ -987,7 +996,16 @@ table{
         font-size: calc(1rem + 1vw)!important;
     }
 
-
+    /*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
+    .question{
+        font-size: calc(0.7rem + 0.5vw)!important;
+    }
+    .bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
+        font-size: calc(0.7rem + 0.5vw)!important;
+    }
+    .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
+        font-size: calc(0.75rem + 0.5vw)!important;
+    }
 }
 
 /*Proprietà modal modifica password*/
@@ -1123,7 +1141,7 @@ table{
     margin: 0;
 }
 .contenitore-icona-logout, .contenitore-icona-rimAmico, .contenitore-icona-rimPlaylist {
-    width: 15%;
+    width: 19%;
     float: left;
     font-size: 8vh;
     box-sizing: border-box;
@@ -1134,7 +1152,7 @@ table{
     float: left;
 }
 .question{
-    font-size: 1rem;
+    font-size: calc(0.6rem + 0.5vw);
     margin: 0;
     position: absolute;
     top: 50%;
@@ -1147,14 +1165,14 @@ table{
 }
 .bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
     border-radius: 4px;
-    padding: 3px 5px;
-    font-size: 0.8rem;
+    padding: 0;
+    font-size: calc(0.5rem + 0.5vw);
     width: 20%;
     height: 1.5rem;
     color: black;
 }
 .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
-    font-size: 15px;
+    font-size: calc(0.6rem + 0.5vw);
     color: white;
     background-color: rgba(0,114,255,0.43);
     font-weight: bold;
@@ -1202,13 +1220,13 @@ table{
 .demo-mobile>.p_listaAmici>.nomeUtente_online{
     padding-left: 5px;
     text-align: left;
-    width: 60%;
+    width: 40%;
     float: left;
     box-sizing: border-box;
 }
 .demo-mobile>.p_listaAmici>.branoAscoltato{
     text-align: center;
-    width: 40%;
+    width: 60%;
     float: left;
     box-sizing: border-box;
 }
