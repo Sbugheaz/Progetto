@@ -326,6 +326,7 @@ $(document).ready(function(){
         $(".campiPass").removeClass("invalid");
         $(this).find('form').trigger('reset');
         $("#err_password").text("").css("display", "none");
+        //Reimposta le icone per mostrare e nascondere la password
         document.getElementById("vecchiaPass").type = "password";
         document.getElementById("eye1").className = "fa fa-eye iconaPassword";
         document.getElementById("nuovaPass").type = "password";
@@ -652,6 +653,7 @@ function modificaPassword() {
                 } else if (result == "OK") {
                     $("#err_password").text("").css("display", "none");
                     $("#modal-successoModPass").modal();
+                    $('#myModalPass').modal('hide');
                 }
             });
     }
@@ -696,6 +698,7 @@ function modificaAccount() {
                     disabilitaScrittura('cognome');
                     disabilitaScrittura('dataNascita');
                     $("#modal-successoModDatiAccount").modal();
+                    $('#myModal').modal('hide');
                 }
             });
     }
@@ -810,6 +813,7 @@ function creaPlaylist() {
     if(nomePlaylist.val() == "") {
         $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
         nomePlaylist.addClass("invalid");
+        console.log(nomePlaylist.className());
     }
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
@@ -832,9 +836,7 @@ function creaPlaylist() {
                     $("#err_playlist").text("").css("display", "none");
                     var nuovaPlaylist = new Playlist(JSON.parse(result)[0]);
                     listaPlaylist.push(nuovaPlaylist);
-
                     $('#modal-crea-playlist').modal('hide');
-
                     stampaListaPlaylist(listaPlaylist);
                 }
             });
@@ -973,6 +975,29 @@ function rimuoviBrano() {
                     }
                 }
                 stampaBraniPlaylist();
+            }
+        });
+}
+
+//Funzione che gestisce l'aggiunta di un brano ad una playlist da parte dell'utente
+function aggiungiBranoAPlaylist() {
+    $.post("/WebPlayer/playlist/aggiungiBrano",
+        {
+            idBrano: idBrano,
+            idPlaylist: idPlaylist
+        }, function(result) {
+            if(result == "OK") {
+                /*
+                if(percorsi!=null){
+                    if(shuffleB==true){
+                        listaOrigine.remove(i);
+                        percorsi=JSON.parse(JSON.stringify(listaOrigine));
+                        percorsi=shuffle(percorsi);
+                    }else {
+                        percorsi.remove(i);
+                        listaOrigine.remove(i);
+                    }
+                }*/
             }
         });
 }

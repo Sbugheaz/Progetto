@@ -151,7 +151,7 @@ input.invalid {
 }
 
 
-button {
+#btnRegistrazione {
     background-color: rgb(191, 193, 192);
     color: #fef9ff;
     border: none;
@@ -160,22 +160,15 @@ button {
     font-family: Raleway, serif;
     cursor: pointer;
     border-radius: 4px;
+    outline: none;
+    width: 25%;
 }
 
-button:hover {
+#btnRegistrazione:hover {
     background-color: rgba(255,138,0,1);
     box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-button:focus {outline:0;}
-
-#btnRegistrazione {
-    border-radius: 4px;
-    background-color: #bbbbbb;
-    outline: none;
-}
-#btnRegistrazione:hover {
-    background-color: rgba(255,138,0,1);
-}
+#btnRegistrazione:focus {outline:0;}
 
 /*Proprietà Modal-linkDiConferma */
 #intestazione-linkDiConferma{
