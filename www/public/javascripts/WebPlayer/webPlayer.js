@@ -468,7 +468,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
-    $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
+        $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -509,7 +509,6 @@ function branoSuccessivo() {
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
             if (seeking == true) {
                 streamingBrano(percorsi[indiceCorrente].url_brano);
-               avviaBrano();
             } else {
                 streamingBrano(percorsi[indiceCorrente].url_brano);
                 stoppaBrano();
