@@ -11,8 +11,9 @@ var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist selezionata
 var idAlbum; //variabile che contiene l'id' dell'album selezionato
-var playListAvviata=false;
-
+var playListAvviata=false;//variabile che idica la riproduzione di una playlist
+var idPlaylistAvviata;//variabile che indica l'id della playlist in ascolto
+var idPlaystTarget// variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
 
@@ -268,6 +269,30 @@ function setDivVisibility(){
         }
     }
 
+    function calcolaIndiceShufflePercorsi(){
+        var ind=0;
+        for(i=0;i<percorsi.length;i++){
+            if(listaOrigine[idBrano].idBrano==percorsi[i].idBrano){
+                ind=i;
+                break;
+            }
+        }
+        return ind;
+    }
+
+function calcolaIndiceShuffleOrigine(){
+    var ind=0;
+    for(i=0;i<percorsi.length;i++){
+        if(listaOrigine[i].idBrano==percorsi[indiceCorrente].idBrano){
+            ind=i;
+            break;
+        }
+    }
+    return ind;
+}
+
+
+
 
 
 /*funzioni del player*/
@@ -443,7 +468,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
-    $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
+        $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -452,7 +477,7 @@ function stoppaBrano() {
     audioElement.pause();
     $('#pause').hide();
     $('#play').show();
-    $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+    $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
 }
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
@@ -479,13 +504,13 @@ function refresh() {
 function branoSuccessivo() {
     if(percorsi!=null) {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
-            $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+            stampaBraniInRiproduzione();
+            $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
-            streamingBrano(percorsi[indiceCorrente].url_brano);
-            $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             if (seeking == true) {
-               avviaBrano();
+                streamingBrano(percorsi[indiceCorrente].url_brano);
             } else {
+                streamingBrano(percorsi[indiceCorrente].url_brano);
                 stoppaBrano();
             }
         }
@@ -520,6 +545,7 @@ function shuffleBrani() {
             percorsi = JSON.parse(JSON.stringify(listaOrigine));
 
         }
+
     }
 }
 //Funzione che permette di riprodurre i brani in loop
@@ -923,7 +949,7 @@ function richiediBraniAlbum() {
                 for(i=0; i<listaAlbum.length; i++){
                     if(listaAlbum[i].idAlbum==idAlbum){
                         $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
-                            '<p class="paragrafo-album" style="font-size: x-large">' +
+                            '<p class="paragrafo-album">' +
                             '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
                             '</div>');
                     }
@@ -989,17 +1015,17 @@ function aggiungiBranoAPlaylist() {
             if(result == "ERR")
                 $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
             else if(result == "OK") {
-                /*
-                if(percorsi!=null){
-                    if(shuffleB==true){
-                        listaOrigine.remove(i);
-                        percorsi=JSON.parse(JSON.stringify(listaOrigine));
-                        percorsi=shuffle(percorsi);
-                    }else {
-                        percorsi.remove(i);
-                        listaOrigine.remove(i);
-                    }
-                }*/
+
+                if(percorsi!=null && playListAvviata==true && idPlaylistAvviata==idPlaystTarget ){
+                       for(i=0;i<listaBrani.length;i++){
+                           if(listaBrani[i].idBrano==idBrano){
+                               percorsi.push(listaBrani[i]);
+                               listaOrigine.push(listaBrani[i]);
+                               break;
+                           }
+
+                       }
+                }
                 $("#err_aggiungiBrano").text("").css("display", "none");
                 $('#modal-aggiungi-APlaylist').modal('hide');
             }
