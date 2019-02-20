@@ -73,7 +73,7 @@ function validateName(nome) {
  * @returns {boolean} ritorna vero o falso a seconda che il formato del nome della playlist sia corretto  o meno.
  */
 function validatePlaylist(nomePlaylist) {
-    var testo = /^[A-Za-z][A-Za-z0-9]{1,25}$/;
+    var testo = /^[A-Za-z][A-Za-z0-9]{1,30}$/;
     return testo.test(String(nomePlaylist));
 }
 

@@ -825,7 +825,7 @@ function creaPlaylist() {
                     $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_2") {
-                    $("#err_playlist").text("Il nome della playlist può contenere da due a venticinque caratteri, iniziare con una lettera " +
+                    $("#err_playlist").text("Il nome della playlist può contenere da due a trenta caratteri, iniziare con una lettera " +
                     "e non può contenere spazi o simboli.").css("display", "block");
                     nomePlaylist.addClass("invalid");
                 } else if (result == "ERR_3") {
