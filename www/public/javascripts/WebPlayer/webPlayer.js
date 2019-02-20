@@ -11,8 +11,9 @@ var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist selezionata
 var idAlbum; //variabile che contiene l'id' dell'album selezionato
-var playListAvviata=false;
-
+var playListAvviata=false;//variabile che idica la riproduzione di una playlist
+var idPlaylistAvviata;//variabile che indica l'id della playlist in ascolto
+var idPlaystTarget// variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
 
@@ -503,6 +504,7 @@ function refresh() {
 function branoSuccessivo() {
     if(percorsi!=null) {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
+            stampaBraniInRiproduzione();
             $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
             if (seeking == true) {
@@ -1014,17 +1016,17 @@ function aggiungiBranoAPlaylist() {
             if(result == "ERR")
                 $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
             else if(result == "OK") {
-                /*
-                if(percorsi!=null){
-                    if(shuffleB==true){
-                        listaOrigine.remove(i);
-                        percorsi=JSON.parse(JSON.stringify(listaOrigine));
-                        percorsi=shuffle(percorsi);
-                    }else {
-                        percorsi.remove(i);
-                        listaOrigine.remove(i);
-                    }
-                }*/
+
+                if(percorsi!=null && playListAvviata==true && idPlaylistAvviata==idPlaystTarget ){
+                       for(i=0;i<listaBrani.length;i++){
+                           if(listaBrani[i].idBrano==idBrano){
+                               percorsi.push(listaBrani[i]);
+                               listaOrigine.push(listaBrani[i]);
+                               break;
+                           }
+
+                       }
+                }
                 $("#err_aggiungiBrano").text("").css("display", "none");
                 $('#modal-aggiungi-APlaylist').modal('hide');
             }

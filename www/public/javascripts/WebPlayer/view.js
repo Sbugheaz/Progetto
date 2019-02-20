@@ -199,6 +199,7 @@ function stampaListaPlaylist(listaPlaylist){
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
             richiediBraniPlaylist();
+            idPlaylistAvviata=idPlaylist;
             cambiaDimensioniConteinerPlaylist();
         }
     );
@@ -366,8 +367,8 @@ function stampaBraniInRiproduzione() {
         content = "";
     }
     if(seeking==true && shuffleB==true) {
-        $('#brano-ripr' +idBrano).removeClass('fa-play').addClass('fa-pause');
-    }else{
+        $('#brano-ripr' +calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
+    }else if(seeking==true && shuffleB==false){
         $('#brano-ripr' + indiceCorrente).removeClass('fa-play').addClass('fa-pause');
     }
 }
@@ -414,6 +415,8 @@ function stampaListaPlaylistAggiungi(){
     $(".pulsante-aggiungi-brano").click(function(evento) {  //funzione che intercetta l'evento di selezione della playlist
             recuperaIDPlaylist(evento);
             aggiungiBranoAPlaylist();
+            idPlaystTarget=idPlaylist;
+            console.log("id playlist: "+idPlaylist,"target: "+idPlaystTarget,"in rip: "+idPlaylistAvviata,"stato",playListAvviata)
         }
     );
 }
