@@ -319,6 +319,12 @@ $(document).ready(function(){
         $(".campiPass").removeClass("invalid");
         $(this).find('form').trigger('reset');
         $("#err_password").text("").css("display", "none");
+        document.getElementById("vecchiaPass").type = "password";
+        document.getElementById("eye1").className = "fa fa-eye iconaPassword";
+        document.getElementById("nuovaPass").type = "password";
+        document.getElementById("eye2").className = "fa fa-eye iconaPassword";
+        document.getElementById("confNuovaPass").type = "password";
+        document.getElementById("eye3").className = "fa fa-eye iconaPassword";
     });
     //Funzione che resetta tutti i campi alla chiusura del modal per la ricerca degli utenti
     $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
@@ -767,7 +773,7 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //setTimeout(comunicaBranoInAscolto, 20000);
+    setTimeout(comunicaBranoInAscolto, 20000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici

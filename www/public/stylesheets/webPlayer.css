@@ -373,11 +373,11 @@ div.slider-selection{
 
 }
 /*propietà tasti webplayer*/
-#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz:focus{
+#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz, #tasto-Rap:focus{
     color: cornsilk;
 }
 
-#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz:hover{
+#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz, #tasto-Rap:hover{
     background-color: #5CA5FF;
 }
 
