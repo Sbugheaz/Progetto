@@ -396,7 +396,7 @@
                 <div class="nomeUtente"><p><br></p></div>
 
                 <div class="container">
-                    <form action="/">
+                    <form action="javascript:void(0)">
 
                         <!-- Riga nome -->
                         <div class="row">
@@ -430,7 +430,7 @@
                                 <label for="dataNascita">Data di nascita</label>
                             </div>
                             <div class="col-50">
-                                <form action="/">
+                                <form action="javascript:void(0)">
                                 <input class="campi" value="" type="date" readonly id="dataNascita" name="dataNascita"
                                 min="1940-01-01" max="2010-01-01">
                                 </form>
@@ -497,7 +497,7 @@
 
 
                 <div class="container">
-                    <form action="/">
+                    <form action="javascript:void(0)">
 
                         <!-- Riga vecchia password -->
                         <div class="row password">
@@ -604,7 +604,7 @@
 
                 <!-- Corpo del Modal -->
                 <div class="modal-body">
-                    <form id="regForm" action="/">
+                    <form id="regForm" action="javascript:void(0)">
                         <div class="tab tab-ricerca-utente">Inserisci nome, cognome o nome utente dell'utente che desideri aggiungere agli amici:
                             <div class="container-input">
                                  <input class="campoNomeUtente" placeholder="Cerca utente" type="text" name="nome-utente" id="inserisci-nomeUtente">
@@ -743,7 +743,7 @@
 
             <!-- Corpo del Modal Crea Playlist-->
             <div class="modal-body">
-                <form id="regForm-CreaPlaylist" action="/">
+                <form id="regForm-CreaPlaylist" action="javascript:void(0)">
                     <div class="tab tab-nome-playlist">
                         <p>Inserisci il nome della playlist che desideri creare:</p>
                         <div class="container-input">
@@ -752,11 +752,11 @@
                     </div>
                 </form>
             </div>
-            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_playlist"></p>
+            <p class = "pd" style= "color: red; display:none; margin: 15px 20px 4px;" id="err_playlist"></p>
 
             <!-- Footer del Modal Crea Playlist -->
             <div class="modal-footer footerCreaPlaylist">
-                <button class="btn btn-default bottone-crea-playlist" type="button" onclick="creaPlaylist()">Crea Playlist</button>
+                <button id="ciaociao" class="btn btn-default bottone-crea-playlist" type="button" onclick="creaPlaylist()">Crea Playlist</button>
             </div>
         </div>
     </div>
@@ -769,7 +769,7 @@
 
             <!-- Intestazione del Modal Conferma Rimuovi Playlist -->
             <div class="header" id="intestazione-rimPlaylist">
-                <p class="title" id="titolo-rimPlaylist">Conferma Rimozione Playlist
+                <p class="title" id="titolo-rimPlaylist">Conferma Eliminazione Playlist
                     <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
             </div>
 

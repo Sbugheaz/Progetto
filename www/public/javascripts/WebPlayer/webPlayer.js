@@ -11,6 +11,7 @@ var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist selezionata
 var idAlbum; //variabile che contiene l'id' dell'album selezionato
+var playListAvviata=false;
 
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
@@ -111,6 +112,8 @@ function mostraPannelloAlbum(){
         pannelloAttivo.hide();
     }
     $("#pannello-Album").show();
+    $("#contenitore-canzoni-album").hide();
+    $(".flex-container-Album").css("height", "100%");
     pannelloAttivo= $("#pannello-Album");
 
 }
@@ -172,6 +175,8 @@ function mostraPannelloPlaylist() {
         pannelloAttivo.hide();
     }
     $("#pannello-Playlist").show();
+    $("#contenitore-canzoni-playlist").hide();
+    $(".flex-container").css("height", "100%");
     pannelloAttivo = $("#pannello-Playlist");
 }
 
@@ -234,6 +239,7 @@ function setDivVisibility(){
     function loadPagina() {
         pannelloAttivo = $("#pannello-Album");
         $("#pannello-Album").show();
+        $("#contenitore-canzoni-album").hide();
         if (($(window).width()) > '768') {
             $('#colonna-destra').css('display', 'block');
             $('#colonna-sinistra').css('display', 'block');
@@ -261,6 +267,7 @@ function setDivVisibility(){
             shuffleBrani();
         }
     }
+
 
 
 /*funzioni del player*/
@@ -319,6 +326,7 @@ $(document).ready(function(){
         $(".campiPass").removeClass("invalid");
         $(this).find('form').trigger('reset');
         $("#err_password").text("").css("display", "none");
+        //Reimposta le icone per mostrare e nascondere la password
         document.getElementById("vecchiaPass").type = "password";
         document.getElementById("eye1").className = "fa fa-eye iconaPassword";
         document.getElementById("nuovaPass").type = "password";
@@ -571,9 +579,16 @@ function riproduciBranoSingolo() {
     streamingBrano(percorsi[indiceCorrente].url_brano);
 }
 
+function cambiaDimensioniConteinerAlbum(){
+    $(".flex-container-Album").css("height", "50%");
+    $("#contenitore-canzoni-album").slideDown("slow");
 
+}
+function cambiaDimensioniConteinerPlaylist(){
+    $(".flex-container").css("height", "50%");
+    $("#contenitore-canzoni-playlist").slideDown("slow");
 
-
+}
 
 
 
@@ -638,6 +653,7 @@ function modificaPassword() {
                 } else if (result == "OK") {
                     $("#err_password").text("").css("display", "none");
                     $("#modal-successoModPass").modal();
+                    $('#myModalPass').modal('hide');
                 }
             });
     }
@@ -682,6 +698,7 @@ function modificaAccount() {
                     disabilitaScrittura('cognome');
                     disabilitaScrittura('dataNascita');
                     $("#modal-successoModDatiAccount").modal();
+                    $('#myModal').modal('hide');
                 }
             });
     }
@@ -777,7 +794,7 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    setTimeout(comunicaBranoInAscolto, 20000);
+    //setTimeout(comunicaBranoInAscolto, 20000);
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
@@ -796,6 +813,7 @@ function creaPlaylist() {
     if(nomePlaylist.val() == "") {
         $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
         nomePlaylist.addClass("invalid");
+        console.log(nomePlaylist.className());
     }
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
@@ -818,9 +836,7 @@ function creaPlaylist() {
                     $("#err_playlist").text("").css("display", "none");
                     var nuovaPlaylist = new Playlist(JSON.parse(result)[0]);
                     listaPlaylist.push(nuovaPlaylist);
-
                     $('#modal-crea-playlist').modal('hide');
-
                     stampaListaPlaylist(listaPlaylist);
                 }
             });
@@ -946,7 +962,7 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {
                         listaBrani.remove(i);
-                        if(percorsi!=null){
+                        if(percorsi!=null && playListAvviata==true){//verifico che la playlist sia avviata così da poterla rimuovere dalla lista riproduzione
                             if(shuffleB==true){
                                 listaOrigine.remove(i);
                                 percorsi=JSON.parse(JSON.stringify(listaOrigine));

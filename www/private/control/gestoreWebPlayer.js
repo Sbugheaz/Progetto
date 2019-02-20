@@ -452,7 +452,7 @@ router.post('/playlist/aggiungiBrano', function (req, res) {
     con.query(query1, function (err, result, fields) {
         if (err) throw err;
         if (result.length != 0)
-            res.send("ERR_1"); //L'utente ha già aggiunto il brano alla selezionata playlist
+            res.send("ERR"); //L'utente ha già aggiunto il brano alla playlist selezionata
         else {
             var query2 = "SELECT MAX(OrdineBrano)+1 " +
                 "FROM Composizione " +

@@ -106,6 +106,7 @@ function stampaListaBraniPerGenere(listaBrani){
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaIDBrano(evento);
+        playListAvviata=false;
         riproduciBrano();
     }
     );
@@ -125,7 +126,7 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano">  ' +
+            '<div class="datiCanzoni contenitore-imgBrano"> ' +
             '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" >' +
             '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '"><i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
@@ -139,6 +140,7 @@ function stampalistaBraniRicerca(lb){
     $(".contenitore-icona-hover").click(function (evento) {
         recuperaIDBrano(evento);
         abilitaPlayer();
+        playListAvviata=false;
         riproduciBranoSingolo();
 
         }
@@ -195,11 +197,12 @@ function stampaListaPlaylist(listaPlaylist){
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
             richiediBraniPlaylist();
+            cambiaDimensioniConteinerPlaylist();
         }
     );
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'aposita lista
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'apposita lista
 function stampaListaAlbum(listaAlbum){
     $(".flex-container-Album").empty();
     //Stampo il flex-item-container contenente tutti i singoli
@@ -220,7 +223,9 @@ function stampaListaAlbum(listaAlbum){
     }
     $(".coverAlbum").click(function(evento) {
             recuperaIDAlbum(evento);
+            cambiaDimensioniConteinerAlbum();
             richiediBraniAlbum();
+
         }
     );
 }
@@ -274,6 +279,7 @@ function stampaBraniPlaylist(){
     }
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
+            playListAvviata=true;
             riproduciBrano();
 
 
@@ -284,7 +290,7 @@ function stampaBraniPlaylist(){
             rimuoviBrano();
         }
     );
-    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta playlist
             // recuperaIDAggiungi(evento);
         //}
     //);
@@ -328,7 +334,6 @@ function stampaBraniAlbum(){
         }
     );
     $(".aggiungiAPlaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
-        console.log(idBrano)
             recuperaIDBrano(evento);
             stampaListaPlaylistAggiungi();
         }
