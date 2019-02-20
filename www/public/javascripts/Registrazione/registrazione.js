@@ -8,7 +8,6 @@ var nomeUtente = $("input[name=nomeUtente]");
 var password1= $("input[name=password]");
 var password2 = $("input[name=password2]");
 
-
 //Questa funzione verifica se i campi del form sono validi
     function convalidaForm() {
         var flag = false;
@@ -79,7 +78,6 @@ var password2 = $("input[name=password2]");
                     flag = true;
         return flag;
     }
-
     //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -90,7 +88,7 @@ var password2 = $("input[name=password2]");
     function validateName(nome) {
     var testo = /^[A-Z][a-z]{1,15}(\s[A-Z][a-z]{1,15})*$/;
     return testo.test(String(nome));
-}
+    }
 
     //Verifica la validità del campo "Nome utente"
     function validateUsername(nomeUtente) {
@@ -111,8 +109,12 @@ $(".campi").on('input',function(){
 });
 
 
-//Funzioni che gestiscono la comunicazione con il server
 
+
+
+
+
+//Funzioni che gestiscono la comunicazione con il server
 function registrati() {
     if (convalidaForm()) {
         $.post("/Registrazione/registrati",

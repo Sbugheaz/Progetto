@@ -83,12 +83,10 @@ function validatePlaylist(nomePlaylist) {
  */
 router.use(express.static('public'));
 
-
 /**
  * Gestisce l'accesso alle funzionalità della pagina del webPlyaer, mandandola in seguito ad una richiesta di un utente
  * che ha già effettuato l'accesso al sito. Se l'utente non si è collegato rimanda la pagina di login.
  */
-
 router.get('/', function (req, res) {
     if (req.session.idUtente != undefined) {
         res.sendFile('public/webPlayer.html', {root: '/var/www/html/'});
@@ -274,13 +272,13 @@ router.get('/amiciOnline', function (req, res) {
  * Aggiorna il brano che l'utente sta ascoltando attualmente. Il brano in ascolto verrà visualizzato nella sezione
  * "Amici online" degli altri utenti che lo hanno aggiunto alla loro lista amici.
  */
-
 router.post('/ascolta', function (req, res) {
     //Espressione regolare per evitare errori dovuti agli apostrofi in sql
     var branoInAscolto = req.body.branoInAscolto.replace(new RegExp("'", "g"), "''");
             var query = "UPDATE Account SET Ascolta = '" + branoInAscolto + "' WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
+                res.send("OK");
             });
 });
 
