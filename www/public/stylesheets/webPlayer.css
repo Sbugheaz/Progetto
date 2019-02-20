@@ -525,6 +525,7 @@ btn-conzoni-ricerca{
 }
 .icona-aggiungi-Aplaylist:hover{
     color: rgba(255,138,0,1);
+    cursor: pointer;
 }
 /*contenitore Album*/
 #pannello-Album{

@@ -120,12 +120,12 @@ function stampalistaBraniRicerca(lb){
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
             '<div class="datiCanzoni contenitore-imgBrano"> ' +
-            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" >' +
-            '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '"><i class="fa fa-play play-brano"></i></div></div>'+
-            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
+            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano">' +
+            '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '" title="Riproduci brano"><i class="fa fa-play play-brano"></i></div></div>'+
+            '<div class="datiCanzoni contenitore-nomeCanzone-Artista"> "'+ listaBrani[i].titolo + '" - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist">' +
             '<i class="fa fa-plus-circle icona-aggiungi-Aplaylist" data-toggle="modal" data-target="#modal-aggiungi-APlaylist"' +
-            'id="agg-a-play'+ listaBrani[i].idBrano +'"></i> </div>'+
+            'id="agg-a-play'+ listaBrani[i].idBrano +'" title="Aggiungi ad una playlist"></i> </div>'+
         '</li>';
         $(".listaRicerca").append(content);
         content = "";

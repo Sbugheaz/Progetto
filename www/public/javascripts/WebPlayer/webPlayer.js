@@ -986,7 +986,9 @@ function aggiungiBranoAPlaylist() {
             idBrano: idBrano,
             idPlaylist: idPlaylist
         }, function(result) {
-            if(result == "OK") {
+            if(result == "ERR")
+                $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
+            else if(result == "OK") {
                 /*
                 if(percorsi!=null){
                     if(shuffleB==true){
@@ -998,6 +1000,8 @@ function aggiungiBranoAPlaylist() {
                         listaOrigine.remove(i);
                     }
                 }*/
+                $("#err_aggiungiBrano").text("").css("display", "none");
+                $('#modal-aggiungi-APlaylist').modal('hide');
             }
         });
 }
