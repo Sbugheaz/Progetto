@@ -795,16 +795,16 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //comunicaBranoInAscolto();
+    comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
     $.post("/WebPlayer/ascolta",
         {
-            branoInAscolto: titoloBrano
-        }, function () {
-    });
+            branoInAscolto: percorsi[indiceCorrente].titolo
+        }, function(result){
+        });
 }
 
 //Funzione che gestisce la creazione di una nuova playlist da parte dell'utente
@@ -880,7 +880,7 @@ function richiediBraniPlaylist() {
                 if(listaPlaylist[i].idPlaylist==idPlaylist){
                     $("#contenitore-canzoni-playlist").append('<div id="contenitore-paragrafo">' +
                         '<p class="paragrafo-playlist" style="font-size: calc(1rem + 1vw)">' +
-                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist" ' +
+                        'Playlist: '+ listaPlaylist[i].nome +'<i class="fa fa-trash icona-eliminaPlaylist" title="Elimina playlist"' +
                         'id="elimPlay'+ listaPlaylist[i].idPlaylist +'"data-toggle="modal" data-target="#modal-conferma-rimPlaylist"></i></p> </div>');
                 }
             }

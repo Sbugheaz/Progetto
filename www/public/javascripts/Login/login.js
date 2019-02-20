@@ -14,13 +14,11 @@ $(document).ready(function () {
     });
 });
 
-
 //Svuota i campi di input e rimuove gli errori alla chiusura del modal per il recupero della password
 $('#myModal').on('hidden.bs.modal', function () {
     $(this).find('form').trigger('reset');
     $("#err_recuperoPass").text("").css("display", "none");
 });
-
 
 //Rimuove i messaggi di errore all'inserimento delle credenziali d'accesso
 $("#username").on('input',function(){
@@ -30,7 +28,6 @@ $("#psw").on('input',function(){
     $("#err_dati_accesso").css("display", "none");
 });
 
-
 //Chiude i modal per il recupero della password quando l'utente clicca ok
 $('#confermaRecupero').click(function () {
     $("#myModal").find('form').trigger('reset');
@@ -38,7 +35,6 @@ $('#confermaRecupero').click(function () {
     $("#err_recuperoPass").text("").css("display", "none");
     $("input").find('form').trigger('reset');
 });
-
 
 //Verifica la formattazione dell'indirizzo e-mail nel campo per il recupero della password
 function validateEmail(email) {
@@ -74,7 +70,6 @@ function login(){
     }
 }
 
-
 // Gestisce il recupero della password, inviando al server l'email.
 function recuperoPassword(){
     if($("input[name=email]").val() == "")
@@ -98,7 +93,6 @@ function recuperoPassword(){
             });
     }
 }
-
 
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
