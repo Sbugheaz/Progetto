@@ -1,5 +1,4 @@
 //Gestisce il form per la registrazione di un nuovo account
-
 var nome = $("input[name=nome]");
 var cognome = $("input[name=cognome]");
 var data_nascita = $("input[name=data_nascita]");
@@ -8,6 +7,7 @@ var email2 = $("input[name=email2]");
 var nomeUtente = $("input[name=nomeUtente]");
 var password1= $("input[name=password]");
 var password2 = $("input[name=password2]");
+
 
 //Questa funzione verifica se i campi del form sono validi
     function convalidaForm() {

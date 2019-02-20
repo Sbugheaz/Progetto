@@ -118,10 +118,10 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano">  ' +
+            '<div class="datiCanzoni contenitore-imgBrano"> ' +
             '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" >' +
-            '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '"><i class="fa fa-play play-brano"></i></div></div>'+
-            '<div class="datiCanzoni contenitore-nomeCanzone-Artista">'+ listaBrani[i].titolo + ' - '+ listaBrani[i].artista +'</div>' +
+            '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '" title = "Riproduci brano"><i class="fa fa-play play-brano"></i></div></div>'+
+            '<div class="datiCanzoni contenitore-nomeCanzone-Artista"> "'+ listaBrani[i].titolo + '" - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist"></i> </div>'+
         '</li>';
         $(".listaRicerca").append(content);
@@ -135,7 +135,7 @@ function stampalistaBraniRicerca(lb){
         }
     );
 
-    $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta playlist
            // recuperaIDAggiungi(evento);
         }
     );
@@ -189,7 +189,7 @@ function stampaListaPlaylist(listaPlaylist){
     );
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'aposita lista
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'apposita lista
 function stampaListaAlbum(listaAlbum){
     $(".flex-container-Album").empty();
     //Stampo il flex-item-container contenente tutti i singoli
@@ -274,7 +274,7 @@ function stampaBraniPlaylist(){
             rimuoviBrano();
         }
     );
-    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta playlist
             // recuperaIDAggiungi(evento);
         //}
     //);
