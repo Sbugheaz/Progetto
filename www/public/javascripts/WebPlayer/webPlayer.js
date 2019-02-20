@@ -158,8 +158,8 @@ $(document).mouseup(function (e) {
 //Funzione che svuota la ricerca quando clicchiamo fuori dalla barra di ricerca o dal pannello ricerca
 $(document).mouseup(function (e) {
     try {
-        if ((!$("#barra-ricerca").is(e.target)||!$("#pannello-Ricerca").is(e.target)) // if the target of the click isn't the container...
-            && ($("#barra-ricerca").has(e.target).length === 0) && ($("#pannello-Ricerca").has(e.target).length === 0))// ... nor a descendant of the container
+        if (( !($(".navbar-dark").is(e.target) || $("#pannello-Ricerca").is(e.target))) // if the target of the click isn't the container...
+            && ($(".navbar-dark").has(e.target).length === 0) && ($("#pannello-Ricerca").has(e.target).length === 0))// ... nor a descendant of the container
         {
             $("#barra-ricerca").val("");
         }
