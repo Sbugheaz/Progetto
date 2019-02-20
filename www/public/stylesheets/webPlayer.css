@@ -63,9 +63,7 @@ button:focus {outline:0;}
 }
 
 #pulsante-Logout:hover{
-
     background-color: rgba(0, 114, 255, 0.72);
-
 }
 
 #pulsante-aggiungiAmici{
@@ -99,6 +97,11 @@ button:focus {outline:0;}
     right: 0;
     height: calc(100vh - 165px);
     background-color: #464B51;
+}
+
+/*Proprietà del titolo di tutti i pannelli principali*/
+.titolo-pannelli{
+    font-size: calc(1rem + 1vw);
 }
 
 .amici-online{
@@ -561,6 +564,7 @@ btn-conzoni-ricerca{
 }
 
 .flex-item-Album{
+    width: calc(7rem + 3vw);
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
@@ -575,14 +579,14 @@ btn-conzoni-ricerca{
 }
 .contenitore-nomeAlbum{
     position: relative;
-    transform: translate(25%,25%);
+    transform: translate(0,25%);
     height: 50px;
-    width: 100px;
+    width: 100%;
     text-align: center;
 }
 .nomeAlbum{
     color: cornsilk;
-    font-size: 13px;
+    font-size: calc(0.2rem + 1vw);
 }
 #contenitore-canzoni-album{
     height: calc(50% - 30px);
@@ -591,7 +595,7 @@ btn-conzoni-ricerca{
     height: 20%;
 }
 .paragrafo-album{
-    font-size: 1.4vw;
+    font-size: calc(1rem + 1vw);
     text-align: center ;
     margin-top: 30px;
     margin-bottom: 1rem;
@@ -604,6 +608,7 @@ btn-conzoni-ricerca{
 }
 
 .li_listaAlbum{
+    font-size: calc(0.7rem + 0.5vw);
     text-align: left;
     padding-left: 5px;
     overflow: hidden;
@@ -947,6 +952,9 @@ table{
         padding: 0 5px;
         width: 90%;
     }
+    .salvaModifiche{
+        font-size: calc(0.65rem + 0.5vw);
+    }
 
     /*Proprietà della colonna destra del Modal Profilo*/
     .col-25dx {
@@ -1006,6 +1014,23 @@ table{
     .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
         font-size: calc(0.75rem + 0.5vw)!important;
     }
+
+    /*Proprietà pannello Album e brani*/
+    .nomeAlbum{
+        font-size: calc(0.6rem + 1vw)!important;
+    }
+    .li_listaAlbum{
+        font-size: calc(0.6rem + 1vw)!important;
+    }
+
+    /*Proprietà pannello Le mie playlist*/
+    .nomePlaylist{
+        font-size: calc(0.6rem + 1vw)!important;
+    }
+    .li_listaPlaylist{
+        font-size: calc(0.6rem + 1vw)!important;
+    }
+
 }
 
 /*Proprietà modal modifica password*/
@@ -1018,7 +1043,7 @@ table{
     margin:auto ;
 }
 #icona-lucchetto{
-    font-size: 7.5vw;
+    font-size: 5rem;
 }
 #intestazionePass{
     text-align:center;
@@ -1068,6 +1093,7 @@ table{
 
 /*proprietà footer modal modifica password*/
 .salvaModifiche{
+    font-size: calc(0.65rem + 0.5vw);
     border-radius: 4px;
     margin: auto;
 }
@@ -1374,7 +1400,7 @@ p.paragrafo-amicizie-mobile{
 }
 
 .paragrafo-playlist{
-    font-size: 1.4vw;
+    font-size: calc(1rem + 1vw);
     text-align: center ;
     margin-top: 3vh;
     margin-bottom: 1rem;
@@ -1403,15 +1429,15 @@ p.paragrafo-amicizie-mobile{
 }
 .nomePlaylist{
     color: cornsilk;
-    font-size: 13px;
-    transform: translate(0,100%);
+    font-size: calc(0.25rem + 1vw);
 }
 .contenitore-nomePlaylist{
+    overflow-wrap: break-word;
     position: relative;
     transform: translate(0,25%);
-    height: 50px;
-    margin: auto;
-    text-align: center;
+    height: 60px;
+    padding: 0 10px;
+    padding-top: 12%;
 }
 
 /*propità flex box*/
@@ -1433,7 +1459,7 @@ p.paragrafo-amicizie-mobile{
     align-content: flex-start;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100%;
     overflow-y: auto;
 }
@@ -1466,7 +1492,7 @@ p.paragrafo-amicizie-mobile{
 
 
 .flex-item-img{
-    width: calc(7rem + 3vw);
+    width: 100%;
     display: block;
 }
 
@@ -1541,6 +1567,7 @@ fa-paly:hover {
     margin: auto;
 }
 .li_listaPlaylist{
+    font-size: calc(0.7rem + 0.5vw);
     text-align: left;
     padding-left: 5px;
     overflow: hidden;
