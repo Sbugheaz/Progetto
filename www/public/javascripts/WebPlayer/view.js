@@ -97,7 +97,9 @@ function stampaListaBraniPerGenere(listaBrani){
             ' <div class="datiCanzoni nomeArtista_genere">' + listaBrani[i].artista + '</div>' +
             ' <div class="datiCanzoni imgCover"><img src="' + listaBrani[i].url_cover + '" class="cover"></div>' +
             ' <div class="datiCanzoni container-icona-play-gen"><i class="fa fa-play icona-play-gen"id="icona-play'+ listaBrani[i].idBrano + '"></i> </div>' +
-        ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen"><i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen"></i></div>' +
+        ' <div class="datiCanzoni container-icona-aggiungi-playlist-gen">' +
+            '<i class="fa fa-plus-circle icona-aggiungi-Aplaylist-gen" id="agg-a_play' + listaBrani[i].idBrano + '"' +
+            'data-toggle="modal" data-target="#modal-aggiungi-APlaylist"></i></div>' +
         ' </li>' ;
         $(".listaGenere").append(content);
         content = "";
@@ -106,6 +108,11 @@ function stampaListaBraniPerGenere(listaBrani){
         recuperaIDBrano(evento);
         riproduciBrano();
     }
+    );
+    $(".icona-aggiungi-Aplaylist-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
+            recuperaIDBrano(evento);
+            stampaListaPlaylistAggiungi();
+        }
     );
 }
 
