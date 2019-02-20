@@ -229,7 +229,8 @@ router.post('/amici/aggiungiAmico', function (req, res) {
  * Restituisce gli utenti che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
  */
 router.post('/amici/cercaUtenti', function (req, res) {
-    var utenteCercato = req.body.utenteCercato;
+    //Espressione regolare per evitare errori dovuti agli apostrofi in sql
+    var utenteCercato = req.body.utenteCercato.replace(new RegExp("'", "g"), "''");
     if(utenteCercato != "") {
         var query = "SELECT IDUtente, Nome, Cognome, NomeUtente " +
                     "FROM Account " +
@@ -275,7 +276,8 @@ router.get('/amiciOnline', function (req, res) {
  */
 
 router.post('/ascolta', function (req, res) {
-    var branoInAscolto = req.body.branoInAscolto;
+    //Espressione regolare per evitare errori dovuti agli apostrofi in sql
+    var branoInAscolto = req.body.branoInAscolto.replace(new RegExp("'", "g"), "''");
             var query = "UPDATE Account SET Ascolta = '" + branoInAscolto + "' WHERE IDUtente = " + req.session.idUtente;
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
@@ -304,7 +306,8 @@ router.post('/musica/genere', function (req, res) {
  * Restituisce i brani che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
  */
 router.post('/musica/cercaBrani', function (req, res) {
-    var braniCercati = req.body.braniCercati;
+    //Espressione regolare per evitare errori dovuti agli apostrofi in sql
+    var braniCercati = req.body.braniCercati.replace(new RegExp("'", "g"), "''");
     if(braniCercati != "") {
         var query = "SELECT IDBrano, Titolo, Artista, Durata, Url_cover, Url_brano " +
                     "FROM Brano " +
@@ -327,7 +330,8 @@ router.post('/musica/cercaBrani', function (req, res) {
  * Restituisce gli album che soddisfano i criteri di ricerca a seguito di una ricerca da parte dell'utente.
  */
 router.post('/musica/cercaAlbum', function (req, res) {
-    var albumCercati = req.body.albumCercati;
+    //Espressione regolare per evitare errori dovuti agli apostrofi in sql
+    var albumCercati = req.body.albumCercati.replace(new RegExp("'", "g"), "''");
     if(albumCercati != "") {
         var query = "SELECT DISTINCT IDAlbum, Nome, Artista, NumeroBrani, Url_cover " +
                     "FROM Album " +

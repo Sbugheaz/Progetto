@@ -795,12 +795,11 @@ function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
     audioElement.load();
     avviaBrano(); //Mette in riproduzione il brano richiesto
-    //setTimeout(comunicaBranoInAscolto, 20000);
+    //comunicaBranoInAscolto();
 }
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
-    var titoloBrano = percorsi[indiceCorrente].titolo.replace("'", "''");
     $.post("/WebPlayer/ascolta",
         {
             branoInAscolto: titoloBrano

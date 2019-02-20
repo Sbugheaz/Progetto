@@ -148,10 +148,12 @@ ul.demo {
 }
 
 .sta-ascoltando{
+    width:100%;
     display: block;
     top:30px;
     color: rgba(255,138,0,1);
     margin-bottom: 0.5rem;
+    overflow: hidden;
 }
 .icona-musica{
     padding: 1.5% 2% 0% 0%;
@@ -910,6 +912,11 @@ table{
         width: 100%;
     }
 
+    /*Proprietà pannello amici online mobile*/
+    .icona-musica{
+        padding: 0;
+    }
+
     #pulsante-Logout{
         display: none;
     }
@@ -1215,13 +1222,13 @@ table{
 .demo-mobile>.p_listaAmici>.nomeUtente_online{
     padding-left: 5px;
     text-align: left;
-    width: 60%;
+    width: 40%;
     float: left;
     box-sizing: border-box;
 }
 .demo-mobile>.p_listaAmici>.branoAscoltato{
     text-align: center;
-    width: 40%;
+    width: 60%;
     float: left;
     box-sizing: border-box;
 }
