@@ -454,6 +454,8 @@ router.post('/playlist/aggiungiBrano', function (req, res) {
         if (result.length != 0)
             res.send("ERR"); //L'utente ha già aggiunto il brano alla playlist selezionata
         else {
+            /*Query che calcola l'ordine che il brano da inserire nella playlist dovrà avere all'interno di quella stessa
+             playlist e restituisce posizione 1 se la playlist è vuota*/
             var query2 = "SELECT COALESCE( " +
                 "(SELECT MAX(OrdineBrano)+1 " +
                 "FROM Composizione " +
