@@ -451,7 +451,7 @@ btn-conzoni-ricerca{
     margin: 0;
 }
 .contenitore-imgBrano{
-  width: 25%;
+  width: 30%;
 }
 .contenitore-nomeCanzone-Artista{
     width: 60%;
@@ -462,7 +462,7 @@ btn-conzoni-ricerca{
     box-sizing: border-box;
 }
 .coverBrano{
-    width: 100px;
+    width: calc(7rem + 3vw);
 }
 
  .contenitore-icona-hover:hover{
@@ -998,6 +998,13 @@ table{
   .messaggio{
     font-size: calc(0.4rem + 1vw)!important;
   }
+    .coverBrano{
+        width: 100%;
+    }
+    .contenitore-imgBrano{
+        width: 25%;
+        max-width: 160px;
+    }
 
     /*Proprietà dell'intestazione dei modal*/
     .modal-header, .header{
