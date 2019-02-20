@@ -552,7 +552,7 @@ btn-conzoni-ricerca{
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 50%;
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -581,7 +581,7 @@ btn-conzoni-ricerca{
     font-size: 13px;
 }
 #contenitore-canzoni-album{
-    height: 50%;
+    height: calc(50% - 30px);
 }
 #contenitore-paragrafo-Album{
     height: 20%;
@@ -589,7 +589,7 @@ btn-conzoni-ricerca{
 .paragrafo-album{
     font-size: 1.4vw;
     text-align: center ;
-    margin-top: 3vh;
+    margin-top: 30px;
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
@@ -1420,7 +1420,7 @@ p.paragrafo-amicizie-mobile{
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 50%;
+    height: 100%;
     overflow-y: auto;
 }
 

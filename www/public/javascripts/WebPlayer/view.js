@@ -104,6 +104,7 @@ function stampaListaBraniPerGenere(listaBrani){
     }
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaIDBrano(evento);
+        playListAvviata=false;
         riproduciBrano();
     }
     );
@@ -130,6 +131,7 @@ function stampalistaBraniRicerca(lb){
     $(".contenitore-icona-hover").click(function (evento) {
         recuperaIDBrano(evento);
         abilitaPlayer();
+        playListAvviata=false;
         riproduciBranoSingolo();
 
         }
@@ -185,6 +187,7 @@ function stampaListaPlaylist(listaPlaylist){
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
             richiediBraniPlaylist();
+            cambiaDimensioniConteinerPlaylist();
         }
     );
 }
@@ -210,7 +213,9 @@ function stampaListaAlbum(listaAlbum){
     }
     $(".coverAlbum").click(function(evento) {
             recuperaIDAlbum(evento);
+            cambiaDimensioniConteinerAlbum();
             richiediBraniAlbum();
+
         }
     );
 }
@@ -264,6 +269,7 @@ function stampaBraniPlaylist(){
     }
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
+            playListAvviata=true;
             riproduciBrano();
 
 
