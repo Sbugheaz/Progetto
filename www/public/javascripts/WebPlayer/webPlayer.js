@@ -268,6 +268,30 @@ function setDivVisibility(){
         }
     }
 
+    function calcolaIndiceShufflePercorsi(){
+        var ind=0;
+        for(i=0;i<percorsi.length;i++){
+            if(listaOrigine[idBrano].idBrano==percorsi[i].idBrano){
+                ind=i;
+                break;
+            }
+        }
+        return ind;
+    }
+
+function calcolaIndiceShuffleOrigine(){
+    var ind=0;
+    for(i=0;i<percorsi.length;i++){
+        if(listaOrigine[i].idBrano==percorsi[indiceCorrente].idBrano){
+            ind=i;
+            break;
+        }
+    }
+    return ind;
+}
+
+
+
 
 
 /*funzioni del player*/
@@ -442,7 +466,7 @@ function avviaBrano() {
         audioElement.play();
         $('#play').hide();
         $('#pause').show();
-    $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
+    $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
 }
 
 //Funzione che permette di mettere in pausa il brano
@@ -451,7 +475,7 @@ function stoppaBrano() {
     audioElement.pause();
     $('#pause').hide();
     $('#play').show();
-    $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+    $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
 }
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
@@ -478,13 +502,13 @@ function refresh() {
 function branoSuccessivo() {
     if(percorsi!=null) {
         if ((indiceCorrente != percorsi.length - 1 && repeat == false) || repeat == true) {
-            $('#brano-ripr'+indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+            $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
             indiceCorrente = ((++indiceCorrente) + percorsi.length) % percorsi.length;
-            streamingBrano(percorsi[indiceCorrente].url_brano);
-            $('#brano-ripr'+indiceCorrente).removeClass('fa-play').addClass('fa-pause');
             if (seeking == true) {
+                streamingBrano(percorsi[indiceCorrente].url_brano);
                avviaBrano();
             } else {
+                streamingBrano(percorsi[indiceCorrente].url_brano);
                 stoppaBrano();
             }
         }
@@ -519,6 +543,7 @@ function shuffleBrani() {
             percorsi = JSON.parse(JSON.stringify(listaOrigine));
 
         }
+
     }
 }
 //Funzione che permette di riprodurre i brani in loop

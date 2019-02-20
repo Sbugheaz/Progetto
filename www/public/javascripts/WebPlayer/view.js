@@ -105,6 +105,7 @@ function stampaListaBraniPerGenere(listaBrani){
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaIDBrano(evento);
         playListAvviata=false;
+        disabilitaShuffle();
         riproduciBrano();
     }
     );
@@ -345,40 +346,44 @@ function stampaBraniInRiproduzione() {
     $("#contenitore-listaBrani-produzione").empty(); //svuota la lista contenente i brani in riproduzione
     var content = "";
     $("#contenitore-listaBrani-produzione").append('<ul class="demo listaRiproduzione">');
-    for (i = 0; i < percorsi.length; i++) {
+    for (i = 0; i < listaOrigine.length; i++) {
         content += '<li class="InRiproduzione">\n' +
-                        '<div class="datiCanzoni nomeCanzone_prod">'+ percorsi[i].titolo +'</div>\n' +
-                            '<div class="datiCanzoni nomeArtista_prod">'+ percorsi[i].artista + '</div>\n' +
-                            '<div class="datiCanzoni nomeStato_prod">'+ toMinutes(percorsi[i].durata) +'</div>\n' +
+                        '<div class="datiCanzoni nomeCanzone_prod">'+ listaOrigine[i].titolo +'</div>\n' +
+                            '<div class="datiCanzoni nomeArtista_prod">'+ listaOrigine[i].artista + '</div>\n' +
+                            '<div class="datiCanzoni nomeStato_prod">'+ toMinutes(listaOrigine[i].durata) +'</div>\n' +
                             '<div class="datiCanzoni container-icona-play"><i class="fa fa-play icona-play-prod" id="brano-ripr'+ (i) +'"></i> </div>\n' +
                     '</li>';
         $(".listaRiproduzione").append(content);
         content = "";
     }
-    if(seeking==true) {
+    if(seeking==true && shuffleB==true) {
+        $('#brano-ripr' +idBrano).removeClass('fa-play').addClass('fa-pause');
+    }else{
         $('#brano-ripr' + indiceCorrente).removeClass('fa-play').addClass('fa-pause');
     }
 }
 
     $(".icona-play-prod").click(function(evento) {//funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
             recuperaIDBrano(evento);
-
-            if(seeking==true && indiceCorrente==idBrano) {
-                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+            if(seeking==true && calcolaIndiceShuffleOrigine()==idBrano) {
+                $('#brano-ripr' + idBrano).removeClass('fa-pause').addClass('fa-play');
                 stoppaBrano();
-                mostraPannelloBrani();
-            }else if( indiceCorrente!=idBrano){
-                $('#brano-ripr' + indiceCorrente).removeClass('fa-play').addClass('fa-pause');
-                indiceCorrente = idBrano;
-                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+            }else if( calcolaIndiceShuffleOrigine()!=idBrano){
+                $('#brano-ripr' +idBrano).removeClass('fa-play').addClass('fa-pause');
+                if(shuffleB==false){
+                    indiceCorrente =idBrano;
+                }else{
+                    indiceCorrente=calcolaIndiceShufflePercorsi();
+                }
+                $('#brano-ripr' + calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
                 streamingBrano(percorsi[indiceCorrente].url_brano);
-                mostraPannelloBrani();
 
-            }else if (seeking==false && indiceCorrente==idBrano){
-                $('#brano-ripr' + indiceCorrente).removeClass('fa-pause').addClass('fa-play');
+            }else if (seeking==false && calcolaIndiceShuffleOrigine()==idBrano){
+                $('#brano-ripr' + id).removeClass('fa-pause').addClass('fa-play');
                 avviaBrano();
-                mostraPannelloBrani();
             }
+        stampaBraniInRiproduzione();
+
         }
     );
 

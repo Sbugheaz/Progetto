@@ -598,9 +598,7 @@ btn-conzoni-ricerca{
     height: 80%;
     overflow-y: auto;
 }
-.demo-Album{
-    height: 70vh;
-}
+
 .li_listaAlbum{
     text-align: left;
     padding-left: 5px;
