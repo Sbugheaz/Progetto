@@ -924,7 +924,7 @@ function richiediBraniAlbum() {
                 for(i=0; i<listaAlbum.length; i++){
                     if(listaAlbum[i].idAlbum==idAlbum){
                         $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
-                            '<p class="paragrafo-album" style="font-size: x-large">' +
+                            '<p class="paragrafo-album">' +
                             '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
                             '</div>');
                     }
