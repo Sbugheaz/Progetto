@@ -284,74 +284,9 @@
                             </div>
                         </div>
                     </div>
-
-
-                <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
-                    <div id="sezione-controlli-riproduzione">
-                        <div class="row intestazione-titolo-brano">
-                            <div id="titolo-brano-in-riproduzione" class="col-md-12">
-                                <p ></p>
-                            </div>
-                        </div>
-                        <div class="row contenitore-tasi-riproduzione">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "><img src="images/cover/default-brano.png" id="album2"></div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <div class="row audio-controls">
-                                    <div class="col-md-2">
-                                        <i class="fa fa-random icona-hover testo-controlli-riproduzione" id="random"></i>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" ></i>
-                                        <i class="fa fa-pause icona-hover testo-controlli-riproduzione" id="pause" ></i>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <i class="fa fa-repeat icona-hover testo-controlli-riproduzione" id="repeat">
-                                            <span class="badge" id="repeat-one">1</span>
-                                            <span class="badge" id="repeat-all">ALL</span>
-                                        </i>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="dropup">
-                                            <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
-                                            <div class="dropdown-menu " id="contenitore-volume" >
-                                                <input class="dropdown-item " type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row contenitore-slider">
-                            <div class="col-md-12">
-                                <div class="row" id="riga-slider">
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-sx-sec">
-                                        <span id="labelSecondoAttuale" class="testo-controlli-riproduzione">--/--</span>
-                                    </div>
-                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                        <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 92%"/>
-                                    </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-dx-sec">
-                                        <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione">--/--</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
-                </div>
-                </div>
+            </div>
         </div>
-
-
 
 
 
@@ -373,6 +308,67 @@
 
             </div>
         </div>
+         <!-- sezione Riproduzione-->
+         <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
+             <div id="sezione-controlli-riproduzione">
+                 <div class="row intestazione-titolo-brano">
+                     <div id="titolo-brano-in-riproduzione" class="col-md-12">
+                         <p ></p>
+                     </div>
+                 </div>
+                 <div class="row contenitore-tasi-riproduzione">
+                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "><img src="images/cover/default-brano.png" id="album2"></div>
+                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                         <div class="row audio-controls">
+                             <div class="col-md-2">
+                                 <i class="fa fa-random icona-hover testo-controlli-riproduzione" id="random"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" ></i>
+                                 <i class="fa fa-pause icona-hover testo-controlli-riproduzione" id="pause" ></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-repeat icona-hover testo-controlli-riproduzione" id="repeat">
+                                     <span class="badge" id="repeat-one">1</span>
+                                     <span class="badge" id="repeat-all">ALL</span>
+                                 </i>
+                             </div>
+
+                             <div class="col-md-2">
+                                 <div class="dropup">
+                                     <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
+                                     <div class="dropdown-menu " id="contenitore-volume" >
+                                         <input class="dropdown-item " type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="row contenitore-slider">
+                     <div class="col-md-12">
+                         <div class="row" id="riga-slider">
+                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-sx-sec">
+                                 <span id="labelSecondoAttuale" class="testo-controlli-riproduzione">--/--</span>
+                             </div>
+                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                 <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 92%"/>
+                             </div>
+                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-dx-sec">
+                                 <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione">--/--</span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
     </div>
 </div>
 

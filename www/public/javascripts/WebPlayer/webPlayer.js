@@ -607,12 +607,12 @@ function riproduciBranoSingolo() {
 }
 
 function cambiaDimensioniConteinerAlbum(){
-    $(".flex-container-Album").css("height", "50%");
+    $(".flex-container-Album").css("height", "35%");
     $("#contenitore-canzoni-album").slideDown("slow");
 
 }
 function cambiaDimensioniConteinerPlaylist(){
-    $(".flex-container").css("height", "50%");
+    $(".flex-container").css("height", "35%");
     $("#contenitore-canzoni-playlist").slideDown("slow");
 
 }
