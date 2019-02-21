@@ -101,7 +101,7 @@
                 <button type="button" class="btn btn-default pulsanteA pulsanteA-brani">In riproduzione</button>
                 <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Le mie playlist</button>
                 <button type="button" class="btn btn-default pulsanteA pulsanteA-album">Album e brani</button>
-                <button type="button" class="btn btn-default pulsanteA" data-toggle="dropdown">
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-generi" data-toggle="dropdown">
                     Generi
                 </button>
                 <div class="dropdown-menu">
@@ -125,7 +125,7 @@
                                 <button type="button" class="btn btn-default btn-mobile btn-mobile-playlist" >Le mie playlist</button>
                                 <button type="button" class="btn btn-default btn-mobile btn-mobile-album">Album e brani</button>
                                 <button type="button" class="btn btn-default btn-mobile btn-mobile-generi" data-toggle="dropdown">Generi</button>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu listaGeneri">
                                     <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Country">Country</a>
                                     <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Funky">Funky</a>
                                     <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Jazz">Jazz</a>
@@ -195,8 +195,8 @@
                                 <div class="col-md-12">
                                     <div class="contenitore-ricerca-album">
                                         <div class="row titolo-listaRicerca" >
-                                            <div class="col-md-12">
-                                                <p >Risultati ricerca album:</p>
+                                            <div class="col-md-12" style="position:relative">
+                                                <p class="paragrafo-risultati"> Risultati ricerca album:</p>
                                             </div>
                                         </div>
                                         <div class="row" id="contenitore-lista-ricerca-album">
@@ -205,7 +205,7 @@
                                     <div class="contenitore-ricerca-brani">
                                         <div class="row titolo-listaRicerca" >
                                             <div class="col-md-12">
-                                                <p >Risultati ricerca brani:</p>
+                                                <p class="paragrafo-risultati">Risultati ricerca brani:</p>
                                             </div>
                                         </div>
                                         <div class="row" id="contenitore-lista-ricerca-brani">
@@ -228,9 +228,6 @@
 
                                 </div>
                             </div>
-
-
-
                         </div>
 
                         <!--contiene le  playlist con le relative canzoni -->

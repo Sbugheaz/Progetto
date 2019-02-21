@@ -1,4 +1,4 @@
-//Dichiarazione degli oggetti
+//Dichiarazione degli oggetti o vettori di oggetti usati
 var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
 
 //Funzione eseguita al caricamento della pagina
@@ -53,7 +53,7 @@ $(document).ready(function () {
 });
 
 //Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
-// e invoca la funzione stampa  stampaDatiAccount per inserirli nell'apposito form
+// e invoca la funzione stampaDatiAccount per inserirli nell'apposito form
 function richiediDatiAccount() {
     $.get('/WebPlayer/utente', function (result) {
         if (result != "ERR") {
@@ -75,7 +75,7 @@ function richiediPlaylist() {
     });
 }
 
-//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaAlbum per stamparli nell'apposita lista
+//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaListaAlbum per stamparli nell'apposita lista
 function richiediAlbum() {
     $.get('/WebPlayer/album', function (result) {
         if (result != "ERR") {
@@ -104,7 +104,7 @@ function richiediListaAmici() {
 function ricercaUtenti() {
     var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#inserisci-nomeUtente").on("keyup", function () {
-        clearTimeout(timer);
+        clearTimeout(timer); //azzera il timer
         timer = setTimeout(function () {
             $.post("/WebPlayer/amici/cercaUtenti",
                 {
@@ -140,7 +140,7 @@ function richiediAmiciOnline(){
                 listaAmiciOnline[i] = new Account(lo[i]);
             stampaAmiciOnline(listaAmiciOnline);
         }
-        else {
+        else { //se l'utente non ha nessun amico, svuota la lista (se precedentemente piena)
             if(listaAmiciOnline.length != 0) listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
             $(".listaAmiciOnline").remove();
             $(".demo-mobile").remove();
@@ -148,7 +148,8 @@ function richiediAmiciOnline(){
     });
 }
 
-//Funzione che permette di ricercare i brani
+//Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati
+// nell'apposita lista richiamando la funzione stampaListaBraniRicerca
 function ricercaBrani() {
     var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
@@ -174,7 +175,8 @@ function ricercaBrani() {
     });
 }
 
-//Funzione che permette di ricercare i brani
+//Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati nell'apposita
+// lista richiamando la funzione stampaListaAlbumRicerca
 function ricercaAlbum() {
     var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
     $("#barra-ricerca").on("keyup", function () {
