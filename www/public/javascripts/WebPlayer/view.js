@@ -127,9 +127,9 @@ function stampalistaBraniRicerca(lb){
     for (i = 0; i < lb.length; i++) {
         listaBrani[i] = new Brano(lb[i]);
         content += '<li class="li-lista-brani">' +
-            '<div class="datiCanzoni contenitore-imgBrano"> ' +
-            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano">' +
-            '<div class="contenitore-icona-hover" id="coverBrano'+ listaBrani[i].idBrano+ '" title="Riproduci brano">' +
+            '<div class="datiCanzoni contenitore-imgBrano-esterno"> ' +
+            '<div class="contenitore-imgBrano-interno">' +
+            '<img src="' + listaBrani[i].url_cover + '" class="coverBrano" id="coverBrano'+ listaBrani[i].idBrano+ '" title="Riproduci brano">' +
             '<i class="fa fa-play play-brano"></i></div></div>'+
             '<div class="datiCanzoni contenitore-nomeCanzone-Artista"> "'+ listaBrani[i].titolo + '" - '+ listaBrani[i].artista +'</div>' +
             '<div class="datiCanzoni contenitore-icona-aggiungi-playlist">' +
@@ -139,7 +139,7 @@ function stampalistaBraniRicerca(lb){
         $(".listaRicerca").append(content);
         content = "";
     }
-    $(".contenitore-icona-hover").click(function (evento) {
+    $(".coverBrano").click(function (evento) {
         recuperaIDBrano(evento);
         abilitaPlayer();
         playListAvviata=false;
