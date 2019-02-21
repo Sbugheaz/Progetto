@@ -391,6 +391,11 @@ div.slider-selection{
     overflow: hidden;
 }
 /*Propità pannello di ricerca */
+.paragrafo-risultati{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+}
 .elenco-canzone-Autore{
     font-size:0.8rem;
 }
@@ -484,11 +489,10 @@ btn-conzoni-ricerca{
     width: 100%;
 }
 .titolo-listaRicerca{
-    padding-top: 10px;
     font-size: calc(0.7rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    height: 60px;
+    height: 45px;
 }
 #contenitore-lista-ricerca-album{
     display: -ms-flexbox;
@@ -585,7 +589,7 @@ btn-conzoni-ricerca{
     height: 20%;
 }
 .paragrafo-album{
-    font-size: calc(1rem + 1vw);
+    font-size: calc(0.8rem + 1vw);
     text-align: center ;
     margin-top: 30px;
     margin-bottom: 1rem;

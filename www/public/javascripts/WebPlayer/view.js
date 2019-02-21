@@ -162,18 +162,21 @@ function stampalistaAlbumRicerca(la){
     var listaAlbumRicerca = JSON.parse(JSON.stringify(listaAlbum));
     for (i = 0; i < la.length; i++) {
         listaAlbumRicerca[i] = new Album(la[i]);
-        content += '<div class="flex-item-Album"><img src="' + listaAlbumRicerca[i].url_cover + '" class="flex-item-img">' +
+        content += '<div class="flex-item-Album">' +
+            '<img src="' + listaAlbumRicerca[i].url_cover + '" class="flex-item-img img_album" id="album-r'+ listaAlbumRicerca[i].idAlbum +'">' +
             '<div class="contenitore-nomeAlbum">' +
             '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbumRicerca[i].nome+ '" <br>'  + listaAlbumRicerca[i].artista +'<br> </p></div></div>';
         $("#contenitore-lista-ricerca-album").append(content);
         content = "";
     }
-    /*
-    $("").click(function(evento) {  //funzione che intercetta l'evento di click sull'album ricercato
-            // recuperaIDAggiungi(evento);
+
+    $(".img_album").click(function(evento) {  //funzione che intercetta l'evento di click sull'album ricercato
+             recuperaIDAlbum(evento);
+             mostraPannelloAlbum();
+             $("#album_n" + idAlbum).click();
         }
     );
-    */
+
 }
 
 
@@ -311,7 +314,6 @@ function stampaBraniPlaylist(){
 function stampaBraniAlbum(){
     for(i=0; i<listaAlbum.length; i++){
         if(listaAlbum[i].idAlbum==idAlbum){
-            console.log("sono dentro stampaBraniAlbum")
             $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
                 '<p class="paragrafo-album">' +
                 '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
