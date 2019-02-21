@@ -144,8 +144,8 @@ function mostraPannelloMobile(){
 //Funzione che chiude il pannello-mobile
 $(document).mouseup(function (e) {
     try {
-        if ((!pannelloSecondario.is(e.target)|| !$("#altro").is(e.target) ) // if the target of the click isn't the container...
-            && (pannelloSecondario.has(e.target).length === 0 && $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
+        if ((!(pannelloSecondario.is(e.target)|| $("#altro").is(e.target)) && !$('.btn-mobile-generi').is(e.target) ) // if the target of the click isn't the container...
+            && ( $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
         {
             pannelloSecondario.hide(500);
             pannelloSecondario=null;
@@ -607,12 +607,12 @@ function riproduciBranoSingolo() {
 }
 
 function cambiaDimensioniConteinerAlbum(){
-    $(".flex-container-Album").css("height", "50%");
+    $(".flex-container-Album").css("height", "35%");
     $("#contenitore-canzoni-album").slideDown("slow");
 
 }
 function cambiaDimensioniConteinerPlaylist(){
-    $(".flex-container").css("height", "50%");
+    $(".flex-container").css("height", "35%");
     $("#contenitore-canzoni-playlist").slideDown("slow");
 
 }
