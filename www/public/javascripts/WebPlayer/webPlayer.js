@@ -6,7 +6,7 @@ var listaOrigine;//vettore che contiene una copia della lista dei brani da ripro
 var shuffleB=false;//variabile booleana che imposta la modalità di riproduzione "random"
 var repeat=false;//variabile booleana che imposta la modalità di riproduzione "ripeti"
 var audioElement = new Audio();// create the audio object// assign the audio file to its src
-var indiceCorrente=0;
+var indiceCorrente=0;//Indica la posizione del brano da riprodurre .L'indice verrà utilizzato nel vettore percorsi
 var id; //Variabile che gestisce l'ID degli amici
 var idBrano; //variabile che contiene l'id' del brano da riprodurre
 var idPlaylist; //variabile che contiene l'id' della playlist selezionata
@@ -15,9 +15,9 @@ var playListAvviata=false;//variabile che idica la riproduzione di una playlist
 var idPlaylistAvviata;//variabile che indica l'id della playlist in ascolto
 var idPlaystTarget// variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
 var block = false;
-var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
+var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre soggetta a shuffle
 var tastoAttivo;//tasto che indica il pulsante attivo
-var idPlaylistSelezionato;
+var idPlaylistSelezionato;//indica l'id della playlist selezionata
 
 //Funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -993,19 +993,20 @@ function rimuoviBrano() {
                 for(i=0; i<listaBrani.length; i++) {
                     if(listaBrani[i].idBrano == idBrano) {//cerco l'id del brano per rimuoverlo
                         listaBrani.remove(i);
-                        if(percorsi!=null && playListAvviata==true && idPlaylistSelezionato==idPlaylistAvviata){//verifico che la playlist sia avviata così da poterla rimuovere dalla lista riproduzione
-                            if(shuffleB==true){
-                                listaOrigine.remove(i);
-                                percorsi=JSON.parse(JSON.stringify(listaOrigine));
-                                percorsi=shuffle(percorsi);
-                            }else {
-                                percorsi.remove(i);
-                                listaOrigine.remove(i);
+                        //verifico che ci sia una playlist avviata e controllo se il brano da rimuovere è di quella playlist(Avviata)
+                        if(percorsi!=null && playListAvviata==true && idPlaylistSelezionato==idPlaylistAvviata){
+                            if(shuffleB==true){//verifico se la modalità shuffle è attiva
+                                listaOrigine.remove(i);//rimuovo il brano da una copia dei brani in riproduzione non soggetta a shuffle
+                                percorsi=JSON.parse(JSON.stringify(listaOrigine));// copio la copia dei brani nel vettore dei percorsi in riproduzione
+                                percorsi=shuffle(percorsi);//effettuo lo shuffle
+                            }else {//se la modalità shuffle non è attiva allora
+                                percorsi.remove(i);//rimuovo da percorsi(lista dei brani in riproduzione che è soggetta a shuffle)
+                                listaOrigine.remove(i);//rimuovo da lista origine(copia dei brani in riproduzione non soggetta a shuffle)
                             }
                         }
                     }
                 }
-                stampaBraniPlaylist();
+                stampaBraniPlaylist();//aggiorno la lista dei brani delle playlist
             }
         });
 }
@@ -1020,11 +1021,11 @@ function aggiungiBranoAPlaylist() {
             if(result == "ERR")
                 $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
             else if(result == "OK") {
-
+                //verifico se è presente una playlist in esecuzione e verifico se il brano da aggiungere debba essere inserito nella playlist in esecuzione
                 if(percorsi!=null && playListAvviata==true && idPlaylistAvviata==idPlaystTarget ){
                        for(i=0;i<listaBrani.length;i++){
-                           if(listaBrani[i].idBrano==idBrano){
-                               percorsi.push(listaBrani[i]);
+                           if(listaBrani[i].idBrano==idBrano){//cerco l'id del brano
+                               percorsi.push(listaBrani[i]);//inserisco il brano in coda
                                listaOrigine.push(listaBrani[i]);
                                break;
                            }
