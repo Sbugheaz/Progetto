@@ -89,6 +89,7 @@ function stampaAmiciOnline(listaAmiciOnline){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
 function stampaListaBraniPerGenere(listaBrani){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
+    $("#contenitore-listaBrani-genere").scrollTop();
     var content="";
     $("#contenitore-listaBrani-genere").append('<ul class="demo listaGenere">');
     for(i=0; i<listaBrani.length; i++) {
@@ -107,8 +108,10 @@ function stampaListaBraniPerGenere(listaBrani){
     $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
         recuperaIDBrano(evento);
         playListAvviata=false;
-        disabilitaShuffle();
         riproduciBrano();
+            if(shuffleB==true){
+                percorsi=shuffle(percorsi);
+            }
     }
     );
     $(".icona-aggiungi-Aplaylist-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
@@ -293,6 +296,9 @@ function stampaBraniPlaylist(){
             recuperaIDBrano(evento);
             playListAvviata=true;
             riproduciBrano();
+            if(shuffleB==true){
+               percorsi=shuffle(percorsi);
+            }
 
 
         }
@@ -350,6 +356,9 @@ function stampaBraniAlbum(){
     $(".riproduci").click(function(evento) {
             recuperaIDBrano(evento);
             riproduciBrano();
+            if(shuffleB==true){
+                percorsi=shuffle(percorsi);
+            }
 
         }
     );
@@ -409,7 +418,7 @@ function stampaBraniInRiproduzione() {
                 $('#brano-ripr' + id).removeClass('fa-pause').addClass('fa-play');
                 avviaBrano();
             }
-        stampaBraniInRiproduzione();
+            stampaBraniInRiproduzione();
 
         }
     );

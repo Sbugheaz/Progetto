@@ -16,6 +16,7 @@ var idPlaylistAvviata;//variabile che indica l'id della playlist in ascolto
 var idPlaystTarget// variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre
+var tastoAttivo;
 
 //Funzione che mostra le password nascoste
 function mostraPass(id, id2){
@@ -79,6 +80,7 @@ function mostraPannelloRicerca(){
         pannelloAttivo.hide();
     }
     $("#pannello-Ricerca").show();
+    tastoAttivo.removeClass("activeButton");
     pannelloAttivo= $("#pannello-Ricerca");
 
 }
@@ -91,6 +93,9 @@ function mostraPannelloBrani(){
     }
     $("#pannello-BraniRiproduzione").show();
     pannelloAttivo= $("#pannello-BraniRiproduzione");
+    tastoAttivo.removeClass("activeButton");
+    tastoAttivo=$(".pulsanteA-brani");
+    tastoAttivo.addClass("activeButton");
     stampaBraniInRiproduzione();
 }
 
@@ -103,6 +108,9 @@ function mostraPannelloAmicizie(){
     }
     $("#pannello-Amicizie").show();
     pannelloAttivo= $("#pannello-Amicizie");
+    tastoAttivo.removeClass("activeButton");
+    tastoAttivo=$(".pulsanteGestioneAmicizie");
+    tastoAttivo.addClass("activeButton");
 
 }
 
@@ -116,6 +124,9 @@ function mostraPannelloAlbum(){
     $("#contenitore-canzoni-album").hide();
     $(".flex-container-Album").css("height", "100%");
     pannelloAttivo= $("#pannello-Album");
+    tastoAttivo.removeClass("activeButton");
+    tastoAttivo=$(".pulsanteA-album");
+    tastoAttivo.addClass("activeButton");
 
 }
 
@@ -125,6 +136,7 @@ function mostraPannelloAmicizieMobile(){
         pannelloAttivo.hide();
     }
     $("#pannello-Amicizie-mobile").show();
+    tastoAttivo.removeClass("activeButton");
     pannelloAttivo= $("#pannello-Amicizie-mobile");
 
 }
@@ -168,6 +180,17 @@ $(document).mouseup(function (e) {
     }
 });
 
+$(document).mouseup(function (e) {
+    try {
+        if ( $(".flex-item-img").is(e.target))  // if the target of the click isn't the container...
+        {
+            $("#barra-ricerca").val("");
+        }
+    }catch(ex){
+        console.log();
+    }
+});
+
 
 
 //Funzione che permentte di aprire il pannello-playlist
@@ -178,6 +201,9 @@ function mostraPannelloPlaylist() {
     $("#pannello-Playlist").show();
     $("#contenitore-canzoni-playlist").hide();
     $(".flex-container").css("height", "100%");
+    tastoAttivo.removeClass("activeButton");
+    tastoAttivo=$(".pulsanteA-playlist");
+    tastoAttivo.addClass("activeButton");
     pannelloAttivo = $("#pannello-Playlist");
 }
 
@@ -190,6 +216,9 @@ function mostraPannelloGenere(){
     }
     $("#pannello-Generi").show();
     pannelloAttivo=$("#pannello-Generi");
+    tastoAttivo.removeClass("activeButton");
+    tastoAttivo=$(".pulsanteA-generi");
+    tastoAttivo.addClass("activeButton");
 
 }
 
@@ -241,6 +270,8 @@ function setDivVisibility(){
         pannelloAttivo = $("#pannello-Album");
         $("#pannello-Album").show();
         $("#contenitore-canzoni-album").hide();
+        tastoAttivo=$(".pulsanteA-album");
+        tastoAttivo.addClass("activeButton");
         if (($(window).width()) > '768') {
             $('#colonna-destra').css('display', 'block');
             $('#colonna-sinistra').css('display', 'block');
