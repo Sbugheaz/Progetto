@@ -266,34 +266,54 @@ VALUES
 
 (47, 'The Ringer', 'Eminem', 'Rap', '2018-08-31', 337, 'images/cover/kamikaze-cover.jpg', 'musica/5/The_Ringer.mp3'),
 (48, 'Greatest', 'Eminem', 'Rap', '2018-08-31', 226, 'images/cover/kamikaze-cover.jpg', 'musica/5/Greatest.mp3'),
-(49, 'Lucky You', 'Eminem feat. Joyner Lucas', 'Rap', '2018-08-31', 244, 'images/cover/kamikaze-cover.jpg', 'musica/5/Lucky_You.mp3'),
+(49, 'Lucky You', 'Eminem ft. Joyner Lucas', 'Rap', '2018-08-31', 244, 'images/cover/kamikaze-cover.jpg', 'musica/5/Lucky_You.mp3'),
 (50, 'Normal', 'Eminem', 'Rap', '2018-08-31', 222, 'images/cover/kamikaze-cover.jpg', 'musica/5/Normal.mp3'),
 (51, 'Stepping Stone', 'Eminem', 'Rap', '2018-08-31', 309, 'images/cover/kamikaze-cover.jpg', 'musica/5/Stepping_Stone.mp3'),
-(52, 'Not Alike', 'Eminem feat. Royce da 5\'9', 'Rap', '2018-08-31', 288, 'images/cover/kamikaze-cover.jpg', 'musica/5/Not_Alike.mp3'),
+(52, 'Not Alike', 'Eminem ft. Royce da 5\'9', 'Rap', '2018-08-31', 288, 'images/cover/kamikaze-cover.jpg', 'musica/5/Not_Alike.mp3'),
 (53, 'Fall', 'Eminem', 'Rap', '2018-08-31', 216, 'images/cover/kamikaze-cover.jpg', 'musica/5/Fall.mp3'),
 (54, 'Kamikaze', 'Eminem', 'Rap', '2018-08-31', 262, 'images/cover/kamikaze-cover.jpg', 'musica/5/Kamikaze.mp3'),
-(55, 'Nice Guy', 'Eminem feat. Jessie Reyez', 'Rap', '2018-08-31', 150, 'images/cover/kamikaze-cover.jpg', 'musica/5/Nice_Guy.mp3'),
-(56, 'Good Guy', 'Eminem feat. Jessie Reyez', 'Rap', '2018-08-31', 142, 'images/cover/kamikaze-cover.jpg', 'musica/5/Good_Guy.mp3'),
+(55, 'Nice Guy', 'Eminem ft. Jessie Reyez', 'Rap', '2018-08-31', 150, 'images/cover/kamikaze-cover.jpg', 'musica/5/Nice_Guy.mp3'),
+(56, 'Good Guy', 'Eminem ft. Jessie Reyez', 'Rap', '2018-08-31', 142, 'images/cover/kamikaze-cover.jpg', 'musica/5/Good_Guy.mp3'),
 (57, 'Venom', 'Eminem', 'Rap', '2018-08-31', 269, 'images/cover/kamikaze-cover.jpg', 'musica/5/Venom.mp3'),
 
-(58, 'Walk On Water', 'Eminem feat. Beyoncé', 'Rap', '2017-12-15', 303, 'images/cover/revival-cover.png', 'musica/6/Walk_On_Water.mp3'),
+(58, 'Walk On Water', 'Eminem ft. Beyoncé', 'Rap', '2017-12-15', 303, 'images/cover/revival-cover.png', 'musica/6/Walk_On_Water.mp3'),
 (59, 'Believe', 'Eminem', 'Rap', '2017-12-15', 315, 'images/cover/revival-cover.png', 'musica/6/Believe.mp3'),
-(60, 'Chloraseptic', 'Eminem feat. PHRESHER', 'Rap', '2017-12-15', 301, 'images/cover/revival-cover.png', 'musica/6/Chloraseptic.mp3'),
+(60, 'Chloraseptic', 'Eminem ft. PHRESHER', 'Rap', '2017-12-15', 301, 'images/cover/revival-cover.png', 'musica/6/Chloraseptic.mp3'),
 (61, 'Untouchable', 'Eminem', 'Rap', '2017-12-15', 370, 'images/cover/revival-cover.png', 'musica/6/Untouchable.mp3'),
-(62, 'River', 'Eminem feat. Ed Sheeran', 'Rap', '2017-12-15', 221, 'images/cover/revival-cover.png', 'musica/6/River.mp3'),
+(62, 'River', 'Eminem ft. Ed Sheeran', 'Rap', '2017-12-15', 221, 'images/cover/revival-cover.png', 'musica/6/River.mp3'),
 (63, 'Remind Me', 'Eminem', 'Rap', '2017-12-15', 225, 'images/cover/revival-cover.png', 'musica/6/Remind_Me.mp3'),
-(64, 'Like Home', 'Eminem feat. Alicia Keys', 'Rap', '2017-12-15', 245, 'images/cover/revival-cover.png', 'musica/6/Like_Home.mp3'),
-(65, 'Bad Husband', 'Eminem feat. X Ambassadors', 'Rap', '2017-12-15', 288, 'images/cover/revival-cover.png', 'musica/6/Bad_Husband.mp3'),
-(66, 'Tragic Endings', 'Eminem feat. Skylar Grey', 'Rap', '2017-12-15', 252, 'images/cover/revival-cover.png', 'musica/6/Tragic_Endings.mp3'),
+(64, 'Like Home', 'Eminem ft. Alicia Keys', 'Rap', '2017-12-15', 245, 'images/cover/revival-cover.png', 'musica/6/Like_Home.mp3'),
+(65, 'Bad Husband', 'Eminem ft. X Ambassadors', 'Rap', '2017-12-15', 288, 'images/cover/revival-cover.png', 'musica/6/Bad_Husband.mp3'),
+(66, 'Tragic Endings', 'Eminem ft. Skylar Grey', 'Rap', '2017-12-15', 252, 'images/cover/revival-cover.png', 'musica/6/Tragic_Endings.mp3'),
 (67, 'Framed', 'Eminem', 'Rap', '2017-12-15', 253, 'images/cover/revival-cover.png', 'musica/6/Framed.mp3'),
-(68, 'Nowhere Fast', 'Eminem feat. Kehlani', 'Rap', '2017-12-15', 264, 'images/cover/revival-cover.png', 'musica/6/Nowhere_Fast.mp3'),
+(68, 'Nowhere Fast', 'Eminem ft. Kehlani', 'Rap', '2017-12-15', 264, 'images/cover/revival-cover.png', 'musica/6/Nowhere_Fast.mp3'),
 (69, 'Heat', 'Eminem', 'Rap', '2017-12-15', 250, 'images/cover/revival-cover.png', 'musica/6/Heat.mp3'),
 (70, 'Offended', 'Eminem', 'Rap', '2017-12-15', 321, 'images/cover/revival-cover.png', 'musica/6/Offended.mp3'),
-(71, 'Need Me', 'Eminem feat. P!nk', 'Rap', '2017-12-15', 265, 'images/cover/revival-cover.png', 'musica/6/Need_Me.mp3'),
+(71, 'Need Me', 'Eminem ft. P!nk', 'Rap', '2017-12-15', 265, 'images/cover/revival-cover.png', 'musica/6/Need_Me.mp3'),
 (72, 'In Your Head', 'Eminem', 'Rap', '2017-12-15', 182, 'images/cover/revival-cover.png', 'musica/6/In_Your_Head.mp3'),
 (73, 'Castle', 'Eminem', 'Rap', '2017-12-15', 254, 'images/cover/revival-cover.png', 'musica/6/Castle.mp3'),
-(74, 'Arose', 'Eminem', 'Rap', '2017-12-15', 274, 'images/cover/revival-cover.png', 'musica/6/Arose.mp3');
+(74, 'Arose', 'Eminem', 'Rap', '2017-12-15', 274, 'images/cover/revival-cover.png', 'musica/6/Arose.mp3'),
 
+(75, 'Numb Encore', 'Linkin Park ft. Jay Z', 'Rock', '2008-02-15', 209, 'images/cover/numb_encore-cover.jpg', 'musica/7/Numb_Encore.mp3'),
+(76, 'In The End', 'Linkin Park', 'Rock', '2003-05-2', 217, 'images/cover/in_the_end-cover.jpg', 'musica/7/In_The_End.mp3'),
+(77, 'Bleed It Out', 'Linkin Park', 'Rock', '2007-09-10', 168, 'images/cover/bleed_it_out-cover.jpg', 'musica/7/Bleed_It_Out.mp3'),
+(78, 'Toxicity', 'System Of A Down', 'Rock', '2001-04-24', 223, 'images/cover/toxicity-cover.jpg', 'musica/7/Toxicity.mp3'),
+(79, 'H.O.L.Y', 'Florida ft. Georgia Line', 'Country', '2016-04-26', 229, 'images/cover/holy-cover.jpg', 'musica/7/Holy.mp3'),
+(80, 'L\'Italiano Medio', 'Articolo 31', 'Pop', '2003-10-03', 229, 'images/cover/l_italiano_medio-cover.jpg', 'musica/7/L_Italiano_Medio.mp3'),
+(81, 'More Bounce To The Ounce', 'Zapp & Roger', 'Funky', '1980-03-03', 240, 'images/cover/more_bounce-cover.jpg', 'musica/7/More_Bounce_To_The_Ounce.mp3'),
+(82, 'Gonna Make You Sweat (Everybody Dance Now)', 'C + C ft. Music Factory ft. Freedom Williams', 'Pop', '1990-07-10', 247, 'images/cover/gonna_make-cover.jpg', 'musica/7/Gonna_Make.mp3'),
+(83, 'Havana', 'Camila Cabello ft. Young Thug', 'Pop', '2017-08-03', 218, 'images/cover/havana-cover.jpg', 'musica/7/Havana.mp3'),
+(84, 'The Middle', 'Zedd ft. Grey ft. Maren Morris', 'Pop', '2018-01-28', 184, 'images/cover/the_middle-cover.jpeg', 'musica/7/The_Middle.mp3');
+
+
+-- Inserimento dei brani senza cover
+INSERT INTO Brano (IDBrano, Titolo, Artista, Genere, DataUscita, Durata, Url_brano)
+VALUES
+(85, 'Rusty Cage', 'Johnny Cash', 'Country', '1991-12-01', 165, 'musica/7/Rusty_Cage.mp3'),
+(86, 'Soldi', 'Mahmood', 'Pop', '2019-02-05', 200, 'musica/7/Soldi.mp3'),
+(87, 'I Tuoi Particolari', 'Ultimo', 'Pop', '2019-02-06', 219 ,'musica/7/I_Tuoi_Particolari.mp3'),
+(88, 'Super Freak', 'Rick James', 'Funky', '1981-11-21', 201 ,'musica/7/Super_Freak.mp3'),
+(89, 'Scatman (ski-ba-bop-ba-dop-bop)', 'Scatman John', 'Pop', '1995-09-30', 210 ,'musica/7/Scatman.mp3');
 
 -- -----------------------------------------------------
 -- Table `SoundWaveDB`.`Playlist`
