@@ -318,14 +318,7 @@ function stampaBraniPlaylist(){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti all'album scelto dall'utente
 function stampaBraniAlbum(){
-    for(i=0; i<listaAlbum.length; i++){
-        if(listaAlbum[i].idAlbum==idAlbum){
-            $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
-                '<p class="paragrafo-album">' +
-                '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
-                '</div>');
-        }
-    }
+
         $("#contenitore-lista-album").remove();
         var content = "";
         $("#contenitore-canzoni-album").append('<div id="contenitore-lista-Album">' +

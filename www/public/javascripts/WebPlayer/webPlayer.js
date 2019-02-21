@@ -947,6 +947,14 @@ function richiediBraniAlbum() {
                 var lb = JSON.parse(result);
                 for (i = 0; i < lb.length; i++)
                     listaBrani[i] = new Brano(lb[i]);
+                for(i=0; i<listaAlbum.length; i++){
+                    if(listaAlbum[i].idAlbum==idAlbum){
+                        $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                            '<p class="paragrafo-album">' +
+                            '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
+                            '</div>');
+                    }
+                }
                 stampaBraniAlbum();
             }
         });
@@ -956,9 +964,8 @@ function richiediBraniAlbum() {
 function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
          function(result) {
-             console.log(result)
             if (result != "ERR") {
-                console.log("cusa")
+                console.log("cio");
                 $("#contenitore-canzoni-album").empty();
                 listaBrani.remove(0, listaBrani.length-1);
                 var lb = JSON.parse(result);
