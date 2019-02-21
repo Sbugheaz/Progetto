@@ -9,7 +9,7 @@ function stampaDatiAccount(utente) {
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli amici di un utente nell'apposita lista
 function stampaListaAmici(listaAmici){
     var content="";
     $("#contenitore-lista-amici").append('<ul class="demo listaAmici" style="color:cornsilk;">');
@@ -25,10 +25,10 @@ function stampaListaAmici(listaAmici){
         $(".listaAmici").append(content);
         content = "";
     }
-    $(".icona-rimuovi-amico").click(function(evento) {
-            recuperaIDElimina(evento);
+    $(".icona-rimuovi-amico").click(function(evento) { //intercetto l'evento di click di rimozione amico
+            recuperaIDElimina(evento); //funzione che recupera l'id dell'amico da eliminare
             $("#tastoConfermaRim").click(function () {
-                eliminaAmico();
+                eliminaAmico();        //sul click di conferma, rimuove l'amico
             });
         }
     );
@@ -36,12 +36,12 @@ function stampaListaAmici(listaAmici){
 
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
-//che non sono tra gli amici e corrispondono ai criteri di ricerca
+//che non sono già tra gli amici e corrispondono ai criteri di ricerca
 function stampaAmiciDaAggiungere(lu){
         var content = "";
         $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
         for (i = 0; i < lu.length; i++) {
-            listaUtenti[i] = new Account(lu[i]);
+            listaUtenti[i] = new Account(lu[i]);    //salva tutti gli utenti trovati nell'apposito vettore
             content += '<li class="p_listaUtenti">' +
                 '<div class="nomeUtente_da_aggiugere">' + listaUtenti[i].nomeUtente + ' (' + listaUtenti[i].nome + " " + listaUtenti[i].cognome + ') </div>' +
                 '<div class="cont-pulsante-aggiungi-utente"> <i class="fa fa-user-plus pulsante-aggiungi-utente" ' +
@@ -51,7 +51,7 @@ function stampaAmiciDaAggiungere(lu){
             content = "";
         }
         $(".pulsante-aggiungi-utente").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
-            recuperaIDAggiungi(evento);
+            recuperaIDAggiungi(evento); //funzione che recupera l'id dell'amico da aggiungere
             aggiungiAmico();
         }
     );
@@ -86,10 +86,10 @@ function stampaAmiciOnline(listaAmiciOnline){
     }
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani relativi al genere selezionato
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa nell'apposita lista i brani relativi al genere selezionato
 function stampaListaBraniPerGenere(listaBrani){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
-    $("#contenitore-listaBrani-genere").scrollTop();
+    $("#contenitore-listaBrani-genere").scrollTop(); //riporta la scrollbar in alto
     var content="";
     $("#contenitore-listaBrani-genere").append('<ul class="demo listaGenere">');
     for(i=0; i<listaBrani.length; i++) {
@@ -105,25 +105,25 @@ function stampaListaBraniPerGenere(listaBrani){
         $(".listaGenere").append(content);
         content = "";
     }
-    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
-        recuperaIDBrano(evento);
+    $(".icona-play-gen").click(function(evento) {  //funzione che intercetta l'evento di click riproduci brano
+        recuperaIDBrano(evento);  //ricava l'id del brano selezionato per riprodurlo
         playListAvviata=false;
-        riproduciBrano();
-            if(shuffleB==true){
+        riproduciBrano();  //permette la riproduzione del brano
+            if(shuffleB==true){  //gestisce la sequenza di brani in modalità riproduzione casuale
                 percorsi=shuffle(percorsi);
             }
     }
     );
     $(".icona-aggiungi-Aplaylist-gen").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
-            recuperaIDBrano(evento);
+            recuperaIDBrano(evento);    //ricava l'id del brano selezionato per riprodurlo
             stampaListaPlaylistAggiungi();
         }
     );
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
-//che corrispondono ai criteri di ricerca
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i brani
+//che corrispondono ai criteri di ricerca nell'apposita lista
 function stampalistaBraniRicerca(lb){
     var content = "";
     $("#contenitore-lista-ricerca-brani").append('<ul class="demo listaRicerca" style="color:cornsilk;">');
@@ -142,17 +142,17 @@ function stampalistaBraniRicerca(lb){
         $(".listaRicerca").append(content);
         content = "";
     }
-    $(".coverBrano").click(function (evento) {
-        recuperaIDBrano(evento);
-        abilitaPlayer();
+    $(".coverBrano").click(function (evento) { //funzione che intercetta l'evento di click riproduci
+        recuperaIDBrano(evento);    //recupera l'id del brano che si vuole riprodurre
+        abilitaPlayer();        //abilita i tasti del player una volta caricato un brano
         playListAvviata=false;
-        riproduciBranoSingolo();
+        riproduciBranoSingolo();  //manda in riproduzione soltanto il brano selezionato
 
         }
     );
 
     $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
-           recuperaIDBrano(evento);
+           recuperaIDBrano(evento);     //recupera l'id del brano che si vuole aggiungere ad una playlist
            stampaListaPlaylistAggiungi();
         }
     );
@@ -174,8 +174,8 @@ function stampalistaAlbumRicerca(la){
     }
 
     $(".img_album").click(function(evento) {  //funzione che intercetta l'evento di click sull'album ricercato
-             recuperaIDAlbum(evento);
-             mostraPannelloAlbum();
+             recuperaIDAlbum(evento);       //recupera l'id dell'album selezionato
+             mostraPannelloAlbum();         //mostra nel Pannello "In Riproduzione" la lista dei brani appartenti all'album selezionato
              $("#album_n" + idAlbum).click();
         }
     );
@@ -183,9 +183,11 @@ function stampalistaAlbumRicerca(la){
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutte le playlist di un utente
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutte le playlist di un utente nell'apposita lista
 function stampaListaPlaylist(listaPlaylist){
     $("#contenitore-playlist").empty();
+
+    //stampa il flex-item "Crea playlist" che permette la creazione di nuove playlist
     $("#contenitore-playlist").append('<div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">\n' +
                                             '<div class="flex-item-conteiner">\n' +
                                                 '<div class="flex-item-conteiner-icon">\n' +
@@ -195,6 +197,8 @@ function stampaListaPlaylist(listaPlaylist){
                                             '</div>\n' +
                                         '</div>');
     var content="";
+
+    //stampa tutti i flex-item contenenti le playlist possedute dall'utente
     for(i=0; i<listaPlaylist.length; i++) {
         content += '<div class="flex-item container-playlist" id="playlist'+ listaPlaylist[i].idPlaylist +'">' +
                        '<div class="flex-item-conteiner" style="pointer-events: none;">' +
@@ -205,20 +209,22 @@ function stampaListaPlaylist(listaPlaylist){
         $("#contenitore-playlist").append(content);
         content = "";
         }
-    $(".container-playlist").click(function(evento) {
-            recuperaIDPlaylist(evento);
-            richiediBraniPlaylist();
+
+    $(".container-playlist").click(function(evento) { //intercetta l'evento di click di selezione di una playlist
+            recuperaIDPlaylist(evento);     //recupera l'id della playlist selezionata
+            richiediBraniPlaylist();        //richiede al database tutti i brani appartenenti alla playlist selezionata
             idPlaylistSelezionato=idPlaylist;
-            cambiaDimensioniConteinerPlaylist();
+            cambiaDimensioniConteinerPlaylist();    //adatta le dimensioni dei container
         }
     );
 }
+
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'apposita lista
 function stampaListaAlbum(listaAlbum){
     $(".flex-container-Album").empty();
 
-    //Stampo il flex-item-container contenente tutti i singoli
+    //Stampa il flex-item-container contenente tutti i singoli
     $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/default-album.png" class="flex-item-img" id="singoli">' +
                                         '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">Singoli</p></div></div>');
     $("#singoli").click(function(evento) {
@@ -226,9 +232,9 @@ function stampaListaAlbum(listaAlbum){
             cambiaDimensioniConteinerAlbum();
         }
     );
+
     //Stampo i flex-item che contengono tutti gli altri album
     var content="";
-
     for(i=0; i<listaAlbum.length; i++) {
         content += '<div class="flex-item-Album">' +
             '<img src="'+ listaAlbum[i].url_cover +'" class="flex-item-img coverAlbum" id="album_n'+ listaAlbum[i].idAlbum +'">' +
@@ -236,11 +242,10 @@ function stampaListaAlbum(listaAlbum){
         $(".flex-container-Album").append(content);
         content = "";
     }
-    $(".coverAlbum").click(function(evento) {
-            recuperaIDAlbum(evento);
-            cambiaDimensioniConteinerAlbum();
-            richiediBraniAlbum();
-
+    $(".coverAlbum").click(function(evento) { //intercetta l'evento di click di selezione di un album
+            recuperaIDAlbum(evento);        //recupera l'id dell'album selezionato
+            cambiaDimensioniConteinerAlbum();   // adatta le dimensioni dei container
+            richiediBraniAlbum();       //richiede al database i brani appartenenti all'album selezionato
         }
     );
 }
@@ -248,6 +253,8 @@ function stampaListaAlbum(listaAlbum){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti alla playlist scelta dall'utente
 function stampaBraniPlaylist(){
+
+    //se la playlist selezionata non contiene nessun brano stampa a video che la playlist è vuota e dà la possibilità di cancellarla
     if(listaBrani.length==0){
         $("#contenitore-canzoni-playlist").empty();
         for(i=0; i<listaPlaylist.length; i++){
@@ -258,13 +265,15 @@ function stampaBraniPlaylist(){
                     'id="elimPlay'+ listaPlaylist[i].idPlaylist +'" data-toggle="modal" data-target="#modal-conferma-rimPlaylist"></i></p>');
             }
         }
-        $(".icona-eliminaPlaylist").click(function(evento) {
-            recuperaIDPlaylist(evento);
+        $(".icona-eliminaPlaylist").click(function(evento) { //intercetta l'evento di click di eliminazione di una playlist
+            recuperaIDPlaylist(evento);     //recupera l'id della playlist selezionata
             $("#tastoConfermaRimPlaylist").click(function () {
-                eliminaPlaylist();
+                eliminaPlaylist();      //al click di conferma rimuove la playlist selezionata
             });
         });
     }
+
+    //se la playlist selezionata non è vuota, stampa tutti i brani ad essa appartenenti e l'icona per cancellarla
     else {
         $("#contenitore-lista-playlist").remove();
         var content = "";
@@ -292,27 +301,21 @@ function stampaBraniPlaylist(){
             content = "";
         }
     }
-    $(".play").click(function(evento) {
-            recuperaIDBrano(evento);
+    $(".play").click(function(evento) { //intercetta l'evento di clik riproduci brano
+            recuperaIDBrano(evento);        //recupera l'id del brano selezionato
             playListAvviata=true;
             idPlaylistAvviata=idPlaylist;
-            riproduciBrano();
+            riproduciBrano();       //manda in riproduzione il brano selezionato
             if(shuffleB==true){
-               percorsi=shuffle(percorsi);
+               percorsi=shuffle(percorsi); //gestisce la riproduzione casuale
             }
-
-
         }
     );
-    $(".rimuovi").click(function(evento) {
-            recuperaIDBrano(evento);
-            rimuoviBrano();
+    $(".rimuovi").click(function(evento) {    //intercetta l'evento di click rimozione del brano dalla playlist
+            recuperaIDBrano(evento);        //recupera l'id del brano selezionato
+            rimuoviBrano();         //rimuove il brano selezionato dalla playlist
         }
     );
-    //$(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta playlist
-            // recuperaIDAggiungi(evento);
-        //}
-    //);
 }
 
 
@@ -347,30 +350,33 @@ function stampaBraniAlbum(){
         content = "";
     }
 
-    $(".riproduci").click(function(evento) {
-            recuperaIDBrano(evento);
-            riproduciBrano();
+    $(".riproduci").click(function(evento) {    //intercetta l'evento di click riproduzione brano
+            recuperaIDBrano(evento);        //recupera l'id del brano selezionato
+            riproduciBrano();         //manda in riproduzione il brano selezionato
             if(shuffleB==true){
-                percorsi=shuffle(percorsi);
+                percorsi=shuffle(percorsi);     //gestisce la riproduzione casuale
             }
-
         }
     );
     $(".aggiungiAPlaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta a playlist
-            recuperaIDBrano(evento);
+            recuperaIDBrano(evento);        //recupera l'id del brano selezionato
             stampaListaPlaylistAggiungi();
         }
     );
 }
 
+
 //Funzione che stampa nel Pannello In Riproduzione i brani, gli album o le playlist in riproduzione
 function stampaBraniInRiproduzione() {
+
+    //se non c'è nessun brano in riproduzione stampa il messaggio a video
     if(percorsi == null){
         $("#contenitore-listaBrani-produzione").empty();
                 $("#contenitore-listaBrani-produzione").append('<p class="messaggio-riproduzione">' +
                     'Nessun brano in riproduzione. </p>');
         }
 
+    //se invece ci sono dei brani in riproduzione, li stampa nell'apposita lista
     else {
     $("#contenitore-listaBrani-produzione").empty(); //svuota la lista contenente i brani in riproduzione
     var content = "";
@@ -386,6 +392,8 @@ function stampaBraniInRiproduzione() {
         $(".listaRiproduzione").append(content);
         content = "";
     }
+
+    //rileva il brano in riproduzione al caricamento della pagina
     if(seeking==true && shuffleB==true) {
         $('#brano-ripr' +calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
     }else if(seeking==true && shuffleB==false){
@@ -394,7 +402,9 @@ function stampaBraniInRiproduzione() {
 }
 
     $(".icona-play-prod").click(function(evento) {//funzione che intercetta l'evento di click di riproduzione del brano dell lista di brani in riproduzione
-            recuperaIDBrano(evento);
+            recuperaIDBrano(evento);    //recupera l'id del brano selezionato
+
+        //gestisce le icone dei brani in riproduzione
             if(seeking==true && calcolaIndiceShuffleOrigine()==idBrano) {
                 $('#brano-ripr' + idBrano).removeClass('fa-pause').addClass('fa-play');
                 stoppaBrano();
@@ -413,18 +423,22 @@ function stampaBraniInRiproduzione() {
                 avviaBrano();
             }
             stampaBraniInRiproduzione();
-
         }
     );
-
 }
 
+//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista delle playlist
+//possedute dall'utente per permettere l'aggiunzione di un brano ad una di esse
 function stampaListaPlaylistAggiungi(){
+
+    //se l'utente non ha ancora nessuna playlist, stampa a video il messaggio
     if(listaPlaylist.length==0){
         $(".tab-agg-brano").empty;
         $(".container-listaPlaylist").empty();
         $(".tab-agg-brano").html("Non hai ancora nessuna playlist!<br>Creane una per aggiungere questo brano.");
     }
+
+    //altimenti stampa nell'apposita lista tutte le playlist dell'utente
     else {
         $(".tab-agg-brano").empty;
         $(".tab-agg-brano").html("Seleziona la playlist alla quale vuoi aggiungere il brano:");
@@ -442,10 +456,9 @@ function stampaListaPlaylistAggiungi(){
         }
     }
     $(".pulsante-aggiungi-brano").click(function(evento) {  //funzione che intercetta l'evento di selezione della playlist
-            recuperaIDPlaylist(evento);
-            aggiungiBranoAPlaylist();
+            recuperaIDPlaylist(evento);     //recupera l'id della playlist selezionata
+            aggiungiBranoAPlaylist();       //aggiunge il brano selezionato alla playlist desiderata
             idPlaystTarget=idPlaylist;
-            console.log("id playlist: "+idPlaylist,"target: "+idPlaystTarget,"in rip: "+idPlaylistAvviata,"stato",playListAvviata)
         }
     );
 }

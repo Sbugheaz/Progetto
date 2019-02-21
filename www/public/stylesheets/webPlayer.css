@@ -148,6 +148,8 @@ ul.demo {
     background: rgba(255,138,0,1);
 }
 
+
+
 .sta-ascoltando{
     width:100%;
     display: block;
@@ -468,6 +470,9 @@ btn-conzoni-ricerca{
      opacity: 0.9;
      color: cornsilk;
 }
+ .li-lista-brani:hover{
+     font-weight: bold;
+ }
 
 .play-brano{
     opacity: 0;
@@ -533,7 +538,6 @@ btn-conzoni-ricerca{
     height: calc(100vh - 165px);
 }
 /*propietà contenitore Album*/
-
 .flex-container-Album{
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -607,6 +611,9 @@ btn-conzoni-ricerca{
     padding-left: 5px;
     overflow: hidden;
     clear:left;
+}
+.li_listaAlbum:hover{
+    font-weight: bold;
 }
 .ordine-Album{
     width: 10%;
@@ -1578,6 +1585,9 @@ fa-paly:hover {
     overflow: hidden;
     clear:left;
 }
+.li_listaPlaylist:hover{
+    font-weight: bold;
+}
 .ordine-playlist{
     width: 10%;
     float: left;
@@ -1695,6 +1705,9 @@ height: calc(100% - 90px);
 /*propietà pannello brani in riproduzione*/
 #contenitore-produzione{
     height:100%;
+}
+.InRiproduzione:hover{
+    font-weight: bold;
 }
 .titolo-listaBrani-produzione{
     padding-top: 2%;
@@ -1885,6 +1898,9 @@ height: calc(100% - 90px);
 .genere {
     overflow: hidden;
     border-bottom: 1px solid #5CA5FF;
+}
+.genere:hover{
+    font-weight: bold;
 }
 .genere > * {
     vertical-align: middle;

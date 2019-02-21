@@ -975,7 +975,7 @@ function richiediBraniSingoli() {
                 for (i = 0; i < lb.length; i++)
                     listaBrani[i] = new Brano(lb[i]);
                 $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
-                            '<p class="paragrafo-album" style="font-size: x-large"> Singoli </p>' +
+                            '<p class="paragrafo-album"> Singoli </p>' +
                             '</div>');
                 stampaBraniAlbum();
             }
