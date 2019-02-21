@@ -144,8 +144,8 @@ function mostraPannelloMobile(){
 //Funzione che chiude il pannello-mobile
 $(document).mouseup(function (e) {
     try {
-        if ((!pannelloSecondario.is(e.target)|| !$("#altro").is(e.target) ) // if the target of the click isn't the container...
-            && (pannelloSecondario.has(e.target).length === 0 && $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
+        if ((!(pannelloSecondario.is(e.target)|| $("#altro").is(e.target)) && !$('.btn-mobile-generi').is(e.target) ) // if the target of the click isn't the container...
+            && ( $("#altro").has(e.target).length === 0)) // ... nor a descendant of the container
         {
             pannelloSecondario.hide(500);
             pannelloSecondario=null;
@@ -607,12 +607,12 @@ function riproduciBranoSingolo() {
 }
 
 function cambiaDimensioniConteinerAlbum(){
-    $(".flex-container-Album").css("height", "50%");
+    $(".flex-container-Album").css("height", "35%");
     $("#contenitore-canzoni-album").slideDown("slow");
 
 }
 function cambiaDimensioniConteinerPlaylist(){
-    $(".flex-container").css("height", "50%");
+    $(".flex-container").css("height", "35%");
     $("#contenitore-canzoni-playlist").slideDown("slow");
 
 }
@@ -946,14 +946,6 @@ function richiediBraniAlbum() {
                 var lb = JSON.parse(result);
                 for (i = 0; i < lb.length; i++)
                     listaBrani[i] = new Brano(lb[i]);
-                for(i=0; i<listaAlbum.length; i++){
-                    if(listaAlbum[i].idAlbum==idAlbum){
-                        $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
-                            '<p class="paragrafo-album">' +
-                            '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
-                            '</div>');
-                    }
-                }
                 stampaBraniAlbum();
             }
         });
@@ -963,7 +955,9 @@ function richiediBraniAlbum() {
 function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
          function(result) {
+             console.log(result)
             if (result != "ERR") {
+                console.log("cusa")
                 $("#contenitore-canzoni-album").empty();
                 listaBrani.remove(0, listaBrani.length-1);
                 var lb = JSON.parse(result);

@@ -175,12 +175,9 @@ ul.demo {
 /*Controllo player*/
 #sezione-controlli-riproduzione {
     width: 100vw;
-    position: fixed;
     bottom: 0;
     left:0;
-    z-index: 1000;
     height: 100px;
-
 }
 
 
@@ -192,12 +189,16 @@ ul.demo {
 #sezione-controlli-riproduzione > .row {
     position: relative;
     font-size: 100%;
+
 }
 #sezione-controlli-riproduzione {
     background-color:  rgba(0, 114, 255, 0.43);
     color: cornsilk;
     text-align: center;
 
+}
+#colonna-sezione-controlli-riproduzione{
+    padding: 0;
 }
 #riga-slider > .slider-horizontal{
     display: inline-block;
@@ -370,11 +371,11 @@ div.slider-selection{
 
 }
 /*propietà tasti webplayer*/
-#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz, #tasto-Rap:focus{
+#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz:focus, #tasto-Rap:focus{
     color: cornsilk;
 }
 
-#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz, #tasto-Rap:hover{
+#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz:hover, #tasto-Rap:hover{
     background-color: #5CA5FF;
 }
 
@@ -442,7 +443,7 @@ btn-conzoni-ricerca{
     margin: 0;
 }
 .contenitore-imgBrano{
-  width: 25%;
+  width: 30%;
 }
 .contenitore-nomeCanzone-Artista{
     width: 60%;
@@ -453,7 +454,7 @@ btn-conzoni-ricerca{
     box-sizing: border-box;
 }
 .coverBrano{
-    width: 100px;
+    width: calc(7rem + 3vw);
 }
 
  .contenitore-icona-hover:hover{
@@ -580,7 +581,7 @@ btn-conzoni-ricerca{
     font-size: calc(0.2rem + 1vw);
 }
 #contenitore-canzoni-album{
-    height: calc(50% - 30px);
+    height: calc(65% - 30px);
 }
 #contenitore-paragrafo-Album{
     height: 20%;
@@ -919,7 +920,7 @@ table{
         width: 60vw;
     }
 
-    #contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
+    #pannello-Ricerca,#pannello-Amicizie-mobile,#pannello-Generi,#contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
         height: calc(100vh - 215px)!important;
     }
     #contenitore-genere{
@@ -989,6 +990,13 @@ table{
   .messaggio{
     font-size: calc(0.4rem + 1vw)!important;
   }
+    .coverBrano{
+        width: 100%;
+    }
+    .contenitore-imgBrano{
+        width: 25%;
+        max-width: 160px;
+    }
 
     /*Proprietà dell'intestazione dei modal*/
     .modal-header, .header{
@@ -1248,7 +1256,7 @@ table{
     box-sizing: border-box;
 }
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
-    height: 59vh;
+    height: calc(100vh - 215px);
 }
 
 .col-sx-sec{
@@ -1286,6 +1294,12 @@ p.paragrafo-amicizie-mobile{
     display: none;
     z-index:1;
 
+}
+.dropdown-menu.show{
+    display: block;
+    height: 40%;
+    overflow-y: auto;
+    font-size: calc(0.4rem + 1vw);
 }
 
 /*propietà bottoni pannello-mobile*/
@@ -1379,7 +1393,7 @@ p.paragrafo-amicizie-mobile{
   cursor:pointer;
 }
 #contenitore-canzoni-playlist{
-    height: 50%;
+    height: calc(65% - 30px);
 
 }
 #contenitore-lista-playlist{
@@ -1393,13 +1407,11 @@ p.paragrafo-amicizie-mobile{
 .paragrafo-playlist{
     font-size: calc(1rem + 1vw);
     text-align: center ;
-    margin-top: 3vh;
+    margin-top: 30px;
     margin-bottom: 1rem;
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
-    margin: 0;
 }
-
 .btn-canzoni-playlist{
     background: transparent;
     box-shadow: none!important;
@@ -1678,7 +1690,7 @@ height: calc(100% - 90px);
     display: none;
 }
 
-/*propietà pannnello brani in riproduzione*/
+/*propietà pannello brani in riproduzione*/
 #contenitore-produzione{
     height:100%;
 }
@@ -1778,7 +1790,7 @@ height: calc(100% - 90px);
     display: none;
 }
 
-/*Propietà pannnello generi*/
+/*Propietà pannello generi*/
 #contenitore-genere{
     height: calc(100% - 60px);
 }
@@ -1842,6 +1854,7 @@ height: calc(100% - 90px);
 }
 .imgCover{
     width: 15%;
+    padding: 10px 0;
 }
 .nomeArtista_genere{
     width: 30%;
@@ -1910,6 +1923,7 @@ height: calc(100% - 90px);
 
 /*Proprietà Modal Aggiungi A Playlist*/
 .tab-agg-brano{
+    padding-bottom: 1rem;
     box-sizing: border-box;
     overflow: hidden;
 }
