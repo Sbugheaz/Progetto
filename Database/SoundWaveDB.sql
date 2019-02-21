@@ -45,12 +45,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Account (IDUtente, NomeUtente, Password, Email, Nome, Cognome, Sesso, DataDiNascita, Attivazione)
 VALUES
-(1, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 1),
-(2, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 1),
-(3, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 1),
-(4, 'vorfreude', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'c.civilleri@yahoo.it', 'Chiara', 'Civilleri', 'F', '1996-07-08', 1),
-(5, 'AlfaMoon', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'garibaldina95@gmail.com', 'Maria Grazia', 'Pizzo', 'F', '1995-05-16', 1),
-(6, 'Narduccio', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'leonardo.digiovanna96@gmail.com', 'Leonardo', 'Di Giovanna', 'M', '1996-09-26', 1),
+(1, 'Admin', 'wcIksDzZvHtqhtd/XazkAZF2bEhc1V3EjK+ayHMzXW8=', 'admin@unipa.it', 'Admin', 'Admin', 'M', '1996-10-19', 1),
+(2, 'Sbugheaz', 'iWc3Clf6b8vkUCqzWKfayMnWnzQ0xLc7DbYPfJtwz8g=', 'gianmarco.coppola@community.unipa.it', 'Gianmarco', 'Coppola', 'M', '1996-10-19', 1),
+(3, 'ElMosca96', 'iVeoZsFoJ88L/OMZebfOgcEVT+K+t0zmwnmfUSAyoCU=', 'peppe.moscarelli96@gmail.com', 'Giuseppe', 'Moscarelli', 'M', '1996-06-05', 1),
+(4, 'Aries96', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'andryplus96@gmail.com', 'Andrea', 'Vara', 'M', '1996-06-10', 1),
+(5, 'vorfreude', 'VWk9KW7p+DVrYsL/OFwbfP4d/efX7mPUh5ri4K0lZNo=', 'c.civilleri@yahoo.it', 'Chiara', 'Civilleri', 'F', '1996-07-08', 1),
+(6, 'AlfaMoon', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'garibaldina95@gmail.com', 'Maria Grazia', 'Pizzo', 'F', '1995-05-16', 1),
 (7, 'pappagaloBelo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'valerio.puleo@community.unipa.it', 'Valerio', 'Puleo', 'M', '1996-10-10', 1),
 (8, 'energizer', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'gaetano.riccardo.ricotta@community.unipa.it', 'Gaetano Riccardo', 'Ricotta', 'M', '1996-04-08', 1),
 (9, 'vinz96', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vincenzo.viviani@community.unipa.it', 'Vincenzo', 'Viviani', 'M', '1996-02-19', 1),
@@ -68,7 +68,8 @@ VALUES
 (21, 'angeloMosca', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'angelomoscarelli66@gmail.com', 'Angelo', 'Moscarelli', 'M', '1966-03-04', 1),
 (22, 'stellaAlba', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'alba.stella96@gmail.com', 'Alba', 'Petralia', 'F', '1995-06-05', 1),
 (23, 'edogallo', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'edoardo.gallo@commynity.unipa.it', 'Edoardo', 'Gallo', 'M', '1996-10-07', 0),
-(24, 'stallaZ', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vittoria.stalla@yahoo.it', 'Vittoria', 'Stalla', 'F', '1996-07-08', 1);
+(24, 'stallaZ', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'vittoria.stalla@yahoo.it', 'Vittoria', 'Stalla', 'F', '1996-07-08', 1),
+(25, 'Narduccio', 'El+B8Pc6t+YkFd1aEBANnaI2mn5ZnYw4hH6Kv7EVBrg=', 'leonardo.digiovanna96@gmail.com', 'Leonardo', 'Di Giovanna', 'M', '1996-09-26', 1);
 
 
 -- -----------------------------------------------------
@@ -132,11 +133,16 @@ VALUES
 (5, 4),
 (5, 7),
 (5, 12),
+(4, 5),
+(4, 10),
+(4, 22),
+(4, 12),
 (4, 11),
 (4, 15),
 (4, 3),
 (4, 18),
 (4, 23),
+(4, 13),
 (6, 13),
 (6, 10),
 (6, 4),
@@ -305,7 +311,6 @@ VALUES
 (83, 'Havana', 'Camila Cabello ft. Young Thug', 'Pop', '2017-08-03', 218, 'images/cover/havana-cover.jpg', 'musica/7/Havana.mp3'),
 (84, 'The Middle', 'Zedd ft. Grey ft. Maren Morris', 'Pop', '2018-01-28', 184, 'images/cover/the_middle-cover.jpeg', 'musica/7/The_Middle.mp3');
 
-
 -- Inserimento dei brani senza cover
 INSERT INTO Brano (IDBrano, Titolo, Artista, Genere, DataUscita, Durata, Url_brano)
 VALUES
@@ -437,7 +442,10 @@ VALUES
 (2, 3),
 (3, 1),
 (3, 2),
-(3, 3);
+(3, 3),
+(4, 1),
+(4, 2),
+(4, 3);
 
 
 -- -----------------------------------------------------
