@@ -208,7 +208,7 @@ function stampaListaPlaylist(listaPlaylist){
     $(".container-playlist").click(function(evento) {
             recuperaIDPlaylist(evento);
             richiediBraniPlaylist();
-            idPlaylistAvviata=idPlaylist;
+            idPlaylistSelezionato=idPlaylist;
             cambiaDimensioniConteinerPlaylist();
         }
     );
@@ -295,6 +295,7 @@ function stampaBraniPlaylist(){
     $(".play").click(function(evento) {
             recuperaIDBrano(evento);
             playListAvviata=true;
+            idPlaylistAvviata=idPlaylist;
             riproduciBrano();
             if(shuffleB==true){
                percorsi=shuffle(percorsi);

@@ -1297,9 +1297,9 @@ p.paragrafo-amicizie-mobile{
     z-index:1;
 
 }
-.dropdown-menu.show{
+.listaGeneri.show{
     display: block;
-    height: 40%;
+    height: 35%;
     overflow-y: auto;
     font-size: calc(0.4rem + 1vw);
 }
