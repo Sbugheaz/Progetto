@@ -13,7 +13,7 @@ var idPlaylist; //variabile che contiene l'id' della playlist selezionata
 var idAlbum; //variabile che contiene l'id' dell'album selezionato
 var playListAvviata=false;//variabile che idica la riproduzione di una playlist
 var idPlaylistAvviata;//variabile che indica l'id della playlist in ascolto
-var idPlaystTarget// variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
+var idPlaystTarget; // variabile che indica la playlist a cui vogliamo aggiungere la canzone selezionata;
 var block = false;
 var percorsi;//vettore che contiene una copia della lista dei brani da riprodurre soggetta a shuffle
 var tastoAttivo;//tasto che indica il pulsante attivo
@@ -236,6 +236,7 @@ function mostraTastoLogout() {
         block = false;
     }
 }
+
 /*funzione che fa scomparire il pulsante logout*/
 function nascondiTastologout() {
     if (!block) {
@@ -247,6 +248,7 @@ function nascondiTastologout() {
         block = false;
     }
 }
+
 /*funzione che contralla i pannelli da aprire in base alla dimensione della pagina*/
 function setDivVisibility(){
     if (($(window).width()) > '768'){
@@ -260,12 +262,9 @@ function setDivVisibility(){
         $('#menu-orizzontale').css('display','none');
         if( $(pannelloAttivo).attr("id") === "pannello-Amicizie-mobile") mostraPannelloAlbum();
         $('#colonna-destra,#colonna-sinistra').css('display','block');
-
-
     } else {
         $('#menu-orizzontale').css('display','block');
         $('#colonna-destra,#colonna-sinistra').css('display','none');
-
     }
 }
 
@@ -286,11 +285,13 @@ function setDivVisibility(){
         $("#volume-range").slider({value: 50});
         disabilitaPlayer();
     }
+
 //Funzione che disabilita lo slider del player e del volume
     function disabilitaPlayer(){
         $("#barraDiAvanzamento").slider('disable');
         $("#volume-range").slider("disable");
     }
+
     //Funzione che abilita i tasti play pause e gli slider del player e del volume
     function abilitaPlayer(){
         $("#barraDiAvanzamento").slider('enable');
@@ -298,12 +299,14 @@ function setDivVisibility(){
         $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
         $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
     }
+
     //funzione che disabilita lo shuffle quando è attivo
     function disabilitaShuffle(){
         if(shuffleB==true){
             shuffleBrani();
         }
     }
+
 //Funzione che ritorna l'indice del brano in riproduzione del vettore Percorsi(Copia dei brani in riproduzione soggetta a shuffle)
     function calcolaIndiceShufflePercorsi(){
         var ind=0;
@@ -315,6 +318,7 @@ function setDivVisibility(){
         }
         return ind;
     }
+
 //Funzione che ritorna l'indice del brano in riproduzione del vettore ListaOrigine(Copia dei brani in riproduzione non soggetta a shuffle)
 function calcolaIndiceShuffleOrigine(){
     var ind=0;
@@ -327,8 +331,6 @@ function calcolaIndiceShuffleOrigine(){
     return ind;
 }
 
-
-
 $(document).ready(function(){
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
     // modifica dei dati dell'account
@@ -336,6 +338,7 @@ $(document).ready(function(){
         $(".campi").removeClass("invalid");
         $(".pd").css("display", "none");
     });
+
     //Funzione che resetta tutti i campi alla chiusura del modal per la modifica dei dati utente
     $('#myModal').on('hidden.bs.modal', function () {
         $(".campi").removeClass("invalid");
@@ -346,12 +349,14 @@ $(document).ready(function(){
         disabilitaScrittura('dataNascita');
         $(".footerProfilo").hide();
     });
+
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
     // modifica della password
     $(".campiPass").on('input',function(){
         $(".campiPass").removeClass("invalid");
         $(".pd").css("display", "none");
     });
+
     //Funzione che resetta tutti i campi alla chiusura del modal per la modifica della password
     $('#myModalPass').on('hidden.bs.modal', function () {
         $(".campiPass").removeClass("invalid");
@@ -365,20 +370,24 @@ $(document).ready(function(){
         document.getElementById("confNuovaPass").type = "password";
         document.getElementById("eye3").className = "fa fa-eye iconaPassword";
     });
+
     //Funzione che resetta tutti i campi alla chiusura del modal per la ricerca degli utenti
     $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
         $(".listaUtenti").remove();
     });
+
     //Funzione che rimuove il paragrafo di errore alla creazione di una nuova playlist
     $("#inserisci-nomePlaylist").on('input',function(){
         $(".pd").css("display", "none");
     });
+
     //Funzione che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la creazione di una nuova playlist
     $('#modal-crea-playlist').on('hidden.bs.modal', function () {
         $(this).find('form').trigger('reset');
         $("#err_playlist").text("").css("display", "none");
     });
+
     //Funzione che resetta il paragrafo di errore alla chiusura del modal per l'aggiunta di un brano ad una playlist
     $('#modal-aggiungi-APlaylist').on('hidden.bs.modal', function () {
         $("#err_aggiungiBrano").text("").css("display", "none");
@@ -388,21 +397,23 @@ $(document).ready(function(){
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
 function recuperaIDElimina(evento) {
     id = evento.target.id.substring(13);
-};
+}
+
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'aggiunta e comunicarla al database
 function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
-};
+}
 
-//Funzione che recupera l'id del brano della lista per comunicarlo al server e riprodurlo o rimuoverlo dalla playlist
+//Funzione che recupera l'id del brano della lista per comunicarlo al server e svolgere le operazioni necessarie
 function recuperaIDBrano(evento) {
     idBrano = evento.target.id.substring(10);
-};
+}
 
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
     idPlaylist = evento.target.id.substring(8);
 }
+
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDAlbum(evento) {
     idAlbum = evento.target.id.substring(7);
@@ -414,6 +425,7 @@ $(document).ready(function(){
         $(".listaUtenti").remove();
     });
 });
+
 //Funzione che cancella le ricerche precedenti dei brani quando viene svuotato il campo ricerca
 $(document).ready(function(){
     $("#barra-ricerca").on('input',function(){
@@ -421,6 +433,7 @@ $(document).ready(function(){
         $("#contenitore-lista-ricerca-brani").empty();
     });
 });
+
 //Funzione che cancella le ricerche precedenti degli album quando viene svuotato il campo ricerca
 $(document).ready(function(){
     $("#barra-ricerca").on('input',function(){
@@ -442,20 +455,18 @@ Array.prototype.remove = function(from, to) {
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
-    // While there remain elements to shuffle...
+    // finchè rimangono elementi da mescolare
     while (0 !== currentIndex) {
 
-        // Pick a remaining element...
+        // Scegli un elemento rimanente...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
 
-        // And swap it with the current element.
+        // e scambialo con l'elemento corrente.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
-
     return array;
 }
 
@@ -468,7 +479,7 @@ function toMinutes(secondi) {
     return dur;
 }
 
-//Funzione che permette di avviare riproduzione del brano
+//Funzione che permette di avviare la riproduzione del brano
 function avviaBrano() {
         seeking = true;
         audioElement.play();
@@ -497,6 +508,7 @@ function verificaBranoSuccessivo() {
         streamingBrano(percorsi[indiceCorrente].url_brano);
     }
 }
+
 //Funzione che aggiorna il campo secondo attualmente in riproduzione e aggiorna la barra di avanzamento del player
 function refresh() {
     var avanzamento = ((audioElement.currentTime / audioElement.duration) * 100);
@@ -506,6 +518,7 @@ function refresh() {
     $("#labelSecondoAttuale").text(dur2);
     $("#barraDiAvanzamento").slider("setValue", avanzamento);
 }
+
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
     if(percorsi!=null) {
@@ -522,6 +535,7 @@ function branoSuccessivo() {
         }
     }
 }
+
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
     if(percorsi!=null) {
@@ -538,6 +552,7 @@ function branoPrecedente() {
         }
     }
 }
+
 //Funzione che effettua lo shuffle del vettore lista brani
 function shuffleBrani() {
     if(percorsi!=null) {
@@ -549,11 +564,10 @@ function shuffleBrani() {
             shuffleB = false;
             jQuery('#random').removeClass('active');
             percorsi = JSON.parse(JSON.stringify(listaOrigine));
-
         }
-
     }
 }
+
 //Funzione che permette di riprodurre i brani in loop
 function ripetizione() {
     if(percorsi!=null) {
@@ -566,6 +580,7 @@ function ripetizione() {
         }
     }
 }
+
 //Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
 function aggiornaPlayer() {
     var durata = toMinutes(percorsi[indiceCorrente].durata);
@@ -576,32 +591,30 @@ function aggiornaPlayer() {
 
 //Funzione che inizializza il vettore dei percorsi e gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
-    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);//svuoto il vettore se è pieno
-    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);//svuoto il vettore se è pieno
-    listaOrigine = JSON.parse(JSON.stringify(listaBrani));//faccio una copia di lista brani in lista origine
-    percorsi=JSON.parse(JSON.stringify(listaOrigine));//faccio una copia di lista origine in percorsi
-    for (i = 0; i < listaBrani.length; i++) {// cerco l'id del brano da riprodurre
+    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);//svuota il vettore se è pieno
+    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);//svuota il vettore se è pieno
+    listaOrigine = JSON.parse(JSON.stringify(listaBrani));//fa una copia di lista brani in lista origine
+    percorsi=JSON.parse(JSON.stringify(listaOrigine));//fa una copia di lista origine in percorsi
+    for (i = 0; i < listaBrani.length; i++) {// cerca l'id del brano da riprodurre
         if (listaBrani[i].idBrano == idBrano) {
             indiceCorrente=i;
         }
     }
-    abilitaPlayer();//abilito il player
-    streamingBrano(percorsi[indiceCorrente].url_brano);// mando in esecuzione la canzone
-
-
-
+    abilitaPlayer();//abilita il player
+    streamingBrano(percorsi[indiceCorrente].url_brano);// manda in esecuzione la canzone
 }
+
 //Funzione che permette la riproduzione di un singlo brano;
 function riproduciBranoSingolo() {
-    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);// svuoto il vettore se è pieno
-    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);// svuoto il vettore se è pieno
+    if(listaOrigine != null && listaOrigine.length != 0) listaOrigine.remove(0, listaOrigine.length-1);// svuota il vettore se è pieno
+    if(percorsi != null && percorsi.length != 0) percorsi.remove(0, percorsi.length-1);// svuota il vettore se è pieno
     percorsi=[];
     listaOrigine=[];
 
-    for (i = 0; i < listaBrani.length; i++) {// cerco l'id del brano da riprodurre
+    for (i = 0; i < listaBrani.length; i++) {// cerca l'id del brano da riprodurre
         if (listaBrani[i].idBrano == idBrano) {
-            listaOrigine.push(listaBrani[i]);// carico il brano nel vettore
-            percorsi.push(listaBrani[i]);// carico il brano nel vettore
+            listaOrigine.push(listaBrani[i]);// carica il brano nel vettore
+            percorsi.push(listaBrani[i]);// carica il brano nel vettore
             break;
         }
     }
@@ -611,24 +624,15 @@ function riproduciBranoSingolo() {
 }
 
 function cambiaDimensioniConteinerAlbum(){
-    $(".flex-container-Album").css("height", "35%");//setto le nuove dimensioni del conteiner degli album
-    $("#contenitore-canzoni-album").slideDown("slow");//faccio comparire la lista dei brani associati a quel album
+    $(".flex-container-Album").css("height", "35%");//setta le nuove dimensioni del conteiner degli album
+    $("#contenitore-canzoni-album").slideDown("slow");//faccia comparire la lista dei brani associati a quel album
 
 }
 function cambiaDimensioniConteinerPlaylist(){
-    $(".flex-container").css("height", "35%");// setto le nuove dimensioni del conteiner delle playlist
-    $("#contenitore-canzoni-playlist").slideDown("slow");// faccio comparire la lista dei brani associati alla playlist
+    $(".flex-container").css("height", "35%");// setta le nuove dimensioni del conteiner delle playlist
+    $("#contenitore-canzoni-playlist").slideDown("slow");// faccia comparire la lista dei brani associati alla playlist
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -641,7 +645,6 @@ function logout(){
         window.location.href = '/';
     });
 }
-
 
 // Funzione che gestisce la modifica della password da parte dell'utente
 function modificaPassword() {
@@ -661,13 +664,13 @@ function modificaPassword() {
         password3.addClass("invalid");
     }
     else {
-        $.post("/WebPlayer/modificaPassword",
+        $.post("/WebPlayer/modificaPassword", //comunica i dati insetiti dall'utente al server
             {
                 vecchiaPassword: password1.val(),
                 nuovaPassword: password2.val(),
                 confermaNuovaPassword: password3.val(),
             },
-            function (result) {
+            function (result) {     //controlli sulla correttezza dei dati inseriti
                 if (result == "ERR_1") {
                     $("#err_password").text("La password inserita non coincide con quella attualmente utilizzata.")
                         .css("display", "block");
@@ -711,7 +714,7 @@ function modificaAccount() {
                 cognome: cognome.val(),
                 dataNascita: dataNascita.val(),
             },
-            function (result) {
+            function (result) {         //controlli sulla correttezza dei dati inseriti
                 if (result == "ERR_1") {
                     $("#err_account").text("Errore nella comunicazione con il database.").css("display", "block");
                 } else if (result == "ERR_2") { // La password non rispetta il formato richiesto
@@ -746,7 +749,7 @@ function eliminaAmico() {
                     $("#" + idListItem).remove(); //Elimina la riga della lista amici
                     for(i=0; i<listaAmici.length; i++) {
                         if(listaAmici[i].idUtente == id) {
-                            listaAmici.remove(i);
+                            listaAmici.remove(i);   //rimuoce l'oggetto dalla lista degli amici
                         }
                     }
             }
@@ -759,16 +762,16 @@ function aggiungiAmico() {
         {
             idAmico: id
         });
-    $(".listaAmici").remove();
+    $(".listaAmici").remove(); //svuota la lista contenente titti gli amici
     for(i=0; i<listaUtenti.length; i++) {
         if(listaUtenti[i].idUtente == id) {
-            listaAmici.push(listaUtenti[i]);
+            listaAmici.push(listaUtenti[i]); //aggiunge l'utente alla lista di amici
         }
     }
-    listaUtenti.remove(0, listaUtenti.length-1);
+    listaUtenti.remove(0, listaUtenti.length-1);        //svouta il vettore listaUtenti
     stampaListaAmici(listaAmici);
     $("#modal-aggiungi-amico").find('form').trigger('reset');
-    $(".listaUtenti").remove();
+    $(".listaUtenti").remove(); //svuota la lista contenente titti gli amici
 }
 
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
@@ -782,8 +785,8 @@ function richiediBraniPerGenere() {
             }, function(result) {
                 $("#nomeGenere").html("Genere: " + genere);
                 if(result != "ERR") {
-                    listaBrani.remove(0, listaBrani.length-1);
-                    $(".listaGenere").remove();
+                    listaBrani.remove(0, listaBrani.length-1); //svuota il vettore listaBrani
+                    $(".listaGenere").remove();     //svuota la lista di brani del genere selezionato
                     var lb = JSON.parse(result);
                     for(i=0; i<lb.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
                         listaBrani[i] = new Brano(lb[i]);
@@ -888,9 +891,7 @@ function eliminaPlaylist() {
                             listaPlaylist.remove(i);
                         }
                     }
-
             }
-
         });
 }
 
@@ -902,8 +903,8 @@ function richiediBraniPlaylist() {
         }, function(result) {
         if (result != "ERR") {
             $("#contenitore-canzoni-playlist").empty();
-            listaBrani.remove(0, listaBrani.length-1);
-            var lb = JSON.parse(result);
+            listaBrani.remove(0, listaBrani.length-1); //svuota il vettore listaBrani
+            var lb = JSON.parse(result);     //salva i dati ricevuti dal server nel vettore listaBrani
             for (i = 0; i < lb.length; i++)
             listaBrani[i] = new Brano(lb[i]);
             for(i=0; i<listaPlaylist.length; i++){
@@ -929,16 +930,16 @@ function richiediBraniPlaylist() {
                 }
             }
         }
-            $(".icona-eliminaPlaylist").click(function(evento) {
-                    recuperaIDPlaylist(evento);
+            $(".icona-eliminaPlaylist").click(function(evento) { //intercetta l'evento di click di eliminazione di una playlist
+                    recuperaIDPlaylist(evento);     //recupera l'id della playlist da eliminare
                     $("#tastoConfermaRimPlaylist").click(function () {
-                        eliminaPlaylist();
+                        eliminaPlaylist();  //al click di conferma eliminazione, cancella la playlist corrispondente all'id recuperato
                     });
             });
     });
 }
 
-//Funzione che richiede i brani di uno specifico album
+//Funzione che richiede i brani di uno specifico album e richiama la funzione stampaBraniAlbum per stamparli una volta ricevuti
 function richiediBraniAlbum() {
     $.post("/WebPlayer/album/mostraBrani",
         {
@@ -963,7 +964,7 @@ function richiediBraniAlbum() {
         });
 }
 
-//Funzione che richiede tutti i brani singoli
+//Funzione che richiede tutti i brani singoli e richiama la funzione stampaBraniAlbum per stamparli una volta ricevuti
 function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
          function(result) {
@@ -1029,7 +1030,6 @@ function aggiungiBranoAPlaylist() {
                                listaOrigine.push(listaBrani[i]);
                                break;
                            }
-
                        }
                 }
                 $("#err_aggiungiBrano").text("").css("display", "none");
