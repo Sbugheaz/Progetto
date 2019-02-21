@@ -231,7 +231,7 @@ input.invalid {
     }
     .container-fluid{
         paddin:0 10px;
-        font-size: 0.8rem;
+        font-size:calc(0.6rem + 1vw);
     }
     label.container{
         font-size: 0.8rem;
@@ -246,7 +246,8 @@ input.invalid {
         width: 0 !important;
     }
     #btnRegistrazione {
-        font-size: 0.9rem;
+        font-size: calc(0.6rem + 1vw)!important;
+        width: 40%;
     }
 
 }

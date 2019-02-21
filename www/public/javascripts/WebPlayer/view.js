@@ -159,18 +159,21 @@ function stampalistaBraniRicerca(lb){
 //album che corrispondono ai criteri di ricerca
 function stampalistaAlbumRicerca(la){
     var content = "";
+    var listaAlbumRicerca = JSON.parse(JSON.stringify(listaAlbum));
     for (i = 0; i < la.length; i++) {
-        listaAlbum[i] = new Album(la[i]);
-        content += '<div class="flex-item-Album"><img src="' + listaAlbum[i].url_cover + '" class="flex-item-img">' +
-            '<div class="contenitore-nomeAlbum">\n' +
-            '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbum[i].nome+ '" <br>'  + listaAlbum[i].artista +'<br> </p></div></div>';
+        listaAlbumRicerca[i] = new Album(la[i]);
+        content += '<div class="flex-item-Album"><img src="' + listaAlbumRicerca[i].url_cover + '" class="flex-item-img">' +
+            '<div class="contenitore-nomeAlbum">' +
+            '<p class="nomeAlbum nomeAlbumRicerca">"' + listaAlbumRicerca[i].nome+ '" <br>'  + listaAlbumRicerca[i].artista +'<br> </p></div></div>';
         $("#contenitore-lista-ricerca-album").append(content);
         content = "";
     }
-    $(".icona-aggiungi-Aplaylist").click(function(evento) {  //funzione che intercetta l'evento di click aggiunta amico
+    /*
+    $("").click(function(evento) {  //funzione che intercetta l'evento di click sull'album ricercato
             // recuperaIDAggiungi(evento);
         }
     );
+    */
 }
 
 
@@ -208,15 +211,18 @@ function stampaListaPlaylist(listaPlaylist){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa tutti gli album nell'apposita lista
 function stampaListaAlbum(listaAlbum){
     $(".flex-container-Album").empty();
+
     //Stampo il flex-item-container contenente tutti i singoli
     $(".flex-container-Album").append('<div class="flex-item-Album"><img src="images/cover/default-album.png" class="flex-item-img" id="singoli">' +
                                         '<div class="contenitore-nomeAlbum"><p class="nomeAlbum">Singoli</p></div></div>');
     $("#singoli").click(function(evento) {
             richiediBraniSingoli();
+            cambiaDimensioniConteinerAlbum();
         }
     );
-
+    //Stampo i flex-item che contengono tutti gli altri album
     var content="";
+
     for(i=0; i<listaAlbum.length; i++) {
         content += '<div class="flex-item-Album">' +
             '<img src="'+ listaAlbum[i].url_cover +'" class="flex-item-img coverAlbum" id="album_n'+ listaAlbum[i].idAlbum +'">' +
@@ -303,6 +309,15 @@ function stampaBraniPlaylist(){
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
 //appartenenti all'album scelto dall'utente
 function stampaBraniAlbum(){
+    for(i=0; i<listaAlbum.length; i++){
+        if(listaAlbum[i].idAlbum==idAlbum){
+            console.log("sono dentro stampaBraniAlbum")
+            $("#contenitore-canzoni-album").append('<div id="contenitore-paragrafo-Album">' +
+                '<p class="paragrafo-album">' +
+                '"' + listaAlbum[i].nome + '" - ' + listaAlbum[i].artista +'  ,  '+ listaAlbum[i].numeroBrani + ' brani</p>' +
+                '</div>');
+        }
+    }
         $("#contenitore-lista-album").remove();
         var content = "";
         $("#contenitore-canzoni-album").append('<div id="contenitore-lista-Album">' +
@@ -400,17 +415,26 @@ function stampaBraniInRiproduzione() {
 }
 
 function stampaListaPlaylistAggiungi(){
-    var content = "";
-    $(".container-listaPlaylist").empty();
-    $(".container-listaPlaylist").append('<ul class="demo listaPlaylist">');
-    for (i = 0; i < listaPlaylist.length; i++) {
-        content += '<li class="p_listaPlaylist">' +
-            '<div class="nome_playlist">' + listaPlaylist[i].nome + '</div>' +
-            '<div class="cont-pulsante-aggiungi-brano"> <i class="fa fa-plus-square pulsante-aggiungi-brano" ' +
-            'id="play_num' + listaPlaylist[i].idPlaylist +'" title="Aggiungi a playlist"></i> </div>' +
-            '</li>';
-        $(".listaPlaylist").append(content);
-        content = "";
+    if(listaPlaylist.length==0){
+        $(".tab-agg-brano").empty;
+        $(".container-listaPlaylist").empty();
+        $(".tab-agg-brano").html("Non hai ancora nessuna playlist!<br>Creane una per aggiungere questo brano.");
+    }
+    else {
+        $(".tab-agg-brano").empty;
+        $(".tab-agg-brano").html("Seleziona la playlist alla quale vuoi aggiungere il brano:");
+        var content = "";
+        $(".container-listaPlaylist").empty();
+        $(".container-listaPlaylist").append('<ul class="demo listaPlaylist">');
+        for (i = 0; i < listaPlaylist.length; i++) {
+            content += '<li class="p_listaPlaylist">' +
+                '<div class="nome_playlist">' + listaPlaylist[i].nome + '</div>' +
+                '<div class="cont-pulsante-aggiungi-brano"> <i class="fa fa-plus-square pulsante-aggiungi-brano" ' +
+                'id="play_num' + listaPlaylist[i].idPlaylist + '" title="Aggiungi a playlist"></i> </div>' +
+                '</li>';
+            $(".listaPlaylist").append(content);
+            content = "";
+        }
     }
     $(".pulsante-aggiungi-brano").click(function(evento) {  //funzione che intercetta l'evento di selezione della playlist
             recuperaIDPlaylist(evento);

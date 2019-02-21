@@ -1406,7 +1406,6 @@ p.paragrafo-amicizie-mobile{
     color: cornsilk;
     margin: 0;
 }
-
 .btn-canzoni-playlist{
     background: transparent;
     box-shadow: none!important;
@@ -1917,6 +1916,7 @@ height: calc(100% - 90px);
 
 /*Proprietà Modal Aggiungi A Playlist*/
 .tab-agg-brano{
+    padding-bottom: 1rem;
     box-sizing: border-box;
     overflow: hidden;
 }
