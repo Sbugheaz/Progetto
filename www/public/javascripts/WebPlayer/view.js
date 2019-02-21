@@ -142,7 +142,7 @@ function stampalistaBraniRicerca(lb){
         $(".listaRicerca").append(content);
         content = "";
     }
-    $(".coverBrano").click(function (evento) {
+    $(".li-lista-brani").click(function (evento) {
         recuperaIDBrano(evento);
         abilitaPlayer();
         playListAvviata=false;

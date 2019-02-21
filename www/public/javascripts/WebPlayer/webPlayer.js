@@ -299,7 +299,7 @@ function setDivVisibility(){
             shuffleBrani();
         }
     }
-
+//Funzione che ritorna l'indice del brano in riproduzione del vettore Percorsi(Copia dei brani in riproduzione soggetta a shuffle)
     function calcolaIndiceShufflePercorsi(){
         var ind=0;
         for(i=0;i<percorsi.length;i++){
@@ -310,7 +310,7 @@ function setDivVisibility(){
         }
         return ind;
     }
-
+//Funzione che ritorna l'indice del brano in riproduzione del vettore ListaOrigine(Copia dei brani in riproduzione non soggetta a shuffle)
 function calcolaIndiceShuffleOrigine(){
     var ind=0;
     for(i=0;i<percorsi.length;i++){
@@ -323,36 +323,6 @@ function calcolaIndiceShuffleOrigine(){
 }
 
 
-
-
-
-/*funzioni del player*/
-$(document).ready(function() {
-
-    //$("#volume-range").slider();
-    //$("#barraDiAvanzamento").slider();
-    //audio.attr("src","songs/AC_DC_Back_In_Black.mp3");
-    //audioElement.src = percorsi[indiceCorrente];
-
-    /*audioElement.addEventListener('ended', function() {
-         this.play();
-     }, false);*/
-
-
-    /*
-    funzione che calcola i minuti e secondi e titolo del brano
-    audioElement.addEventListener("canplay",function(){
-        var minutes = "0" + Math.floor(audioElement.duration / 60);
-        var seconds = "0" + Math.floor(audioElement.duration % 60);
-        var dur = minutes.substr(-2) + ":" + seconds.substr(-2);
-        $("#labelDurataTotaleBrano").text(dur);
-        $("#titolo-brano-in-riproduzione").text(audioElement.src.substr(42));
-
-    });
-    */
-
-
-});
 
 $(document).ready(function(){
     //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la

@@ -51,7 +51,7 @@ button:focus {outline:0;}
 
 .activeButton{
     background-color: rgba(255,138,0,1);
-    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 #pulsante-Logout{
     width: 35%;
