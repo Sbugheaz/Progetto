@@ -1,0 +1,21 @@
+Istruzioni per avviare e utilizzare l'applicazione SoundWave.
+
+1. Aprire il terminale del computer e portarsi sulla directory "Progetto".
+
+2. Avviare la macchina virtuale digitando "vagrant up" all'interno del terminale.
+
+3. Accedere al terminale ssh digitando "vagrant ssh" all'interno del terminale.
+
+4. Generare e popolare il database:
+   - digitare "sudo mysql --user=root --password SoundWaveDB" nel terminale;
+   - inserire la password ("password");
+   - copiare e incollare sulla shell di MySQL tutto il contenuto del file SoundWaveDB.sql presente nella cartella "Database";
+   - uscire dalla shell di MySQl tramite il comando "exit".
+
+5. Portarsi nella directory "/var/www/html" all'interno del terminale ssh.
+
+6. Avviare il server digitando "node main.js" all'interno del terminale ssh (il Vagrantfile è impostato per ascoltare sulla porta 3000 all'indirizzo 192.168.33.10).
+
+7. Effettuare l'accesso con le credenziali:
+   - Nome utente: Admin
+   - Password: Admin
