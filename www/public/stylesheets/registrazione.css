@@ -1,21 +1,21 @@
-* {
-    box-sizing: border-box;
-}
-
+/*Proprietà globali */
 body {
     font: 1vw "Raleway", sans-serif;
     background-color: #f1f1f1;
 }
-
-div.intestazione {
-    width: 100%;
+* {
+    box-sizing: border-box;
 }
 
-div.logo{
+
+/*Propietà contenitore intestazione contente il logo*/
+.intestazione {
+    width: 100%;
+}
+.logo{
     width: 30%;
     min-width: 180px;
 }
-
 .logo img{
     margin-top: 2vw;
     margin-bottom: 1vw;
@@ -25,25 +25,8 @@ div.logo{
     width: 100%
 }
 
-select{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 10px;
-    margin: 11px auto;
-    width: 100%;
-    font-size: 17px;
-    font-family: Raleway, serif;
-    border: 1px solid #aaaaaa;
-    border-width: 0 0 2px;
-    background-color: #ffffff;
-}
 
-select select {
-    display: none;
-
-}
-
+/*Propietà form registrazione */
 #regForm {
     background-color: #ffffff;
     margin: 30px auto;
@@ -52,12 +35,10 @@ select select {
     width: 60%;
     min-width: 200px;
 }
-
-h1 {
+#intestazione{
+    margin-bottom: 1.5rem;
     text-align: center;
 }
-
-
 input {
     padding: 10px;
     width: 100%;
@@ -66,16 +47,44 @@ input {
     border: 1px solid #aaaaaa;
     border-width: 0 0 2px;
 }
-
 input:focus, select:focus {
     outline-width: 0;
     border-color: rgba(255,148,24,1);
 }
-
 input.invalid {
     border-color: red;
 }
-
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.container input:checked ~ .checkmark {
+    background-color: rgba(255,148,24,0.9);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
 .container {
     width: 8vw;
     display: block;
@@ -89,16 +98,12 @@ input.invalid {
     -ms-user-select: none;
     user-select: none;
 }
-
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-}
-#intestazione{
-    margin-bottom: 1.5rem;
 }
 #campo-nome{
     margin-top: 10px;
@@ -112,45 +117,22 @@ input.invalid {
 #campo-nota{
     margin-top:20px;
 }
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px;
+    margin: 11px auto;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    border: 1px solid #aaaaaa;
+    border-width: 0 0 2px;
+    background-color: #ffffff;
 }
-
-.container:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-.container input:checked ~ .checkmark {
-    background-color: rgba(255,148,24,0.9);
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
+select select {
     display: none;
 }
-
-.container input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.container .checkmark:after {
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-
 #btnRegistrazione {
     background-color: rgb(191, 193, 192);
     color: #fef9ff;
@@ -163,12 +145,14 @@ input.invalid {
     outline: none;
     width: 25%;
 }
-
 #btnRegistrazione:hover {
     background-color: rgba(255,138,0,1);
     box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#btnRegistrazione:focus {outline:0;}
+#btnRegistrazione:focus {
+    outline:0;
+}
+
 
 /*Proprietà Modal-linkDiConferma */
 #intestazione-linkDiConferma{
@@ -221,11 +205,12 @@ input.invalid {
     font-weight: bold;
 }
 
+
+/*Proprietà degli elementi al ridimensionamento della pagina */
 @media only screen and (max-width: 768px) {
     #intestazione{
         font-size: 2rem;
     }
-
     #regForm {
         width: 85% !important;
     }
@@ -249,5 +234,6 @@ input.invalid {
         font-size: calc(0.6rem + 1vw)!important;
         width: 40%;
     }
-
 }
+
+
