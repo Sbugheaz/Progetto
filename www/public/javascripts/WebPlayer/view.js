@@ -300,7 +300,7 @@ function stampaBraniPlaylist(){
                 '<div class="btn-group-orizontal-justified btn-playlist" >' +
                 '<button type="button" class="btn btn-default btn-canzoni-playlist play" id="play-brano' + listaBrani[i].idBrano + '" title="Riproduci brano">' +
                 '<i class="fa fa-caret-square-o-right" style="pointer-events: none;"></i></button>' +
-                '<button type="button" class="btn btn-default btn-canzoni-playlist rimuovi" id="rimu-brano' + listaBrani[i].idBrano + '" title="Aggiungi ad una playlist">' +
+                '<button type="button" class="btn btn-default btn-canzoni-playlist rimuovi" id="rimu-brano' + listaBrani[i].idBrano + '" title="Rimuovi brano">' +
                 '<i class="fa fa-close" style="pointer-events:none;"></i></button>' +
                 '</div>' +
                 '</li>';
