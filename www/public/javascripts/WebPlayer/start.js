@@ -164,6 +164,9 @@ function ricercaBrani() {
                         $("#contenitore-lista-ricerca-brani").empty();
                         var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
                         $("#contenitore-lista-ricerca-brani").append(messaggio);
+                        $("#contenitore-lista-ricerca-brani").css({
+                            'padding': '20px 0',
+                        });
                     } else {
                         $("#contenitore-lista-ricerca-brani").css("padding", "0");
                         $("#contenitore-lista-ricerca-brani").empty();
@@ -192,9 +195,7 @@ function ricercaAlbum() {
                         var messaggio = '<p class="messaggio"> Nessun album corrisponde ai criteri di ricerca </p>';
                         $("#contenitore-lista-ricerca-album").append(messaggio);
                         $("#contenitore-lista-ricerca-album").css({
-                            'font-size': '1rem',
                             'padding': '20px 0',
-                            'color': 'cornsilk',
                         });
                     } else {
                         $("#contenitore-lista-ricerca-album").css("padding", "0");

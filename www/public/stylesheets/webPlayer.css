@@ -1,19 +1,122 @@
+
+/*Proprietà globali della pagina */
 body {
     font-family: Raleway, serif;
     overflow-x: hidden;
     width: 100%;
     line-height: 1.2;
 }
-
 body > .container-fluid {
     padding-left: 0;
     padding-right: 0;
     overflow-y: hidden;
 }
-
 .sezioneTotale{
     height: 100vh;
 }
+.dropdown-item {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+/*Proprietà scrollbar */
+/* Larghezza della scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+/* Traccia della scrollbar */
+::-webkit-scrollbar-track {
+    background: #888;
+}
+/* Cursore della Scrollbar */
+::-webkit-scrollbar-thumb {
+    background: rgba(255,138,0,1);
+}
+
+
+/*Proprietà barra navigazione */
+.navbar-expand-sm{
+    height: 65px;
+    padding: 0;
+}
+/*propità barra ricerca*/
+#barra-ricerca {
+    border-radius: 0;
+    border-color: transparent;
+}
+.demo-ricerca{
+    height:auto;
+}
+#barra-ricerca:focus {
+    box-shadow: 0 0;
+    border-color: #eaece5;
+}
+#barra-ricerca:focus {
+    border: 0;
+    border-bottom: 1px solid  #5CA5FF;
+    outline:none;
+}
+input, #barra-ricerca {
+    border: 0;
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
+    line-height: 2em;
+    background: transparent;
+    color: cornsilk;
+    width: 30vw;
+    padding: 0;
+    font-size: calc(0.4rem + 1vw);
+}
+
+/*proprietà pulsante cerca*/
+#pulsante-cerca {
+    border-radius: 0;
+    border-color: transparent;
+    margin-top: 5px;
+    font-size: 20px;
+    background: transparent;
+    color: rgba(0, 114, 255, 0.43);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+/*proprietà pulsante Logout*/
+#pulsante-Logout{
+    width: 35%;
+    overflow: hidden;
+    float: right;
+    background-color: transparent;
+}
+#pulsante-Logout:hover{
+    background-color: rgba(0, 114, 255, 0.72);
+}
+
+/*Propità menù orizzontale */
+#menu-orizzontale{
+    display: none;
+    padding: 0;
+    height: 50px;
+}
+.amici-online{
+    height: 58vh;
+    padding-right:8px;
+    overflow-y: hidden;
+}
+.pulsante-menu-orizzontale{
+    background-color: transparent;
+    width: auto;
+    color: cornsilk;
+    font-size: calc(0.8rem + 1vw);
+}
+.pulsante-menu-orizzontale:focus {
+    box-shadow: 0 0;
+}
+#profilo:hover, #gest-amicizie:hover, #amici-online:hover, #altro:hover {
+    background-color: transparent;
+    box-shadow: 0 0;
+    color: #5CA5FF;
+}
+
+/*Proprietà sezione centrale */
 .sezioneCentrale{
     height: calc(100vh - 165px);
 }
@@ -29,48 +132,24 @@ button{
     font-family: Raleway, serif;
     cursor: pointer;
 }
-
-.input-group {
-
-}
-
 button:hover{
     background-color: rgba(255,138,0,1);
     box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-button:focus {outline:0;}
-
-
+button:focus {
+    outline:0;
+}
 .pulsanteA{
     background-color: #464B51;
     width: 100%;
     color: cornsilk;
     font-size: calc(0.5em + 0.5vw);
 }
-
 .activeButton{
     background-color: rgba(255,138,0,1);
-
-}
-#pulsante-Logout{
-    width: 35%;
-    overflow: hidden;
-    float: right;
-    background-color: transparent;
 }
 
-#pulsante-Logout:hover{
-    background-color: rgba(0, 114, 255, 0.72);
-}
-
-#pulsante-aggiungiAmici{
-    box-shadow: none;
-    width: 30%;
-    font-size: 0.8rem;
-    margin-top: 1vh;
-}
-
+/*Propietà colonna sinistra e colonna destra */
 #colonna-sinistra, #colonna-destra {
     display: none;
     padding-left: 0;
@@ -78,8 +157,6 @@ button:focus {outline:0;}
     width: 16.6667%;
     opacity: 0.80;
 }
-
-
 #colonna-sinistra{
     position: sticky;
     top: 0;
@@ -88,7 +165,13 @@ button:focus {outline:0;}
     background-color: #464B51;
     opacity: 0.70;
 }
-
+/*Proprietà tasti Generi*/
+#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz:focus, #tasto-Rap:focus{
+    color: cornsilk;
+}
+#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz:hover, #tasto-Rap:hover{
+    background-color: #5CA5FF;
+}
 #colonna-destra {
     position: sticky;
     top: 0;
@@ -97,71 +180,7 @@ button:focus {outline:0;}
     background-color: #464B51;
 }
 
-/*Proprietà del titolo di tutti i pannelli principali*/
-.titolo-pannelli{
-    font-size: calc(1rem + 1vw);
-}
-
-.amici-online{
-    height: 58vh;
-    padding-right:8px;
-    overflow-y: hidden;
-}
-
-
-/*proprietà lista Amici*/
-.pallino{
-    color: #03d838;
-    font-size: 10px;
-}
-.p_listaAmici{
-    margin-bottom: 16px;
-    color:cornsilk;
-    font-size:1.1vw;
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 114, 255, 0.72);
-}
-.conteiner-listaAmici{
-    padding-right: 5px;
-    overflow-y: auto;
-    max-height: 53vh;
-}
-ul.demo {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-
-/* Larghezza della scrollbar */
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-/* Traccia della scrollbar */
-::-webkit-scrollbar-track {
-    background: #888;
-}
-
-/* Cursore della Scrollbar */
-::-webkit-scrollbar-thumb {
-    background: rgba(255,138,0,1);
-}
-
-
-
-.sta-ascoltando{
-    width:100%;
-    display: block;
-    top:30px;
-    color: rgba(255,138,0,1);
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-}
-.icona-musica{
-    padding: 1.5% 2% 0% 0%;
-}
-
+/*Proprietà colonna centrale */
 #colonna-centrale {
     margin: auto;
     background-color: transparent;
@@ -169,1072 +188,35 @@ ul.demo {
     z-index: 0;
 }
 
-#logo{
-    ;
-}
-/*Controllo player*/
-#sezione-controlli-riproduzione {
-    width: 100vw;
-    bottom: 0;
-    left:0;
-    height: 100px;
+/*Proprietà del titolo di tutti i pannelli principali*/
+.titolo-pannelli{
+    font-size: calc(1rem + 1vw);
 }
 
-
-#sezione-controlli-riproduzione > .row{
-    margin-left: 0;
-    margin-right: 0;
-}
-
-#sezione-controlli-riproduzione > .row {
-    position: relative;
-    font-size: 100%;
-
-}
-#sezione-controlli-riproduzione {
-    background-color:  rgba(0, 114, 255, 0.43);
-    color: cornsilk;
-    text-align: center;
-
-}
-#colonna-sezione-controlli-riproduzione{
-    padding: 0;
-}
-#riga-slider > .slider-horizontal{
-    display: inline-block;
-    vertical-align: middle;
-}
-.contenitore-slider{
-    height: 40px;
-}
-.intestazione-titolo-brano{
-    height: 30px;
-}
-.contenitore-tasi-riproduzione{
-    height: 30px;
-}
-
-
-#titolo-brano-in-riproduzione {
-
-}
-
-#titolo-brano-in-riproduzione > p:first-child {
-    margin: 0;
-    font-size: 2vh;
-}
-
-
-
-.audio-controls {
-    text-align: center;
-    height: 4vh;
-}
-
-#volume-range {
-}
-
-
-#riga-slider .col-md-8, #riga-slider .col-md-2 {
-    padding: 0;
-
-}
-
-
-.testo-controlli-riproduzione {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: calc(0.55rem + 1vw);
-}
-#badge-icona-notifica {
-    color: white;
-    background-color: rgba(255,138,0,1);
-}
-.active{
- color:#5CA5FF;
-}
-
-
-/*propità barra ricerca*/
-.badge {
+/*propietà pannello-mobile*/
+#pannello-mobile{
+    position: absolute;
+    right: 0;
+    width: 35%;
+    height: calc(100vh - 215px);
+    background-color: rgb(11, 55, 116);
     display: none;
-    font-size: 0.6em;
+    z-index:1;
 }
-#barra-ricerca {
-    border-radius: 0;
-    border-color: transparent;
-
-}
-.demo-ricerca{
-    height:auto;
-}
-#barra-ricerca:focus {
-    box-shadow: 0 0;
-    border-color: #eaece5;
-}
-
-#barra-ricerca:focus {
-    border: 0;
-    border-bottom: 1px solid  #5CA5FF;
-    outline:none;
-
-
-}
-
-
-input, #barra-ricerca {
-    border: 0;
-    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
-    line-height: 2em;
-    background: transparent;
-    color: cornsilk;
-    width: 30vw;
-    padding: 0;
+.listaGeneri.show{
+    display: block;
+    height: 35%;
+    overflow-y: auto;
     font-size: calc(0.4rem + 1vw);
 }
-
-/*propietà della riga all'interno della barra di ricerca */
-#riga-principale{
-    margin: auto;
-
-}
-
-#riga-principale > .col-md-12 > .input-group{
-    padding-top: 1vh;
-    height: 7vh;
-}
-
-
-
-.dropdown-item , #pulsante-cerca{
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-}
-/*proprietà pulsante cerca*/
-#pulsante-cerca {
-    background-color:#5CA5FF;
-    border-radius: 0;
-    border-color: transparent;
-    margin-top: 5px;
-    font-size: 20px;
-}
-
-
-#pulsante-cerca {
-    background: transparent;
-    color: rgba(0, 114, 255, 0.43);
-
-}
-
-
-
-
-/*slider barra player*/
-div.slider-handle.min-slider-handle.round{
-    background-image: linear-gradient(to bottom, #ff0000 0, #ff8c02 100%);
-}
-
-
-
-.navbar-expand-sm{
-    height: 65px;
-    padding: 0;
-}
-
-
-
-div.slider-selection{
-    background-image: linear-gradient(to bottom,#f9430c 0,#ff922b 100%);
-}
-
-
-
-#step-backward:hover,#play:hover,#pause:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
-   color: #5CA5FF;
-}
-
-#contenitore-volume{
-    background-color: rgba(0,0,0,0);
-    border: 0;
-    transform: translate(-45px,-20px)!important;
-
-}
-#contenitore-volume > .slider.slider-horizontal{
-
+/*propietà bottoni pannello-mobile*/
+.btn-mobile{
     width: 100%;
-}
-
-#prova{
-    display: none;
-    background-color: #aaaaaa;
-    height: 78.8vh;
-
-}
-/*propietà tasti webplayer*/
-#tasto-Rock:focus, #tasto-Pop:focus, #tasto-Country:focus, #tasto-Funky:focus, #tasto-Jazz:focus, #tasto-Rap:focus{
     color: cornsilk;
-}
-
-#tasto-Rock:hover, #tasto-Pop:hover, #tasto-Country:hover, #tasto-Funky:hover, #tasto-Jazz:hover, #tasto-Rap:hover{
-    background-color: #5CA5FF;
-}
-
-
-
-
-
-/*Pannello contenente i risultati di ricerca */
-.nomeAlbumRicerca{
-    font-size: calc(0.5rem + 0.5vw)
-}
-#pannello-Ricerca{
-    display: none;
-    height: calc(100vh - 165px);
-    overflow: hidden;
-}
-/*Propità pannello di ricerca */
-.paragrafo-risultati{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0;
-}
-.elenco-canzone-Autore{
-    font-size:0.8rem;
-}
-.btn-pannelloRicerca{
-    float: right;
-}
-btn-conzoni-ricerca{
-    background: transparent;
-}
-#contenitore-ricerca{
-    height: calc(100vh - 165px);
-    overflow-y: auto;
-}
-#contenitore-lista-ricerca{
-    overflow-y: auto;
-    width: 100%;
-    height: calc(100% - 110px);
-    margin: 0;
-}
-.nomeCanzone{
-    text-align: left;
-    width: 40%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding: 12px;
-    margin: 0;
-}
-.nomeArtista{
-    text-align: left;
-    width: 60%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding: 12px;
-    margin: 0;
-}
-.p_ricerca{
-    color: cornsilk;
-    margin: 0;
-}
-.datiCanzoni{
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 10px;
-    margin: 0;
-}
-.contenitore-imgBrano-esterno{
-    width: 30%;
-}
-.contenitore-imgBrano-interno{
-    position: relative;
-    width: calc(7rem + 3vw);
-}
-.contenitore-nomeCanzone-Artista{
-    width: 60%;
-}
-.contenitore-icona-aggiungi-playlist{
-    text-align: center;
-    width: 10%;
-    box-sizing: border-box;
-}
-.coverBrano{
-    width: 100%;
-}
-
- .li-lista-brani:hover .play-brano{
-     opacity: 0.9;
-     color: cornsilk;
-}
- .li-lista-brani:hover{
-     font-weight: bold;
- }
-
-.play-brano{
-    opacity: 0;
-    position: absolute;
-    font-size: 30px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    pointer-events: none;
-}
-.play-brano:hover{
-    opacity: 1;
-}
-.li-lista-brani{
-    font-size: calc(0.7rem + 0.5vw);
-}
-.listaRicerca{
-    font-size: 0.8rem;
-    width: 100%;
-}
-.titolo-listaRicerca{
-    font-size: calc(0.7rem + 1vw);
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-    height: 45px;
-}
-#contenitore-lista-ricerca-album{
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: flex-start;
-    -ms-flex-line-pack: start;
-    align-content: flex-start;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-#contenitore-lista-ricerca-brani{
-}
-.messaggio{
-    margin: auto;
-    font-size: calc(0.25rem + 1vw);
-    padding: 20px 0;
-    color: cornsilk;
+    font-size: calc(0.4rem + 1vw);
+    background: #0b3774;
     text-align: center;
 }
-.icona-aggiungi-Aplaylist:hover{
-    color: rgba(255,138,0,1);
-    cursor: pointer;
-}
-/*contenitore Album*/
-#pannello-Album{
-    display: none;
-    height: calc(100vh - 165px);
-}
-/*propietà contenitore Album*/
-.flex-container-Album{
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: flex-start;
-    -ms-flex-line-pack: start;
-    align-content: flex-start;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.flex-item-Album{
-    width: calc(7rem + 3vw);
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-    margin-top: 1vh;
-    margin-left: 1vw;
-}
-.contenitore-nomeAlbum{
-    position: relative;
-    transform: translate(0,25%);
-    height: 50px;
-    width: 100%;
-    text-align: center;
-}
-.nomeAlbum{
-    color: cornsilk;
-    font-size: calc(0.2rem + 1vw);
-}
-#contenitore-canzoni-album{
-    height: calc(65% - 30px);
-}
-#contenitore-paragrafo-Album{
-    height: 20%;
-}
-.paragrafo-album{
-    font-size: calc(0.8rem + 1vw);
-    text-align: center ;
-    margin-top: 30px;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-}
-#contenitore-lista-Album{
-    height: 80%;
-    overflow-y: auto;
-}
-
-.li_listaAlbum{
-    font-size: calc(0.7rem + 0.5vw);
-    text-align: left;
-    padding-left: 5px;
-    overflow: hidden;
-    clear:left;
-}
-.li_listaAlbum:hover{
-    font-weight: bold;
-}
-.ordine-Album{
-    width: 10%;
-    float: left;
-    box-sizing: border-box;
-}
-.p_Album{
-    color: cornsilk;
-    margin-top: 15px;
-}
-.canzone-album{
-    width: 40%;
-    float: left;
-    box-sizing: border-box;
-}
-.autore-album{
-    width: 30%;
-    float: left;
-    box-sizing: border-box;
-}
-.btn-album{
-    float: right;
-}
-.btn-canzoni-album{
-    background: transparent;
-    color: #007bff;
-    box-shadow: none!important;
-}
-
-
-
-
-
-
-
-
-
-/*propietà immagine album*/
-#album{
-    width: 200px;
-    margin: 4vh;
-    height: 200px;
-
-}
-#album2{
-    height: 35px;
-    width: 35px;
-
-
-}
-
-
-p.paragrafo{
-    font-size: 1.4vw;
-    text-align: center ;
-    margin-top: 3vh;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-    margin: 12px 0;
-}
-
-.modal-content{
-    font-size: calc(0.7rem + 0.5vw);
-}
-.modal{
-    padding-left: 0px;
-}
-
-/*intestazione del Modal Profilo*/
-#intestazione{
-    text-align:center;
-    padding: 1rem 1rem 0.5rem 1rem;
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
-    border-bottom: 2px solid rgba(0,114,255,0.43)
-}
-#titolo-modal{
-    color:black;
-
-}
-button.close {
-    background-color: #ffffff00;
-    box-shadow: 0 0;
-}
-
-.contenitore-icona-profilo{
-    width: min-content;
-    display:block ;
-    margin:auto ;
-}
-
-#icona-profilo{
-    font-size: 5rem;
-}
-
-.nomeUtente{
-    text-align: center;
-}
-
-
-/* Proprietà form Profilo*/
-input[type=text], select {
-    width: 100%;
-    border-bottom: 1px solid rgba(0,114,255,0.43);
-    resize: vertical;
-    outline-width: 0;
-}
-input[type=password], select {
-    width: 100%;
-    border-bottom: 1px solid rgba(0,114,255,0.43);
-    resize: vertical;
-    outline-width: 0;
-}
-
-input.invalid {
-    border-color: red;
-}
-
-label {
-    padding: 12px 0;
-    display: inline-block;
-}
-
-.container {
-    padding: 20px;
-}
-
-.col-25sx {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-}
-
-.col-25dx {
-    padding-left:10px;
-    float: left;
-    width: 25%;
-}
-
-.col-50 {
-    padding: 0 7px;
-    float: left;
-    width: 50%;
-    margin-top: 6px;
-}
-.col-75{
-    padding-left: 7px;
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.campi{
-    font-size: calc(0.6rem + 0.5vw);
-    text-align: center;
-    color:black;
-}
-.campoMail{
-    font-size: 2vh;
-}
-.pulsanteModifica{
-    margin-top: 5px;
-    height: 35px;
-    width: 100%;
-    line-height: 15px;
-}
-
-.pulsanteModifica:focus{
-    box-shadow: 0 0;
-}
-
-
-
-#dataNascita{
-    border-bottom: 1px solid rgba(0, 114, 255, 0.43);
-    color: black;
-    width: 100%;
-    text-align: center;
-}
-
-
-/*propietà tabella */
-.table thead th {
-    border-top:0;
-    border-bottom-color: #5CA5FF;
-}
-
-.table thead td, .table th, .table td{
-    border-bottom-color: #5CA5FF;
-    border-top-color: #5CA5FF;
-}
-
-table .th{
-    color: cornsilk;
-}
-table{
-    color: cornsilk;
-}
-
-/*Proprietà footer del Modal Profilo*/
-.footerProfilo{
-    display:none;
-    margin:auto;
-}
-
-
-
-
-
-@media only screen and (max-width: 768px) {
-
-    .hidden-md {
-        display: none;
-    }
-    .pulsanteA{
-        font-size: 1.5vw;
-    }
-    .p_listaAmici{
-        font-size:calc(0.4rem + 1vw)!important;
-    }
-    #colonna-centrale {
-        width: 100% !important;
-    }
-
-    #barra-ricerca{
-    font-size:calc(0.55rem + 1vw);
-    }
-
-    #colonna-sinistra, #colonna-destra,#album2 {
-        display: none;
-    }
-
-    #sezione-controlli-riproduzione {
-        width: 100%;
-        left: 0px;
-    }
-
-  .testo-controlli-riproduzione {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: calc(0.8rem + 1vw)!important;
-  }
-
-    #sezione-controlli-riproduzione > .row > .col-md-12 {
-        /*margin-bottom: 1.5%;*/
-    }
-
-    .col-md-1 {
-        width: 8.3333%;
-    }
-
-    .col-md-2 {
-        width: 16.6667%;
-    }
-
-    .col-md-3 {
-        width: 25%;
-        text-align: center;
-    }
-    .col-md-4 {
-        width: 33.3333%;
-    }
-
-    .col-md-5 {
-        width: 41.6667%;
-    }
-
-    .col-md-6 {
-        width: 50%;
-    }
-
-    .col-md-7 {
-        width: 58.3333%;
-    }
-
-    .col-md-8 {
-        width: 66.6667%;
-    }
-
-    .col-md-9 {
-        width: 75%;
-    }
-
-    .col-md-10 {
-        width: 83.3333%;
-    }
-
-    .col-md-11 {
-        width: 91.6667%;
-    }
-
-    .col-md-12 {
-        width: 100%;
-    }
-
-    /*Proprietà pannello amici online mobile*/
-    .icona-musica{
-        padding: 0;
-    }
-
-    #pulsante-Logout{
-        display: none;
-    }
-    #riga-principale{
-        margin-right: 0px!important;
-        width: 60vw;
-    }
-
-    #pannello-Ricerca,#pannello-Amicizie-mobile,#pannello-Generi,#contenitore-genere,#contenitore-ricerca,.sezioneCentrale,#pannello-Amicizie, #pannello-Playlist,#pannello-Album,#pannello-BraniRiproduzione{
-        height: calc(100vh - 215px)!important;
-    }
-    #contenitore-genere{
-        height: calc(100vh - 275px)!important;
-    }
-
-    #contenitore-volume > .slider.slider-horizontal{
-       transform:  translate3d(1px, -1px, 0px);
-        width: 70%;
-    }
-
-
-    /*Proprietà del campo mail del Modal Profilo*/
-    .campoMail{
-        font-size: 0.8rem;
-    }
-
-    /*Proprietà del pulsante modifica del Modal Profilo*/
-    .pulsanteModifica{
-        font-size: calc(0.65rem + 0.5vw);
-        padding: 0 5px;
-        width: 90%;
-    }
-    .salvaModifiche{
-        font-size: calc(0.65rem + 0.5vw);
-    }
-
-    /*Proprietà della colonna destra del Modal Profilo*/
-    .col-25dx {
-        padding-left:0;
-        text-align: center;
-    }
-
-    .canzone-album{
-        width: 30%!important;
-    }
-    .autore-album{
-        width: 30%!important;
-    }
-    .canzone{
-        width: 30%!important;
-    }
-    .autore{
-        width: 30%!important;
-    }
-
-    /*Proprietà pannello Amicizie*/
-    .intestazione-listaAmici{
-        font-size: calc(0.6rem + 1vw)!important;
-    }
-    .listaAmici{
-        font-size: calc(0.4rem + 1vw)!important;
-        width: 100%;
-    }
-    #pulsante-aggiungiAmici {
-        width: 35%;
-        font-size: calc(0.4rem + 1vw)!important;
-    }
-
-
-    /*Proprietà pannello ricerca*/
-     .titolo-listaRicerca{
-         padding-top: 10px;
-         font-size: calc(1rem + 1vw);
-         height: 50px;
-     }
-  .messaggio{
-    font-size: calc(0.4rem + 1vw)!important;
-  }
-    .coverBrano{
-        width: 100%;
-    }
-    .contenitore-imgBrano{
-        width: 25%;
-        max-width: 160px;
-    }
-
-    /*Proprietà dell'intestazione dei modal*/
-    .modal-header, .header{
-        font-size: calc(1rem + 1vw)!important;
-    }
-
-    /*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
-    .question{
-        font-size: calc(0.7rem + 0.5vw)!important;
-    }
-    .bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
-        font-size: calc(0.7rem + 0.5vw)!important;
-    }
-    .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
-        font-size: calc(0.75rem + 0.5vw)!important;
-    }
-
-    /*Proprietà pannello Album e brani*/
-    .nomeAlbum{
-        font-size: calc(0.6rem + 1vw)!important;
-    }
-    .li_listaAlbum{
-        font-size: calc(0.6rem + 1vw)!important;
-    }
-
-    /*Proprietà pannello Le mie playlist*/
-    .nomePlaylist{
-        font-size: calc(0.6rem + 1vw)!important;
-    }
-    .li_listaPlaylist{
-        font-size: calc(0.6rem + 1vw)!important;
-    }
-
-}
-
-/*Proprietà modal modifica password*/
-.modal-body{
-    padding: 1rem 1rem 0 1rem;
-}
-.contenitore-icona-password{
-    width: min-content;
-    display:block ;
-    margin:auto ;
-}
-#icona-lucchetto{
-    font-size: 5rem;
-}
-#intestazionePass{
-    text-align:center;
-    padding: 1rem 1rem 0.5rem 1rem;
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
-    border-bottom: 2px solid rgba(0,114,255,0.43)
-}
-.contenitore-nota{
-    text-align: center;
-    width: 100%;
-}
-
-
-/*Proprietà form modifica Password*/
-.testo{
-    width: 100%;
-}
-.col-90{
-    float: left;
-    width: 90%;
-}
-.col-10{
-    float: left;
-    width: 10%;
-    padding:0px;
-}
-.password{
-    display: block;
-}
-.campiPass{
-    color:black;
-}
-.iconaPassword{
-    margin-top: 5px;
-    width: 10px;
-    font-size: 20px;
-}
-.iconaPassword:hover{
-    cursor: pointer;
-}
-.labelPass{
-    margin-bottom: 0px;
-    margin-top: 20px;
-    padding: 10px 0 0;
-}
-
-/*proprietà footer modal modifica password*/
-.salvaModifiche{
-    font-size: calc(0.65rem + 0.5vw);
-    border-radius: 4px;
-    margin: auto;
-}
-
-/*Proprietà Modal Successo Modifica Password
- e Modal Successo Modifica Dati Account*/
-#intestazione-successoModPass, #intestazione-successoModDatiAccount{
-    background-color: #898989;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
-    border-bottom: 2px solid rgba(0,114,255,0.43);
-}
-#titolo-successoModPass, #titolo-successoModDatiAccount{
-    margin: 0;
-}
-.contenitore-icona-successoModPass, .contenitore-icona-successoModDatiAccount {
-    width: 20%;
-    float: left;
-    font-size: 8vh;
-    box-sizing: border-box;
-}
-.container-message{
-    text-align: center;
-    width: 80%;
-    float: left;
-}
-.message{
-    font-size: 1rem;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-.footerSuccessoModPass, .footerSuccessoModDatiAccount {
-    border-top:0px;
-    padding-top: 0px;
-}
-.bottone-ok{
-    outline: none;
-    background-color: rgb(191, 193, 192);
-    border: none;
-    border-radius: 4px;
-    padding: 3px 5px;
-    font-size: 14px;
-    width: 20%;
-    height: 1.5rem;
-    color: black;
-}
-.bottone-ok:hover{
-    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-size: 15px;
-    color: white;
-    background-color: rgba(0,114,255,0.43);
-    font-weight: bold;
-}
-
-
-/*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
-#intestazione-logout, #intestazione-rimAmico, #intestazione-rimPlaylist {
-    background-color: #898989;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem;
-    border-bottom: 2px solid rgba(0,114,255,0.43);
-}
-#titolo-logout, #titolo-rimAmico, #titolo-rimPlaylist{
-    margin: 0;
-}
-.contenitore-icona-logout, .contenitore-icona-rimAmico, .contenitore-icona-rimPlaylist {
-    width: 19%;
-    float: left;
-    font-size: 8vh;
-    box-sizing: border-box;
-}
-.container-question{
-    text-align: center;
-    width: 80%;
-    float: left;
-}
-.question{
-    font-size: calc(0.6rem + 0.5vw);
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-.footerLogout, .footer-rimAmico, .footer-rimPlaylist {
-    border-top:0;
-    padding-top: 0;
-}
-.bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
-    border-radius: 4px;
-    padding: 0;
-    font-size: calc(0.5rem + 0.5vw);
-    width: 20%;
-    height: 1.5rem;
-    color: black;
-}
-.bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
-    font-size: calc(0.6rem + 0.5vw);
-    color: white;
-    background-color: rgba(0,114,255,0.43);
-    font-weight: bold;
-}
-
-
-/*Propità menù orizzontale */
-#menu-orizzontale{
-    display: none;
-    padding: 0;
-    height: 50px;
-}
-.pulsante-menu-orizzontale{
-    background-color: transparent;
-    width: auto;
-    color: cornsilk;
-    font-size: calc(0.8rem + 1vw);
-}
-.pulsante-menu-orizzontale:focus {
-    box-shadow: 0 0;
-}
-
-#profilo:hover, #gest-amicizie:hover, #amici-online:hover, #altro:hover {
-    background-color: transparent;
-    box-shadow: 0 0;
-    color: #5CA5FF;
-}
-
 
 /*Propietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
@@ -1267,14 +249,12 @@ table{
 #pannello-Amicizie-mobile >.row >.col-md-12 >.demo.demo-mobile{
     height: calc(100vh - 215px);
 }
-
 .col-sx-sec{
     text-align: right;
 }
 .col-dx-sec{
- text-align: left;
+    text-align: left;
 }
-
 .container-intestazione-amicizie-mobile{
     text-align: center;
     height: 20%;
@@ -1284,520 +264,12 @@ table{
     height: 80%;
     overflow: auto;
 }
-p.paragrafo-amicizie-mobile{
+.paragrafo-amicizie-mobile{
     font-size: calc(1rem + 1vw);
     border-bottom: 2px solid rgba(255,138,0,1);
     color: cornsilk;
     margin: 0;
 }
-
-
-
-/*propietà pannello-mobile*/
-#pannello-mobile{
-    position: absolute;
-    right: 0;
-    width: 35%;
-    height: calc(100vh - 215px);
-    background-color: rgb(11, 55, 116);
-    display: none;
-    z-index:1;
-
-}
-.listaGeneri.show{
-    display: block;
-    height: 35%;
-    overflow-y: auto;
-    font-size: calc(0.4rem + 1vw);
-}
-
-/*propietà bottoni pannello-mobile*/
-.btn-mobile{
-    width: 100%;
-    color: cornsilk;
-    font-size: calc(0.4rem + 1vw);
-    background: #0b3774;
-    text-align: center;
-}
-
-/*Proprietà Modal Aggiungi Amico*/
-#modal-aggiungi-amico>.modal-dialog>.modal-content>.modal-body{
-    padding:1rem;
-}
-#inserisci-nomeUtente{
-    outline: none;
-    font-size: 1.3rem;
-    border: 0;
-    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
-    line-height: 2em;
-    background: transparent;
-    color: #212529;
-    width: 100%;
-}
-.container-input{
-    float: left;
-    width: 90%;
-}
-.container-icona-ricerca{
-    line-height: 2em;
-    font-size: 1.3rem;
-    text-align: center;
-    width: 10%;
-    float: left;
-}
-.container-listaUtenti{
-    display: none;
-}
-.listaUtenti{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-.p_listaUtenti{
-    margin: 1rem 0;
-    text-align: left;
-    padding-left: 5px;
-    overflow: hidden;
-    clear: left;
-}
-.nomeUtente_da_aggiugere{
-    width: 50%;
-    float: left;
-    box-sizing: border-box;
-}
-.cont-pulsante-aggiungi-utente{
-    text-align: center;
-    width: 50%;
-    font-size: 1.2rem;
-    float: left;
-    box-sizing: border-box;
-}
-.tab-ricerca-utente{
-    box-sizing: border-box;
-    overflow: hidden;
-}
-.pulsante-aggiungi-utente:hover{
-    color:rgba(255,138,0,1);
-    cursor: pointer;
-}
-
-
-/*propieta pannnelo-playlist*/
-#pannello-Playlist{
-    display: none;
-    height: calc(100vh - 165px);
-    overflow-y: hidden;
-}
-.container-playlist:hover{
-    cursor:pointer;
-}
-
-.icona-eliminaPlaylist{
-  color: #007bff;
-  float:right;
-  padding-right: 10px;
-}
-.icona-eliminaPlaylist:hover{
-  color: #6ca8fb;
-  cursor:pointer;
-}
-#contenitore-canzoni-playlist{
-    height: calc(65% - 30px);
-
-}
-#contenitore-lista-playlist{
-    height: 80%;
-    overflow-y: auto;
-}
-#contenitore-paragrafo{
-    height: 20%;
-}
-
-.paragrafo-playlist{
-    font-size: calc(1rem + 1vw);
-    text-align: center ;
-    margin-top: 30px;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-}
-.btn-canzoni-playlist{
-    background: transparent;
-    box-shadow: none!important;
-    color: #007bff;
-}
-.btn-playlist{
-    float: right;
-}
-.canzone{
-    width: 40%;
-    float: left;
-    box-sizing: border-box;
-}
-.autore{
-    width: 30%;
-    float: left;
-    box-sizing: border-box;
-}
-.nomePlaylist{
-    color: cornsilk;
-    font-size: calc(0.25rem + 1vw);
-}
-.contenitore-nomePlaylist{
-    overflow-wrap: break-word;
-    position: relative;
-    transform: translate(0,25%);
-    height: 60px;
-    padding: 0 10px;
-    padding-top: 12%;
-}
-
-/*propità flex box*/
-.flex-container {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: flex-start;
-    -ms-flex-line-pack: start;
-    align-content: flex-start;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: flex-start;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.flex-item:nth-child(1) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-.flex-item{
-    margin-top: 1vh;
-    margin-left: 1vw;
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-}
-
-
-.flex-item-img{
-    width: 100%;
-    display: block;
-}
-
-.flex-item-img:hover{
-    opacity: 0.3;
-}
-
-.icona-playlist{
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-55%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.icona-aggiungi-playlist{
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-45%, -45%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.icon{
-    color: white;
-    font-size: 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-
-}
-.overly{
-    position: absolute;
-    height: 150px;
-    width: 150px;
-    opacity: 0;
-    background-color: transparent;
-
-    transform: translateY(-100%);
-}
-.flex-item:not(:hover) .flex-item-conteiner {
-    opacity: 0.7;
-}
-
-
-fa-paly:hover {
-    color: transparent;
-}
-
-.flex-item-conteiner{
-    text-align: center;
-    border-radius: 15%;
-    width: calc(7rem + 3vw);
-    display: block;
-    background-color: rgba(65, 69, 74, 0.53);
-    cursor: pointer
-}
-
-.flex-item-conteiner-icon{
-    font-size: 0px;
-    position: relative;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    background-color: rgba(255,138,0,1);
-    transform: translate(0%,25%);
-    margin: auto;
-}
-.li_listaPlaylist{
-    font-size: calc(0.7rem + 0.5vw);
-    text-align: left;
-    padding-left: 5px;
-    overflow: hidden;
-    clear:left;
-}
-.li_listaPlaylist:hover{
-    font-weight: bold;
-}
-.ordine-playlist{
-    width: 10%;
-    float: left;
-    box-sizing: border-box;
-}
-.p_playList{
-    color: cornsilk;
-    margin-top: 15px;
-}
-#pause{
-    display: none;
-}
-
-#labelDurataTotaleBrano{
-
-}
-#labelSecondoAttual{
-
-}
-/*contenitore Amicizie*/
-#pannello-Amicizie{
-    overflow-y: hidden;
-    display: none;
-    background-color: transparent;
-    height: calc(100vh - 165px);
-}
-
-/*Proprietà lista amici*/
-.intestazione-listaAmici{
-    font-size: calc(0.4rem + 1vw);
-    color:cornsilk;
-    margin: 0;
-    height: 50px;
-}
-#contenitore-lista-amici{
-height: calc(100% - 50px);
-    overflow-y: auto;
-    padding: 0 15px;
-}
-#contenitore-btnAmici{
-    height: 50px;
-}
-#contenitore-amicizie{
-height: calc(100% - 90px);
-}
-.titolo-listaAmici{
-    text-align: center;
-    font-size: calc(1rem + 1vw);
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-    height: 40px;
-}
-.nomeAmici{
-    text-align: left;
-    width: 30%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
-}
-.col-amicizie{
-    height: 100%;
-}
-.cognomeAmici{
-    text-align: left;
-    width: 30%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
-}
-.nomeUtenteAmici{
-    text-align: left;
-    width: 40%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
-}
-.listaAmici{
-    font-size: calc(0.25rem + 1vw);
-    width: 100%;
-}
-.datiAmico{
-    width: 30%;
-    float: left;
-    box-sizing: border-box;
-    padding: .75rem;
-    border-bottom: 1px solid #5CA5FF;
-}
-.container-icona-rimuovi-amico{
-     text-align: center;
-     width: 10%;
-     float: left;
-     box-sizing: border-box;
- }
-.icona-rimuovi-amico:hover{
-    color: rgba(255,138,0,1);
-    cursor: pointer;
-}
-
-
-/*Pannello Brani in riproduzione*/
-#pannello-BraniRiproduzione{
-    height: calc(100vh - 165px);
-    display: none;
-}
-
-/*propietà pannello brani in riproduzione*/
-#contenitore-produzione{
-    height:100%;
-}
-.InRiproduzione:hover{
-    font-weight: bold;
-}
-.titolo-listaBrani-produzione{
-    padding-top: 2%;
-    text-align: center;
-    font-size: 1.6rem;
-    border-bottom: 2px solid rgba(255,138,0,1);
-    color: cornsilk;
-    height:60px;
-}
-#contenitore-braniInRiproduzione{
-    height: calc(100% - 60px);
-}
-.messaggio-riproduzione{
-    margin:auto;
-    color:cornsilk;
-    font-size: calc(0.7rem + 0.5vw);
-}
-.intestazione-listaBrani-prod{
-    color: cornsilk;
-    margin: 0;
-    height: 50px;
-}
-.nomeCanzone-prod{
-    overflow:hidden;
-    text-align: left;
-    width: 35%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
-}
-.nomeArtista-prod{
-    text-align: left;
-    width: 35%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    border-bottom: 2px solid #5CA5FF;
-    padding:12px;
-    margin:0;
-}
-.nomeDurata-prod{
-    text-align: left;
-    width: 30%;
-    font-weight: bold;
-    float: left;
-    box-sizing: border-box;
-    padding:12px;
-    margin:0;
-    border-bottom: 2px solid #5CA5FF;
-}
-.p_prod{
-    color: cornsilk;
-    margin: 0;
-}
-
-#contenitore-listaBrani-produzione{
-    overflow-y: auto;
-    height: calc(100% - 50px);
-    padding: 0 15px;
-}
-.listaRiproduzione{
-    font-size: 0.8rem;
-    width: 100%;
-    color: cornsilk;
-}
-
-.nomeStato_prod{
-    width: 20%;
-
-}
-.nomeArtista_prod{
-    width: 35%;
-}
-.nomeCanzone_prod{
-    width: 35%;
-
-}
-.container-icona-play{
-    text-align: center;
-    width: 5%;
-    box-sizing: border-box;
-    padding: 12px 0;
-}
-.icona-play-prod:hover{
-    color: rgba(255,138,0,1);
-}
-
 
 /*Pannello Generi*/
 #pannello-Generi{
@@ -1894,7 +366,6 @@ height: calc(100% - 90px);
 .cover{
     width: 50px;
 }
-
 .genere {
     overflow: hidden;
     border-bottom: 1px solid #5CA5FF;
@@ -1905,6 +376,1125 @@ height: calc(100% - 90px);
 .genere > * {
     vertical-align: middle;
 }
+
+
+/*Pannello Brani in riproduzione*/
+#pannello-BraniRiproduzione{
+    height: calc(100vh - 165px);
+    display: none;
+}
+/*propietà pannello brani in riproduzione*/
+#contenitore-produzione{
+    height:100%;
+}
+.InRiproduzione:hover{
+    font-weight: bold;
+}
+.titolo-listaBrani-produzione{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 1.6rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height:60px;
+}
+#contenitore-braniInRiproduzione{
+    height: calc(100% - 60px);
+}
+.messaggio-riproduzione{
+    margin:auto;
+    color:cornsilk;
+    font-size: calc(0.7rem + 0.5vw);
+}
+.intestazione-listaBrani-prod{
+    color: cornsilk;
+    margin: 0;
+    height: 50px;
+}
+.nomeCanzone-prod{
+    overflow:hidden;
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeArtista-prod{
+    text-align: left;
+    width: 35%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeDurata-prod{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    padding:12px;
+    margin:0;
+    border-bottom: 2px solid #5CA5FF;
+}
+.p_prod{
+    color: cornsilk;
+    margin: 0;
+}
+#contenitore-listaBrani-produzione{
+    overflow-y: auto;
+    height: calc(100% - 50px);
+    padding: 0 15px;
+}
+.listaRiproduzione{
+    font-size: 0.8rem;
+    width: 100%;
+    color: cornsilk;
+}
+.nomeStato_prod{
+    width: 20%;
+}
+.nomeArtista_prod{
+    width: 35%;
+}
+.nomeCanzone_prod{
+    width: 35%;
+}
+.container-icona-play{
+    text-align: center;
+    width: 5%;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+.icona-play-prod:hover{
+    color: rgba(255,138,0,1);
+}
+
+
+/*Pannello contenente i risultati di ricerca */
+.nomeAlbumRicerca{
+    font-size: calc(0.5rem + 0.5vw)
+}
+#pannello-Ricerca{
+    display: none;
+    height: calc(100vh - 165px);
+    overflow: hidden;
+}
+/*Propità pannello di ricerca */
+.paragrafo-risultati{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+}
+.elenco-canzone-Autore{
+    font-size:0.8rem;
+}
+.btn-pannelloRicerca{
+    float: right;
+}
+btn-conzoni-ricerca{
+    background: transparent;
+}
+#contenitore-ricerca{
+    height: calc(100vh - 165px);
+    overflow-y: auto;
+}
+#contenitore-lista-ricerca{
+    overflow-y: auto;
+    width: 100%;
+    height: calc(100% - 110px);
+    margin: 0;
+}
+.nomeCanzone{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+}
+.nomeArtista{
+    text-align: left;
+    width: 60%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding: 12px;
+    margin: 0;
+}
+.p_ricerca{
+    color: cornsilk;
+    margin: 0;
+}
+.datiCanzoni{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
+}
+.contenitore-imgBrano-esterno{
+    width: 30%;
+}
+.contenitore-imgBrano-interno{
+    position: relative;
+    width: calc(7rem + 3vw);
+}
+.contenitore-nomeCanzone-Artista{
+    width: 60%;
+}
+.contenitore-icona-aggiungi-playlist{
+    text-align: center;
+    width: 10%;
+    box-sizing: border-box;
+}
+.coverBrano{
+    width: 100%;
+}
+.li-lista-brani:hover .play-brano{
+    opacity: 0.9;
+    color: cornsilk;
+}
+.li-lista-brani:hover{
+    font-weight: bold;
+}
+.play-brano{
+    opacity: 0;
+    position: absolute;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+}
+.play-brano:hover{
+    opacity: 1;
+}
+.li-lista-brani{
+    font-size: calc(0.7rem + 0.5vw);
+}
+.listaRicerca{
+    font-size: 0.8rem;
+    width: 100%;
+}
+.titolo-listaRicerca{
+    font-size: calc(0.7rem + 1vw);
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 45px;
+}
+#contenitore-lista-ricerca-album{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.messaggio{
+    margin: auto;
+    font-size: calc(0.25rem + 1vw);
+    padding: 20px 0;
+    color: cornsilk;
+    text-align: center;
+}
+.icona-aggiungi-Aplaylist:hover{
+    color: rgba(255,138,0,1);
+    cursor: pointer;
+}
+
+
+/*Pannello Album*/
+#pannello-Album{
+    display: none;
+    height: calc(100vh - 165px);
+}
+/*Proprietà pannello Album*/
+.flex-container-Album{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+}
+.flex-item-Album{
+    width: calc(7rem + 3vw);
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    margin-top: 1vh;
+    margin-left: 1vw;
+}
+.contenitore-nomeAlbum{
+    position: relative;
+    transform: translate(0,25%);
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+.nomeAlbum{
+    color: cornsilk;
+    font-size: calc(0.2rem + 1vw);
+}
+#contenitore-canzoni-album{
+    height: calc(65% - 30px);
+}
+#contenitore-paragrafo-Album{
+    height: 20%;
+}
+.paragrafo-album{
+    font-size: calc(0.8rem + 1vw);
+    text-align: center ;
+    margin-top: 30px;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+}
+#contenitore-lista-Album{
+    height: 80%;
+    overflow-y: auto;
+}
+.li_listaAlbum{
+    font-size: calc(0.7rem + 0.5vw);
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear:left;
+}
+.li_listaAlbum:hover{
+    font-weight: bold;
+}
+.ordine-Album{
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+}
+.p_Album{
+    color: cornsilk;
+    margin-top: 15px;
+}
+.canzone-album{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+}
+.autore-album{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+}
+.btn-album{
+    float: right;
+}
+.btn-canzoni-album{
+    background: transparent;
+    color: #007bff;
+    box-shadow: none!important;
+}
+
+
+/*Proprietà pannnelo-playlist*/
+#pannello-Playlist{
+    display: none;
+    height: calc(100vh - 165px);
+    overflow-y: hidden;
+}
+.container-playlist:hover{
+    cursor:pointer;
+}
+.icona-eliminaPlaylist{
+    color: #007bff;
+    float:right;
+    padding-right: 10px;
+}
+.icona-eliminaPlaylist:hover{
+    color: #6ca8fb;
+    cursor:pointer;
+}
+#contenitore-canzoni-playlist{
+    height: calc(65% - 30px);
+
+}
+#contenitore-lista-playlist{
+    height: 80%;
+    overflow-y: auto;
+}
+#contenitore-paragrafo{
+    height: 20%;
+}
+.paragrafo-playlist{
+    font-size: calc(1rem + 1vw);
+    text-align: center ;
+    margin-top: 30px;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+}
+.btn-canzoni-playlist{
+    background: transparent;
+    box-shadow: none!important;
+    color: #007bff;
+}
+.btn-playlist{
+    float: right;
+}
+.canzone{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+}
+.autore{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+}
+.nomePlaylist{
+    color: cornsilk;
+    font-size: calc(0.25rem + 1vw);
+}
+.contenitore-nomePlaylist{
+    overflow-wrap: break-word;
+    position: relative;
+    transform: translate(0,25%);
+    height: 60px;
+    padding: 0 10px;
+    padding-top: 12%;
+}
+/*Proprità flex box*/
+.flex-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: flex-start;
+    height: 100%;
+    overflow-y: auto;
+}
+.flex-item:nth-child(1) {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+.flex-item{
+    margin-top: 1vh;
+    margin-left: 1vw;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+.flex-item-img{
+    width: 100%;
+    display: block;
+}
+.flex-item-img:hover{
+    opacity: 0.3;
+}
+.icona-playlist{
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.icona-aggiungi-playlist{
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -45%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.icon{
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.flex-item:not(:hover) .flex-item-conteiner {
+    opacity: 0.7;
+}
+fa-paly:hover {
+    color: transparent;
+}
+.flex-item-conteiner{
+    text-align: center;
+    border-radius: 15%;
+    width: calc(7rem + 3vw);
+    display: block;
+    background-color: rgba(65, 69, 74, 0.53);
+    cursor: pointer
+}
+.flex-item-conteiner-icon{
+    font-size: 0px;
+    position: relative;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(255,138,0,1);
+    transform: translate(0%,25%);
+    margin: auto;
+}
+.li_listaPlaylist{
+    font-size: calc(0.7rem + 0.5vw);
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear:left;
+}
+.li_listaPlaylist:hover{
+    font-weight: bold;
+}
+.ordine-playlist{
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+}
+.p_playList{
+    color: cornsilk;
+    margin-top: 15px;
+}
+
+
+/*Proprietà pannello amicizie*/
+#pannello-Amicizie{
+    overflow-y: hidden;
+    display: none;
+    background-color: transparent;
+    height: calc(100vh - 165px);
+}
+/*Proprietà lista amici*/
+.intestazione-listaAmici{
+    font-size: calc(0.4rem + 1vw);
+    color:cornsilk;
+    margin: 0;
+    height: 50px;
+}
+#contenitore-lista-amici{
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    padding: 0 15px;
+}
+#contenitore-btnAmici{
+    height: 50px;
+}
+#contenitore-amicizie{
+    height: calc(100% - 90px);
+}
+.titolo-listaAmici{
+    text-align: center;
+    font-size: calc(1rem + 1vw);
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    height: 40px;
+}
+.nomeAmici{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.col-amicizie{
+    height: 100%;
+}
+.cognomeAmici{
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.nomeUtenteAmici{
+    text-align: left;
+    width: 40%;
+    font-weight: bold;
+    float: left;
+    box-sizing: border-box;
+    border-bottom: 2px solid #5CA5FF;
+    padding:12px;
+    margin:0;
+}
+.listaAmici{
+    font-size: calc(0.25rem + 1vw);
+    width: 100%;
+}
+.datiAmico{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+    padding: .75rem;
+    border-bottom: 1px solid #5CA5FF;
+}
+.container-icona-rimuovi-amico{
+    text-align: center;
+    width: 10%;
+    float: left;
+    box-sizing: border-box;
+}
+.icona-rimuovi-amico:hover{
+    color: rgba(255,138,0,1);
+    cursor: pointer;
+}
+#pulsante-aggiungiAmici{
+    box-shadow: none;
+    width: 30%;
+    font-size: 0.8rem;
+    margin-top: 1vh;
+}
+
+
+/*Proprietà pannello lista Amici online modalità desktop*/
+.pallino{
+    color: #03d838;
+    font-size: 10px;
+}
+.p_listaAmici{
+    margin-bottom: 16px;
+    color:cornsilk;
+    font-size:1.1vw;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 114, 255, 0.72);
+}
+.conteiner-listaAmici{
+    padding-right: 5px;
+    overflow-y: auto;
+    max-height: 53vh;
+}
+ul.demo {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.sta-ascoltando{
+    width:100%;
+    display: block;
+    top:30px;
+    color: rgba(255,138,0,1);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+.icona-musica{
+    padding: 1.5% 2% 0% 0%;
+}
+p.paragrafo{
+    font-size: 1.4vw;
+    text-align: center ;
+    margin-top: 3vh;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255,138,0,1);
+    color: cornsilk;
+    margin: 12px 0;
+}
+
+
+/*Proprietà del player*/
+#sezione-controlli-riproduzione {
+    width: 100vw;
+    bottom: 0;
+    left:0;
+    height: 100px;
+}
+#sezione-controlli-riproduzione > .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+#sezione-controlli-riproduzione > .row {
+    position: relative;
+    font-size: 100%;
+}
+#sezione-controlli-riproduzione {
+    background-color:  rgba(0, 114, 255, 0.43);
+    color: cornsilk;
+    text-align: center;
+}
+#colonna-sezione-controlli-riproduzione{
+    padding: 0;
+}
+#riga-slider > .slider-horizontal{
+    display: inline-block;
+    vertical-align: middle;
+}
+.contenitore-slider{
+    height: 40px;
+}
+.intestazione-titolo-brano{
+    height: 30px;
+}
+.contenitore-tasi-riproduzione{
+    height: 30px;
+}
+#titolo-brano-in-riproduzione > p:first-child {
+    margin: 0;
+    font-size: 2vh;
+}
+.audio-controls {
+    text-align: center;
+    height: 4vh;
+}
+#riga-slider .col-md-8, #riga-slider .col-md-2 {
+    padding: 0;
+}
+.testo-controlli-riproduzione {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: calc(0.55rem + 1vw);
+}
+#badge-icona-notifica {
+    color: white;
+    background-color: rgba(255,138,0,1);
+}
+.active{
+    color:#5CA5FF;
+}
+/*slider barra player*/
+div.slider-handle.min-slider-handle.round{
+    background-image: linear-gradient(to bottom, #ff0000 0, #ff8c02 100%);
+}
+div.slider-selection{
+    background-image: linear-gradient(to bottom,#f9430c 0,#ff922b 100%);
+}
+#step-backward:hover,#play:hover,#pause:hover,#step-forward:hover,#random:hover,#repeat:hover,#volume:hover{
+    color: #5CA5FF;
+}
+#contenitore-volume{
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    transform: translate(-45px,-20px)!important;
+}
+#contenitore-volume > .slider.slider-horizontal{
+    width: 100%;
+}
+/*Proprietà immagine album*/
+#album2{
+    height: 35px;
+    width: 35px;
+}
+#pause{
+    display: none;
+}
+
+
+/*intestazione del Modal Profilo*/
+#intestazione{
+    text-align:center;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43)
+}
+.modal-content{
+    font-size: calc(0.7rem + 0.5vw);
+}
+.modal{
+    padding-left: 0px;
+}
+#titolo-modal{
+    color:black;
+}
+button.close {
+    background-color: #ffffff00;
+    box-shadow: 0 0;
+}
+.contenitore-icona-profilo{
+    width: min-content;
+    display:block ;
+    margin:auto ;
+}
+#icona-profilo{
+    font-size: 5rem;
+}
+.nomeUtente{
+    text-align: center;
+}
+/* Proprietà form Profilo*/
+input[type=text], select {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,114,255,0.43);
+    resize: vertical;
+    outline-width: 0;
+}
+input[type=password], select {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,114,255,0.43);
+    resize: vertical;
+    outline-width: 0;
+}
+input.invalid {
+    border-color: red;
+}
+label {
+    padding: 12px 0;
+    display: inline-block;
+}
+.container {
+    padding: 20px;
+}
+.col-25sx {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+.col-25dx {
+    padding-left:10px;
+    float: left;
+    width: 25%;
+}
+.col-50 {
+    padding: 0 7px;
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+}
+.col-75{
+    padding-left: 7px;
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.campi{
+    font-size: calc(0.6rem + 0.5vw);
+    text-align: center;
+    color:black;
+}
+.campoMail{
+    font-size: 2vh;
+}
+.pulsanteModifica{
+    margin-top: 5px;
+    height: 35px;
+    width: 100%;
+    line-height: 15px;
+}
+.pulsanteModifica:focus{
+    box-shadow: 0 0;
+}
+#dataNascita{
+    border-bottom: 1px solid rgba(0, 114, 255, 0.43);
+    color: black;
+    width: 100%;
+    text-align: center;
+}
+/*Proprietà footer del Modal Profilo*/
+.footerProfilo{
+    display:none;
+    margin:auto;
+}
+
+
+/*Proprietà modal modifica password*/
+.modal-body{
+    padding: 1rem 1rem 0 1rem;
+}
+.contenitore-icona-password{
+    width: min-content;
+    display:block ;
+    margin:auto ;
+}
+#icona-lucchetto{
+    font-size: 5rem;
+}
+#intestazionePass{
+    text-align:center;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43)
+}
+.contenitore-nota{
+    text-align: center;
+    width: 100%;
+}
+/*Proprietà form modifica Password*/
+.testo{
+    width: 100%;
+}
+.col-90{
+    float: left;
+    width: 90%;
+}
+.col-10{
+    float: left;
+    width: 10%;
+    padding:0px;
+}
+.password{
+    display: block;
+}
+.campiPass{
+    color:black;
+}
+.iconaPassword{
+    margin-top: 5px;
+    width: 10px;
+    font-size: 20px;
+}
+.iconaPassword:hover{
+    cursor: pointer;
+}
+.labelPass{
+    margin-bottom: 0px;
+    margin-top: 20px;
+    padding: 10px 0 0;
+}
+/*proprietà footer modal modifica password*/
+.salvaModifiche{
+    font-size: calc(0.65rem + 0.5vw);
+    border-radius: 4px;
+    margin: auto;
+}
+
+
+/*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
+#intestazione-logout, #intestazione-rimAmico, #intestazione-rimPlaylist {
+    background-color: #898989;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43);
+}
+#titolo-logout, #titolo-rimAmico, #titolo-rimPlaylist{
+    margin: 0;
+}
+.contenitore-icona-logout, .contenitore-icona-rimAmico, .contenitore-icona-rimPlaylist {
+    width: 19%;
+    float: left;
+    font-size: 8vh;
+    box-sizing: border-box;
+}
+.container-question{
+    text-align: center;
+    width: 80%;
+    float: left;
+}
+.question{
+    font-size: calc(0.6rem + 0.5vw);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.footerLogout, .footer-rimAmico, .footer-rimPlaylist {
+    border-top:0;
+    padding-top: 0;
+}
+.bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
+    border-radius: 4px;
+    padding: 0;
+    font-size: calc(0.5rem + 0.5vw);
+    width: 20%;
+    height: 1.5rem;
+    color: black;
+}
+.bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
+    font-size: calc(0.6rem + 0.5vw);
+    color: white;
+    background-color: rgba(0,114,255,0.43);
+    font-weight: bold;
+}
+
+
+/*Proprietà Modal Aggiungi Amico*/
+#modal-aggiungi-amico>.modal-dialog>.modal-content>.modal-body{
+    padding:1rem;
+}
+#inserisci-nomeUtente{
+    outline: none;
+    font-size: 1.3rem;
+    border: 0;
+    border-bottom: 2px solid rgba(0, 114, 255, 0.43);
+    line-height: 2em;
+    background: transparent;
+    color: #212529;
+    width: 100%;
+}
+.container-input{
+    float: left;
+    width: 90%;
+}
+.container-icona-ricerca{
+    line-height: 2em;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 10%;
+    float: left;
+}
+.container-listaUtenti{
+    display: none;
+}
+.listaUtenti{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.p_listaUtenti{
+    margin: 1rem 0;
+    text-align: left;
+    padding-left: 5px;
+    overflow: hidden;
+    clear: left;
+}
+.nomeUtente_da_aggiugere{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.cont-pulsante-aggiungi-utente{
+    text-align: center;
+    width: 50%;
+    font-size: 1.2rem;
+    float: left;
+    box-sizing: border-box;
+}
+.tab-ricerca-utente{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.pulsante-aggiungi-utente:hover{
+    color:rgba(255,138,0,1);
+    cursor: pointer;
+}
+
+
+/*Proprietà Modal Successo Modifica Password
+ e Modal Successo Modifica Dati Account*/
+#intestazione-successoModPass, #intestazione-successoModDatiAccount{
+    background-color: #898989;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43);
+}
+#titolo-successoModPass, #titolo-successoModDatiAccount{
+    margin: 0;
+}
+.contenitore-icona-successoModPass, .contenitore-icona-successoModDatiAccount {
+    width: 20%;
+    float: left;
+    font-size: 8vh;
+    box-sizing: border-box;
+}
+.container-message{
+    text-align: center;
+    width: 80%;
+    float: left;
+}
+.message{
+    font-size: 1rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.footerSuccessoModPass, .footerSuccessoModDatiAccount {
+    border-top:0px;
+    padding-top: 0px;
+}
+.bottone-ok{
+    outline: none;
+    background-color: rgb(191, 193, 192);
+    border: none;
+    border-radius: 4px;
+    padding: 3px 5px;
+    font-size: 14px;
+    width: 20%;
+    height: 1.5rem;
+    color: black;
+}
+.bottone-ok:hover{
+    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 15px;
+    color: white;
+    background-color: rgba(0,114,255,0.43);
+    font-weight: bold;
+}
+
 
 /*Proprietà Modal Crea Playlist*/
 .footerCreaPlaylist{
@@ -1938,6 +1528,7 @@ height: calc(100% - 90px);
 .modal-header, .header{
     font-size: calc(0.8rem + 0.9vw);
 }
+
 
 /*Proprietà Modal Aggiungi A Playlist*/
 .tab-agg-brano{
@@ -1974,3 +1565,197 @@ height: calc(100% - 90px);
     cursor: pointer;
 }
 
+
+@media only screen and (max-width: 768px) {
+
+    .pulsanteA{
+        font-size: 1.5vw;
+    }
+    .p_listaAmici{
+        font-size:calc(0.4rem + 1vw);
+    }
+    #colonna-centrale {
+        width: 100% !important;
+    }
+
+    #barra-ricerca{
+        font-size:calc(0.55rem + 1vw);
+    }
+
+    #colonna-sinistra, #colonna-destra,#album2 {
+        display: none;
+    }
+
+    #sezione-controlli-riproduzione {
+        width: 100%;
+        left: 0px;
+    }
+    .testo-controlli-riproduzione {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: calc(0.8rem + 1vw);
+    }
+
+    /*Gestione del ridimensionamento delle colonne principali di bootstrap */
+    .col-md-1 {
+        width: 8.3333%;
+    }
+    .col-md-2 {
+        width: 16.6667%;
+    }
+    .col-md-3 {
+        width: 25%;
+        text-align: center;
+    }
+    .col-md-4 {
+        width: 33.3333%;
+    }
+    .col-md-5 {
+        width: 41.6667%;
+    }
+    .col-md-6 {
+        width: 50%;
+    }
+    .col-md-7 {
+        width: 58.3333%;
+    }
+    .col-md-8 {
+        width: 66.6667%;
+    }
+    .col-md-9 {
+        width: 75%;
+    }
+    .col-md-10 {
+        width: 83.3333%;
+    }
+    .col-md-11 {
+        width: 91.6667%;
+    }
+    .col-md-12 {
+        width: 100%;
+    }
+    .hidden-md {
+        display: none;
+    }
+
+    /*Proprietà pannello amici online mobile*/
+    .icona-musica{
+        padding: 0;
+    }
+
+    #pulsante-Logout{
+        display: none;
+    }
+
+    /*gestione ridimensionamento dei pannelli */
+    #pannello-Ricerca,#pannello-Amicizie-mobile,
+    #pannello-Generi,#contenitore-genere
+    ,#contenitore-ricerca,.sezioneCentrale,
+    #pannello-Amicizie, #pannello-Playlist,
+    #pannello-Album,#pannello-BraniRiproduzione{
+        height: calc(100vh - 215px);
+    }
+    #contenitore-genere{
+        height: calc(100vh - 275px);
+    }
+
+    /*Proprietà barra volume */
+    #contenitore-volume > .slider.slider-horizontal{
+        transform:  translate3d(1px, -1px, 0px);
+        width: 70%;
+    }
+
+
+    /*Proprietà del Modal Profilo*/
+    .campoMail{
+        font-size: 0.8rem;
+    }
+    /*Proprietà del pulsante modifica del Modal Profilo*/
+    .pulsanteModifica{
+        font-size: calc(0.65rem + 0.5vw);
+        padding: 0 5px;
+        width: 90%;
+    }
+    .salvaModifiche{
+        font-size: calc(0.65rem + 0.5vw);
+    }
+    /*Proprietà della colonna destra del Modal Profilo*/
+    .col-25dx {
+        padding-left:0;
+        text-align: center;
+    }
+
+    /*Proprietà pannello Amicizie*/
+    .intestazione-listaAmici{
+        font-size: calc(0.6rem + 1vw);
+    }
+    .listaAmici{
+        font-size: calc(0.4rem + 1vw);
+        width: 100%;
+    }
+    #pulsante-aggiungiAmici {
+        width: 35%;
+        font-size: calc(0.4rem + 1vw);
+    }
+
+    /*Proprietà pannello ricerca*/
+    .titolo-listaRicerca{
+        padding-top: 10px;
+        font-size: calc(1rem + 1vw);
+        height: 50px;
+    }
+    .messaggio{
+        font-size: calc(0.4rem + 1vw);
+    }
+    .coverBrano{
+        width: 100%;
+    }
+    .contenitore-imgBrano{
+        width: 25%;
+        max-width: 160px;
+    }
+
+    /*Proprietà dell'intestazione dei modal*/
+    .modal-header, .header{
+        font-size: calc(1rem + 1vw);
+    }
+
+    /*Proprietà Modal Conferma Logout, Modal Conferma Rimozione Amico e Modal Conferma Rimozione Playlist*/
+    .question{
+        font-size: calc(0.7rem + 0.5vw);
+    }
+    .bottone-conferma-uscita, .bottone-conferma-rimAmico, .bottone-conferma-rimPlaylist{
+        font-size: calc(0.7rem + 0.5vw);
+    }
+    .bottone-conferma-uscita:hover, .bottone-conferma-rimAmico:hover, .bottone-conferma-rimPlaylist:hover{
+        font-size: calc(0.75rem + 0.5vw);
+    }
+
+    /*Proprietà pannello Album e brani*/
+    .nomeAlbum{
+        font-size: calc(0.6rem + 1vw);
+    }
+    .li_listaAlbum{
+        font-size: calc(0.6rem + 1vw);
+    }
+    .canzone-album{
+        width: 30%;
+    }
+    .autore-album{
+        width: 30%;
+    }
+    .canzone{
+        width: 30%;
+    }
+    .autore{
+        width: 30%;
+    }
+
+    /*Proprietà pannello Le mie playlist*/
+    .nomePlaylist{
+        font-size: calc(0.6rem + 1vw);
+    }
+    .li_listaPlaylist{
+        font-size: calc(0.6rem + 1vw);
+    }
+}
