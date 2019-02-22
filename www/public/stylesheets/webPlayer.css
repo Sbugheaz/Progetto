@@ -164,6 +164,7 @@ button:focus {
     padding-right: 0;
     width: 16.6667%;
     opacity: 0.80;
+    overflow: hidden;
 }
 #colonna-sinistra{
     position: sticky;
@@ -283,6 +284,7 @@ button:focus {
 #pannello-Generi{
     height: calc(100vh - 165px);
     display: none;
+    overflow: hidden;
 }
 
 /*Propietà pannello generi*/
@@ -635,6 +637,7 @@ btn-conzoni-ricerca{
 #pannello-Album{
     display: none;
     height: calc(100vh - 165px);
+    overflow: hidden;
 }
 /*Proprietà pannello Album*/
 .flex-container-Album{
