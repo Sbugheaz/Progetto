@@ -365,9 +365,13 @@ function shuffle(array) {
         currentIndex -= 1;
 
         // e scambialo con l'elemento corrente.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        if(randomIndex!=indiceCorrente && currentIndex!=indiceCorrente) {
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+
     }
     return array;
 }
