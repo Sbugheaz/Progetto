@@ -435,7 +435,7 @@ function stampaListaPlaylistAggiungi(){
     if(listaPlaylist.length==0){
         $(".tab-agg-brano").empty;
         $(".container-listaPlaylist").empty();
-        $(".tab-agg-brano").html("Non hai ancora nessuna playlist!<br>Creane una per aggiungere questo brano.");
+        $(".tab-agg-brano").html("Non hai ancora nessuna playlist.<br>Creane una per aggiungere questo brano.");
     }
 
     //altimenti stampa nell'apposita lista tutte le playlist dell'utente
