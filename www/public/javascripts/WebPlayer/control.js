@@ -869,8 +869,24 @@ function eliminaPlaylist() {
                     for(i=0; i<listaPlaylist.length; i++) {
                         if(listaPlaylist[i].idPlaylist == idPlaylist) {
                             listaPlaylist.remove(i);
+                            //verifica se la playlist cancellata è quella in riproduzione
+                            if(percorsi!=null && playListAvviata==true && idPlaylistSelezionato==idPlaylistAvviata){
+                                if(indiceCorrente!=0){
+                                    listaOrigine.remove(indiceCorrente+1,listaOrigine.length-1);
+                                    percorsi.remove(indiceCorrente+1,percorsi.length-1);
+                                    listaOrigine.remove(0,indiceCorrente-1);//svuota la lista Origine lasciando la ca canzone attuale in riproduzione
+                                    percorsi.remove(0,indiceCorrente-1);//svuota la lista percorsi lasciando la ca canzone attuale in riproduzione
+                                    indiceCorrente=0;
+                                }else{
+                                    listaOrigine.remove(indiceCorrente+1,listaOrigine.length-1);//svuota la lista Originelasciando la ca canzone attuale in riproduzione
+                                    percorsi.remove(indiceCorrente+1,percorsi.length-1);//svuota la lista percorsi lasciando la ca canzone attuale in riproduzione
+                                    indiceCorrente=0;
+                                }
+
+                            }
                         }
                     }
+
             }
         });
 }
