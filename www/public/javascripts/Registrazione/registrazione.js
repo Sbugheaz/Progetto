@@ -1,4 +1,9 @@
-//Gestisce il form per la registrazione di un nuovo account
+/**
+ * Questo file js contiene tutte le funzioni principali che riguardano la pagina di registrazione, incluse tutte le
+ * funzioni che comunicano con il server per ricevere ed inviare dati.
+ */
+
+//Variabili che contengono i dati inseriti dall'utente nel form di registrazione
 var nome = $("input[name=nome]");
 var cognome = $("input[name=cognome]");
 var data_nascita = $("input[name=data_nascita]");
@@ -8,7 +13,8 @@ var nomeUtente = $("input[name=nomeUtente]");
 var password1= $("input[name=password]");
 var password2 = $("input[name=password2]");
 
-//Questa funzione verifica se i campi del form sono validi
+
+//Questa funzione verifica se i campi del form sono validi effettuando tutti i controlli necessari
     function convalidaForm() {
         var flag = false;
                 if(nome.val()  == "") {
@@ -77,32 +83,39 @@ var password2 = $("input[name=password2]");
                 else
                     flag = true;
         return flag;
-    }
-    //Verifica la validità dei campi "E-mail" e "Conferma e-mail"
-    function validateEmail(email) {
+}
+
+
+//Funzione che verifica la validità dei campi "E-mail" e "Conferma e-mail"
+function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
-    }
+}
 
-    //Verifica la validità dei campo "Nome" e "Cognome"
-    function validateName(nome) {
+
+//Funzione che verifica la validità dei campo "Nome" e "Cognome"
+function validateName(nome) {
     var testo = /^[A-Z][a-z]{1,15}(\s[A-Z][a-z]{1,15})*$/;
     return testo.test(String(nome));
-    }
+}
 
-    //Verifica la validità del campo "Nome utente"
-    function validateUsername(nomeUtente) {
+
+//Funzione che verifica la validità del campo "Nome utente"
+function validateUsername(nomeUtente) {
         var testo = /^[A-Za-z][A-Za-z0-9]{1,20}$/;
         return testo.test(String(nomeUtente));
-    }
+}
 
-    //Verifica la validità dei campi "Password" e "Verifica password"
-    function validatePassword(password) {
+
+//Funzione che verifica la validità dei campi "Password" e "Verifica password"
+function validatePassword(password) {
         var testo = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         return testo.test(String(password));
-    }
+}
 
-//Funzione che cambia il colore del bordo inferiore da rosso a grigio quando viene modificato il campo
+
+/*In presenza di errore in uno dei campi di registrazione cambia il colore del bordo inferiore non appena l'utente
+  modifica il campo*/
 $(".campi").on('input',function(){
     $(".campi").removeClass("invalid");
     $(".pd").css("display", "none");
@@ -113,8 +126,10 @@ $(".campi").on('input',function(){
 
 
 
-
-//Funzioni che gestiscono la comunicazione con il server
+/**
+ * Funzioni che gestiscono la comunicazione con il server.
+ */
+//Invia al server, dopo oppurtini controlli, i dati che l'utente ha inserito al momento della registrazione.
 function registrati() {
     if (convalidaForm()) {
         $.post("/Registrazione/registrati",
