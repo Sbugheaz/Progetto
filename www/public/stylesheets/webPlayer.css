@@ -43,6 +43,7 @@ button:focus {outline:0;}
 
 
 .pulsanteA{
+    box-shadow: none;
     background-color: #464B51;
     width: 100%;
     color: cornsilk;

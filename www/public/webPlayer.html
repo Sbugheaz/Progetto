@@ -33,14 +33,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
 
-
-
-
     <link rel="icon" href="images/Onda.png" type="image/png" />
-    <title>SoundWave</title>
 </head>
-<body background="images/Sfondo.jpg">
 
+
+<!-- Corpo della pagina -->
+<body background="images/Sfondo.jpg">
 
 <div class="container-fluid sezioneTotale">
     <nav class="navbar navbar-expand-sm  bg-dark navbar-dark ">
@@ -53,7 +51,6 @@
             </div>
             <!-- Barra di ricerca -->
             <div class="col-md-8">
-
                     <div class="input-group ">
                         <input id="barra-ricerca" type="text" class="form-control input-lg" placeholder="Cerca brani e album" />
                         <span class="input-group-btn">
@@ -62,10 +59,8 @@
                             </div>
                         </span>
                     </div>
-
             </div>
-
-
+            <!-- Pulsante Logout -->
             <div class="col-md-2 hidden-md" >
                 <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout" data-toggle="modal" data-target="#modal-conferma-logout">
                     <i class="fa fa-sign-out"></i></button>
@@ -73,6 +68,7 @@
         </div>
     </nav>
 
+    <!-- Menu orizzontale Modalità mobile -->
     <nav class="navbar navbar-expand-sm  sticky-top navbar-dark " style="background-color:rgba(0, 114, 255, 0.43);  " id="menu-orizzontale">
         <div class="col-md-12">
             <div class="row">
@@ -89,10 +85,12 @@
                 <div class="col-md-3">
                     <button type="button" class="btn btn-default pulsante-menu-orizzontale" id="altro"><i class="fa fa-bars"></i> </button>
                 </div>
+            </div>
         </div>
-    </div>
- </nav>
+    </nav>
 
+
+ <!-- Sezione centale -->
  <div class="container-fluid sezioneCentrale">
      <div class="row row-sezioneCentrale">
         <!-- Colonna di sinistra-->
@@ -137,6 +135,7 @@
                             </div>
                         </div>
 
+                        <!-- Pannello contenente tutti gli amici online in modalità mobile -->
                         <div id="pannello-Amicizie-mobile">
                                 <div class="container-intestazione-amicizie-mobile">
                                     <p class="paragrafo-amicizie-mobile">Amici online:</p>
@@ -145,6 +144,7 @@
                                 </div>
                         </div>
 
+                        <!-- Pannello contenente tutti i brani corrisondenti ad un determinato genere -->
                         <div id="pannello-Generi" class="container-fluid">
                             <div class="row titolo-listaBrani-genere" >
                                 <div class="col-md-12">
@@ -160,21 +160,18 @@
                                         <div class="nomeStato-genere"> </div>
                                     </div>
                                     <div class="row" id="contenitore-listaBrani-genere">
-
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
+                        <!-- Pannello contenente tutti i brani in riproduzione -->
                         <div id="pannello-BraniRiproduzione" class="container-fluid">
                             <div class="row titolo-listaBrani-produzione" >
                                 <div class="col-md-12">
                                             <p class="titolo-pannelli">Brani in riproduzione</p>
                                 </div>
                             </div>
-
                             <div class="row" id="contenitore-braniInRiproduzione" >
                                 <div class="col-md-12" style="height:100%">
                                     <div class="row intestazione-listaBrani-prod">
@@ -183,13 +180,12 @@
                                         <div class="nomeDurata-prod"> <p class="p_prod">Durata</p> </div>
                                     </div>
                                     <div class="row" id="contenitore-listaBrani-produzione">
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
+                        <!-- Pannello contenente tutti i brani e gli album corrispondenti ai criteri di ricerca-->
                         <div id="pannello-Ricerca" class="container-fluid">
                             <div class="row" id="contenitore-ricerca" >
                                 <div class="col-md-12">
@@ -209,28 +205,24 @@
                                             </div>
                                         </div>
                                         <div class="row" id="contenitore-lista-ricerca-brani">
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
                         </div>
+
+
+                        <!-- Pannello contenente tutti gli album e i rispettivi brani -->
                         <div id="pannello-Album" class="container-fluid">
                             <div class="flex-container-Album">
-
                             </div>
                             <div id="contenitore-canzoni-album">
-
                                 <div id="contenitore-lista-Album">
-
                                 </div>
                             </div>
                         </div>
 
-                        <!--contiene le  playlist con le relative canzoni -->
+                        <!--Pannello contenente tutte le playlist di un utente con le relative canzoni -->
                         <div id="pannello-Playlist" class="container-fluid">
                             <div class="flex-container" id="contenitore-playlist">
                                 <div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">
@@ -243,15 +235,11 @@
                                 </div>
                             </div>
                             <div id="contenitore-canzoni-playlist">
-
                             </div>
-
                         </div>
 
 
-
-
-                        <!--contiene la lista degli amici -->
+                        <!--Pannello contenente la lista degli amici dell'utente-->
                         <div id="pannello-Amicizie" class="container-fluid">
                             <div class="row" id="contenitore-btnAmici">
                                 <div class="col-md-12" style="padding:0 8px; text-align:right ">
@@ -259,23 +247,19 @@
                                     <i class="fa fa-plus icona-hover " id="cercaAmici"></i>  Aggiungi amici </button>
                                 </div>
                             </div>
-
                             <div class="row titolo-listaAmici" >
                                 <div class="col-md-12">
                                     <p class="titolo-pannelli" style="margin-bottom: 0px">Lista amici</p>
                                 </div>
                             </div>
-
                             <div class="row" id="contenitore-amicizie" >
                                 <div class="col-md-12 col-amicizie">
-
                                     <div class="row intestazione-listaAmici">
                                         <div class="nomeAmici"> <p style="margin:0">Nome</p> </div>
                                         <div class="cognomeAmici"> <p style="margin:0">Cognome</p> </div>
                                         <div class="nomeUtenteAmici"> <p style="margin:0">Nome Utente</p> </div>
                                     </div>
                                     <div class="row" id="contenitore-lista-amici">
-
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +273,6 @@
 
         <!-- Colonna destra-->
         <div id="colonna-destra" style="padding: 10px 0;overflow: hidden;">
-
             <div class="btn-group-vertical-justified" >
                 <!-- Bottone che apre il Modal del profilo -->
                 <button type="button" class="btn btn-default pulsanteA" data-toggle="modal" data-target="#myModal"><i class='fa fa-user-circle'></i>
@@ -297,22 +280,24 @@
                 <button type="button" class="btn btn-default pulsanteA pulsanteGestioneAmicizie"><i class='fa fa-handshake-o'></i>   Gestione amicizie</button>
             </div>
 
+            <!-- Container contenente la lista degli amici online in modalità desktop-->
             <div class="container-fluid ">
                 <p class="paragrafo"><i class='fa fa-users'></i>   Amici online</p>
-
                         <div class="container-listaAmici">
                         </div>
-
             </div>
         </div>
-         <!-- sezione Riproduzione-->
+
+
+         <!-- Sezione Riproduzione contenente il player-->
          <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
              <div id="sezione-controlli-riproduzione">
                  <div class="row intestazione-titolo-brano">
                      <div id="titolo-brano-in-riproduzione" class="col-md-12">
-                         <p ></p>
+                         <p></p>
                      </div>
                  </div>
+                 <!-- Contenitore dei tasti del player-->
                  <div class="row contenitore-tasi-riproduzione">
                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "><img src="images/cover/default-brano.png" id="album2"></div>
                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -332,11 +317,8 @@
                              </div>
                              <div class="col-md-2">
                                  <i class="fa fa-repeat icona-hover testo-controlli-riproduzione" id="repeat">
-                                     <span class="badge" id="repeat-one">1</span>
-                                     <span class="badge" id="repeat-all">ALL</span>
                                  </i>
                              </div>
-
                              <div class="col-md-2">
                                  <div class="dropup">
                                      <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
@@ -348,7 +330,7 @@
                          </div>
                      </div>
                  </div>
-
+                 <!-- Contenitore contenente lo slider della barra di riproduzione-->
                  <div class="row contenitore-slider">
                      <div class="col-md-12">
                          <div class="row" id="riga-slider">
@@ -368,8 +350,8 @@
          </div>
     </div>
 </div>
-
 </div>
+
 
 <!-- Modal Profilo -->
 <div class="modal" id="myModal">
@@ -387,7 +369,6 @@
                     <i class="fa fa-user-circle" id= "icona-profilo"></i>
                 </div>
                 <div class="nomeUtente"><p><br></p></div>
-
                 <div class="container">
                     <form action="javascript:void(0)">
 
@@ -432,8 +413,7 @@
                                 <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('dataNascita')">Modifica</button>
                             </div>
                         </div>
-
-
+                        
                         <!-- Riga email -->
                         <div class="row">
                             <div class="col-25sx">
@@ -442,7 +422,6 @@
                             <div class="col-75">
                                 <input class="campi campoMail"  value="" type="text" readonly id="email" name="email">
                             </div>
-
                         </div>
 
                         <!-- Riga password -->
@@ -457,7 +436,6 @@
                                 <button type="button" class="btn btn-default pulsanteModifica" data-toggle="modal" data-target="#myModalPass" onclick="$('#myModal').modal('hide');">Modifica</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
