@@ -1,3 +1,10 @@
+/**
+ * Questo file js contiene tutte le funzioni principali che riguardano la pagina del web player e che vengono chiamate
+ * dagli altri file js relativi a questa stessa pagina. Inoltre vi sono anche tutte le funzioni che comunicano con
+ * il server per ricevere ed inviare dati.
+ */
+
+//Dichiarazioni delle variabili globali
 var pannelloAttivo;//variabile che indica il pannello attualmente in riproduzione.
 var nome=$("#pulsante-Logout").text();
 var pannelloSecondario;//variabile dedicata a un pannello secondario da aprire
@@ -32,47 +39,17 @@ function mostraPass(id, id2){
     }
 }
 
+
 //Funzione che rende modificabili i campi del form
 function abilitaScrittura(id){
     document.getElementById(id).readOnly = false;
 }
 
+
 //Funzione che disabilita la modifica dei campi del form
 function disabilitaScrittura(id){
     document.getElementById(id).readOnly = true;
 }
-
-//Funzione che mostra il footer del modal profilo quando un campo viene modificato
-$(document).ready(function() {
-$(".campi").on('input',function() {
-    $(".modal-footer").show("display");
-    });
-});
-
-
-//Funzione che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
-$(document).ready(function(){
-    $(".campoNomeUtente").on('input',function(){
-        $(".container-listaUtenti").show();
-    });
-});
-
-
-//Funzione che gestisce la sovrapposizione dei modal
-$(document).ready(function () {
-    $('#openBtn').click(function () {
-        $('#myModal').modal({
-            show: true
-        })
-    });
-    $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-});
 
 
 //Funzione che permette di aprire il pannello-Ricerca
@@ -96,7 +73,7 @@ function mostraPannelloRicerca(){
             console.log();
         }
     });
-//Evento che permette di svuotare la barra di ricerca quando si clicca un album ricercato
+    //Evento che permette di svuotare la barra di ricerca quando si clicca un album ricercato
     $(document).mouseup(function (e) {
         try {
             if ( $(".flex-item-img").is(e.target))  // if the target of the click isn't the container...
@@ -123,7 +100,6 @@ function mostraPannelloBrani(){
     tastoAttivo.addClass("activeButton");
     stampaBraniInRiproduzione();
 }
-
 
 
 //Funzione che permette di aprire il pannello-amicizie
@@ -155,6 +131,7 @@ function mostraPannelloAlbum(){
 
 }
 
+
 //Funzione che permette di aprire il pannello degli amici online
 function mostraPannelloAmicizieMobile(){
     if(pannelloAttivo!=null){
@@ -165,6 +142,7 @@ function mostraPannelloAmicizieMobile(){
     pannelloAttivo= $("#pannello-Amicizie-mobile");
 
 }
+
 
 //Funzione che permette di aprire e chiudere il pannello mobile
 function mostraPannelloMobile(){
@@ -191,11 +169,6 @@ function mostraPannelloMobile(){
 }
 
 
-
-
-
-
-
 //Funzione che permentte di aprire il pannello-playlist
 function mostraPannelloPlaylist() {
     if (pannelloAttivo != null) {
@@ -211,7 +184,6 @@ function mostraPannelloPlaylist() {
 }
 
 
-
 //Funzione che permentte di aprire il pannello-Genere
 function mostraPannelloGenere(){
     if(pannelloAttivo!=null){
@@ -222,10 +194,10 @@ function mostraPannelloGenere(){
     tastoAttivo.removeClass("activeButton");
     tastoAttivo=$(".pulsanteA-generi");
     tastoAttivo.addClass("activeButton");
-
 }
 
-/*funzione che fa comparire il pulsante logout*/
+
+//Funzione che fa comparire il pulsante logout
 function mostraTastoLogout() {
     if (!block) {
         block = true;
@@ -237,7 +209,8 @@ function mostraTastoLogout() {
     }
 }
 
-/*funzione che fa scomparire il pulsante logout*/
+
+//Funzione che fa scomparire il pulsante logout
 function nascondiTastologout() {
     if (!block) {
         block = true;
@@ -249,7 +222,8 @@ function nascondiTastologout() {
     }
 }
 
-/*funzione che contralla i pannelli da aprire in base alla dimensione della pagina*/
+
+//Funzione che contralla i pannelli da aprire in base alla dimensione della pagina
 function setDivVisibility(){
     if (($(window).width()) > '768'){
         try {
@@ -268,56 +242,61 @@ function setDivVisibility(){
     }
 }
 
-/*funzione che inizializza la pagina al caricamento*/
-    function loadPagina() {
-        pannelloAttivo = $("#pannello-Album");
-        $("#pannello-Album").show();
-        $("#contenitore-canzoni-album").hide();
-        tastoAttivo=$(".pulsanteA-album");
-        tastoAttivo.addClass("activeButton");
-        if (($(window).width()) > '768') {
-            $('#colonna-destra').css('display', 'block');
-            $('#colonna-sinistra').css('display', 'block');
 
+//Funzione che inizializza la pagina al caricamento
+function loadPagina() {
+    pannelloAttivo = $("#pannello-Album");
+    $("#pannello-Album").show();
+    $("#contenitore-canzoni-album").hide();
+    tastoAttivo=$(".pulsanteA-album");
+    tastoAttivo.addClass("activeButton");
+    if (($(window).width()) > '768') {
+        $('#colonna-destra').css('display', 'block');
+        $('#colonna-sinistra').css('display', 'block');
         } else {
             $('#menu-orizzontale').css('display', 'block');
         }
-        $("#volume-range").slider({value: 50});
-        disabilitaPlayer();
-    }
+    $("#volume-range").slider({value: 50});
+    disabilitaPlayer();
+}
+
 
 //Funzione che disabilita lo slider del player e del volume
-    function disabilitaPlayer(){
-        $("#barraDiAvanzamento").slider('disable');
-        $("#volume-range").slider("disable");
-    }
+function disabilitaPlayer(){
+    $("#barraDiAvanzamento").slider('disable');
+    $("#volume-range").slider("disable");
+}
 
-    //Funzione che abilita i tasti play pause e gli slider del player e del volume
-    function abilitaPlayer(){
-        $("#barraDiAvanzamento").slider('enable');
-        $("#volume-range").slider("enable");
-        $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
-        $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
-    }
 
-    //funzione che disabilita lo shuffle quando è attivo
-    function disabilitaShuffle(){
-        if(shuffleB==true){
-            shuffleBrani();
-        }
+//Funzione che abilita i tasti play pause e gli slider del player e del volume
+function abilitaPlayer(){
+    $("#barraDiAvanzamento").slider('enable');
+    $("#volume-range").slider("enable");
+    $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
+    $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
+}
+
+
+//Funzione che disabilita lo shuffle quando è attivo
+function disabilitaShuffle(){
+    if(shuffleB==true){
+        shuffleBrani();
     }
+}
+
 
 //Funzione che ritorna l'indice del brano in riproduzione del vettore Percorsi(Copia dei brani in riproduzione soggetta a shuffle)
-    function calcolaIndiceShufflePercorsi(){
-        var ind=0;
-        for(i=0;i<percorsi.length;i++){
-            if(listaOrigine[idBrano].idBrano==percorsi[i].idBrano){
-                ind=i;
-                break;
-            }
+function calcolaIndiceShufflePercorsi(){
+    var ind=0;
+    for(i=0;i<percorsi.length;i++){
+        if(listaOrigine[idBrano].idBrano==percorsi[i].idBrano){
+            ind=i;
+            break;
         }
-        return ind;
     }
+    return ind;
+}
+
 
 //Funzione che ritorna l'indice del brano in riproduzione del vettore ListaOrigine(Copia dei brani in riproduzione non soggetta a shuffle)
 function calcolaIndiceShuffleOrigine(){
@@ -331,115 +310,36 @@ function calcolaIndiceShuffleOrigine(){
     return ind;
 }
 
-$(document).ready(function(){
-    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-    // modifica dei dati dell'account
-    $(".campi").on('input',function(){
-        $(".campi").removeClass("invalid");
-        $(".pd").css("display", "none");
-    });
-
-    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica dei dati utente
-    $('#myModal').on('hidden.bs.modal', function () {
-        $(".campi").removeClass("invalid");
-        $(this).find('form').trigger('reset');
-        $("#err_account").text("").css("display", "none");
-        disabilitaScrittura('nome');
-        disabilitaScrittura('cognome');
-        disabilitaScrittura('dataNascita');
-        $(".footerProfilo").hide();
-    });
-
-    //Funzione che cambia il colore del bordo inferiore quando viene modificato un campo all'interno del modal per la
-    // modifica della password
-    $(".campiPass").on('input',function(){
-        $(".campiPass").removeClass("invalid");
-        $(".pd").css("display", "none");
-    });
-
-    //Funzione che resetta tutti i campi alla chiusura del modal per la modifica della password
-    $('#myModalPass').on('hidden.bs.modal', function () {
-        $(".campiPass").removeClass("invalid");
-        $(this).find('form').trigger('reset');
-        $("#err_password").text("").css("display", "none");
-        //Reimposta le icone per mostrare e nascondere la password
-        document.getElementById("vecchiaPass").type = "password";
-        document.getElementById("eye1").className = "fa fa-eye iconaPassword";
-        document.getElementById("nuovaPass").type = "password";
-        document.getElementById("eye2").className = "fa fa-eye iconaPassword";
-        document.getElementById("confNuovaPass").type = "password";
-        document.getElementById("eye3").className = "fa fa-eye iconaPassword";
-    });
-
-    //Funzione che resetta tutti i campi alla chiusura del modal per la ricerca degli utenti
-    $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-        $(".listaUtenti").remove();
-    });
-
-    //Funzione che rimuove il paragrafo di errore alla creazione di una nuova playlist
-    $("#inserisci-nomePlaylist").on('input',function(){
-        $(".pd").css("display", "none");
-    });
-
-    //Funzione che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la creazione di una nuova playlist
-    $('#modal-crea-playlist').on('hidden.bs.modal', function () {
-        $(this).find('form').trigger('reset');
-        $("#err_playlist").text("").css("display", "none");
-    });
-
-    //Funzione che resetta il paragrafo di errore alla chiusura del modal per l'aggiunta di un brano ad una playlist
-    $('#modal-aggiungi-APlaylist').on('hidden.bs.modal', function () {
-        $("#err_aggiungiBrano").text("").css("display", "none");
-    });
-});
 
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'eliminazione e comunicarla al database
 function recuperaIDElimina(evento) {
     id = evento.target.id.substring(13);
 }
 
+
 //Funzione che recupera l'ID utente dalla lista degli amici per poter effettuare l'aggiunta e comunicarla al database
 function recuperaIDAggiungi(evento) {
     id = evento.target.id.substring(14);
 }
+
 
 //Funzione che recupera l'id del brano della lista per comunicarlo al server e svolgere le operazioni necessarie
 function recuperaIDBrano(evento) {
     idBrano = evento.target.id.substring(10);
 }
 
+
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDPlaylist(evento) {
     idPlaylist = evento.target.id.substring(8);
 }
+
 
 //Funzione che recupera l'id della playlist per richiedere i brani ad essa appartenenti
 function recuperaIDAlbum(evento) {
     idAlbum = evento.target.id.substring(7);
 }
 
-//Funzione che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
-$(document).ready(function(){
-    $("#inserisci-nomeUtente").on('input',function(){
-        $(".listaUtenti").remove();
-    });
-});
-
-//Funzione che cancella le ricerche precedenti dei brani quando viene svuotato il campo ricerca
-$(document).ready(function(){
-    $("#barra-ricerca").on('input',function(){
-        $(".listaRicerca").remove();
-        $("#contenitore-lista-ricerca-brani").empty();
-    });
-});
-
-//Funzione che cancella le ricerche precedenti degli album quando viene svuotato il campo ricerca
-$(document).ready(function(){
-    $("#barra-ricerca").on('input',function(){
-        $("#contenitore-lista-ricerca-album").empty();
-    });
-});
 
 //Funzione che rimuove un elemento da un array e ne elimina la cella
 Array.prototype.remove = function(from, to) {
@@ -448,9 +348,11 @@ Array.prototype.remove = function(from, to) {
     return this.push.apply(this, rest);
 };
 
-/*funzione che ritorna il vettore passato con gli elementi disordinati;
-*@param array
-*@returns array disordinato
+
+/**
+ * Funzione che ritorna il vettore passato con gli elementi disordinati
+ *@param array
+ *@returns array disordinato
  */
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -479,6 +381,7 @@ function toMinutes(secondi) {
     return dur;
 }
 
+
 //Funzione che permette di avviare la riproduzione del brano
 function avviaBrano() {
         seeking = true;
@@ -488,6 +391,7 @@ function avviaBrano() {
         $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-play').addClass('fa-pause');
 }
 
+
 //Funzione che permette di mettere in pausa il brano
 function stoppaBrano() {
     seeking = false;
@@ -496,6 +400,7 @@ function stoppaBrano() {
     $('#play').show();
     $('#brano-ripr'+calcolaIndiceShuffleOrigine()).removeClass('fa-pause').addClass('fa-play');
 }
+
 
 //Funzione che determina il brano successivo in base alla modalità di riproduzione
 function verificaBranoSuccessivo() {
@@ -509,6 +414,7 @@ function verificaBranoSuccessivo() {
     }
 }
 
+
 //Funzione che aggiorna il campo secondo attualmente in riproduzione e aggiorna la barra di avanzamento del player
 function refresh() {
     var avanzamento = ((audioElement.currentTime / audioElement.duration) * 100);
@@ -518,6 +424,7 @@ function refresh() {
     $("#labelSecondoAttuale").text(dur2);
     $("#barraDiAvanzamento").slider("setValue", avanzamento);
 }
+
 
 //Funzione che determina il brano successivo da riprodurre
 function branoSuccessivo() {
@@ -536,6 +443,7 @@ function branoSuccessivo() {
     }
 }
 
+
 //Funzione che determina il brano precedente da riprodurre
 function branoPrecedente() {
     if(percorsi!=null) {
@@ -553,6 +461,7 @@ function branoPrecedente() {
     }
 }
 
+
 //Funzione che effettua lo shuffle del vettore lista brani
 function shuffleBrani() {
     if(percorsi!=null) {
@@ -568,6 +477,7 @@ function shuffleBrani() {
     }
 }
 
+
 //Funzione che permette di riprodurre i brani in loop
 function ripetizione() {
     if(percorsi!=null) {
@@ -581,6 +491,7 @@ function ripetizione() {
     }
 }
 
+
 //Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
 function aggiornaPlayer() {
     var durata = toMinutes(percorsi[indiceCorrente].durata);
@@ -588,6 +499,7 @@ function aggiornaPlayer() {
     $("#titolo-brano-in-riproduzione").text(percorsi[indiceCorrente].titolo +" - "+percorsi[indiceCorrente].artista );
     $("#album2").attr("src", percorsi[indiceCorrente].url_cover);
 }
+
 
 //Funzione che inizializza il vettore dei percorsi e gestisce i dati del brano attualmente in riproduzione
 function riproduciBrano() {
@@ -603,6 +515,7 @@ function riproduciBrano() {
     abilitaPlayer();//abilita il player
     streamingBrano(percorsi[indiceCorrente].url_brano);// manda in esecuzione la canzone
 }
+
 
 //Funzione che permette la riproduzione di un singlo brano;
 function riproduciBranoSingolo() {
@@ -623,11 +536,13 @@ function riproduciBranoSingolo() {
     streamingBrano(percorsi[indiceCorrente].url_brano);//mando in esecuzione il brano
 }
 
+
 function cambiaDimensioniConteinerAlbum(){
     $(".flex-container-Album").css("height", "35%");//setta le nuove dimensioni del conteiner degli album
     $("#contenitore-canzoni-album").slideDown("slow");//faccia comparire la lista dei brani associati a quel album
 
 }
+
 function cambiaDimensioniConteinerPlaylist(){
     $(".flex-container").css("height", "35%");// setta le nuove dimensioni del conteiner delle playlist
     $("#contenitore-canzoni-playlist").slideDown("slow");// faccia comparire la lista dei brani associati alla playlist
@@ -636,9 +551,15 @@ function cambiaDimensioniConteinerPlaylist(){
 
 
 
-//Funzioni che gestiscono la comunicazione con il server
 
-/*Viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
+
+
+
+/**
+ * Funzioni che gestiscono la comunicazione con il server.
+ */
+
+/*Funzione che viene chiamata quando l'utente clicca su logout. La funzione avverte il server della richiesta e carica la
 pagina di login*/
 function logout(){
     $.get("/Logout", function(){
@@ -646,7 +567,58 @@ function logout(){
     });
 }
 
-// Funzione che gestisce la modifica della password da parte dell'utente
+
+//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
+// e invoca la funzione stampaDatiAccount per inserirli nell'apposito form
+function richiediDatiAccount() {
+    $.get('/WebPlayer/utente', function (result) {
+        if (result != "ERR") {
+            utente = new Account(JSON.parse(result)[0]);
+            stampaDatiAccount(utente);
+        }
+    });
+}
+
+
+//Funzione che riceve i dati delle playlist dell'utente e invoca la funzione stampaPlaylist per stamparli nell'apposita lista
+function richiediPlaylist() {
+    $.get('/WebPlayer/playlist', function (result) {
+        if (result != "ERR") {
+            var lp = JSON.parse(result);
+            for (i = 0; i < lp.length; i++) //Aggiungiamo le playlist dell'utente che ha loggato nel vettore che contiene tutte le playlist
+                listaPlaylist[i] = new Playlist(lp[i]);
+            stampaListaPlaylist(listaPlaylist);
+        }
+    });
+}
+
+
+//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaListaAlbum per stamparli nell'apposita lista
+function richiediAlbum() {
+    $.get('/WebPlayer/album', function (result) {
+        if (result != "ERR") {
+            var lab = JSON.parse(result);
+            for (i = 0; i < lab.length; i++) //Aggiungiamo tutti gli album nel vettore listaAlbum
+                listaAlbum[i] = new Album(lab[i]);
+            stampaListaAlbum(listaAlbum);
+        }
+    });
+}
+
+
+//Funzione che riceve dal database i dati relativi agli amici di un utente e invoca la funzione stampaListaAmici() per stamparli nell'apposita lista
+function richiediListaAmici() {
+    $.get('/WebPlayer/amici', function (result) {
+        if (result != "ERR") {
+            var la = JSON.parse(result);
+            for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
+                listaAmici[i] = new Account(la[i]);
+            stampaListaAmici(listaAmici);
+        }
+    });
+}
+
+//Funzione che gestisce la modifica della password da parte dell'utente
 function modificaPassword() {
     var password1 = $("input[name=pass1]");
     var password2 = $("input[name=pass2]");
@@ -693,6 +665,7 @@ function modificaPassword() {
     }
 }
 
+
 // Funzione che gestisce la modifica dei dati dell'account
 function modificaAccount() {
     var nome = $("input[name=nome]");
@@ -738,6 +711,7 @@ function modificaAccount() {
     }
 }
 
+
 //Funzione che gestisce l'eliminazione di un amico da parte dell'utente
 function eliminaAmico() {
     $.post("/WebPlayer/amici/eliminaAmico",
@@ -756,6 +730,7 @@ function eliminaAmico() {
         });
 }
 
+
 //Funzione che gestisce l'aggiunta di un amico da parte dell'utente
 function aggiungiAmico() {
     $.post("/WebPlayer/amici/aggiungiAmico",
@@ -773,6 +748,7 @@ function aggiungiAmico() {
     $("#modal-aggiungi-amico").find('form').trigger('reset');
     $(".listaUtenti").remove(); //svuota la lista contenente titti gli amici
 }
+
 
 //Funzione che gestisce la ricerca dei brani in base al genere da parte dell'utente
 function richiediBraniPerGenere() {
@@ -823,6 +799,7 @@ function richiediBraniPerGenere() {
     });
 }
 
+
 //Funzione che richiede lo streaming del brano e lo carica
 function streamingBrano(urlBrano) {
     audioElement.src = "riproduciBrano/" + urlBrano; //Richiesta al server per lo streaming di un brano
@@ -830,6 +807,7 @@ function streamingBrano(urlBrano) {
     avviaBrano(); //Mette in riproduzione il brano richiesto
     comunicaBranoInAscolto();
 }
+
 
 //Funzione che imposta la canzone in ascolto dall'utente per mostrarla agli amici
 function comunicaBranoInAscolto() {
@@ -839,6 +817,7 @@ function comunicaBranoInAscolto() {
         }, function(result){
         });
 }
+
 
 //Funzione che gestisce la creazione di una nuova playlist da parte dell'utente
 function creaPlaylist() {
@@ -876,6 +855,7 @@ function creaPlaylist() {
     }
 }
 
+
 //Funzione che gestisce l'eliminazione di una playlist da parte dell'utente
 function eliminaPlaylist() {
     $.post("/WebPlayer/playlist/eliminaPlaylist",
@@ -894,6 +874,7 @@ function eliminaPlaylist() {
             }
         });
 }
+
 
 //Funzione che richiede i brani di una specifica playlist
 function richiediBraniPlaylist() {
@@ -939,6 +920,7 @@ function richiediBraniPlaylist() {
     });
 }
 
+
 //Funzione che richiede i brani di uno specifico album e richiama la funzione stampaBraniAlbum per stamparli una volta ricevuti
 function richiediBraniAlbum() {
     $.post("/WebPlayer/album/mostraBrani",
@@ -964,6 +946,7 @@ function richiediBraniAlbum() {
         });
 }
 
+
 //Funzione che richiede tutti i brani singoli e richiama la funzione stampaBraniAlbum per stamparli una volta ricevuti
 function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
@@ -982,6 +965,7 @@ function richiediBraniSingoli() {
             }
         });
 }
+
 
 //Funzione che gestisce la rimozione di un brano da una playlist da parte dell'utente
 function rimuoviBrano() {
@@ -1012,6 +996,7 @@ function rimuoviBrano() {
         });
 }
 
+
 //Funzione che gestisce l'aggiunta di un brano ad una playlist da parte dell'utente
 function aggiungiBranoAPlaylist() {
     $.post("/WebPlayer/playlist/aggiungiBrano",
@@ -1036,4 +1021,114 @@ function aggiungiBranoAPlaylist() {
                 $('#modal-aggiungi-APlaylist').modal('hide');
             }
         });
+}
+
+
+/*Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca e invoca la funzione
+  stampaAmiciDaAggiungere per stamparli nell'apposita lista*/
+function ricercaUtenti() {
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    $("#inserisci-nomeUtente").on("keyup", function () {
+        clearTimeout(timer); //azzera il timer
+        timer = setTimeout(function () {
+            $.post("/WebPlayer/amici/cercaUtenti",
+                {
+                    utenteCercato: $('input[name=nome-utente]').val(),
+                },
+                function (result) {
+                    if (result == "ERR") {
+                        $(".container-listaUtenti").empty();
+                        var messaggio = "Nussun utente corrisponde ai criteri di ricerca";
+                        $(".container-listaUtenti").html(messaggio).css({
+                            'font-size': '1rem',
+                            'padding': '20px 0',
+                        });
+                    } else {
+                        $(".container-listaUtenti").css("padding", "0");
+                        $(".container-listaUtenti").empty();
+                        var lu = JSON.parse(result);
+                        stampaAmiciDaAggiungere(lu);
+                    }
+                });
+        }, 700);
+    });
+}
+
+
+/*Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi e invoca la funzione
+  stampaAmiciOnline per stamparli nell'apposita lista*/
+function richiediAmiciOnline(){
+    $.get('/WebPlayer/amiciOnline', function(result){
+        if(result != "ERR") {
+            listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
+            var lo = JSON.parse(result);
+            for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
+                listaAmiciOnline[i] = new Account(lo[i]);
+            stampaAmiciOnline(listaAmiciOnline);
+        }
+        else { //se l'utente non ha nessun amico, svuota la lista (se precedentemente piena)
+            if(listaAmiciOnline.length != 0) listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
+            $(".listaAmiciOnline").remove();
+            $(".demo-mobile").remove();
+        }
+    });
+}
+
+/*Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati nell'apposita lista
+richiamando la funzione stampaListaBraniRicerca*/
+function ricercaBrani() {
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    $("#barra-ricerca").on("keyup", function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            $.post("/WebPlayer/musica/cercaBrani",
+                {
+                    braniCercati: $('#barra-ricerca').val(),
+                },
+                function (result) {
+                    if (result == "ERR") {
+                        $("#contenitore-lista-ricerca-brani").empty();
+                        var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
+                        $("#contenitore-lista-ricerca-brani").append(messaggio);
+                    } else {
+                        $("#contenitore-lista-ricerca-brani").css("padding", "0");
+                        $("#contenitore-lista-ricerca-brani").empty();
+                        var lb = JSON.parse(result);
+                        stampalistaBraniRicerca(lb);
+                    }
+                });
+        }, 700);
+    });
+}
+
+/*Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati nell'apposita lista
+richiamando la funzione stampaListaAlbumRicerca*/
+function ricercaAlbum() {
+    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
+    $("#barra-ricerca").on("keyup", function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            $.post("/WebPlayer/musica/cercaAlbum",
+                {
+                    albumCercati: $('#barra-ricerca').val(),
+                },
+                function (result) {
+                    if (result == "ERR") {
+                        $("#contenitore-lista-ricerca-album").empty();
+                        var messaggio = '<p class="messaggio"> Nessun album corrisponde ai criteri di ricerca </p>';
+                        $("#contenitore-lista-ricerca-album").append(messaggio);
+                        $("#contenitore-lista-ricerca-album").css({
+                            'font-size': '1rem',
+                            'padding': '20px 0',
+                            'color': 'cornsilk',
+                        });
+                    } else {
+                        $("#contenitore-lista-ricerca-album").css("padding", "0");
+                        $("#contenitore-lista-ricerca-album").empty();
+                        var la = JSON.parse(result);
+                        stampalistaAlbumRicerca(la);
+                    }
+                });
+        }, 700);
+    });
 }

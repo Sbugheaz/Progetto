@@ -1,57 +1,19 @@
+
+/*Proprietà globali */
 body {
   font: 1vw "Raleway", Helvetica, Arial, sans-serif;
   padding: 0px;
   background-repeat:repeat-x;
   background-attachment: fixed;
 }
-
 * {
   box-sizing: border-box;
 }
 
-.lk{
-  color: rgba(255,148,24,1) !important;
-  cursor: pointer !important;
-}
-.lk:link {
-  color: rgba(255,148,24,1) !important;
-}
-
-.lk:visited {
-  color: rgba(255,148,24,1) !important;
-}
-
-.lk:hover {
-  color: rgba(255,110,0,1) !important;
-  text-decoration: underline !important;
-}
-
-div.testo{
-  margin-left: 1vw;
-  margin-top:9vh;
-}
-
-#testo-home {
-  margin:auto;
-  font-size: 2.2vw;
-  text-align: center;
-  color: cornsilk;
-  font-weight: bold;
-}
-
-div.intestazione {
+/*Proprietà contenitore intestazione */
+.intestazione {
   width: 100%;
 }
-
-.immagine img{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-top: 5vw;
-  margin-bottom: 5vw;
-  width: 50%
-}
-
 .logo img{
   margin-top: 2.5vw;
   margin-bottom: 1.5vw;
@@ -60,38 +22,56 @@ div.intestazione {
   margin-right: auto;
   width: 45%
 }
+#logo_footer{
+  text-align: right;
+}
 
 
-div.description {
+/*Proprietà contenitore del testo introduttivo */
+.description {
   width: 60%;
   float: left;
   padding:30px 0;
-
 }
-
-h1.title {
+.testo{
+  margin-left: 1vw;
+  margin-top:9vh;
+}
+#testo-home {
+  margin:auto;
+  font-size: 2.2vw;
   text-align: center;
-  width: border-box;
   color: cornsilk;
-
+  font-weight: bold;
 }
 
-h1.register {
-  text-align: center;
-  width: border-box;
-  color: cornsilk;
-
+/*Proprietà del form di Login */
+.enter{
+  width:39%;
+  float:right;
 }
-
+.home {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-size: 1.3vw;
+  width: 75%;
+  min-width: 250px;
+  margin:auto;
+  margin-bottom: 10%;
+}
 label {
   margin-top: 5px;
   margin-bottom:0;
 }
-
-p.pd{
-  font-size:1.1vw;
+input {
+  outline: none;
+  padding: 10px;
+  width: 80%;
+  font-size: 17px;
+  font-family: Raleway, serif;
+  border: 1px solid #aaaaaa;
 }
-
 input[type=text], input[type=password], select {
   width: 100%;
   font-size: 1.3vw;
@@ -103,7 +83,6 @@ input[type=text], input[type=password], select {
   box-sizing: border-box;
   font-family: "Raleway";
 }
-
 input[type=submit] {
   width: 30%;
   font-size: 1.1vw;
@@ -117,38 +96,30 @@ input[type=submit] {
   font-family: "Raleway";
   height: 35px;
 }
-
 input[type=submit]:hover {
   background-color: rgba(255,138,0,0.9);
   box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-div.enter{
-  width:39%;
-  float:right;
+p.pd{
+  font-size:1.1vw;
 }
-div.home {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  font-size: 1.3vw;
-  width: 75%;
-  min-width: 250px;
-  margin:auto;
-  margin-bottom: 10%;
-
+.lk{
+  color: rgba(255,148,24,1) !important;
+  cursor: pointer !important;
 }
-
-div.register{
-  width: 35%;
-  margin:auto;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  font-size: 16px;
-  align-items: center;
+.lk:link {
+  color: rgba(255,148,24,1) !important;
+}
+.lk:visited {
+  color: rgba(255,148,24,1) !important;
+}
+.lk:hover {
+  color: rgba(255,110,0,1) !important;
+  text-decoration: underline !important;
 }
 
+
+/*Proprietà del cotenitore modal recupero password */
 #regForm {
   background-color: #ffffff;
   margin: 20px 0 0;
@@ -158,40 +129,6 @@ div.register{
   min-width: 200px;
   text-align: center;
 }
-
-#nextBtn {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 45%;
-  font-size: 1.2vw;
-  background-color: rgba(255,148,24,0.9);
-  color: cornsilk;
-  padding: 1.1vh 1vw;
-    margin: auto;
-  font-family: "Raleway";
-}
-
-#nextBtn:hover {
-  background-color: rgba(255,138,0,0.9);
-  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-input {
-  outline: none;
-  padding: 10px;
-  width: 80%;
-  font-size: 17px;
-  font-family: Raleway, serif;
-  border: 1px solid #aaaaaa;
-
-}
-
-div.tab{
-  font-size:1.2vw;
-}
-
 .rc {
   width: 80%;
   font-size:1.2vw;
@@ -204,84 +141,27 @@ div.tab{
   outline-width: 0;
   border-color: rgba(255,148,24,1);
 }
-
-
-
-/* Regole di stile per la sezione "footer" della pagina*/
-footer{
-  width: 100%;
-  position: static;
-  padding-top: 20px;
-  background-color: #4d484859;
-  font-weight: bold;
-  color: white;
-  clear: right;
-}
-
-#nome{
-  color:#ff7300;
-}
-
-#footer-container {
-  margin: 0 2%;
-  padding: 0 15px;
-}
-
-footer ul{
-  padding: 0;
-  font-size: 0.9em;
-}
-
-footer .extra{
-  padding-top: 22px;
-}
-
-#social{
-  color: white;
-  padding-top: 15px;
-  text-align: center;
-}
-
-.fa-facebook-square,
-.fa-twitter-square,
-.fa-google-plus-square{
-  font-size: 2.2em;
+#nextBtn {
+  outline: none;
+  border: none;
   cursor: pointer;
-  transition: 0.2s;
+  border-radius: 4px;
+  width: 45%;
+  font-size: 1.2vw;
+  background-color: rgba(255,148,24,0.9);
+  color: cornsilk;
+  padding: 1.1vh 1vw;
+  margin: auto;
+  font-family: "Raleway";
+}
+#nextBtn:hover {
+  background-color: rgba(255,138,0,0.9);
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.tab{
+  font-size:1.2vw;
 }
 
-.fa-facebook-square:hover,
-.fa-twitter-square:hover,
-.fa-google-plus-square:hover{
-  transform: scale(1.2);
-  color: orange;
-}
-
-#copyright{
-  margin-top: 15px;
-  margin-right: 20px;
-  font-size: 0.7em;
-  color: darkgrey;
-  word-spacing: 2px;
-}
-
-#logo_footer{
-  text-align: right;
-}
-
-#copyright{
-  font-size: 11px;
-}
-
-.riferimento{
-  font-size: 10px;
-  cursor: pointer ;
-}
-
-.riferimento:hover {
-  color: rgba(255,110,0,1) ;
-  text-decoration: underline ;
-}
 
 /*Proprietà Modal Verifica Email e Invio Email */
 #intestazione-verEmail, #intestazione-invioEmail{
@@ -338,28 +218,88 @@ footer .extra{
   font-weight: bold;
 }
 
-@media only screen and (max-width: 770px) {
 
+/* Regole di stile per la sezione "footer" della pagina*/
+footer{
+  width: 100%;
+  position: static;
+  padding-top: 20px;
+  background-color: #4d484859;
+  font-weight: bold;
+  color: white;
+  clear: right;
+}
+#nome{
+  color:#ff7300;
+}
+#footer-container {
+  margin: 0 2%;
+  padding: 0 15px;
+}
+footer ul{
+  padding: 0;
+  font-size: 0.9em;
+}
+footer .extra{
+  padding-top: 22px;
+}
+#social{
+  color: white;
+  padding-top: 15px;
+  text-align: center;
+}
+.fa-facebook-square,
+.fa-twitter-square,
+.fa-google-plus-square{
+  font-size: 2.2em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.fa-facebook-square:hover,
+.fa-twitter-square:hover,
+.fa-google-plus-square:hover{
+  transform: scale(1.2);
+  color: orange;
+}
+#copyright{
+  margin-top: 15px;
+  margin-right: 20px;
+  font-size: 0.7em;
+  color: darkgrey;
+  word-spacing: 2px;
+}
+#copyright{
+  font-size: 11px;
+}
+.riferimento{
+  font-size: 10px;
+  cursor: pointer ;
+}
+.riferimento:hover {
+  color: rgba(255,110,0,1) ;
+  text-decoration: underline ;
+}
+
+
+
+/*Proprietà degli elementi al ridimensionamento della pagina */
+@media only screen and (max-width: 770px) {
   body{
     font: 1.3vw "Raleway", Helvetica, Arial, sans-serif;
   }
-
   p.pd{
     font-size:2.4vw;
   }
-
   div.enter{
     width:100%;
     float:none;
   }
-
   div.description {
     padding: 0 5vw;
     margin-top: 10vh;
     width: 100%;
     float: none;
   }
-
   div.home {
     min-width: 150px;
     width: 65%;
@@ -367,29 +307,21 @@ footer .extra{
     float: none;
     margin:10vh auto;
   }
-
-
-
   input[type=submit] {
     width: 30%;
     font-size: 2.5vw;
     height: unset;
   }
-
   input[type=text], input[type=password], select {
     font-size: 2vw;
     padding: 12px 8px;
   }
-
   .logo img{
     margin-bottom:0;
   }
-
-
   #testo-home{
     font-size:2.5vw;
   }
-
   .col-sm-3, .col-md-3 {
     width: 100%;
   }
@@ -399,21 +331,18 @@ footer .extra{
   .col-md-5 {
     right: 0;
   }
-
   #copyright{
     font-size: 11px;
   }
-
   footer .extra {
     padding-top: 2px;
   }
-
   .riferimento {
     font-size: 9px;
   }
-
 }
 
+/*Proprietà degli elementi al ridimensionamento della pagina */
 @media only screen and (max-width: 1000px) {
   div.tab{
     font-size:16px;
@@ -421,9 +350,8 @@ footer .extra{
   .rc {
     font-size:15px;
   }
-
   #nextBtn {
-      width: 45%;
-      font-size: 14px;
+    width: 45%;
+    font-size: 14px;
   }
 }

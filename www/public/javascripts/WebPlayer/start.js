@@ -1,7 +1,20 @@
-//Dichiarazione degli oggetti o vettori di oggetti usati
-var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
+/**
+ * Questo file js contiene tutti gli oggetti e i vettori utilizzati dalla pagina del web player che contengono i dati
+ * dell'utente, dei brani, degli album, delle playlsit, ecc. Inoltre contiene tutte le chiamate alle funzioni che devono
+ * essere eseguite al caricamento della pagina del web player.
+ */
 
-//Funzione eseguita al caricamento della pagina
+//Dichiarazione degli oggetti o vettori di oggetti usati
+var utente; //Oggetto che contiene tutti i dati dell'account utente che ha eseguito l'accesso
+var listaPlaylist = []; //Vettore di oggetti playlist che contiene tutte le playlist dell'utente loggato
+var listaAmici = []; //Vettore di oggetti account che contiene i dati principali degli utenti presenti nella lista amici dell'utente loggato
+var listaUtenti = []; //Vettore di oggetti account che contiene i dati principali degli utenti che soddisfano i criteri di ricerca
+var listaAmiciOnline = []; //Vettore di oggetti account che contiene i dati principali degli amici attualmente online
+var listaBrani = []; //Vettore di oggetti brano che contiene tutti i brani restituiti dal server
+var listaAlbum = []; //Vettore di oggetti album che contiene tutti gli album restituiti dal server
+
+/*Funzione che contiene tutte le chiamate alle funzioni e le catture degli eventi che devono essere eseguiti al
+  caricamento della pagina*/
 $(document).ready(function () {
     richiediDatiAccount(); //Funzione che ottiene i dati dell'utente che ha effettuato l'accesso
     richiediPlaylist(); //Funzione che ottiene i dati delle playlist dell'utente che ha effettuato l'accesso
@@ -31,7 +44,8 @@ $(document).ready(function () {
         "#tasto-mobile-Funky,#tasto-mobile-Jazz, #tasto-Rap, #tasto-mobile-Rap").click(mostraPannelloGenere);/* Evento che permette
         di far comparire il pannello del genere selezionato*/
 
-//Eventi che riguardano il player e tutte le sue funzionalità
+
+    //Eventi che riguardano il player e tutte le sue funzionalità
     $('#random').click(shuffleBrani);//Evento che permette fare lo shuffle delle canzoni
     $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
     audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
@@ -50,159 +64,94 @@ $(document).ready(function () {
         audioElement.currentTime = valoreattuale2;
     });
 
+
+    //Eventi che riguardano i modal e gestiscono lo svuotamento dei campi, dei messaggi di errore e altro
+
+    //Evento che mostra il footer del modal profilo quando un campo viene modificato
+    $(".campi").on('input',function() {
+        $(".modal-footer").show("display");
+    });
+    //Evento che mostra il div contenente gli utenti da aggiungere che corrispondono ai dati inseriti nel form
+    $(".campoNomeUtente").on('input',function(){
+        $(".container-listaUtenti").show();
+    });
+    //Eventi per la gestione della sovrapposizione dei modal
+    $('#openBtn').click(function () {
+        $('#myModal').modal({
+            show: true
+        })
+    });
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+    /*Evento che cambia il colore del bordo inferiore e nasconde il paragrafo di errore quando viene modificato un campo
+     all'interno del modal per la modifica dei dati dell'account in presenza di errore*/
+    $(".campi").on('input',function(){
+        $(".campi").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+    //Evento che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la modifica dei dati utente
+    $('#myModal').on('hidden.bs.modal', function () {
+        $(".campi").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_account").text("").css("display", "none");
+        disabilitaScrittura('nome');
+        disabilitaScrittura('cognome');
+        disabilitaScrittura('dataNascita');
+        $(".footerProfilo").hide();
+    });
+    /*Evento che cambia il colore del bordo inferiore e nasconde il paragrafo di errore quando viene modificato un campo
+      all'interno del modal per la modifica della password in presenza di errore*/
+    $(".campiPass").on('input',function(){
+        $(".campiPass").removeClass("invalid");
+        $(".pd").css("display", "none");
+    });
+    //Evento che resetta tutti i campi, le icone e il paragrafo di errore alla chiusura del modal per la modifica della password
+    $('#myModalPass').on('hidden.bs.modal', function () {
+        $(".campiPass").removeClass("invalid");
+        $(this).find('form').trigger('reset');
+        $("#err_password").text("").css("display", "none");
+        //Reimposta le icone per mostrare e nascondere la password
+        document.getElementById("vecchiaPass").type = "password";
+        document.getElementById("eye1").className = "fa fa-eye iconaPassword";
+        document.getElementById("nuovaPass").type = "password";
+        document.getElementById("eye2").className = "fa fa-eye iconaPassword";
+        document.getElementById("confNuovaPass").type = "password";
+        document.getElementById("eye3").className = "fa fa-eye iconaPassword";
+    });
+    //Evento che resetta tutti i campi alla chiusura del modal per la ricerca degli utenti
+    $('#modal-aggiungi-amico').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        $(".listaUtenti").remove();
+    });
+    //Evento che rimuove il paragrafo di errore non appena viene modificato il campo alla creazione di una nuova playlist
+    $("#inserisci-nomePlaylist").on('input',function(){
+        $(".pd").css("display", "none");
+    });
+    //Evento che resetta tutti i campi e il paragrafo di errore alla chiusura del modal per la creazione di una nuova playlist
+    $('#modal-crea-playlist').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+        $("#err_playlist").text("").css("display", "none");
+    });
+    //Evento che resetta il paragrafo di errore alla chiusura del modal per l'aggiunta di un brano ad una playlist
+    $('#modal-aggiungi-APlaylist').on('hidden.bs.modal', function () {
+        $("#err_aggiungiBrano").text("").css("display", "none");
+    });
+    //Evento che cancella le ricerche precedenti degli utenti quando viene svuotato il campo ricerca
+    $("#inserisci-nomeUtente").on('input',function(){
+        $(".listaUtenti").remove();
+    });
+    //Evento che cancella le ricerche precedenti dei brani quando viene svuotato il campo ricerca
+    $("#barra-ricerca").on('input',function(){
+        $(".listaRicerca").remove();
+        $("#contenitore-lista-ricerca-brani").empty();
+    });
+    //Evento che cancella le ricerche precedenti degli album quando viene svuotato il campo ricerca
+    $("#barra-ricerca").on('input',function(){
+        $("#contenitore-lista-ricerca-album").empty();
+    });
 });
-
-//Funzione che inizializza i dati dell'account estrapolandoli dall'oggetto JSON ricevuto dal server
-// e invoca la funzione stampaDatiAccount per inserirli nell'apposito form
-function richiediDatiAccount() {
-    $.get('/WebPlayer/utente', function (result) {
-        if (result != "ERR") {
-            utente = new Account(JSON.parse(result)[0]);
-            stampaDatiAccount(utente);
-        }
-    });
-}
-
-//Funzione che riceve i dati delle playlist dell'utente e invoca la funzione stampaPlaylist per stamparli nell'apposita lista
-function richiediPlaylist() {
-    $.get('/WebPlayer/playlist', function (result) {
-        if (result != "ERR") {
-            var lp = JSON.parse(result);
-            for (i = 0; i < lp.length; i++) //Aggiungiamo le playlist dell'utente che ha loggato nel vettore che contiene tutte le playlist
-                listaPlaylist[i] = new Playlist(lp[i]);
-                stampaListaPlaylist(listaPlaylist);
-        }
-    });
-}
-
-//Funzione che riceve i dati di tutti gli album e invoca la funzione stampaListaAlbum per stamparli nell'apposita lista
-function richiediAlbum() {
-    $.get('/WebPlayer/album', function (result) {
-        if (result != "ERR") {
-            var lab = JSON.parse(result);
-            for (i = 0; i < lab.length; i++) //Aggiungiamo tutti gli album nel vettore listaAlbum
-                listaAlbum[i] = new Album(lab[i]);
-            stampaListaAlbum(listaAlbum);
-        }
-    });
-}
-
-//Funzione che riceve dal database i dati relativi agli amici di un utente e invoca la funzione stampaListaAmici() per stamparli nell'apposita lista
-function richiediListaAmici() {
-    $.get('/WebPlayer/amici', function (result) {
-        if (result != "ERR") {
-            var la = JSON.parse(result);
-            for (i = 0; i < la.length; i++) //Aggiungiamo gli amici dell'utente che ha loggato nel vettore che contiene tutti i suoi amici
-                listaAmici[i] = new Account(la[i]);
-            stampaListaAmici(listaAmici);
-        }
-    });
-}
-
-//Funzione che riceve dal database i nomi degli utenti che corrispondono ai criteri di ricerca e invoca la
-// funzione stampaAmiciDaAggiungere() per stamparli nell'apposita lista
-function ricercaUtenti() {
-    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
-    $("#inserisci-nomeUtente").on("keyup", function () {
-        clearTimeout(timer); //azzera il timer
-        timer = setTimeout(function () {
-            $.post("/WebPlayer/amici/cercaUtenti",
-                {
-                    utenteCercato: $('input[name=nome-utente]').val(),
-                },
-                function (result) {
-                if (result == "ERR") {
-                    $(".container-listaUtenti").empty();
-                    var messaggio = "Nussun utente corrisponde ai criteri di ricerca";
-                    $(".container-listaUtenti").html(messaggio).css({
-                        'font-size': '1rem',
-                        'padding': '20px 0',
-                    });
-                } else {
-                    $(".container-listaUtenti").css("padding", "0");
-                    $(".container-listaUtenti").empty();
-                    var lu = JSON.parse(result);
-                    stampaAmiciDaAggiungere(lu);
-                }
-            });
-            }, 700);
-    });
-}
-
-//Funzione che riceve dal database i dati degli amici attualmente online ogni 30 secondi e invoca la funzione
-//stampaAmiciOnline() per stamparli nell'apposita lista
-function richiediAmiciOnline(){
-    $.get('/WebPlayer/amiciOnline', function(result){
-        if(result != "ERR") {
-            listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
-            var lo = JSON.parse(result);
-            for(i=0; i<lo.length; i++) //Aggiungiamo gli amici online dell'utente che ha loggato nel vettore apposito
-                listaAmiciOnline[i] = new Account(lo[i]);
-            stampaAmiciOnline(listaAmiciOnline);
-        }
-        else { //se l'utente non ha nessun amico, svuota la lista (se precedentemente piena)
-            if(listaAmiciOnline.length != 0) listaAmiciOnline.remove(0, listaAmiciOnline.length-1);
-            $(".listaAmiciOnline").remove();
-            $(".demo-mobile").remove();
-        }
-    });
-}
-
-//Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati
-// nell'apposita lista richiamando la funzione stampaListaBraniRicerca
-function ricercaBrani() {
-    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
-    $("#barra-ricerca").on("keyup", function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            $.post("/WebPlayer/musica/cercaBrani",
-                {
-                    braniCercati: $('#barra-ricerca').val(),
-                },
-                function (result) {
-                    if (result == "ERR") {
-                        $("#contenitore-lista-ricerca-brani").empty();
-                        var messaggio = '<p class="messaggio"> Nessun brano corrisponde ai criteri di ricerca </p>';
-                        $("#contenitore-lista-ricerca-brani").append(messaggio);
-                    } else {
-                        $("#contenitore-lista-ricerca-brani").css("padding", "0");
-                        $("#contenitore-lista-ricerca-brani").empty();
-                        var lb = JSON.parse(result);
-                        stampalistaBraniRicerca(lb);
-                    }
-                });
-        }, 700);
-    });
-}
-
-//Funzione che permette di ricercare i brani tramite la barra di ricerca e stampa i risultati nell'apposita
-// lista richiamando la funzione stampaListaAlbumRicerca
-function ricercaAlbum() {
-    var timer = 700; //Intervallo di tempo tra l'inserimento di due caratteri da tastiera (per evitare il flooding di richieste al database)
-    $("#barra-ricerca").on("keyup", function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            $.post("/WebPlayer/musica/cercaAlbum",
-                {
-                    albumCercati: $('#barra-ricerca').val(),
-                },
-                function (result) {
-                    if (result == "ERR") {
-                        $("#contenitore-lista-ricerca-album").empty();
-                        var messaggio = '<p class="messaggio"> Nessun album corrisponde ai criteri di ricerca </p>';
-                        $("#contenitore-lista-ricerca-album").append(messaggio);
-                        $("#contenitore-lista-ricerca-album").css({
-                            'font-size': '1rem',
-                            'padding': '20px 0',
-                            'color': 'cornsilk',
-                        });
-                    } else {
-                        $("#contenitore-lista-ricerca-album").css("padding", "0");
-                        $("#contenitore-lista-ricerca-album").empty();
-                        var la = JSON.parse(result);
-                        stampalistaAlbumRicerca(la);
-                    }
-                });
-        }, 700);
-    });
-}
