@@ -439,6 +439,8 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Messaggio mostrato in caso di errore -->
             <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_account"></p>
 
             <!-- Footer del Modal Profilo -->
@@ -465,11 +467,8 @@
                 <div class="contenitore-icona-password">
                     <i class="fa fa-unlock-alt" id= "icona-lucchetto"></i>
                 </div>
-
-
                 <div class="container">
                     <form action="javascript:void(0)">
-
                         <!-- Riga vecchia password -->
                         <div class="row password">
                             <div class="testo">
@@ -477,7 +476,6 @@
                             </div>
                             <div class="col-90">
                                 <input class="campiPass"  type="password" id="vecchiaPass" name="pass1">
-
                             </div>
                             <div class="col-10">
                                 <i class="fa fa-eye iconaPassword" id="eye1" onclick="mostraPass('vecchiaPass', 'eye1')"></i>
@@ -509,13 +507,14 @@
                                 <i class="fa fa-eye iconaPassword" id="eye3" onclick="mostraPass('confNuovaPass', 'eye3')"></i>
                             </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="contenitore-nota">
                     <p style="text-align: center;"></br>*N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero.</p>
                 </div>
             </div>
+
+            <!-- Messaggio mostrato in caso di errore -->
             <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_password"></p>
 
             <!-- Footer del Modal modifica password -->
@@ -597,7 +596,6 @@
 </div>
 
 
-
 <!-- Modal Successo Modifica Password -->
 <div class="modal" id="modal-successoModPass">
     <div class="modal-dialog">
@@ -624,7 +622,6 @@
             <div class="modal-footer footerSuccessoModPass" style="border-top:0; padding-top: 0;">
                 <button class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -645,13 +642,10 @@
                 <div class="contenitore-icona-successoModDatiAccount">
                     <i class="fa fa-check" id= "icona-succModDatiAccount"></i>
                 </div>
-
-
                 <div class="container-message">
                     <div class="message">
                         <p style="margin-top: 15px; padding-right: 5px;">I dati del tuo account sono stati modificati con successo!</p>
                     </div>
-
                 </div>
             </div>
 
@@ -659,10 +653,10 @@
             <div class="modal-footer footerSuccessoModDatiAccount" style="border-top:0; padding-top: 0;">
                 <button class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
             </div>
-
         </div>
     </div>
 </div>
+
 
 <!-- Modal Conferma Rimuovi Amico -->
 <div class="modal" id="modal-conferma-rimAmico">
@@ -680,13 +674,10 @@
                 <div class="contenitore-icona-rimAmico">
                     <i class="fa fa-question-circle" id= "icona-rimAmico"></i>
                 </div>
-
-
                 <div class="container-question">
                     <div class="question">
                         <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler rimuovere l'utente selezionato dalla tua lista degli amici?</p>
                     </div>
-
                 </div>
             </div>
 
@@ -695,7 +686,6 @@
                 <button class="bottone-conferma-rimAmico" id="tastoConfermaRim" type="button"  data-dismiss="modal">Conferma</button>
                 <button class="bottone-conferma-rimAmico" type="button"  data-dismiss="modal">Annulla</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -733,6 +723,7 @@
     </div>
 </div>
 
+
 <!-- Modal Conferma Rimuovi Playlist -->
 <div class="modal" id="modal-conferma-rimPlaylist">
     <div class="modal-dialog">
@@ -749,13 +740,10 @@
                 <div class="contenitore-icona-rimPlaylist">
                     <i class="fa fa-question-circle" id= "icona-rimPlaylist"></i>
                 </div>
-
-
                 <div class="container-question">
                     <div class="question">
                         <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler eliminare la playlist selezionata?</p>
                     </div>
-
                 </div>
             </div>
 
@@ -764,7 +752,6 @@
                 <button class="bottone-conferma-rimPlaylist" id="tastoConfermaRimPlaylist" type="button"  data-dismiss="modal">Conferma</button>
                 <button class="bottone-conferma-rimPlaylist" type="button"  data-dismiss="modal">Annulla</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -791,8 +778,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <script src="javascripts/WebPlayer/view.js"></script>
