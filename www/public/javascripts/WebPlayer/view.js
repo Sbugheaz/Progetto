@@ -1,3 +1,7 @@
+/**
+ * Questo file js contiene tutte le funzioni di stampa degli oggetti ricevuti lato server per mostrarli correttamente
+ * all'interno del file HTML.
+ */
 
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i dati dell'account nell'apposito form
 function stampaDatiAccount(utente) {
@@ -35,8 +39,8 @@ function stampaListaAmici(listaAmici){
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti
-//che non sono già tra gli amici e corrispondono ai criteri di ricerca
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli utenti che non sono già
+tra gli amici e corrispondono ai criteri di ricerca */
 function stampaAmiciDaAggiungere(lu){
         var content = "";
         $(".container-listaUtenti").append('<ul class="demo listaUtenti">');
@@ -86,6 +90,7 @@ function stampaAmiciOnline(listaAmiciOnline){
     }
 }
 
+
 //Funzione che viene invocata una volta ricevuti i dati dal server e che stampa nell'apposita lista i brani relativi al genere selezionato
 function stampaListaBraniPerGenere(listaBrani){
     $(".listaGenere").remove(); //svuota la lista contenente i brani
@@ -122,8 +127,8 @@ function stampaListaBraniPerGenere(listaBrani){
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i brani
-//che corrispondono ai criteri di ricerca nell'apposita lista
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa i brani che corrispondono ai criteri di
+ricerca nell'apposita lista*/
 function stampalistaBraniRicerca(lb){
     var content = "";
     $("#contenitore-lista-ricerca-brani").append('<ul class="demo listaRicerca" style="color:cornsilk;">');
@@ -158,8 +163,9 @@ function stampalistaBraniRicerca(lb){
     );
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli
-//album che corrispondono ai criteri di ricerca
+
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista degli album che corrispondono
+ai criteri di ricerca*/
 function stampalistaAlbumRicerca(la){
     var content = "";
     var listaAlbumRicerca = JSON.parse(JSON.stringify(listaAlbum));
@@ -250,8 +256,9 @@ function stampaListaAlbum(listaAlbum){
     );
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
-//appartenenti alla playlist scelta dall'utente
+
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
+appartenenti alla playlist scelta dall'utente */
 function stampaBraniPlaylist(){
 
     //se la playlist selezionata non contiene nessun brano stampa a video che la playlist è vuota e dà la possibilità di cancellarla
@@ -319,8 +326,8 @@ function stampaBraniPlaylist(){
 }
 
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani
-//appartenenti all'album scelto dall'utente
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista dei brani appartenenti all'album
+scelto dall'utente*/
 function stampaBraniAlbum(){
 
         $("#contenitore-lista-album").remove();
@@ -427,8 +434,9 @@ function stampaBraniInRiproduzione() {
     );
 }
 
-//Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista delle playlist
-//possedute dall'utente per permettere l'aggiunzione di un brano ad una di esse
+
+/*Funzione che viene invocata una volta ricevuti i dati dal server e che stampa la lista delle playlist possedute
+dall'utente per permettere l'aggiunzione di un brano ad una di esse */
 function stampaListaPlaylistAggiungi(){
 
     //se l'utente non ha ancora nessuna playlist, stampa a video il messaggio
