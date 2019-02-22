@@ -5,7 +5,13 @@
  */
 
 //Dichiarazione degli oggetti o vettori di oggetti usati
-var utente, listaPlaylist = [], listaAmici= [], listaUtenti= [], listaAmiciOnline= [], listaBrani= [], listaAlbum=[];
+var utente; //Oggetto che contiene tutti i dati dell'account utente che ha eseguito l'accesso
+var listaPlaylist = []; //Vettore di oggetti playlist che contiene tutte le playlist dell'utente loggato
+var listaAmici = []; //Vettore di oggetti account che contiene i dati principali degli utenti presenti nella lista amici dell'utente loggato
+var listaUtenti = []; //Vettore di oggetti account che contiene i dati principali degli utenti che soddisfano i criteri di ricerca
+var listaAmiciOnline = []; //Vettore di oggetti account che contiene i dati principali degli amici attualmente online
+var listaBrani = []; //Vettore di oggetti brano che contiene tutti i brani restituiti dal server
+var listaAlbum = []; //Vettore di oggetti album che contiene tutti gli album restituiti dal server
 
 /*Funzione che contiene tutte le chiamate alle funzioni e le catture degli eventi che devono essere eseguiti al
   caricamento della pagina*/
