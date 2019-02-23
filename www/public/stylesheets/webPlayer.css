@@ -12,6 +12,7 @@ body > .container-fluid {
     overflow-y: hidden;
 }
 .sezioneTotale{
+    overflow: hidden;
     height: 100vh;
 }
 .dropdown-item {
@@ -374,7 +375,7 @@ button:focus {
     padding: 12px 0;
 }
 .cover{
-    width: 50px;
+    width: calc(2rem + 1vw);
 }
 .genere {
     overflow: hidden;
@@ -728,11 +729,13 @@ btn-conzoni-ricerca{
     width: 40%;
     float: left;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 .autore-album{
     width: 30%;
     float: left;
     box-sizing: border-box;
+    padding-left: 10px;
 }
 .btn-album{
     float: right;
@@ -1679,7 +1682,7 @@ label {
 
     /*Proprietà del Modal Profilo*/
     .campoMail{
-        font-size: 0.8rem;
+        font-size: calc(0.6rem + 0.5vw);;
     }
     /*Proprietà del pulsante modifica del Modal Profilo*/
     .pulsanteModifica{
@@ -1724,6 +1727,20 @@ label {
     .contenitore-imgBrano{
         width: 25%;
         max-width: 160px;
+    }
+    .contenitore-imgBrano-interno {
+        width: calc(6rem + 2vw);
+    }
+    .contenitore-imgBrano-esterno {
+        width: 40%;
+    }
+    .contenitore-nomeCanzone-Artista {
+        width: 50%;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+    #contenitore-ricerca {
+        overflow-x: hidden;
     }
 
     /*Proprietà dell'intestazione dei modal*/
@@ -1770,17 +1787,9 @@ label {
         font-size: calc(0.6rem + 1vw);
     }
 
-    /*Proprietà pannello ricerca mobile*/
-    .contenitore-imgBrano-interno {
-        width: calc(6rem + 2vw);
+    /*Proprietà player mobile*/
+    #sezione-controlli-riproduzione > .row {
+        font-size: calc(0.6rem + 1vw);
     }
-    .contenitore-imgBrano-esterno {
-         width: 40%;
-     }
-    .contenitore-nomeCanzone-Artista {
-        width: 50%;
-    }
-    #contenitore-ricerca {
-        overflow-x: hidden;
-    }
+
 }
