@@ -1769,4 +1769,18 @@ label {
     .li_listaPlaylist{
         font-size: calc(0.6rem + 1vw);
     }
+
+    /*Proprietà pannello ricerca mobile*/
+    .contenitore-imgBrano-interno {
+        width: calc(6rem + 2vw);
+    }
+    .contenitore-imgBrano-esterno {
+         width: 40%;
+     }
+    .contenitore-nomeCanzone-Artista {
+        width: 50%;
+    }
+    #contenitore-ricerca {
+        overflow-x: hidden;
+    }
 }

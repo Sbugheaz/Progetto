@@ -972,7 +972,6 @@ function richiediBraniSingoli() {
     $.get("/WebPlayer/album/mostraSingoli",
          function(result) {
             if (result != "ERR") {
-                console.log("cio");
                 $("#contenitore-canzoni-album").empty();
                 listaBrani.remove(0, listaBrani.length-1);
                 var lb = JSON.parse(result);
