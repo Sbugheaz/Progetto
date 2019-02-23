@@ -193,7 +193,7 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                     '<title>SoundWave - Attivazione Account</title>\n' +
                     '<link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
                     '</head>\n' +
-                    '<body background="../images/Sfondo2.0.jpg">\n' +
+                    '<body background="../images/Sfondo.jpg">\n' +
                     '<div style=" width: 30%; margin: 1rem;">\n ' +
                     '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
                     '</div>\n' +
@@ -245,7 +245,7 @@ router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
                                 '<title>SoundWave - Attivazione Account</title>\n' +
                                 '<link rel="icon" href="../images/Onda.png" type="image/png" />\n' +
                                 '</head>\n' +
-                                '<body background="../images/Sfondo2.0.jpg">\n' +
+                                '<body background="../images/Sfondo.jpg">\n' +
                                 '<div style=" width: 30%; margin: 1rem;">\n ' +
                                 '<img src="../images/Logo.png" alt="logo" style="width:100%;">\n'+
                                 '</div>\n' +
