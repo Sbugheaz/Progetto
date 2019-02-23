@@ -996,17 +996,17 @@ function rimuoviBrano() {
         }, function(result) {
             if(result == "OK") {
                 for(i=0; i<listaBrani.length; i++) {
-                    if(listaBrani[i].idBrano == idBrano) {//cerco l'id del brano per rimuoverlo
+                    if(listaBrani[i].idBrano == idBrano) {//cerca l'id del brano per rimuoverlo
                         listaBrani.remove(i);
-                        //verifico che ci sia una playlist avviata e controllo se il brano da rimuovere è di quella playlist(Avviata)
+                        //verifica che ci sia una playlist avviata e controllo se il brano da rimuovere è di quella playlist(Avviata)
                         if(percorsi!=null && playListAvviata==true && idPlaylistSelezionato==idPlaylistAvviata){
-                            if(shuffleB==true){//verifico se la modalità shuffle è attiva
-                                listaOrigine.remove(i);//rimuovo il brano da una copia dei brani in riproduzione non soggetta a shuffle
-                                percorsi=JSON.parse(JSON.stringify(listaOrigine));// copio la copia dei brani nel vettore dei percorsi in riproduzione
-                                percorsi=shuffle(percorsi);//effettuo lo shuffle
+                            if(shuffleB==true){//verifica se la modalità shuffle è attiva
+                                listaOrigine.remove(i);//rimuove il brano da una copia dei brani in riproduzione non soggetta a shuffle
+                                percorsi=JSON.parse(JSON.stringify(listaOrigine));// copia la copia dei brani nel vettore dei percorsi in riproduzione
+                                percorsi=shuffle(percorsi);//effettua lo shuffle
                             }else {//se la modalità shuffle non è attiva allora
-                                percorsi.remove(i);//rimuovo da percorsi(lista dei brani in riproduzione che è soggetta a shuffle)
-                                listaOrigine.remove(i);//rimuovo da lista origine(copia dei brani in riproduzione non soggetta a shuffle)
+                                percorsi.remove(i);//rimuove da percorsi(lista dei brani in riproduzione che è soggetta a shuffle)
+                                listaOrigine.remove(i);//rimuove da lista origine(copia dei brani in riproduzione non soggetta a shuffle)
                             }
                         }
                     }
@@ -1027,11 +1027,11 @@ function aggiungiBranoAPlaylist() {
             if(result == "ERR")
                 $("#err_aggiungiBrano").text("La playlist selezionata contiene già questo brano.").css("display", "block");
             else if(result == "OK") {
-                //verifico se è presente una playlist in esecuzione e verifico se il brano da aggiungere debba essere inserito nella playlist in esecuzione
+                //verifica se è presente una playlist in esecuzione e verifica se il brano da aggiungere debba essere inserito nella playlist in esecuzione
                 if(percorsi!=null && playListAvviata==true && idPlaylistAvviata==idPlaystTarget ){
                        for(i=0;i<listaBrani.length;i++){
-                           if(listaBrani[i].idBrano==idBrano){//cerco l'id del brano
-                               percorsi.push(listaBrani[i]);//inserisco il brano in coda
+                           if(listaBrani[i].idBrano==idBrano){//cerca l'id del brano
+                               percorsi.push(listaBrani[i]);//inserisca il brano in coda
                                listaOrigine.push(listaBrani[i]);
                                break;
                            }
