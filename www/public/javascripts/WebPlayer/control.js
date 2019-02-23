@@ -829,7 +829,6 @@ function creaPlaylist() {
     if(nomePlaylist.val() == "") {
         $("#err_playlist").text("Inserisci il nome della playlist che desideri creare.").css("display", "block");
         nomePlaylist.addClass("invalid");
-        console.log(nomePlaylist.className());
     }
     else {
         $.post("/WebPlayer/playlist/creaPlaylist",
