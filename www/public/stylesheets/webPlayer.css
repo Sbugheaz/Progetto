@@ -39,7 +39,7 @@ body > .container-fluid {
     height: 65px;
     padding: 0;
 }
-/*propità barra ricerca*/
+/*Proprità barra ricerca*/
 #barra-ricerca {
     border-radius: 0;
     border-color: transparent;
@@ -90,7 +90,7 @@ input, #barra-ricerca {
     background-color: rgba(0, 114, 255, 0.72);
 }
 
-/*Propità menù orizzontale */
+/*Proprità menù orizzontale */
 #menu-orizzontale{
     display: none;
     padding: 0;
@@ -157,7 +157,7 @@ button:focus {
     background-color: rgba(255,138,0,1);
 }
 
-/*Propietà colonna sinistra e colonna destra */
+/*Proprietà colonna sinistra e colonna destra */
 #colonna-sinistra, #colonna-destra {
     display: none;
     padding-left: 0;
@@ -202,7 +202,7 @@ button:focus {
     font-size: calc(1rem + 1vw);
 }
 
-/*propietà pannello-mobile*/
+/*Proprietà pannello-mobile*/
 #pannello-mobile{
     position: absolute;
     right: 0;
@@ -218,7 +218,7 @@ button:focus {
     overflow-y: auto;
     font-size: calc(0.4rem + 1vw);
 }
-/*propietà bottoni pannello-mobile*/
+/*Proprietà bottoni pannello-mobile*/
 .btn-mobile{
     width: 100%;
     color: cornsilk;
@@ -227,7 +227,7 @@ button:focus {
     text-align: center;
 }
 
-/*Propietà pannelo-amicizie-mobile*/
+/*Proprietà pannelo-amicizie-mobile*/
 #pannello-Amicizie-mobile{
     overflow: hidden;
     height: 68.5vh;
@@ -287,7 +287,7 @@ button:focus {
     overflow: hidden;
 }
 
-/*Propietà pannello generi*/
+/*Proprietà pannello generi*/
 #contenitore-genere{
     height: calc(100% - 60px);
 }
@@ -393,7 +393,7 @@ button:focus {
     height: calc(100vh - 165px);
     display: none;
 }
-/*propietà pannello brani in riproduzione*/
+/*Proprietà pannello brani in riproduzione*/
 #contenitore-produzione{
     height:100%;
 }
@@ -495,7 +495,7 @@ button:focus {
     height: calc(100vh - 165px);
     overflow: hidden;
 }
-/*Propità pannello di ricerca */
+/*Proprità pannello di ricerca */
 .paragrafo-risultati{
     position: absolute;
     bottom: 0;
