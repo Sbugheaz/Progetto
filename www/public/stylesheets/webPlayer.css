@@ -12,6 +12,7 @@ body > .container-fluid {
     overflow-y: hidden;
 }
 .sezioneTotale{
+    overflow: hidden;
     height: 100vh;
 }
 .dropdown-item {
