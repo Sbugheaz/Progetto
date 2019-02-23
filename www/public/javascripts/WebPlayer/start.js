@@ -50,7 +50,7 @@ $(document).ready(function () {
     $('#repeat').click(ripetizione);//Evento che permette la ripetizione delle canzoni
     audioElement.addEventListener("ended", verificaBranoSuccessivo);//Listener che viene invocato quando una canzone finisce
     $(audioElement).on("timeupdate", refresh);//Evento che permette di aggiornare la barra di avanzamento
-    audioElement.addEventListener("canplay",aggiornaPlayer);
+    audioElement.addEventListener("canplay",aggiornaPlayer);//evento che aggiorna il player quando vi è un brano in riproduzione
     $('#step-forward').click(branoSuccessivo);//Evento che permette di passare al brano successivo
     $('#step-backward').click(branoPrecedente);//Evento che permette di passare al brano precedente
     //Evento che permette lo slide della barra del volume*/
