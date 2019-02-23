@@ -17,6 +17,27 @@ var gestoreWebPlayer = require('./private/control/gestoreWebPlayer'); // control
 var app = express();
 
 /**
+ * Campo della risposta che indica ai browser che la ricevono che le risorse del server sono
+ * accessibili da qualsiasi origine. Necessario per rispondere all'applicazione mobile.
+ */
+app.use(function setHeader(req, res, next) {
+    res.set({"Access-Control-Allow-Origin": "*"});
+    next();
+});
+
+/**
+ * Route necessario per la gestione dell'applicazione mobile.
+ */
+app.options("*", function (req, res) {
+    res.set({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "origin, x-requested-with, content-type",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
+    });
+    res.send();
+});
+
+/**
  * Imposta la porta e la memorizza in express
  */
 var port = normalizePort(process.env.PORT || '3000');
