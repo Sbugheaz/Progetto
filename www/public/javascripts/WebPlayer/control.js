@@ -263,14 +263,14 @@ function loadPagina() {
 
 //Funzione che disabilita lo slider del player e del volume
 function disabilitaPlayer(){
-    $("#barraDiAvanzamento").slider('disable');
+    $("#barraPlayer").slider('disable');
     $("#volume-range").slider("disable");
 }
 
 
 //Funzione che abilita i tasti play pause e gli slider del player e del volume
 function abilitaPlayer(){
-    $("#barraDiAvanzamento").slider('enable');
+    $("#barraPlayer").slider('enable');
     $("#volume-range").slider("enable");
     $("#play").click(avviaBrano); //Evento che invoca la funzione per riprodurre il brano
     $('#pause').click(stoppaBrano); //Evento che invoca la funzione per mettere in pausa il brano
@@ -425,8 +425,8 @@ function refresh() {
     var minutes = "0" + Math.floor(audioElement.currentTime / 60);
     var seconds = "0" + Math.floor(audioElement.currentTime - minutes * 60);
     var dur2 = minutes.substr(-2) + ":" + seconds.substr(-2);
-    $("#labelSecondoAttuale").text(dur2);
-    $("#barraDiAvanzamento").slider("setValue", avanzamento);
+    $("#SecondoAttuale").text(dur2);
+    $("#barraPlayer").slider("setValue", avanzamento);
 }
 
 
@@ -499,7 +499,7 @@ function ripetizione() {
 //Funzione che aggiorna i dati(titolo, durata totale)della conza in riproduzione
 function aggiornaPlayer() {
     var durata = toMinutes(percorsi[indiceCorrente].durata);
-    $("#labelDurataTotaleBrano").text(durata);
+    $("#DurataTotaleBrano").text(durata);
     $("#titolo-brano-in-riproduzione").text(percorsi[indiceCorrente].titolo +" - "+percorsi[indiceCorrente].artista );
     $("#album2").attr("src", percorsi[indiceCorrente].url_cover);
 }

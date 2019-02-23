@@ -58,9 +58,9 @@ $(document).ready(function () {
         audioElement.volume = slideEvt.value / 100;
     });
     //Evento che permette lo slide della barra di avanzamento della canzone in riproduzione
-    $("#barraDiAvanzamento").on("change", function (slideEvt) {
-        var slideVal = $("#barraDiAvanzamento").slider('getValue');
-        var valoreattuale2 = ($("#barraDiAvanzamento").slider('getValue') * (audioElement.duration)) / 100;
+    $("#barraPlayer").on("change", function (slideEvt) {
+        var slideVal = $("#barraPlayer").slider('getValue');
+        var valoreattuale2 = ($("#barraPlayer").slider('getValue') * (audioElement.duration)) / 100;
         audioElement.currentTime = valoreattuale2;
     });
 
