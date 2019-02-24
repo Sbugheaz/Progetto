@@ -1,0 +1,357 @@
+
+/*Proprietà globali */
+body {
+  font: 1vw "Raleway", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  background-repeat:repeat-x;
+  background-attachment: fixed;
+}
+* {
+  box-sizing: border-box;
+}
+
+/*Proprietà contenitore intestazione */
+.intestazione {
+  width: 100%;
+}
+.logo img{
+  margin-top: 2.5vw;
+  margin-bottom: 1.5vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%
+}
+#logo_footer{
+  text-align: right;
+}
+
+
+/*Proprietà contenitore del testo introduttivo */
+.description {
+  width: 60%;
+  float: left;
+  padding:30px 0;
+}
+.testo{
+  margin-left: 1vw;
+  margin-top:9vh;
+}
+#testo-home {
+  margin:auto;
+  font-size: 2.2vw;
+  text-align: center;
+  color: cornsilk;
+  font-weight: bold;
+}
+
+/*Proprietà del form di Login */
+.enter{
+  width:39%;
+  float:right;
+}
+.home {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-size: 1.3vw;
+  width: 75%;
+  min-width: 250px;
+  margin:auto;
+  margin-bottom: 10%;
+}
+label {
+  margin-top: 5px;
+  margin-bottom:0;
+}
+input {
+  outline: none;
+  padding: 10px;
+  width: 80%;
+  font-size: 17px;
+  font-family: Raleway, serif;
+  border: 1px solid #aaaaaa;
+}
+input[type=text], input[type=password], select {
+  width: 100%;
+  font-size: 1.3vw;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Raleway";
+}
+input[type=submit] {
+  width: 30%;
+  font-size: 1.1vw;
+  background-color: rgba(255,148,24,0.9);
+  color: cornsilk;
+  padding: 1.1vh 1.4vw;
+  margin:5% 33% 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Raleway";
+  height: 35px;
+}
+input[type=submit]:hover {
+  background-color: rgba(255,138,0,0.9);
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+p.pd{
+  font-size:1.1vw;
+}
+.lk{
+  color: rgba(255,148,24,1) !important;
+  cursor: pointer !important;
+}
+.lk:link {
+  color: rgba(255,148,24,1) !important;
+}
+.lk:visited {
+  color: rgba(255,148,24,1) !important;
+}
+.lk:hover {
+  color: rgba(255,110,0,1) !important;
+  text-decoration: underline !important;
+}
+
+
+/*Proprietà del cotenitore modal recupero password */
+#regForm {
+  background-color: #ffffff;
+  margin: 20px 0 0;
+  font-family: Raleway, serif;
+  padding: 20px 0;
+  width: 100%;
+  min-width: 200px;
+  text-align: center;
+}
+.rc {
+  width: 80%;
+  font-size:1.2vw;
+  margin: 5% auto 0;
+  border-width: 0 0 2px;
+}
+.rc:focus{
+  box-shadow: 0 0;
+  background-color: white;
+  outline-width: 0;
+  border-color: rgba(255,148,24,1);
+}
+#nextBtn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 45%;
+  font-size: 1.2vw;
+  background-color: rgba(255,148,24,0.9);
+  color: cornsilk;
+  padding: 1.1vh 1vw;
+  margin: auto;
+  font-family: "Raleway";
+}
+#nextBtn:hover {
+  background-color: rgba(255,138,0,0.9);
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.tab{
+  font-size:1.2vw;
+}
+
+
+/*Proprietà Modal Verifica Email e Invio Email */
+#intestazione-verEmail, #intestazione-invioEmail{
+  background-color: #898989;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
+  border-bottom: 2px solid rgba(0,114,255,0.43);
+}
+#titolo-verEmail, #titolo-invioEmail {
+  margin: 0;
+}
+.contenitore-icona-verEmail, .contenitore-icona-invioEmail {
+  width: 15%;
+  float: left;
+  font-size: 8vh;
+  box-sizing: border-box;
+}
+.container-message{
+  text-align: center;
+  width: 80%;
+  float: left;
+}
+.message{
+  font-size: 1rem;
+  padding-right: 15px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.footerVerEmail, .footerInvioEmail {
+  border-top:0;
+  padding-top: 0;
+}
+.bottone-ok{
+  outline: none;
+  background-color: rgb(191, 193, 192);
+  border: none;
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 14px;
+  width: 20%;
+  height: 1.5rem;
+  color: black;
+}
+.bottone-ok:hover{
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 15px;
+  color: white;
+  background-color: rgba(0,114,255,0.43);
+  font-weight: bold;
+}
+
+
+/* Regole di stile per la sezione "footer" della pagina*/
+footer{
+  width: 100%;
+  position: static;
+  padding-top: 20px;
+  background-color: #4d484859;
+  font-weight: bold;
+  color: white;
+  clear: right;
+}
+#nome{
+  color:#ff7300;
+}
+#footer-container {
+  margin: 0 2%;
+  padding: 0 15px;
+}
+footer ul{
+  padding: 0;
+  font-size: 0.9em;
+}
+footer .extra{
+  padding-top: 22px;
+}
+#social{
+  color: white;
+  padding-top: 15px;
+  text-align: center;
+}
+.fa-facebook-square,
+.fa-twitter-square,
+.fa-google-plus-square{
+  font-size: 2.2em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.fa-facebook-square:hover,
+.fa-twitter-square:hover,
+.fa-google-plus-square:hover{
+  transform: scale(1.2);
+  color: orange;
+}
+#copyright{
+  margin-top: 15px;
+  margin-right: 20px;
+  font-size: 0.7em;
+  color: darkgrey;
+  word-spacing: 2px;
+}
+#copyright{
+  font-size: 11px;
+}
+.riferimento{
+  font-size: 10px;
+  cursor: pointer ;
+}
+.riferimento:hover {
+  color: rgba(255,110,0,1) ;
+  text-decoration: underline ;
+}
+
+
+
+/*Proprietà degli elementi al ridimensionamento della pagina */
+@media only screen and (max-width: 770px) {
+  body{
+    font: 1.3vw "Raleway", Helvetica, Arial, sans-serif;
+  }
+  p.pd{
+    font-size:2.4vw;
+  }
+  div.enter{
+    width:100%;
+    float:none;
+  }
+  div.description {
+    padding: 0 5vw;
+    margin-top: 10vh;
+    width: 100%;
+    float: none;
+  }
+  div.home {
+    min-width: 150px;
+    width: 65%;
+    font-size: 2.4vw;
+    float: none;
+    margin:10vh auto;
+  }
+  input[type=submit] {
+    width: 30%;
+    font-size: 2.5vw;
+    height: unset;
+  }
+  input[type=text], input[type=password], select {
+    font-size: 2vw;
+    padding: 12px 8px;
+  }
+  .logo img{
+    margin-bottom:0;
+  }
+  #testo-home{
+    font-size:2.5vw;
+  }
+  .col-sm-3, .col-md-3 {
+    width: 100%;
+  }
+  .extra, .col-md-7 {
+    width: auto;
+  }
+  .col-md-5 {
+    right: 0;
+  }
+  #copyright{
+    font-size: 11px;
+  }
+  footer .extra {
+    padding-top: 2px;
+  }
+  .riferimento {
+    font-size: 9px;
+  }
+}
+
+/*Proprietà degli elementi al ridimensionamento della pagina */
+@media only screen and (max-width: 1000px) {
+  div.tab{
+    font-size:16px;
+  }
+  .rc {
+    font-size:15px;
+  }
+  #nextBtn {
+    width: 45%;
+    font-size: 14px;
+  }
+}

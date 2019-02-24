@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+    <title>SoundWave - Streaming audio</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!-- Foglio di stile -->
+    <link rel="stylesheet" href="stylesheets/webPlayer.css">
+
+    <!-- Script -->
+    <script src="javascripts/WebPlayer/control.js"></script>
+
+    <!-- Slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+
+    <link rel="icon" href="images/Onda.png" type="image/png" />
+</head>
+
+
+<!-- Corpo della pagina -->
+<body background="images/Sfondo.jpg">
+
+<div class="container-fluid sezioneTotale">
+    <nav class="navbar navbar-expand-sm  bg-dark navbar-dark ">
+        <div class="container-fluid">
+            <!-- Brand/logo -->
+            <div class="col-md-2">
+                <a class="navbar-brand" id="logo">
+                    <img src="images/Logo.png" alt="logo" style="width:70px;">
+                </a>
+            </div>
+            <!-- Barra di ricerca -->
+            <div class="col-md-8">
+                    <div class="input-group ">
+                        <input id="barra-ricerca" type="text" class="form-control input-lg" placeholder="Cerca brani e album" />
+                        <span class="input-group-btn">
+                            <div id="pulsante-cerca">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </span>
+                    </div>
+            </div>
+            <!-- Pulsante Logout -->
+            <div class="col-md-2 hidden-md" >
+                <button type="button" class="btn btn-default pulsanteA" id="pulsante-Logout" data-toggle="modal" data-target="#modal-conferma-logout">
+                    <i class="fa fa-sign-out"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu orizzontale Modalità mobile -->
+    <nav class="navbar navbar-expand-sm  sticky-top navbar-dark " style="background-color:rgba(0, 114, 255, 0.43);  " id="menu-orizzontale">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-default pulsante-menu-orizzontale" id="profilo" data-toggle="modal" data-target="#myModal" >
+                        <i class="fa fa-user-circle"></i> </button>
+                </div>
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-default pulsante-menu-orizzontale" id="gest-amicizie" ><i class="fa fa-handshake-o"></i> </button>
+                </div>
+                <div class="col-md-3">
+                 <button type="button" class="btn btn-default pulsante-menu-orizzontale" id="amici-online" ><i class="fa fa-users"></i> </button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-default pulsante-menu-orizzontale" id="altro"><i class="fa fa-bars"></i> </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+ <!-- Sezione centale -->
+ <div class="container-fluid sezioneCentrale">
+     <div class="row row-sezioneCentrale">
+        <!-- Colonna di sinistra-->
+        <div id="colonna-sinistra" >
+            <div class="btn-group-vertical-justified" >
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-brani">In riproduzione</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-playlist">Le mie playlist</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-album">Album e brani</button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteA-generi" data-toggle="dropdown">
+                    Generi
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Country">Country</a>
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Funky">Funky</a>
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Jazz">Jazz</a>
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Pop">Pop</a>
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Rap">Rap</a>
+                    <a class="dropdown-item dropdown-item-desktop" id="tasto-Rock">Rock</a>
+                </div>
+            </div>
+        </div>
+        <!-- Colonna centrale -->
+        <div id="colonna-centrale" class="">
+            <div class="container-fluid">
+                <div id="sezione-centrale">
+                    <div class="row">
+                        <div id="pannello-mobile">
+                            <div class="btn-group-vertical-justified" >
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-brani">In riproduzione</button>
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-playlist" >Le mie playlist</button>
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-album">Album e brani</button>
+                                <button type="button" class="btn btn-default btn-mobile btn-mobile-generi" data-toggle="dropdown">Generi</button>
+                                <div class="dropdown-menu listaGeneri">
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Country">Country</a>
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Funky">Funky</a>
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Jazz">Jazz</a>
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Pop">Pop</a>
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Rap">Rap</a>
+                                    <a class="dropdown-item dropdown-item-mobile" id="tasto-mobile-Rock">Rock</a>
+                                </div>
+                                <button type="button" class="btn btn-default btn-mobile"data-toggle="modal" data-target="#modal-conferma-logout">Logout</button>
+                            </div>
+                        </div>
+
+                        <!-- Pannello contenente tutti gli amici online in modalità mobile -->
+                        <div id="pannello-Amicizie-mobile">
+                                <div class="container-intestazione-amicizie-mobile">
+                                    <p class="paragrafo-amicizie-mobile">Amici online</p>
+                                </div>
+                                <div class="container-listaAmici-mobile">
+                                </div>
+                        </div>
+
+                        <!-- Pannello contenente tutti i brani corrisondenti ad un determinato genere -->
+                        <div id="pannello-Generi" class="container-fluid">
+                            <div class="row titolo-listaBrani-genere" >
+                                <div class="col-md-12">
+                                    <p class ="titolo-pannelli" id="nomeGenere"></p>
+                                </div>
+                            </div>
+                            <div class="row" id="contenitore-genere" >
+                                <div class="col-md-12" style="height:100%">
+
+                                    <div class="row intestazione-listaBrani-genere">
+                                        <div class="nomeCanzone-genere"> <p class="p_genere">Brano</p> </div>
+                                        <div class="nomeArtista-genere"> <p class="p_genere">Artista</p> </div>
+                                        <div class="nomeStato-genere"> </div>
+                                    </div>
+                                    <div class="row" id="contenitore-listaBrani-genere">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pannello contenente tutti i brani in riproduzione -->
+                        <div id="pannello-BraniRiproduzione" class="container-fluid">
+                            <div class="row titolo-listaBrani-produzione" >
+                                <div class="col-md-12">
+                                            <p class="titolo-pannelli">Brani in riproduzione</p>
+                                </div>
+                            </div>
+                            <div class="row" id="contenitore-braniInRiproduzione" >
+                                <div class="col-md-12" style="height:100%">
+                                    <div class="row intestazione-listaBrani-prod">
+                                        <div class="nomeCanzone-prod"> <p class="p_prod">Brano</p> </div>
+                                        <div class="nomeArtista-prod"> <p class="p_prod">Artista</p> </div>
+                                        <div class="nomeDurata-prod"> <p class="p_prod">Durata</p> </div>
+                                    </div>
+                                    <div class="row" id="contenitore-listaBrani-produzione">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pannello contenente tutti i brani e gli album corrispondenti ai criteri di ricerca-->
+                        <div id="pannello-Ricerca" class="container-fluid">
+                            <div class="row" id="contenitore-ricerca" >
+                                <div class="col-md-12">
+                                    <div class="contenitore-ricerca-album">
+                                        <div class="row titolo-listaRicerca" >
+                                            <div class="col-md-12" style="position:relative">
+                                                <p class="paragrafo-risultati"> Risultati ricerca album</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="contenitore-lista-ricerca-album">
+                                        </div>
+                                    </div>
+                                    <div class="contenitore-ricerca-brani">
+                                        <div class="row titolo-listaRicerca" >
+                                            <div class="col-md-12">
+                                                <p class="paragrafo-risultati">Risultati ricerca brani</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="contenitore-lista-ricerca-brani">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Pannello contenente tutti gli album e i rispettivi brani -->
+                        <div id="pannello-Album" class="container-fluid">
+                            <div class="flex-container-Album">
+                            </div>
+                            <div id="contenitore-canzoni-album">
+                                <div id="contenitore-lista-Album">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Pannello contenente tutte le playlist di un utente con le relative canzoni -->
+                        <div id="pannello-Playlist" class="container-fluid">
+                            <div class="flex-container" id="contenitore-playlist">
+                                <div class="flex-item container-addPlaylist" data-toggle="modal" data-target="#modal-crea-playlist">
+                                    <div class="flex-item-conteiner">
+                                        <div class="flex-item-conteiner-icon">
+                                            <a class="icona-aggiungi-playlist"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <div class="contenitore-nomePlaylist"><p class="nomePlaylist">Crea playlist</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="contenitore-canzoni-playlist">
+                            </div>
+                        </div>
+
+
+                        <!--Pannello contenente la lista degli amici dell'utente-->
+                        <div id="pannello-Amicizie" class="container-fluid">
+                            <div class="row" id="contenitore-btnAmici">
+                                <div class="col-md-12" style="padding:0 8px; text-align:right ">
+                                <button type="button" class="btn btn-default pulsanteA" id="pulsante-aggiungiAmici" data-toggle="modal" data-target="#modal-aggiungi-amico">
+                                    <i class="fa fa-plus icona-hover " id="cercaAmici"></i>  Aggiungi amici </button>
+                                </div>
+                            </div>
+                            <div class="row titolo-listaAmici" >
+                                <div class="col-md-12">
+                                    <p class="titolo-pannelli" style="margin-bottom: 0px">Lista amici</p>
+                                </div>
+                            </div>
+                            <div class="row" id="contenitore-amicizie" >
+                                <div class="col-md-12 col-amicizie">
+                                    <div class="row intestazione-listaAmici">
+                                        <div class="nomeAmici"> <p style="margin:0">Nome</p> </div>
+                                        <div class="cognomeAmici"> <p style="margin:0">Cognome</p> </div>
+                                        <div class="nomeUtenteAmici"> <p style="margin:0">Nome Utente</p> </div>
+                                    </div>
+                                    <div class="row" id="contenitore-lista-amici">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Colonna destra-->
+        <div id="colonna-destra" style="padding: 10px 0;overflow: hidden;">
+            <div class="btn-group-vertical-justified" >
+                <!-- Bottone che apre il Modal del profilo -->
+                <button type="button" class="btn btn-default pulsanteA" data-toggle="modal" data-target="#myModal"><i class='fa fa-user-circle'></i>
+                    Visualizza profilo </button>
+                <button type="button" class="btn btn-default pulsanteA pulsanteGestioneAmicizie"><i class='fa fa-handshake-o'></i>   Gestione amicizie</button>
+            </div>
+
+            <!-- Container contenente la lista degli amici online in modalità desktop-->
+            <div class="container-fluid ">
+                <p class="paragrafo"><i class='fa fa-users'></i>   Amici online</p>
+                        <div class="container-listaAmici">
+                        </div>
+            </div>
+        </div>
+
+
+         <!-- Sezione Riproduzione contenente il player-->
+         <div id="colonna-sezione-controlli-riproduzione" class="col-md-12">
+             <div id="sezione-controlli-riproduzione">
+                 <div class="row intestazione-titolo-brano">
+                     <div id="titolo-brano-in-riproduzione" class="col-md-12">
+                         <p></p>
+                     </div>
+                 </div>
+                 <!-- Contenitore dei tasti del player-->
+                 <div class="row contenitore-tasi-riproduzione">
+                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "><img src="images/cover/default-brano.png" id="album2"></div>
+                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                         <div class="row audio-controls">
+                             <div class="col-md-2">
+                                 <i class="fa fa-random icona-hover testo-controlli-riproduzione" id="random"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-step-backward icona-hover testo-controlli-riproduzione" id="step-backward"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-play icona-hover testo-controlli-riproduzione" id="play" ></i>
+                                 <i class="fa fa-pause icona-hover testo-controlli-riproduzione" id="pause" ></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-step-forward icona-hover testo-controlli-riproduzione" id="step-forward"></i>
+                             </div>
+                             <div class="col-md-2">
+                                 <i class="fa fa-repeat icona-hover testo-controlli-riproduzione" id="repeat">
+                                 </i>
+                             </div>
+                             <div class="col-md-2">
+                                 <div class="dropup">
+                                     <i class="fa fa-volume-up icona-hover testo-controlli-riproduzione" id="volume" data-toggle="dropdown"></i>
+                                     <div class="dropdown-menu " id="contenitore-volume" >
+                                         <input class="dropdown-item " type="text" id="volume-range" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="80" data-slider-step="1" data-slider-tooltip="hide"/>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- Contenitore contenente lo slider della barra di riproduzione-->
+                 <div class="row contenitore-slider">
+                     <div class="col-md-12">
+                         <div class="row" id="riga-slider">
+                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-sx-sec">
+                                 <span id="labelSecondoAttuale" class="testo-controlli-riproduzione">--/--</span>
+                             </div>
+                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                 <input type="text" id="barraDiAvanzamento" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-value="0" data-slider-tooltip="hide" style="width: 92%"/>
+                             </div>
+                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-dx-sec">
+                                 <span id="labelDurataTotaleBrano" class="testo-controlli-riproduzione">--/--</span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Modal Profilo -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal Profilo -->
+            <div class="header" id="intestazione">
+                <p class="title" id="titolo-modal">Profilo<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></p>
+            </div>
+
+            <!-- Body del Modal Profilo -->
+            <div class="modal-body">
+                <div class="contenitore-icona-profilo">
+                    <i class="fa fa-user-circle" id= "icona-profilo"></i>
+                </div>
+                <div class="nomeUtente"><p><br></p></div>
+                <div class="container">
+                    <form action="javascript:void(0)">
+
+                        <!-- Riga nome -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="nome">Nome</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi" value="" type="text" readonly id="nome" name="nome">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica " onclick="abilitaScrittura('nome')">Modifica</button>
+                            </div>
+                        </div>
+
+                        <!-- Riga cognome -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="cognome">Cognome</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi" value="" type="text" readonly id="cognome" name="cognome">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('cognome')">Modifica</button>
+                            </div>
+                        </div>
+
+                        <!-- Riga data di nascita -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="dataNascita">Data di nascita</label>
+                            </div>
+                            <div class="col-50">
+                                <form action="javascript:void(0)">
+                                <input class="campi" value="" type="date" readonly id="dataNascita" name="dataNascita"
+                                min="1940-01-01" max="2010-01-01">
+                                </form>
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica" onclick="abilitaScrittura('dataNascita')">Modifica</button>
+                            </div>
+                        </div>
+
+                        <!-- Riga email -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-75">
+                                <input class="campi campoMail"  value="" type="text" readonly id="email" name="email">
+                            </div>
+                        </div>
+
+                        <!-- Riga password -->
+                        <div class="row">
+                            <div class="col-25sx">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-50">
+                                <input class="campi" value="********" type="password" readonly id="password" name="password">
+                            </div>
+                            <div class="col-25dx">
+                                <button type="button" class="btn btn-default pulsanteModifica" data-toggle="modal" data-target="#myModalPass" onclick="$('#myModal').modal('hide');">Modifica</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Messaggio mostrato in caso di errore -->
+            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_account"></p>
+
+            <!-- Footer del Modal Profilo -->
+            <div id="footerModalAccount" class="modal-footer footerProfilo">
+                <button class="salvaModifiche" type="button" onclick="modificaAccount()">Conferma modifiche</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal form modifica Password -->
+<div class="modal" id="myModalPass">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal modifica Password -->
+            <div class="header" id="intestazionePass">
+                <p class="title" id="titolo-modalPass">Modifica password<button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button></p>
+            </div>
+
+            <!-- Body del Modal modifica Password -->
+            <div class="modal-body">
+                <div class="contenitore-icona-password">
+                    <i class="fa fa-unlock-alt" id= "icona-lucchetto"></i>
+                </div>
+                <div class="container">
+                    <form action="javascript:void(0)">
+                        <!-- Riga vecchia password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="vecchiaPass">Inserisci password attuale:</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="vecchiaPass" name="pass1">
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye iconaPassword" id="eye1" onclick="mostraPass('vecchiaPass', 'eye1')"></i>
+                            </div>
+                        </div>
+
+                        <!-- Riga nuova password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="nuovaPass">Inserisci nuova password:</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="nuovaPass" name="pass2">
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye iconaPassword" id="eye2" onclick="mostraPass('nuovaPass', 'eye2')"></i>
+                            </div>
+                        </div>
+
+                        <!-- Riga conferma nuova password -->
+                        <div class="row password">
+                            <div class="testo">
+                                <label class="labelPass" for="confNuovaPass">Conferma nuova password:</label>
+                            </div>
+                            <div class="col-90">
+                                <input class="campiPass"  type="password" id="confNuovaPass" name="pass3">
+                            </div>
+                            <div class="col-10">
+                                <i class="fa fa-eye iconaPassword" id="eye3" onclick="mostraPass('confNuovaPass', 'eye3')"></i>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="contenitore-nota">
+                    <p style="text-align: center;"></br>*N.B. La password deve essere di almeno sei caratteri e deve contenere almeno una lettera maiuscola e un numero.</p>
+                </div>
+            </div>
+
+            <!-- Messaggio mostrato in caso di errore -->
+            <p class = "pd" style= "color: red; display:none; margin: 0px 20px 15px;" id="err_password"></p>
+
+            <!-- Footer del Modal modifica password -->
+            <div class="modal-footer">
+                <button class="salvaModifiche" type="button" onclick="modificaPassword()">Conferma modifiche</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Conferma Logout -->
+<div class="modal" id="modal-conferma-logout">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Conferma Logout -->
+            <div class="header" id="intestazione-logout">
+                <p class="title" id="titolo-logout">Conferma Logout
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
+            </div>
+
+            <!-- Body del Modal Conferma Logout -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-logout">
+                    <i class="fa fa-question-circle" id= "icona-logout"></i>
+                </div>
+                <div class="container-question">
+                    <div class="question">
+                        <p style="margin-top: 15px; padding-right: 5px;">Sei sicuro di voler uscire da SoundWave?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal Conferma Logout -->
+            <div class="modal-footer footerLogout">
+                <button class="bottone-conferma-uscita" type="button" onclick="logout()">Esci</button>
+                <button class="bottone-conferma-uscita" type="button" class="close" data-dismiss="modal">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Contenitore del Modal Aggiungi Amico -->
+<div class="container1">
+    <!-- Il Modal -->
+    <div class="modal" id="modal-aggiungi-amico">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Intestazione del Modal -->
+                <div class="modal-header">
+                    <p class="modal-title">Aggiungi amici</p>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Corpo del Modal -->
+                <div class="modal-body">
+                    <form id="regForm" action="javascript:void(0)">
+                        <div class="tab tab-ricerca-utente">Inserisci nome, cognome o nome utente dell'utente che desideri aggiungere agli amici:
+                            <div class="container-input">
+                                 <input class="campoNomeUtente" placeholder="Cerca utente" type="text" name="nome-utente" id="inserisci-nomeUtente">
+                            </div>
+                            <div class="container-icona-ricerca">
+                                <i class="fa fa-search" id="icona-ricerca"></i>
+                            </div>
+                        </div>
+                    </form>
+                        <div class="container-listaUtenti">
+                        </div>
+                        <div class="message">
+                            <p class="pd" style=" font-size:14px;text-align:left; color: red; display:none; margin: 15px 0 0;" id="notifica-agg-amico"></p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Successo Modifica Password -->
+<div class="modal" id="modal-successoModPass">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Successo Modifica Password -->
+            <div class="header" id="intestazione-successoModPass">
+                <p class="title" id="titolo-successoModPass">Password modificata</p>
+            </div>
+
+            <!-- Body del Modal Successo Modifica Password  -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-successoModPass">
+                    <i class="fa fa-check" id= "icona-succModPass"></i>
+                </div>
+                <div class="container-message">
+                    <div class="message">
+                        <p style="margin-top: 15px; padding-right: 5px;">La tua password è stata modificata con successo!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal Successo Modifica Password -->
+            <div class="modal-footer footerSuccessoModPass" style="border-top:0; padding-top: 0;">
+                <button class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Successo Modifica Dati Account -->
+<div class="modal" id="modal-successoModDatiAccount">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Successo Modifica Dati Account -->
+            <div class="header" id="intestazione-successoModDatiAccount">
+                <p class="title" id="titolo-successoModDatiAccount">Dati account modificati</p>
+            </div>
+
+            <!-- Body del Modal Successo Modifica Dati Account  -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-successoModDatiAccount">
+                    <i class="fa fa-check" id= "icona-succModDatiAccount"></i>
+                </div>
+                <div class="container-message">
+                    <div class="message">
+                        <p style="margin-top: 15px; padding-right: 5px;">I dati del tuo account sono stati modificati con successo!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal Successo Modifica Dati Account -->
+            <div class="modal-footer footerSuccessoModDatiAccount" style="border-top:0; padding-top: 0;">
+                <button class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Conferma Rimuovi Amico -->
+<div class="modal" id="modal-conferma-rimAmico">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Conferma Rimuovi Amico -->
+            <div class="header" id="intestazione-rimAmico">
+                <p class="title" id="titolo-rimAmico">Conferma Rimozione Amico
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
+            </div>
+
+            <!-- Body del Modal Conferma Rimuovi Amico -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-rimAmico">
+                    <i class="fa fa-question-circle" id= "icona-rimAmico"></i>
+                </div>
+                <div class="container-question">
+                    <div class="question">
+                        <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler rimuovere l'utente selezionato dalla tua lista degli amici?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal Conferma Rimuovi Amico -->
+            <div class="modal-footer footer-rimAmico">
+                <button class="bottone-conferma-rimAmico" id="tastoConfermaRim" type="button"  data-dismiss="modal">Conferma</button>
+                <button class="bottone-conferma-rimAmico" type="button"  data-dismiss="modal">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Crea Playlist-->
+<div class="modal" id="modal-crea-playlist">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal Crea Playlist-->
+            <div class="modal-header">
+                <p class="modal-title titolo-creaPlaylist">Crea Playlist</p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Corpo del Modal Crea Playlist-->
+            <div class="modal-body">
+                <form id="regForm-CreaPlaylist" action="javascript:void(0)">
+                    <div class="tab tab-nome-playlist">
+                        <p>Inserisci il nome della playlist che desideri creare:</p>
+                        <div class="container-input">
+                            <input class="campoNomePlaylist" placeholder="Nome playlist" type="text" name="nome-playlist" id="inserisci-nomePlaylist">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <p class = "pd" style= "color: red; display:none; margin: 15px 20px 4px;" id="err_playlist"></p>
+
+            <!-- Footer del Modal Crea Playlist -->
+            <div class="modal-footer footerCreaPlaylist">
+                <button id="ciaociao" class="btn btn-default bottone-crea-playlist" type="button" onclick="creaPlaylist()">Crea Playlist</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Conferma Rimuovi Playlist -->
+<div class="modal" id="modal-conferma-rimPlaylist">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Conferma Rimuovi Playlist -->
+            <div class="header" id="intestazione-rimPlaylist">
+                <p class="title" id="titolo-rimPlaylist">Conferma Eliminazione Playlist
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></p>
+            </div>
+
+            <!-- Body del Modal Conferma Rimuovi Playlist -->
+            <div class="modal-body" style="padding: 0 1rem;">
+                <div class="contenitore-icona-rimPlaylist">
+                    <i class="fa fa-question-circle" id= "icona-rimPlaylist"></i>
+                </div>
+                <div class="container-question">
+                    <div class="question">
+                        <p style="margin-top: 15px; padding-right: 20px;">Sei sicuro di voler eliminare la playlist selezionata?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal Conferma Rimuovi Playlist -->
+            <div class="modal-footer footer-rimPlaylist">
+                <button class="bottone-conferma-rimPlaylist" id="tastoConfermaRimPlaylist" type="button"  data-dismiss="modal">Conferma</button>
+                <button class="bottone-conferma-rimPlaylist" type="button"  data-dismiss="modal">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Aggiungi A Playlist -->
+<div class="modal" id="modal-aggiungi-APlaylist">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Intestazione del Modal Aggiungi A Playlist -->
+            <div class="modal-header">
+                <p class="modal-title">Aggiungi brano a playlist</p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Corpo del Modal Aggiungi A Playlist -->
+            <div class="modal-body">
+                <div class="tab tab-agg-brano">
+                </div>
+                <div class="container-listaPlaylist">
+                </div>
+            </div>
+            <p class = "pd" style= "color: red; display:none; margin: 5px 20px 20px;" id="err_aggiungiBrano"></p>
+        </div>
+    </div>
+</div>
+
+
+<script src="javascripts/WebPlayer/view.js"></script>
+<script src="javascripts/WebPlayer/start.js"></script>
+<script src="javascripts/WebPlayer/model.js"></script>
+</body>
+</html>

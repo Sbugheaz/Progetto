@@ -1,5 +1,5 @@
 /**
- * Modulo che si occupa dell'invio delle mail per l'attivazione degli account e il recupero della password.
+ * Modulo che si occupa dell'invio delle mail per l'attivazione degli account e il recupero delle password.
  */
 var nodemailer = require('nodemailer'); // Modulo per l'invio delle email.
 var indirizzoMail; // Indirizzo email utilizzato per inviare le email
@@ -47,7 +47,7 @@ exports.inviaMailRipristinoPassword = function (nome, cognome, emailDestinatario
 };
 
 /**
- * Funzione che manda l'e-mail per l'attivazione dell'account ad un utente che ha eseguito la registrazione.
+ * Funzione che manda l'e-mail per l'attivazione dell'account ad un utente che ha completato correttamente la registrazione.
  * @param nome - Nome dell'utente a cui è destinata la mail.
  * @param cognome - Cognome dell'utete a cui è destinata la mail.
  * @param emailDestinatario - E-mail con cui l'utente ha effettuato la registrazione.

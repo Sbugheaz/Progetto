@@ -1,0 +1,239 @@
+/*Proprietà globali */
+body {
+    font: 1vw "Raleway", sans-serif;
+    background-color: #f1f1f1;
+}
+* {
+    box-sizing: border-box;
+}
+
+
+/*Propietà contenitore intestazione contente il logo*/
+.intestazione {
+    width: 100%;
+}
+.logo{
+    width: 30%;
+    min-width: 180px;
+}
+.logo img{
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+    display: block;
+    margin-left: 1vw;
+    margin-right: auto;
+    width: 100%
+}
+
+
+/*Propietà form registrazione */
+#regForm {
+    background-color: #ffffff;
+    margin: 30px auto;
+    font-family: Raleway, serif;
+    padding: 28px;
+    width: 60%;
+    min-width: 200px;
+}
+#intestazione{
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    border: 1px solid #aaaaaa;
+    border-width: 0 0 2px;
+}
+input:focus, select:focus {
+    outline-width: 0;
+    border-color: rgba(255,148,24,1);
+}
+input.invalid {
+    border-color: red;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.container input:checked ~ .checkmark {
+    background-color: rgba(255,148,24,0.9);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+.container {
+    width: 8vw;
+    display: block;
+    position: relative;
+    padding-left: 35px !important;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+#campo-nome{
+    margin-top: 10px;
+}
+#campo-dataDiNascita{
+    margin-top:2em;
+}
+#campo-sesso{
+    margin-bottom: 10px;
+}
+#campo-nota{
+    margin-top:20px;
+}
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px;
+    margin: 11px auto;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    border: 1px solid #aaaaaa;
+    border-width: 0 0 2px;
+    background-color: #ffffff;
+}
+select select {
+    display: none;
+}
+#btnRegistrazione {
+    background-color: rgb(191, 193, 192);
+    color: #fef9ff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway, serif;
+    cursor: pointer;
+    border-radius: 4px;
+    outline: none;
+    width: 25%;
+}
+#btnRegistrazione:hover {
+    background-color: rgba(255,138,0,1);
+    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#btnRegistrazione:focus {
+    outline:0;
+}
+
+
+/*Proprietà Modal-linkDiConferma */
+#intestazione-linkDiConferma{
+    background-color: #898989;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-bottom: 2px solid rgba(0,114,255,0.43);
+}
+#titolo-linkDiConferma {
+    margin: 0;
+}
+.contenitore-icona-linkDiConferma {
+    width: 15%;
+    float: left;
+    font-size: 8vh;
+    box-sizing: border-box;
+}
+.container-message{
+    text-align: center;
+    width: 80%;
+    float: left;
+}
+.message{
+    font-size: 1rem;
+    padding-right: 15px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.bottone-ok{
+    outline: none;
+    background-color: rgb(191, 193, 192);
+    border: none;
+    border-radius: 4px;
+    padding: 3px 5px;
+    font-size: 14px;
+    width: 20%;
+    height: 1.5rem;
+    color: black;
+}
+.bottone-ok:hover{
+    box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 15px;
+    color: white;
+    background-color: rgba(0,114,255,0.43);
+    font-weight: bold;
+}
+
+
+/*Proprietà degli elementi al ridimensionamento della pagina */
+@media only screen and (max-width: 768px) {
+    #intestazione{
+        font-size: 2rem;
+    }
+    #regForm {
+        width: 85% !important;
+    }
+    .container-fluid{
+        paddin:0 10px;
+        font-size:calc(0.6rem + 1vw);
+    }
+    label.container{
+        font-size: 0.8rem;
+        padding-left: 25px !important;
+    }
+    .checkmark{
+        margin-top: 2px;
+        height: 15px;
+        width: 15px;
+    }
+    .checkmark:after{
+        width: 0 !important;
+    }
+    #btnRegistrazione {
+        font-size: calc(0.6rem + 1vw)!important;
+        width: 40%;
+    }
+}
+
+

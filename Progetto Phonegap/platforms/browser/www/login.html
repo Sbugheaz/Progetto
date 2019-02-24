@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <title>SoundWave - Login</title>
+    <link rel="icon" href="images/Onda.png" type="image/png" />
+</head>
+
+
+<body background="images/Sfondo.jpg">
+
+<!-- Contenitore del logo -->
+<div class="intestazione">
+    <div class="logo">
+       <img src="images/Logo.png">
+    </div>
+</div>
+
+<!-- Contenitore del testo introduttivo -->
+<div class="description">
+    <div class="testo">
+        <p id="testo-home">
+           Ascolta tutta la tua musica in streaming, crea le tue playlist, guarda cosa stanno ascoltando i tuoi amici.<br> <br>
+           Per avere tutto questo accedi o registrati gratuitamente!</p>
+    </div>
+</div>
+
+<!-- Contenitore del form di login -->
+<div class="enter">
+    <div class="home">
+        <form action="javascript:void(0)">
+            <label for="username">Nome utente: </label>
+            <input type="text" id="username" name="username" placeholder="Nome utente">
+            <br>
+          <label for="psw">Password: </label>
+         <input type="password" id="psw" name="password" placeholder="Password">
+          <input onclick="login()" type="submit" value="Accedi">
+     </form>
+        <p class = "pd" style= "color: red; display:none; margin: 15px 0 0;" id="err_dati_accesso"></p>
+      <p class="pd"> <br>Password dimenticata? <a class="lk" data-toggle="modal" data-target="#myModal">
+          Clicca qui
+      </a> per recuperarla!</p>
+      <p class="pd">Non hai ancora un account?
+          <a class="lk" onclick="window.location.href='/Registrazione'">Registrati subito!</a></p>
+    </div>
+</div>
+
+<!-- Contenitore del Modal di recupero password -->
+<div class="container1">
+
+    <!-- Il Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+
+                <!-- Intestazione del Modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Recupera Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" style="outline:none">&times;</button>
+                </div>
+
+                <!-- Corpo del Modal -->
+                <div class="modal-body">
+                    <form id="regForm" action="/">
+                        <div class="tab">Inserisci correttamente il tuo indirizzo e-mail per ricevere una password
+                            provvisoria con cui effettuare il prossimo accesso:
+                            <br>
+                            <input class="rc" placeholder="Indirizzo e-mail" name="email">
+                            <p class="pd" style=" font-size:14px;text-align:left; color: red; display:none; margin: 15px 0 0;" id="err_recuperoPass"></p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Footer del Modal -->
+                <div class="modal-footer">
+                    <button type="button" id="nextBtn" onclick="recuperoPassword()">Recupera password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Verifica Email -->
+<div class="modal" id="modal-verifica-email">
+    <div class="modal-dialog">
+        <div class="modal-content" style=" font-size: 15px; background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Verifica Email -->
+            <div class="header" id="intestazione-verEmail">
+                <h4 class="title" id="titolo-verEmail">Verifica Email
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none;">&times;</button></h4>
+            </div>
+
+            <!-- Body del Modal Verifica Email -->
+            <div class="modal-body" style="padding: 1rem 1rem 0;">
+                <div class="contenitore-icona-verEmail">
+                    <i class="fa fa-exclamation-triangle" id= "verEmail"></i>
+                </div>
+
+
+                <div class="container-message">
+                    <div class="message">
+                        <p style="margin-top: 15px;">Verifica la tua email per poter accedere alle funzionalità del nostro sito!</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer del Modal Verifica Email -->
+            <div class="modal-footer footerVerEmail">
+                <button class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Invio Email -->
+<div class="modal" id="modal-invio-email">
+    <div class="modal-dialog">
+        <div class="modal-content" style=" font-size: 15px; background-color: #b2b2b2;">
+
+            <!-- Intestazione del Modal Invio Email -->
+            <div class="header" id="intestazione-invioEmail">
+                <h4 class="title" id="titolo-invioEmail">Verifica Email
+                    <button type="button" class="close" data-dismiss="modal" style="text-shadow: none; outline:none">&times;</button></h4>
+            </div>
+
+            <!-- Body del Modal Invio Email -->
+            <div class="modal-body" style="padding: 1rem 1rem 0;">
+                <div class="contenitore-icona-invioEmail">
+                    <i class="fa fa-send-o" id= "invioEmail"></i>
+                </div>
+
+
+                <div class="container-message">
+                    <div class="message">
+                        <p style="margin-top: 15px; padding-left: 10px;">A breve riceverai una mail contenente una password provvisoria con cui potrai accedere al nostro sito.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer del Modal Invio Email -->
+            <div class="modal-footer footerInvioEmail">
+                <button id = "confermaRecupero" class="bottone-ok" type="button" data-dismiss="modal">Ok</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer Pagina di Login-->
+<footer>
+    <div id="footer-container">
+        <nav class="row">
+            <!-- Logo dell'applicazione -->
+            <div class="col-sm-4 col-md-3">
+                <p id="nome" class="navbar-brand">
+                    SoundWave<SUB><i class="fa fa-trademark" style="font-size:10px"></i> </SUB>
+                </p>
+            </div>
+
+            <!-- Azienda -->
+            <div class="col-sm-3 col-md-3 extra">
+                <h6>AZIENDA</h6>
+                <ul style="list-style-type: none">
+                    <li>
+                        <span class="riferimento">Chi siamo</span>
+                    </li>
+                    <li>
+                        <span class="riferimento">Opportunità di lavoro</span>
+                    </li>
+                    <li>
+                        <span class="riferimento">Record aziendali</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Link utili -->
+            <div class="col-sm-3 col-md-3 extra">
+                <h6>LINK UTILI</h6>
+                <ul style="list-style-type: none">
+                    <li>
+                        <span class="riferimento">Assistenza</span>
+                    </li>
+                    <li>
+                        <span class="riferimento">Diritti del consumatore</span>
+                    </li>
+                    <li>
+                        <span class="riferimento">Informativa sulla privacy</span>
+                    </li>
+                    <li>
+                    <span class="riferimento">Informazioni legali</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Autori -->
+        <nav class="row" id="copyright">
+            <div class="col-md-7">
+                <p>Questo sito è stato ideato e creato da Gianmarco Coppola, Giuseppe&nbsp;Moscarelli, Andrea&nbsp;Vara.</p>
+            </div>
+            <div class="col-md-5" id="logo_footer">
+                <p><i class="fa fa-copyright"></i>2019 SoundWave</p>
+            </div>
+        </nav>
+    </div>
+</footer>
+</body>
+<script src="javascripts/Login/login.js"></script>
+</html>
