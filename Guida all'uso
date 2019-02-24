@@ -1,6 +1,6 @@
 Istruzioni per avviare e utilizzare l'applicazione SoundWave.
 
-1. Aprire il terminale del computer e portarsi sulla directory "Progetto Coppola, Moscarelli, Vara".
+1. Aprire il terminale del computer e portarsi sulla directory "Progetto".
 
 2. Avviare la macchina virtuale digitando "vagrant up" all'interno del terminale.
 
