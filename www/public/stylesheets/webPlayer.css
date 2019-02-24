@@ -1126,7 +1126,7 @@ p.paragrafo{
 #riga-slider .col-md-8, #riga-slider .col-md-2 {
     padding: 0;
 }
-.testo-controlli-riproduzione {
+.testo-riproduzione {
     display: inline-block;
     vertical-align: middle;
     font-size: calc(0.55rem + 1vw);
@@ -1604,7 +1604,7 @@ label {
         width: 100%;
         left: 0px;
     }
-    .testo-controlli-riproduzione {
+    .testo-riproduzione {
         display: inline-block;
         vertical-align: middle;
         font-size: calc(0.8rem + 1vw);
