@@ -98,7 +98,8 @@ router.get('/', function (req, res) {
 });
 
 /**
- * Restituisce i dati dell'utente che ha eseguito il login al caricamento della pagina del web player.
+ * Restituisce i dati contenenti tutte le informazioni dell'utente che ha eseguito il login al caricamento della pagina
+ * del web player.
  */
 router.get('/utente', function (req, res) {
         var query1 = "SELECT NomeUtente, Nome, Cognome, DataDiNascita, Email " +
@@ -117,7 +118,7 @@ router.get('/utente', function (req, res) {
 });
 
 /**
- * Aggiorna la password dell'utente a seguito di una sua modifica.
+ * Aggiorna la password dell'utente, dopo opporturtini controlli, a seguito di una sua modifica.
  */
 router.post('/modificaPassword', function (req, res) {
     var password = req.body.vecchiaPassword;
@@ -152,7 +153,7 @@ router.post('/modificaPassword', function (req, res) {
 });
 
 /**
- * Aggiorna i dati dell'account a seguito di una modifica dell'utente.
+ * Aggiorna i dati dell'account, dopo opportuni controlli, a seguito di una modifica da parte dell'utente.
  */
 router.post('/modificaAccount', function (req, res) {
     var nome = req.body.nome;
@@ -345,7 +346,7 @@ router.post('/musica/cercaAlbum', function (req, res) {
 });
 
 /**
- * Effettua lo streaming di un brano.
+ * Effettua lo streaming di un brano richiesto dall'utente.
  */
 router.get('/riproduciBrano/musica/' + '((\\d+){1,2}' + '/(\\w+))' + '.mp3', function (req, res) {
     var brano = '/var/www/html/private/media/' + req.url.slice(16);

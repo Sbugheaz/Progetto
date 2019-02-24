@@ -112,7 +112,8 @@ router.get('/', function (req, res) {
 /**
  * Funzione che gestisce la registrazione di un nuovo account. Controlla che tutti i dati inseriti siano corretti e che
  * nome utente ed e-mail non siano già utilizzati da un altro account. Invia i dati al DBMS e una mail contenente un
- * link di attivazione all'utente che ha effettuto la registrazione.
+ * link di attivazione all'utente che ha effettuato la registrazione. Fino a quando l'utente non attivarà il proprio
+ * account cliccando sul link ricevuto non potrà usufruire delle funzionalità della piattaforma.
  */
 router.post('/registrati', function (req, res) {
         var nome = req.body.nome;
@@ -163,6 +164,11 @@ router.post('/registrati', function (req, res) {
         }
 });
 
+/**
+ * Funzione che viene invocata quando un nuovo utente registrato clicca il link di attivazione dell'account ricevuto
+ * tramite mail al seguito della registrazione. Segna l'account dell'utente come attivato, consentendogli di accedere
+ * alla piattaforma alle successive richieste di login.
+ */
 router.get('/((\\d+)' + '/(\\w+))', function (req, res) {
     var flag = false;
     var nomeUtente = req.url.split("/")[2];

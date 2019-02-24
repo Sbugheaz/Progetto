@@ -107,7 +107,7 @@ router.post('/Login', function (req, res) {
 
 /**
  * Funzione che gestisce il logout di un utente, imposta il suo stato online a 0 (offline) e la canzone attualmente in
- * ascolto al valore di default.
+ * ascolto al valore di default e segna la relativa deautenticazione.
  */
 router.get('/Logout', function (req, res) {
     if(req.session.idUtente == undefined) res.redirect('/');
